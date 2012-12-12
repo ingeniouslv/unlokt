@@ -282,6 +282,7 @@ $this->Html->add_script(array(
 		$('#quick-search').hide();
 		$('#advanced-search').show();
 		$('#category').children('[value="'+category_id+'"]').attr('selected', true);
+		$('#type').children('[value="deal"]').attr('selected', true);
 	}
 	
 	// Execute search when the page runs.

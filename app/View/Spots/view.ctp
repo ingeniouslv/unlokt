@@ -126,7 +126,7 @@ $this->Html->add_script(array(
 <div class="container">
 	<div class="row">
 		<div class="nine columns">
-			<div class="row">
+			<div class="row row-fix">
 				<div class="twelve columns block-slider">
 					<div class="block-slider-nav">
 						<a class="left" href="javascript:void(0);"></a>
@@ -140,7 +140,7 @@ $this->Html->add_script(array(
 				echo $this->element('mod-spot_feed');
 				?>
 			<span id="reviews"></span>
-			<div class="row">
+			<div class="row row-fix">
 				<div class="twelve note-slider">
 					<div class="block-slider-nav note-slider-nav">
 						<a class="left" href="javascript:void(0);"></a>

@@ -44,26 +44,28 @@
 							<div class="tile-type">
 
 								<?php if ($deal['Deal']['keys'] == 0): ?>
-									<h4><i class="icon-event"></i></h4>
+									<h4><i class="icon-calendar"></i></h4>
 								<?php elseif ($deal['Deal']['keys'] == 1): ?>
-									<h4><i class="icon-coupon"></i></h4>
-								<?php else: ?>
 									<h4><i class="icon-tag-2"></i></h4>
+								<?php else: ?>
+									<h4><i class="icon-key"></i></h4>
 								<?php endif; ?>
-
 								<h2><?php echo h($deal['Deal']['name']); ?></h2>
-								<p><?php echo h($deal['Deal']['description']); ?></p>
 							</div>	
-							<?php if($deal['Deal']['keys'] > 1): ?>
-								<span class="keys-total"><?php echo $deal['Deal']['keys']; ?></span>
-							<?php 
-								endif;
-								if($deal['Deal']['keys'] > 0):
-							?>	
-								<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Special</a>
-							<?php else: ?>
-								<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
-							<?php endif; ?>
+							<div class="block-actions">
+								<p><?php echo h($deal['Deal']['description']); ?></p>
+							
+								<?php if($deal['Deal']['keys'] > 1): ?>
+									<span class="keys-total"><?php echo $deal['Deal']['keys']; ?></span>
+								<?php 
+									endif;
+									if($deal['Deal']['keys'] > 0):
+								?>	
+									<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Special</a>
+								<?php else: ?>
+									<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
+								<?php endif; ?>
+							</div>
 						</div>
 					<?php endif; ?>
 				</div>

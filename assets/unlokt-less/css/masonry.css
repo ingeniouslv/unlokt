@@ -1,0 +1,10 @@
+.staggered-item img,
+.index + .container .staggered-item img {
+  width: 169px;
+  height: 169px;
+}
+.spot + .container .staggered-item img,
+.deal + .container .staggered-item img {
+  width: 223px;
+  height: 223px;
+}

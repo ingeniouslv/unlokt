@@ -1,0 +1,7 @@
+RewriteRule ^gen/(.+)/(\d+)/(\d+)x(\d+)/?(.*)$ gen/index.php?type=$1&id=$2&width=$3&height=$4&image=$5 [L]
+
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   RewriteRule    ^$ app/webroot/    [L]
+   RewriteRule    (.*) app/webroot/$1 [L]
+</IfModule>

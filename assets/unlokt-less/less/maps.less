@@ -1,0 +1,33 @@
+// Maps.less
+// ------------------------------
+
+ul.tabs .toggle-map {
+	a {
+		padding: 6px 10px 5px;
+			.icon-map {
+			display: inline-block;
+			width: 21px;
+			height: 21px;
+			background: url('@{assetPath}img/map-toggle.png') 50% 0 no-repeat;
+			text-indent: -9999px;
+			vertical-align: middle;
+			.ie7-inline-block();
+		}
+	}
+
+	&.toggled a {
+		.icon-map {
+			background: url('@{assetPath}img/map-toggle.png') 50% 100% no-repeat;
+		}
+		background-color: @red;
+		.box-shadow(inset 0 2px 4px rgba(0, 0, 0, 0.20));
+		background-image: none;
+	}
+}
+
+.showcase.map-open {
+	background: #efefef !important;
+	+ .main-content {
+		.box-shadow(0 -2px 145px rgba(0, 0, 0, 1));
+	}
+}

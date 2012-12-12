@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<link href="../css/app.css" rel="stylesheet" type="text/css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+	<style type="text/css">
+html,
+	body {
+		background: #fff;
+	}
+	</style>
+</head>
+
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="six columns">
+			<h1>.form-vertical .custom</h1>
+			<form class="form-vertical custom">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label">Label</label>
+						<input class="control-field five" type="text" placeholder="Text Input">
+					</div>
+
+					<div class="control-group">
+						<label for="select">Use the class .custom on your form element for custom dropdowns</label>
+						<select class="normal-select five" id="select">
+							<option>Option</option>
+							<option>Option 592034 Okay</option>
+							<option>Option</option>
+						</select>
+					</div>
+
+					<div class="control-group">
+						<label for="checkbox"><input type="checkbox" id="checkbox" selected>C'est une checkbox</label>
+						<label for="checkbox2"><input type="checkbox" id="checkbox2">C'est une checkbox</label>
+					</div>
+
+					<div class="control-group">
+						<label for="radio"><input type="radio" id="radio" selected>El radio</label>
+						<label for="radio2"><input type="radio" id="radio2">El radio</label>
+					</div>
+
+					<div class="control-group">
+						<textarea>I'm just a humble textarea</textarea>
+					</div>
+
+					<div class="btn-group">
+						<button type="reset">Reset</button>
+						<button type="submit" class="btn-red">Submit</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="six columns">
+			<h1>.form-vertical</h1>
+			<form class="form-vertical">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label">Label</label>
+						<input class="control-field five" type="text" placeholder="Text Input">
+					</div>
+
+					<div class="control-group">
+						<label for="select2">Cool default dropdowns without javascript.</label>
+						<select class="normal-select five" id="select2">
+							<option>Option</option>
+							<option>Option 592034 Okay</option>
+							<option>Option</option>
+						</select>
+					</div>
+
+					<div class="control-group">
+						<label for="checkbox3"><input type="checkbox" id="checkbox3" selected>C'est une checkbox</label>
+						<label for="checkbox4"><input type="checkbox" id="checkbox4">C'est une checkbox</label>
+					</div>
+
+					<div class="control-group">
+						<label for="radio3"><input type="radio" id="radio3" selected>El radio</label>
+						<label for="radio4"><input type="radio" id="radio4">El radio</label>
+					</div>
+
+					<div class="btn-group">
+						<button type="reset">Reset</button>
+						<button type="submit" class="btn-red">Submit</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="six columns">
+			<h1>.form-horizontal .custom</h1>
+			<form class="form-horizontal custom">
+				<fieldset>
+					<div class="control-group">
+						<input class="three" type="text" placeholder="Text Input">
+						<input class="three" type="text" placeholder="Text Input">
+						
+						<div class="btn-group">
+							<button type="reset">Reset</button>
+							<button type="submit" class="btn-red">Submit</button>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<input class="twelve" type="text" placeholder="Text Input">
+					</div>
+
+					<div class="control-group">
+						<label for="checkbox5"><input type="checkbox" id="checkbox5" selected>C'est une checkbox</label>
+						<label for="checkbox6"><input type="checkbox" id="checkbox6">C'est une checkbox</label>
+					</div>
+
+					<div class="control-group">
+						<label for="radio5"><input type="radio" id="radio5" selected>El radio</label>
+						<label for="radio6"><input type="radio" id="radio6">El radio</label>
+					</div>
+
+					<div class="btn-group">
+						<button type="reset">Reset</button>
+						<button type="submit" class="btn-red">Submit</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="six columns">
+			<h1>.form-horizontal</h1>
+			<form class="form-horizontal">
+				<fieldset>
+					<div class="control-group">
+						<input class="three" type="text" placeholder="Text Input">
+						<input class="three" type="text" placeholder="Text Input">
+						
+						<div class="btn-group">
+							<button type="reset">Reset</button>
+							<button type="submit" class="btn-red">Submit</button>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<input class="twelve" type="text" placeholder="Text Input">
+					</div>
+
+					<div class="control-group">
+						<label for="checkbox7"><input type="checkbox" id="checkbox7" selected>C'est une checkbox</label>
+						<label for="checkbox8"><input type="checkbox" id="checkbox8">C'est une checkbox</label>
+					</div>
+
+					<div class="control-group">
+						<label for="radio7"><input type="radio" id="radio7" selected>El radio</label>
+						<label for="radio8"><input type="radio" id="radio8">El radio</label>
+					</div>
+
+					<div class="btn-group">
+						<button type="reset">Reset</button>
+						<button type="submit" class="btn-red">Submit</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="../js/jquery.foundation.forms.js"></script>
+<script type="text/javascript">
+	$(document).foundationCustomForms();
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+document.$(function(){$("#staggered").masonry({itemSelector:".staggered-item",columnWidth:280})});

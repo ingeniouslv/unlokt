@@ -1,0 +1,9 @@
+<?php
+/* The identifier is to identify on which server the local configuration is running.
+ * This will help choose database settings and such.
+ * Hopefully this is a good idea/way.
+ * 
+ * Uncomment the define() method below to give this CakePHP instance an identifier.
+ * If you do not create an identifier, the server will default assume IDENTIFIER is 'production' 
+ */
+define('IDENTIFIER', 'some-string-here');

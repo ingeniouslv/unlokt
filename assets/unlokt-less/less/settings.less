@@ -1,0 +1,112 @@
+// Settings.less
+// ------------------------------
+
+// Common Bits
+// --------------------
+@borderRadius: 	3px;
+@boxShadow:		0 2px 4px rgba(0, 0, 0, 0.45);
+
+// Scheme Colors
+// --------------------
+@schemeGrayDark: 	#1a1b20;
+@schemeGray:		#30353d;
+@schemeYellow:		#f7d24e;
+@schemeOrange:		#dd9e35;
+@schemeRed:			#c04a2f;
+@schemeBlueDarker:	#2a6263;
+@schemeBlue:		#90cdcf;
+
+// Basic Colors
+// --------------------
+@red:			@schemeRed;
+@orange:		@schemeOrange;
+@yellow:		@schemeYellow;
+@green:			#55B4A1;
+@blue:			@schemeBlue;
+@purple:		#8363BB;
+
+@black:			#000;
+@grayDarker:	#252525;
+@grayDark:		#666;
+@gray:			#999;
+@grayLight:		#ccc;
+@grayLighter:	#efefef;
+@grayDarkest:  #232529;	
+@white:			#fff;
+
+
+// Typography
+// --------------------
+@baseFontSize:				12px;
+@baseLineHeight:			1.5;
+@baseFontFamily:			'Open Sans', Helvetica, Arial, sans-serif;
+@baseFontColor:				@schemeGrayDark;
+
+@headerFontFamily:			@baseFontFamily;
+@headerFontColorPrimary:	@schemeGrayDark;
+@headerFontColorSecondary:	@grayDark;
+
+@linkColorPrimary:		@red;
+@linkColorSecondary:	@schemeBlueDarker;
+@linkColorNav:			@blue;
+
+// Buttons
+// --------------------
+// Default
+@btnDefaultBackground:	@grayLight;
+@btnDefaultBorderColor:	darken(@grayLight, 10%);
+
+// Red
+@btnRedBackground:		@red;
+@btnRedBorderColor:		darken(@btnRedBackground, 10%);
+
+// Blue
+@btnBlueBackground:		@blue;
+@btnBlueBorderColor:	darken(@btnBlueBackground, 10%);
+
+// Yellow
+@btnYellowBackground:	lighten(@yellow, 5%);
+@btnYellowBorderColor:	darken(@btnYellowBackground, 10%);
+
+// Green
+@btnGreenBackground:	lighten(@green, 5%);
+@btnGreenBorderColor:	darken(@btnGreenBackground, 10%);
+
+
+// Grid
+// --------------------
+@siteWidth:		960px;
+@gridGutter:	10px;
+@gridColumns:	12;
+
+// Load Font-faces
+// --------------------
+@font-face {
+	font-family: 'unlokt-v2';
+	src:	url("@{assetPath}font/unlokticons-webfont.eot");
+	src:	url("@{assetPath}font/unlokticons-webfont.eot?#iefix") format('embedded-opentype'),
+			url("@{assetPath}font/unlokticons-webfont.woff") format('woff'),
+			url("@{assetPath}font/unlokticons-webfont.ttf") format('truetype'),
+			url("@{assetPath}font/unlokticons-webfont.svg#unlokt-v1") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'unlokt_option_iconsregular';
+	src: url('@{assetPath}font/unoktoptionsicons-webfont.eot');
+	src: url('@{assetPath}font/unoktoptionsicons-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('@{assetPath}font/unoktoptionsicons-webfont.woff') format('woff'),
+		 url('@{assetPath}font/unoktoptionsicons-webfont.ttf') format('truetype'),
+		 url('@{assetPath}font/unoktoptionsicons-webfont.svg#unlokt_option_iconsregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+// Background
+// --------------------
+html,
+body {
+	background: @schemeGrayDark;
+}

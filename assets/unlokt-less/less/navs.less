@@ -1,0 +1,139 @@
+// Navs.less
+// ------------------------------
+
+.navbar {
+	padding: 7px 0;
+	background: @schemeGrayDark;
+}
+
+.navbar-big {
+	padding: 10px 0 2px;
+	#gradient > .vertical(@schemeGray, @schemeGrayDark);
+	z-index: 10;
+	.box-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+}
+
+.navbar-footer {
+	background: @black;
+	padding: 10px 0 20px;
+	color: @grayLighter;
+}
+
+.navbar-admin {
+	border: 1px solid @btnYellowBorderColor;
+	#gradient > .vertical(lighten(@btnYellowBackground, 18%), @btnYellowBackground);
+	padding: 7px 0;
+}
+
+// Navs
+// --------------------
+.nav {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+// Nav Horizontal
+// --------------------
+.nav-horizontal {
+	li {
+		color: @blue;
+		float: left;
+		a {
+			padding: 2px @gridGutter/2;
+			color: @blue;
+		}
+		&:first-child a {
+			padding-left: 0;
+		}
+	}
+}
+
+// Nav Inline
+// --------------------
+.nav-inline,
+.nav-inline li {
+	display: inline-block;
+	.ie7-inline-block();
+}
+
+.nav-inline li {
+	a {
+		padding: 0 4px;
+	}
+
+	&:first-child a {
+		padding-left: 0;
+	}
+}
+
+.nav-inline li + li {
+	&:before {
+		content: '\2022';
+		padding-right: 2px;
+	}
+}
+
+// Dropdown Menus
+// --------------------
+.dropdown-toggle {
+	cursor: pointer;
+}
+
+.open .dropdown-menu {
+	display: block;
+	z-index: 1;
+
+}
+
+.dropdown-menu {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	margin-top: 10px;
+	min-width: 200px;
+	background: @white;
+	text-align: left;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	padding: @gridGutter;
+	.border-radius(@borderRadius);
+	.box-shadow(0 2px 5px rgba(0, 0, 0, 0.15));
+	.box-sizing(border-box);
+
+	&:after {
+		display: block;
+		content: '';
+		position: absolute;
+		top: -8px;
+		left: 0px;
+		border-color: transparent transparent @white transparent;
+		border-width: 0 8px 8px;
+		border-style: solid;
+	}
+
+	&:before {
+		display: block;
+		content: '';
+		position: absolute;
+		top: -9px;
+		left: 0px;
+		border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
+		border-width: 0 8px 8px;
+		border-style: solid;
+	}
+}
+.dropdown-menu.pull-right {
+		left: initial;
+		right: 20px;
+
+		&:after {
+			left: initial;
+			right:20px;
+		}
+
+		&:before {
+			left: initial;
+			right: 20px;
+		}
+	}

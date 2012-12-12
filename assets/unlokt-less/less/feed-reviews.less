@@ -1,0 +1,105 @@
+// Feed-reviews.less
+// ------------------------------
+.feed-item,
+.review-item {
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #333;
+	.clearfix;
+	
+	a.more {
+		color: @blue;
+		.pull-right;
+	}
+
+	img {
+		margin-right: @gridGutter/2;
+	}
+
+	.title,
+	.description {
+		margin-left: 45px;
+	}
+
+	.title {
+		color: @red;
+	}
+
+	.description {
+		.clearfix;
+		p {
+			word-wrap: break-word;
+			overflow: hidden;
+			color: white;
+		}
+	}
+
+	.attachments {
+		.pull-right;
+		display: inline-block;
+		margin-bottom: @gridGutter;
+		min-width: 384px;
+
+		img {
+			float: right;
+			display: block;
+		}
+	}
+
+	&:last-child {
+		border-bottom: 0;
+		margin-bottom: 0;
+	}
+
+	+ .block-actions {
+		margin-top: -5px;
+		padding: 0;
+		border: none;
+		text-align: right;
+		i:before {
+			line-height: 100%;
+			font-size: 130%;
+		}
+	}
+}
+
+.review-item .review-spot {
+	margin-left: 45px;
+	font-size: 10px;
+	font-weight: bold;
+	color: @grayDark;
+}
+
+.flag-icon{
+	font-size: 14px;
+	margin-left: 5px;
+
+	&:hover {
+		text-decoration: none;
+		color: darken(@linkColorPrimary, 5%);
+	}
+}
+
+// Adding Review View
+//
+#ReviewAddForm {
+	.control-fields {
+		
+	}
+	.btn-group {
+		clear: both;
+	}
+}
+//
+
+.review {
+	h1 {
+		+ a {
+			margin: 10px 2px 3px;
+			i:before {
+				line-height: 100%;
+				font-size: 130%;
+			}
+		}
+	}
+}

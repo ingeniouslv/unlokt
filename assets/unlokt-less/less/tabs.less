@@ -1,0 +1,48 @@
+// Tabs.less
+// ------------------------------
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		.ie7-inline-block();
+		a {
+			display: block;
+			padding: 7px 10px;
+			margin-left: 2px;
+			font-weight: 600;
+			color: @grayDarker;
+			background: @schemeGrayDark;
+			#gradient > .vertical(lighten(#f6d04d, 5%), darken(#f6d04d, 10%));
+			.border-radius(@borderRadius @borderRadius 0 0);
+			&:hover {
+				color: @grayDarker;
+				text-decoration: none;
+			}
+		}
+
+		&.active a {
+			background: @schemeGray;
+			position: relative;
+			z-index: 2;
+			color: @grayLight;
+		}
+
+		&:first-child a {
+			margin-left: 0;
+		}
+	}
+	.clearfix;
+}
+
+.tab-content {
+	display: none;
+	position: relative;
+	z-index: 1;
+	&.active,
+	&.show {
+		display: block;
+	}
+}

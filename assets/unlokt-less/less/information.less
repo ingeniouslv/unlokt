@@ -1,0 +1,37 @@
+// Information.less
+// ------------------------------
+.information {
+	padding: 0 5px 5px;
+}
+
+.information .section {
+	margin-top: @gridGutter;
+	padding-top: @gridGutter;
+	border-top: 1px solid @grayLight;
+	color: #777;
+
+	.section-name {
+		margin-top: -15px;
+		span {
+			padding-right: 5px;
+			background: @white;
+		}
+	}
+
+	.section-content {
+		margin-left: (@gridGutter*2)+5;
+	}
+
+	i { float: left; clear: both; }
+	address { font-style: normal; }
+	p { margin: 0; }
+}
+
+.information .section,
+.spot-unlock {
+	i,
+	[class^="icon-"] {
+		font-size: 10px;
+		color: #777;
+	}
+}

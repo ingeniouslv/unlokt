@@ -1,0 +1,62 @@
+// Deals.less
+// ------------------------------
+.deal {
+	.deal-meta {
+		padding: @gridGutter/2 0;
+		border-top: 1px solid @grayLight;
+		border-bottom: 1px solid @grayLight;
+
+		.deal-type {
+			margin: 0;
+		}
+
+	}
+
+	.content-group {
+		margin-bottom: @gridGutter/2;
+		border-bottom: 1px solid @grayLight;
+		&:last-child {
+			margin-bottom: 0;
+			border-bottom: none;
+		}
+	}
+
+	.spot {
+		margin-bottom: 5px;
+	}
+}
+.redeem-code {
+	display: inline-block;
+	padding: 3px 7px;
+	border: 1px solid @btnDefaultBorderColor;
+	cursor: pointer;
+	color: @schemeGrayDark;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 1.5;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	vertical-align: top;
+	#gradient > .vertical(lighten(@btnDefaultBackground, 20%), @btnDefaultBackground);
+	.border-radius(@borderRadius);
+	.box-shadow(inset 0 1px 0 rgba(255, 255, 255, 0.5));
+	.box-sizing(border-box);
+	.ie7-inline-block();
+	border: 1px solid @btnYellowBorderColor;
+	#gradient > .vertical(lighten(@btnYellowBackground, 18%), @btnYellowBackground);
+	.btn-jumbo;
+	
+	code {
+		font-size:18px;
+	}
+}
+
+#homepagedeal {
+	#staggered {
+		width: 567px;
+	}
+}
+
+.ui-datepicker {
+	background-color: #fff;
+}

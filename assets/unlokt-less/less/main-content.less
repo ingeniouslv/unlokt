@@ -1,0 +1,21 @@
+// Main-content.less
+// ------------------------------
+.main-content {
+	position: relative;
+	padding: @gridGutter 0 (@gridGutter*2);
+	margin-bottom: @gridGutter*2;
+	z-index: 1;
+	&.page {
+		background: @grayLighter;
+	}
+}
+
+.page-header {
+	margin-bottom: @gridGutter;
+	.clearfix;
+}
+
+.showcase + .main-content {
+	.box-shadow(0 -2px 290px rgba(0, 0, 0, 1));
+	margin-bottom: 0;
+}

@@ -1,0 +1,97 @@
+.rating-stars {
+	direction: rtl;
+	width: 80px;
+	margin-right: 6px;
+	*zoom: 1;
+
+	.star {
+		padding-right: 2px;
+		display: block;
+		float: right;
+		width: 14px;
+		height: 15px;
+		background: transparent url('@{assetPath}img/rating-stars.png') 0 -30px no-repeat;
+		&:before {
+			content: '';
+		}
+	}
+
+	.star:before {
+		display: block;
+		float: right;
+		width: 14px;
+		height: 15px;
+		background: transparent url('@{assetPath}img/rating-stars.png') 0 -30px no-repeat;
+	}
+
+	.star.full:before,
+	.star.full ~ .star:before,
+	.star.one-third ~ .star:before,
+	.star.one-half ~ .star:before,
+	.star.two-thirds ~ .star:before {
+		position: absolute;
+		width: 14px;
+		margin: 0;
+		background-position: 0 0;
+	}
+
+	.star.one-third:before {
+		background-position: 0 0;
+		width: 4.5px;
+		margin-right: 9px;
+		position: absolute;
+	}
+
+	.star.one-half:before {
+		background-position: 0 0;
+		width: 7px;
+		margin-right: 7px;
+		position: absolute;
+	}
+
+	.star.two-thirds:before {
+		background-position: 0 0;
+		width: 11.5px;
+		margin-right: 2.5px;
+		position: absolute;
+	}
+
+	.star.user-selected:before,
+	.star.user-selected~.star:before {
+		background-position: 0 -15px;
+		width: 14px;
+		margin: 0;
+		position: absolute;
+	}
+
+	&.can-rate {
+		.star,
+		.star:before {
+			cursor: pointer;
+		}
+
+		.star:hover:before,
+		.star:hover~.star:before {
+			background-position: 0 -15px !important;
+			width: 14px;
+			margin: 0;
+			position: absolute;
+		}
+	}
+	.clearfix;
+}
+
+.rating-stars,
+.rating-value {
+	display: inline-block;
+	vertical-align: top;
+	.ie7-inline-block();
+}
+
+.rating-value {
+	color: @grayDark;
+	.value-group {
+		color: @red;
+		font-weight: bold;
+	}
+}

@@ -1,0 +1,72 @@
+// Tables.less
+// ------------------------------
+
+table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	.border-radius(@borderRadius);
+	.box-sizing(border-box);
+
+	tr, th, td {
+		border-spacing: 0;
+		.box-sizing(border-box);
+	}
+
+	th, td {
+		padding: 5px;
+
+		&.actions {
+			text-align: right;
+		}
+	}
+
+	thead th {
+		.h4;
+		text-align: left;
+	}
+}
+
+// Bordered Tables
+table.bordered {
+	border: 1px solid @grayLight;
+
+	tr {
+		td, th {
+			border-bottom: 1px solid @grayLight;
+			border-right: 1px solid @grayLight;
+		}
+		
+		&:last-child td {
+			border-bottom: none;
+		}
+		
+		td:last-child,
+		th:last-child {
+			border-right: none;
+		}
+	}	
+}
+
+// Zebra Striping Tables
+table.zebra {
+	tr:nth-child(2n+1) {
+		td {
+			background-color: @white;
+			border-top: 1px solid #e0e0e0;
+			border-bottom: 1px solid #e0e0e0;
+		}
+	}
+
+	tr:nth-child(2n+1) + tr.table-actions {
+		border-bottom: none;
+	}
+
+	tr.table-actions {
+		th, td {
+			background-color: transparent;
+			border: none;
+			border-top: 1px solid #e0e0e0;
+		}
+	}
+}

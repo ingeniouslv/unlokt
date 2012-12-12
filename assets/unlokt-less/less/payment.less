@@ -1,0 +1,51 @@
+// Payment.less
+// ------------------------------
+.payment-icon {
+	display: block;
+	float: left;
+	width: 48px;
+	height: 34px;
+	margin-right: @gridGutter;
+	background-color: transparent;
+	background-image: url('@{assetPath}img/payment_icons.png');
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: 244px 34px;
+
+	&.visa 				{ background-position: 0 0; 	 }
+	&.american_express 	{ background-position: -49px 0;  }
+	&.mastercard 		{ background-position: -98px 0;  }
+	&.discover 			{ background-position: -147px 0; }
+	&.paypal 			{ background-position: -196px 0; }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5) {
+	.payment-icon {
+		background-image: url('@{assetPath}img/payment_icons@2x.png');
+		background-size: 244px 34px;
+	}
+}
+
+// Payment Lists
+// ------------------------
+ul.payment {
+	li {
+		line-height: 36px;
+	}
+}
+
+ul.payment-history {
+	li {
+		padding: @gridGutter 0 0;
+	}
+}
+
+// Plans
+//
+.plan {
+	#PlanAdminAddForm, #PlanAdminEditForm {
+		.input.number, .input.checkbox, .btn-group {
+			margin-top: 10px;
+		}
+	}
+}

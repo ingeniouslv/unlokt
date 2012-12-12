@@ -1,0 +1,3 @@
+[submodule "app/Plugin/Combinator"]
+	path = app/Plugin/Combinator
+	url = git@github.com:joshuapaling/CakePHP-Combinator-Plugin.git

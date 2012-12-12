@@ -1,0 +1,121 @@
+// Masonry.less
+// ------------------------------
+.staggered-item img,
+.index + .container .staggered-item img {
+	width: 270px;
+	height: 270px;
+}
+
+.spot + .container .staggered-item img,
+.deal + .container .staggered-item img,
+.user + .container .staggered-item img {
+	width: 270px;
+	height: 270px;
+}
+
+#staggered .block a {
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.tile {
+	color: #fff;
+	height: 270px;
+	position: relative;
+	width: 270px;
+	.tile-header {
+		background: #000;
+		background-color: rgba(0, 0, 0, 0.5);
+		.box-sizing(border-box);
+		padding: 8px 4px 4px;
+		position: absolute;
+	    -moz-opacity: 0.60;
+	    filter: alpha(opacity=60);
+	    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+	    top: 0;
+		width: 270px;
+
+		.is-active {
+			border-top: none;
+		}
+	}
+	.tile-footer {
+		background: #000;
+		background-color: rgba(0, 0, 0, 0.6);
+		bottom: 0;
+		.box-sizing(border-box);
+		padding: 8px 4px 4px;
+		position: absolute;
+		width: 270px;
+
+		.happy-hour .is-active {
+			border-bottom: 1px solid #CCC;
+		}
+
+		.happy-hour {
+			padding: 10px 10px 31px;
+		}
+		
+	}
+	.block-actions {
+		width: 265px;
+
+		.keys-total {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+		}
+
+		.btn {
+			margin-right: 2px;
+		}
+	}
+	.tile-type {
+		.clearfix;
+		position: relative;
+
+		h2 {
+			color: @white;
+			display: inline;
+		}
+		h4 {
+			color: @white;
+			display: inline;
+			font-size: 16px;
+		}
+		p {
+			display: block;
+			float: left;
+			font-weight: bold;
+			padding-left: 28px;
+			padding-bottom: 20px;
+			width: 195px;
+		}
+			
+		.tile-btn {
+			background-color: #efefef;
+			.border-radius(3px);
+			bottom: 0;
+			display: block;
+			font-family: Entypo;
+			height: 40px;
+			position: absolute;
+			right: 0;
+			width: 40px;
+			
+			&:hover {
+					text-decoration: none;
+			}
+
+			span {
+				font-family: Entypo;
+				font-size: 70px;
+				display: block;
+				margin-top: -31px;
+				text-align: center;
+			}
+		}
+	}
+}

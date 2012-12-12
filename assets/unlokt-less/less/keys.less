@@ -1,0 +1,108 @@
+// Keys.less
+// ------------------------------
+
+.keys-total {
+	display: inline-block;
+	position: relative;
+	height: 24px;
+	margin-left: 25px;
+	padding: 0 10px 0 9px;
+	background: @orange;
+	color: @white;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 24px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+	.ie7-inline-block();
+	.border-radius(6px);
+	.box-shadow(~"inset 0 1px 0 rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 1)");
+
+	&:after {
+		display: block;
+		position: absolute;
+		width: 25px;
+		height: 22px;
+		top: 3px;
+		left: -25px;
+		content: 'a';
+		font-family: 'unlokt-v2';
+		font-weight: normal;
+		font-style: normal;
+		font-size: 16px;
+		line-height: 22px;
+		text-transform: none;
+		color: @orange;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 1);
+	}
+
+	&:before {
+		display: block;
+		position: absolute;
+		width: 10px;
+		height: 0;
+		top: 50%;
+		left: -18px;
+		margin-top: -4px;
+		content: '';
+		border-color: transparent #DD9E35 transparent transparent;
+		border-width: 4px;
+		border-style: solid;
+	}
+
+	&.large {
+		height: 39px;
+		margin-left: 42px;
+		padding: 0 14px;
+		font-size: 20px;
+		line-height: 39px;
+
+		&:after {
+			width: 25px;
+			height: 39px;
+			top: 1px;
+			left: -42px;
+			font-size: 39px;
+			line-height: 39px;
+		}
+
+		&:before {
+			width: 10px;
+			left: -25px;
+			margin-top: -8px;
+			border-width: 8px;
+		}
+	}
+}
+
+.keys {
+	.pull-left;
+	margin-top: 3px;
+
+	span {
+		display: block;
+		font-size: 10px;
+		font-weight: 400;
+		color: #333;
+	}
+
+	i {
+		color: @grayLight;
+	}
+
+	i:before {
+		width: 0.35em;
+	}
+
+	i.has-key {
+		color: @schemeOrange;
+	}
+}
+
+// Keys in Blocks with Actions
+// --------------------
+.block-actions {
+	.keys-total + .btn {
+		float: right;
+	}
+}

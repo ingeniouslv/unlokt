@@ -1,0 +1,289 @@
+// Keys.less
+// ------------------------------
+
+// Location in Navbar
+// --------------------
+.location {
+	position: relative;
+	text-align: right;
+	z-index: 2;
+	
+	.pull-right;
+	h2 {
+		color: @white;
+		font-size: 28px;
+		font-style: italic;
+		font-weight: bold;
+		line-height: 1.2;
+		z-index: 1;
+		
+		i:before {
+			font-size: 100%;
+		}
+	}
+	span {
+		color: @grayDark;
+		font-size: 10px;
+		font-weight: bold;
+		z-index: 1;
+	}
+
+	.dropdown-menu {
+		min-width: 275px;
+	}
+
+	.btn-red {
+		width: 116px;
+	}
+}
+
+// Showcase
+// --------------------
+.showcase {
+	position: relative;
+	height: 300px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	.background-size(cover);
+
+	// &:after {
+	// 	display: block;
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	height: 200px;
+	// 	bottom: 0;
+	// 	content: '';
+	// 	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 17%, rgba(0,0,0,0.65) 99%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+	// 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(17%,rgba(0,0,0,0)), color-stop(99%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	// 	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 17%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+	// 	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 17%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+	// 	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 17%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+	// 	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 17%,rgba(0,0,0,0.65) 99%,rgba(0,0,0,0.65) 100%); /* W3C */
+	// 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+	// }
+}
+
+// Search Filter
+// --------------------
+.filter {
+	margin-top: -40px;
+	margin-bottom: 30px;
+	.block {
+		padding: 0px 15px;
+		.border-radius(@borderRadius 0 @borderRadius @borderRadius);
+		.box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+	}
+}
+
+.filter ul.filter-tabs {
+	text-align: right;
+	.pull-right;
+	margin-top: -32px;
+}
+
+.filter .filter-quick {
+	height: 58px;
+	#gradient > .vertical(@schemeGray, @schemeGrayDark);
+	padding: 0 15px 0 0;
+
+	form {
+		.input-search {
+			padding-top: 12px;
+		}
+	}
+}
+
+.filter .filter-advanced {
+	height: 52px;
+	#gradient > .vertical(@schemeGray, @schemeGrayDark);
+	padding: 12px 15px;
+}
+
+.clear {
+	clear: both;
+}
+
+.filter .nav {
+	.explore {
+		padding-left: 15px;
+		padding-right: 7.5px;
+		border-left: none;
+		.border-radius(3px 0px 0px 3px);
+		&:hover {
+			a.clear {
+				border-right: 1px solid @white;
+			}
+		}
+
+		&.active {
+			a {
+				color: @white;
+			}
+
+			a.clear {
+				border-right: 1px solid @white;
+			}
+			
+
+			a.disabled {
+				color: @grayDark;
+				text-shadow: none;
+			}
+
+			&:hover {
+				a {
+					&.disabled {
+						color:@grayDark;
+					}
+				}
+			}
+		}	
+
+		a {
+			float: left;
+
+			&:first-child {
+				padding-right: 2px;
+			}
+		}
+
+		div {
+			display: inline-block;
+			float: left;
+			
+			a {
+				padding: 2px 4px 0px 0px;
+				display: inline;
+				&:last-child {
+					padding-right: 10px;
+				}
+			}
+
+			a.clear {
+				border-right: 1px solid @grayDark;
+				margin-right: 4px;
+			}
+		}
+	}
+}
+
+.filter .nav {
+	.clearfix;
+	li {
+		float: left;
+		padding-top: 12px;
+		height: 46px;
+		
+
+		i {
+			font-size: 12px;
+			line-height: 10px;
+		}
+
+		a {
+			display: block;
+			padding: 10px 10px 8px;
+			border-left: 1px solid transparent;
+			font-weight: bold;
+			font-size: 10px;
+			text-transform: uppercase;
+			color: @gray;
+		    text-shadow: 0 1px 1px #464646, 0 0 0 rgba(0, 0, 0, 0.35);
+
+		    i {
+		    	color: @white;
+
+		    	&:hover {
+		  
+		    	}
+		    }
+
+		    &:hover {
+		    	text-decoration: none;
+		    	color: @grayDark;
+
+		    	
+		    } 
+		}
+
+		&:hover {
+			a i, a {
+				color: @white;
+				text-shadow: 0 1px 1px #929292, 0 0 0 rgba(0, 0, 0, 0.35);
+			}
+			.box-shadow(inset 0px 0px 2px 0px #ddd);
+			#gradient > .vertical(lighten(@btnBlueBackground, 5%), darken(@btnBlueBackground, 15%));
+		}
+
+		&.active {
+			#gradient > .vertical(lighten(@btnBlueBackground, 5%), darken(@btnBlueBackground, 15%));
+
+			a {
+				color: @white;
+				text-shadow: 0 1px 1px #929292, 0 0 0 rgba(0, 0, 0, 0.35);
+
+				i {
+					color: @white;
+					&:hover {
+						color: @white;
+					}
+				}	
+			}
+		}
+
+		&:first-child a {
+			padding-left: 0;
+			border-left: none;
+		}
+
+		&.has-options {
+			position: relative;
+			&:after {
+				display: block;
+				position: absolute;
+				content: '\e75c';
+				width: 10px;
+				height: 10px;
+				bottom: 0;
+				left: 50%;
+				margin-left: -5px;
+				margin-bottom: -5px;
+				font-family: 'unlokt-v1';
+				font-size: 10px;
+				text-align: center;
+				line-height: 1;
+				color: @gray;
+			}
+
+			ul.options {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin: 0 0 0 1em;
+				padding: 10px;
+				list-style: none;
+				background: @grayLighter;
+				white-space: nowrap;
+				li {
+					float: none;
+					a {
+						padding: 0;
+					}
+				}
+			}
+
+			&:hover ul.options {
+				display: block;
+			}
+		}
+	}
+}
+
+.filter form label {
+	display: block;
+	color: @gray;
+	font-weight: bold;
+	font-size: 10px;
+	text-transform: uppercase;
+}

@@ -1,0 +1,21 @@
+// Lists.less
+// ------------------------------
+ul.list {
+	margin: @gridGutter 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		padding: @gridGutter 0;
+		border-bottom: 1px solid @grayLight;
+
+		&:first-child {
+			border-top: 1px solid @grayLight;
+		}
+	}
+
+	.list-actions {
+		.pull-right;
+		margin-left: @gridGutter;
+	}
+}

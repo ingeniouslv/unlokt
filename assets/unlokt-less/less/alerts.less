@@ -1,0 +1,42 @@
+// Alerts.less
+// ------------------------------
+.alert {
+	font-weight: bold;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	// border-bottom: 1px solid @btnDefaultBorderColor;
+	#gradient > .vertical(lighten(@btnDefaultBackground, 18%), @btnDefaultBackground);
+}
+
+.alert-success {
+	// border-bottom: 1px solid @btnGreenBorderColor;
+	#gradient > .vertical(lighten(@btnGreenBackground, 18%), @btnGreenBackground);
+}
+
+.alert-error {
+	color: @white;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+	// border-bottom: 1px solid @btnRedBorderColor;
+	#gradient > .vertical(lighten(@btnRedBackground, 18%), @btnRedBackground);
+}
+
+.alert-warning {
+	// color: @black;
+	// border-bottom: 1px solid @btnYellowBorderColor;
+	// #gradient > .vertical(lighten(@btnYellowBackground, 18%), @btnYellowBackground);
+	.alert-error;
+}
+
+.alert {
+	.container {
+		position: relative;
+		padding: 7px 0;
+	}
+
+	a.close,
+	a.delete {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		margin-top: -13px;
+	}
+}

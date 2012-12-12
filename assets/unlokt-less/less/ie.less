@@ -1,0 +1,31 @@
+@developmentPath:	'../';
+@assetPath: @developmentPath;
+.rating-stars {
+	.star {
+		padding-right: 2px;
+		display: block;
+		float: right;
+		width: 14px;
+		height: 15px;
+		background: none;
+		&:before {
+			content: '';
+		}
+
+		&:after{
+			background: transparent url('@{assetPath}img/rating-stars.png') 0 -30px no-repeat;
+		}
+	}
+
+	.star:before {
+		display: block;
+		float: right;
+		width: 14px;
+		height: 15px;
+		background: transparent url('@{assetPath}img/rating-stars.png') 0 -30px no-repeat;
+	}
+}	
+
+select {
+	padding-right: 5px;
+}

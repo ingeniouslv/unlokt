@@ -1,0 +1,4 @@
+.rating-stars .star{padding-right:2px;display:block;float:right;width:14px;height:15px;background:none;}.rating-stars .star:before{content:'';}
+.rating-stars .star:after{background:transparent url('../img/rating-stars.png') 0 -30px no-repeat;}
+.rating-stars .star:before{display:block;float:right;width:14px;height:15px;background:transparent url('../img/rating-stars.png') 0 -30px no-repeat;}
+select{padding-right:5px;}

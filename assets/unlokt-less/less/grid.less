@@ -1,0 +1,129 @@
+// Grid.less
+// ------------------------------
+.container {
+	width: @siteWidth;
+	margin: auto;
+	.clearfix;
+}
+
+.container .row {
+	// margin-left: -(@gridGutter/2);
+	// margin-right: -(@gridGutter/2);
+	margin-left: (@gridGutter * -1);
+} 
+
+.row {
+	position: relative;
+	.clearfix;
+	.row {
+		//margin-left: -(@gridGutter/2);
+		//margin-right: -(@gridGutter/2);
+		margin-left: (@gridGutter * -1);
+	}
+}
+
+.columns {
+	float: left;
+	margin-bottom: @gridGutter;
+	//padding: 0 @gridGutter/2 0 @gridGutter/2;
+	padding-left: @gridGutter;
+	.box-sizing(border-box);
+	// + .columns:last-child {
+	// 	float: right;
+	// }
+	.clearfix;
+}
+
+.row.row-centered {
+	text-align: center;
+	.columns {
+		float: none;
+		display: inline-block;
+		margin: 0 -1px;
+		text-align: left;
+		.ie7-inline-block();
+	}
+}
+
+// Sizes
+.one 	{ width: 8.33333% 	!important; }
+.two 	{ width: 16.66667%	!important; }
+.three 	{ width: 25% 		!important; }
+.four 	{ width: 33.33333%	!important; }
+.five 	{ width: 41.66667%	!important; }
+.six 	{ width: 50%		!important;	}
+.seven 	{ width: 58.33333%	!important; }
+.eight 	{ width: 66.66667%	!important; }
+.nine 	{ width: 75%		!important; }
+.ten 	{ width: 83.33333%	!important; }
+.eleven	{ width: 91.66667%	!important; }
+.twelve	{ width: 100%		!important; }
+
+// Sizes (Experimental)
+// FLUID
+// --------------------
+.colSizeFluid(@colSizeFluid: 1) {
+	width: (100% / 16) * @colSizeFluid !important;
+}
+.row.fluid {
+	.one 		{ .colSizeFluid(1)  }
+	.two 		{ .colSizeFluid(2)  }
+	.three 		{ .colSizeFluid(3)  }
+	.four 		{ .colSizeFluid(4)  }
+	.five 		{ .colSizeFluid(5)  }
+	.six 		{ .colSizeFluid(6)  }
+	.seven 		{ .colSizeFluid(7)  }
+	.eight 		{ .colSizeFluid(8)  }
+	.nine 		{ .colSizeFluid(9)  }
+	.ten 		{ .colSizeFluid(10) }
+	.eleven 	{ .colSizeFluid(11) }
+	.twelve 	{ .colSizeFluid(12) }
+	.thirteen	{ .colSizeFluid(13) }
+	.fourteen	{ .colSizeFluid(14) }
+	.fifteen	{ .colSizeFluid(15) }
+	.sixteen	{ .colSizeFluid(16) }
+}
+
+// Sizes (Experimental)
+// STATIC
+// --------------------
+.colSize(@colSize: 1) {
+	width: ((@siteWidth/16) * @colSize) !important;
+}
+
+.row.fixed {
+	.one		{ .colSize(1)  }
+	.two		{ .colSize(2)  }
+	.three		{ .colSize(3)  }
+	.four		{ .colSize(4)  }
+	.five		{ .colSize(5)  }
+	.six		{ .colSize(6)  }
+	.seven		{ .colSize(7)  }
+	.eight		{ .colSize(8)  }
+	.nine		{ .colSize(9)  }
+	.ten		{ .colSize(10) }
+	.eleven		{ .colSize(11) }
+	.twelve		{ .colSize(12) }
+	.thirteen	{ .colSize(13) }
+	.fourteen	{ .colSize(14) }
+	.fifteen	{ .colSize(15) }
+	.sixteen	{ .colSize(16) }
+}
+
+
+
+// Staggered Stuff (CSS3)
+// --------------------
+// #staggered {
+// 	.content-columns(3, 10px);
+// 	.staggered-item {
+// 		margin-bottom: @gridGutter*2;
+// 		// .column-break-inside(avoid);
+// 		display: inline-block;
+// 		.ie7-inline-block();
+// 	}
+// }
+
+// #staggered .columns {
+// 	padding-left: 0;
+// }

@@ -92,7 +92,7 @@
 				<?php if(!empty($user) && isset($user['Location']['name'])): ?>
 					<h2><i class="icon-direction"></i><?php echo $user['Location']['name']; ?></h2>
 				<?php else: ?>
-				<h2><i class="icon-direction"></i>Las Vegas</h2>
+				<h2 id="current-location"><i class="icon-direction"></i>My Location</h2>
 				<?php endif; ?>
 				<span>Choose a new location</span>
 

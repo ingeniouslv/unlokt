@@ -17,7 +17,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							<h5 class="deal-type">
 								<!-- If deal == deal -->
 								<?php if ($deal['Deal']['keys'] == 0): ?>
-									<i class="icon-coupon"></i> E
+									<i class="icon-coupon"></i> Event
 								<?php elseif ($deal['Deal']['keys'] == 1): ?>
 									<i class="icon-coupon"></i> Spot Special
 								<?php else: ?>
@@ -35,7 +35,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							You have completed this Spot Special <?php echo $deal_completed_count; ?> time<?php echo $deal_completed_count == 1 ? '' : 's'; ?>
 						<?php endif; ?>
 						<div class="block block-white">
-							<!-- <div class="keys">
+							<div class="keys">
 								<?php if (!isset($activeDeal) || !$activeDeal): ?>
 									<?php
 									echo str_repeat('<i class="icon-key"></i>', $deal['Deal']['keys']);
@@ -52,7 +52,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 									<span>You last completed this Deal <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?></span>
 								<?php endif; ?>
 								
-							</div> -->
+							</div>
 							<?php if (!$deal['Deal']['limit_per_customer'] || $deal_completed_count < $deal['Deal']['limit_per_customer']): ?>
 								<div class="pull-right">
 									<span class="keys-total large"><?php echo $deal['Deal']['keys']; ?></span>
@@ -88,6 +88,19 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							<p class="lead">Fine Print</p>
 							<p><?php echo h($deal['Deal']['fine_print']); ?></p>
 						</div>
+						<?php if($is_manager): ?>
+							<div class="content-group">
+								<p class="lead">Redemption Codes</p>
+								<p>
+									<ul>
+										<?php foreach($deal['RedemptionCode'] as $redemption_code): ?>
+											<li>Step <?php echo $redemption_code['step']. " - ". $redemption_code['code']; ?></li>
+										<?php endforeach; ?>
+									</ul>
+								</p>
+								
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>

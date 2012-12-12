@@ -487,6 +487,7 @@ table .spot-name a{display:block;color:#000000;}
 .tile .tile-type h2{color:#ffffff;display:inline;}
 .tile .tile-type h4{color:#ffffff;display:inline;font-size:16px;}
 .tile .tile-type p{display:block;float:left;font-weight:bold;padding-left:28px;padding-bottom:20px;width:195px;}
+.tile .tile-type .is-active .happy-hour{color:#fff;}
 .tile .tile-type .tile-btn{background-color:#efefef;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;bottom:0;display:block;font-family:Entypo;height:40px;position:absolute;right:0;width:40px;}.tile .tile-type .tile-btn:hover{text-decoration:none;}
 .tile .tile-type .tile-btn span{font-family:Entypo;font-size:70px;display:block;margin-top:-31px;text-align:center;}
 .datepicker{top:0;left:0;padding:4px;margin-top:1px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}.datepicker:before{content:'';display:inline-block;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #ccc;border-bottom-color:rgba(0, 0, 0, 0.2);position:absolute;top:-7px;left:6px;}

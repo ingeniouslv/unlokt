@@ -126,7 +126,7 @@ $this->Html->add_script(array(
 <div class="container">
 	<div class="row">
 		<div class="nine columns">
-			<div class="row">
+			<div class="row row-fix">
 				<div class="twelve columns block-slider">
 					<div class="block-slider-nav">
 						<a class="left" href="javascript:void(0);"></a>
@@ -140,7 +140,7 @@ $this->Html->add_script(array(
 				echo $this->element('mod-spot_feed');
 				?>
 			<span id="reviews"></span>
-			<div class="row">
+			<div class="row row-fix">
 				<div class="twelve note-slider">
 					<div class="block-slider-nav note-slider-nav">
 						<a class="left" href="javascript:void(0);"></a>
@@ -156,6 +156,28 @@ $this->Html->add_script(array(
 <script src="/js/nf-slider-call.js"></script>
 
 <script>
+
+	var notenetflixviewer = new NetflixViewer({
+		click_left: '.left',
+		click_right: '.right',
+		container: '.block-slider',
+		slider: '.block-slider-container',
+		item_padding: 10,
+		el: $('.block-slider').parent(),
+		slider_speed: 15,
+		slider_distance: 6
+	});
+
+	var notenetflixviewer = new NetflixViewer({
+		click_left: '.left',
+		click_right: '.right',
+		container: '.note-slider',
+		slider: '.note-slider-container',
+		item_padding: 10,
+		el: $('.note-slider').parent(),
+		slider_speed: 15,
+		slider_distance: 6
+	});
 	
 	// Add trigger for opening gallery
 	$('.gallery-image').click(function() {

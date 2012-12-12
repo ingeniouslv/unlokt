@@ -26,7 +26,7 @@ class DealsController extends AppController {
 	public function view($id) {
 		$this->Deal->id = $id;
 		
-		if (!$deal = $this->Deal->getDeal()) {
+		if (!$deal = $this->Deal->getDeal($id, array('RedemptionCode'))) {
 			throw new NotFoundException('Could not find Deal');
 		}
 		$contain = array('Category', 'Feed');
@@ -37,12 +37,14 @@ class DealsController extends AppController {
 			// $active_deal = $this->Deal->ActiveDeal->getActiveDealByDeal($id);
 			$activeDeal = $this->Deal->ActiveDeal->findByDealIdAndUserId($id, $this->Auth->user('id'));
 		}
-		
+		$this->Deal->Spot->id = $deal['Deal']['spot_id'];
+		$is_manager = $this->Deal->Spot->Manager->isManager();
+		$is_manager = ($is_manager)?$is_manager:$this->Auth->user('is_super_admin');
 		$deals = $this->Deal->getDealBySpotIds($spot['Spot']['id'], array(), array($id));
 		$deal_completed_count = $this->Deal->ActiveDeal->findCompletedCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
 		
 		$this->Deal->increment('views');
-		$this->set(compact('deal', 'spot', 'activeDeal', 'deals', 'deal_completed_count'));
+		$this->set(compact('deal', 'spot', 'activeDeal', 'deals', 'deal_completed_count', 'is_manager'));
 	}
 	
 	//////////////////////////////////////////////////

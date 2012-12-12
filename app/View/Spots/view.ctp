@@ -172,52 +172,5 @@ $this->Html->add_script(array(
 	$('#more-pics').click(function() {
 		start_gallery(<?php echo $spot['Spot']['id']; ?>);
 	});
-
-	//
-	var notenetflixviewer = new NetflixViewer({
-		click_left: '.left',
-		click_right: '.right',
-		container: '.block-slider',
-		slider: '.block-slider-container',
-		item_padding: 10,
-		el: $('.block-slider').parent(),
-		slider_speed: 15,
-		slider_distance: 6
-	});
-
-	var notenetflixviewer = new NetflixViewer({
-		click_left: '.left',
-		click_right: '.right',
-		container: '.note-slider',
-		slider: '.note-slider-container',
-		item_padding: 10,
-		el: $('.note-slider').parent(),
-		slider_speed: 15,
-		slider_distance: 6
-	});
-</script>
-<script>
-	//add a hover effect to the tile image
-	$('.tile img').hover(
-		function() {
-			$(this).siblings('.tile-footer').children('.block-actions').show();
-		},
-		function() {
-			$(this).siblings('.tile-footer').children('.block-actions').hide();
-		}
-	);
-
-	//add same hover effect on the div that contains the buttons
-	$('.tile .tile-footer').hover(
-		function() {
-			$(this).children('.block-actions').show();
-		},
-		function() {
-			$(this).children('.block-actions').hide();
-		}
-	);
-
-	//initially hide the buttons
-	$('.tile-footer .block-actions').hide();
 </script>
 <?php echo $this->element('mod-gallery'); ?>

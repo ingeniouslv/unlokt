@@ -68,6 +68,7 @@ $this->Html->add_script(array(
 	var distanceFromClosestLocation = -1;
 	var spot_ids_i_follow = <?php echo json_encode($spot_ids_i_follow); ?>;
 	var location_id = <?php echo json_encode($user['User']['location_id']); ?>;
+	var category_id = <?php echo json_encode(isset($_GET['category'])?$_GET['category']:false); ?>;
 	
 	function search(limit) {
 
@@ -228,6 +229,7 @@ $this->Html->add_script(array(
 				Geo.lat = closestLocation.Location.lat;
 				Geo.lon = closestLocation.Location.lng;
 				distanceFromClosestLocation = 0;
+				$("#current-location").html("<i class=\"icon-direction\"></i>" + closestLocation.Location.name);
 			}
 		}
 	}
@@ -272,6 +274,14 @@ $this->Html->add_script(array(
 	//get geolocation from browser when page runs
 	if(!location_id) {
 		navigator.geolocation.getCurrentPosition(GetLocation);
+	}
+	
+	if(category_id) {
+		$('.quick-search-tab').removeClass('active');
+		$('.advanced-search-tab').addClass('active');
+		$('#quick-search').hide();
+		$('#advanced-search').show();
+		$('#category').children('[value="'+category_id+'"]').attr('selected', true);
 	}
 	
 	// Execute search when the page runs.

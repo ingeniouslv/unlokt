@@ -45,7 +45,7 @@ class PagesController extends AppController {
 	
 	public function beforeFilter() {
  		//$this->Auth->allow(array('display', 'site_index', 'page'));
-		$this->Auth->allow(array());
+		$this->Auth->allow(array('page'));
 		parent::beforeFilter();
 	}
 

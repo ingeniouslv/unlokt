@@ -120,4 +120,17 @@ class Review extends AppModel {
 			'contain' => $contain
 		));
 	}
+	
+	public function getReviewByUserId($ids, $contain = array()) {
+		$this->Behaviors->attach('Containable');
+		return $this->find('all', array(
+			'conditions' => array(
+				'Review.user_id' => $ids
+			),
+			'limit' => $this->limit,
+			'order' => 'Review.created DESC',
+			'contain' => $contain
+		));
+		
+	}
 }

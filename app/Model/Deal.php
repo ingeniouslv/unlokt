@@ -318,5 +318,6 @@ class Deal extends AppModel {
 			'contain' => $contain
 		));
 	}
+	
 
 }

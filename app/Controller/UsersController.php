@@ -435,9 +435,11 @@ class UsersController extends AppController {
 	} // end of api_register()
 	
 	public function account() {
-		$user = $this->User->read(null, $this->Auth->user('id'));
-		
-		$this->set(compact('user'));
+		$user_id = $this->Auth->user('id');
+		$user = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
+		$reviews = $this->User->Review->getReviewByUserId($user_id, array('Spot'));
+		$deals = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id);
+		$this->set(compact('user', 'reviews', 'deals'));
 	} // end of account()
 	
 	public function account_edit() {

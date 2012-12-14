@@ -47,15 +47,6 @@
 		<?php if ($this->Auth->loggedIn()): ?>
 			<div class="container">
 				<ul class="nav nav-horizontal pull-right">
-					<li>
-						<?php 
-							echo $this->Html->link(
-								$this->Html->tag('i', '', array('class' => 'icon-tag-1')).'My Current Spot Specials',
-								array('controller'=>'deals', 'action' => 'my_active_deals', 'admin' => false),
-								array('escape' => false)
-							); 
-						?>
-					</li>
 					<?php if (isset($spots_i_manage) && count($spots_i_manage)): ?>
 						<li><a href="javascript:void(0);" class="text-yellow" onclick="$('#feedModal').modal();"><i class="icon-pencil"></i>Post to Feed</a></li>
 						<li><a href="<?php echo $this->webroot; ?>spots">Spots I Manage</a></li>
@@ -65,7 +56,7 @@
 							<?php echo $this->Html->link( 'My Spots', array('controller'=>'users', 'action' => 'my_spots', 'admin' => false)); ?>
 						</li>
 					<?php endif; ?>
-					<li><a href="<?php echo $this->webroot; ?>users/account" title="My Account"><?php echo h($this->Auth->user('name')); ?></a></li>
+					<li><a href="<?php echo $this->webroot; ?>users/account" title="My Profile">My Profile</a></li>
 					<?php if ($this->Auth->user('is_super_admin')): ?>
 						<li><a href="<?php echo $this->webroot; ?>admin/users" title="Administration">Administration</a></li>
 					<?php endif; ?>

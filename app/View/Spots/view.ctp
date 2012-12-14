@@ -178,6 +178,29 @@ $this->Html->add_script(array(
 		slider_speed: 15,
 		slider_distance: 6
 	});
+
+	//add a hover effect to the tile image
+	$('.tile img').hover(
+		function() {
+			$(this).siblings('.tile-footer').children('.block-actions').show();
+		},
+		function() {
+			$(this).siblings('.tile-footer').children('.block-actions').hide();
+		}
+	);
+	
+	//add same hover effect on the div that contains the buttons
+	$('.tile .tile-footer').hover(
+		function() {
+			$(this).children('.block-actions').show();
+		},
+		function() {
+			$(this).children('.block-actions').hide();
+		}
+	);
+	
+	//initially hide the buttons
+	$('.tile-footer .block-actions').hide();
 	
 	// Add trigger for opening gallery
 	$('.gallery-image').click(function() {

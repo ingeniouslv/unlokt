@@ -4,6 +4,9 @@ $this->set('title_for_layout', 'Login');
 <div class="page">
 	<div class="container">
 		<div class="row row-centered">
+			<div class="six columns">
+				<img src="/img/main-logo.png" alt="">
+			</div>
 			<div class="six columns mod-box">
 				<h1>Please Log In</h1>
 				<?php

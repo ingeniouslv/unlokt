@@ -49,7 +49,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 									<span>You need <?php echo $remaining_keys; ?> more key<?php echo $remaining_keys == 1 ? '' : 's'; ?></span>
 								<?php elseif (isset($activeDeal['ActiveDeal']['is_completed']) && $activeDeal['ActiveDeal']['is_completed']): ?>
 									<?php echo str_repeat('<i class="icon-key has-key"></i>', $deal['Deal']['keys']); ?>
-									<!-- <span>You last completed this Deal <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?></span> -->
 
 								<?php endif; ?>
 								

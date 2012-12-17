@@ -1,15 +1,7 @@
 <?php echo $this->element('global-head'); ?>
 <body>
 	<div id="body-container">
-		<div class="splash-wrap">
-
-			<?php if($this->Session->check('Message')): ?>
-					<?php
-						echo $this->Session->flash();
-						echo $this->Session->flash('auth');
-					?>
-			<?php endif; ?>
-			
+		<div class="splash-wrap">	
 			<div class="splash">
 				<?php echo $this->fetch('content'); ?>
 			</div>

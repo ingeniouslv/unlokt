@@ -4,10 +4,10 @@ $this->set('title_for_layout', 'Login');
 <div class="page">
 	<div class="container">
 		<div class="row row-centered">
-			<div class="six columns">
-				<img src="/img/main-logo.png" alt="">
-			</div>
 			<div class="six columns mod-box">
+				<div class="logo">
+					<img src="/img/main-logo.png" alt="">
+				</div>
 				<h1>Please Log In</h1>
 				<?php
 				echo $this->Form->create('User', array('class' => 'control-group form-vertical form-centered'));
@@ -20,11 +20,13 @@ $this->set('title_for_layout', 'Login');
 				</div>
 				<!-- TODO: Forgot Password view -->
 				<div class="btn-group">
+					<a class="btn-link" href="/pages/about">About Us  </a>
 					<a class="btn-link" href="/users/forgot_password">Forgot Password?</a>
 				</div>
 				<?php
 				echo $this->Form->end();
 				?>
+
 			</div>
 		</div>
 	</div>

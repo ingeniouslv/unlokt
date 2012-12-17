@@ -555,11 +555,11 @@ table .spot-name a {
 }
 
 .splash {
-	height: 230px;
+	height: 293px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: -115px;
+	margin-top: -146.5px;
 	margin-left: -480px;
 	z-index: 100;
 
@@ -569,8 +569,19 @@ table .spot-name a {
 		margin: 0 auto;
 		.border-radius(3px);
 
+		.logo {
+			margin: 0 auto;
+			width: 190px;
+		}
+
 		h1 {
 			color: #efefef;
+		}
+	}
+
+	.btn-link {
+		&:first-child  {
+			margin-right: 5px;
 		}
 	}
 
@@ -586,7 +597,11 @@ table .spot-name a {
 
 //
 
-.prem {
+.prem{
+	display: none;
+}
+.prem[disabled] {
+	display: block;
 	position: absolute;
 	z-index: 4;
 	width: 100%;

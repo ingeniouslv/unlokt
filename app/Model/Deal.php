@@ -269,6 +269,23 @@ class Deal extends AppModel {
 		));
 	}
 	
+	public function getActiveDealsByUserId($id = null) {
+		if(empty($id)) $id=$this->Auth->user('id');
+		$joins = array(
+			array(
+				'table' => 'active_deals',
+				'alias' => 'ActiveDeal',
+				'type' => 'INNER',
+				'conditions' => array(
+					'ActiveDeal.deal_id = Deal.id',
+					'ActiveDeal.user_id' => $id
+				)
+			)
+		);
+		
+		return $this->find('all', array('joins' => $joins));
+	}
+	
 	/*
 	 * Used by the Search on the Home Page
 	 */

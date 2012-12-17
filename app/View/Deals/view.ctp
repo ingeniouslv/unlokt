@@ -49,7 +49,8 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 									<span>You need <?php echo $remaining_keys; ?> more key<?php echo $remaining_keys == 1 ? '' : 's'; ?></span>
 								<?php elseif (isset($activeDeal['ActiveDeal']['is_completed']) && $activeDeal['ActiveDeal']['is_completed']): ?>
 									<?php echo str_repeat('<i class="icon-key has-key"></i>', $deal['Deal']['keys']); ?>
-									<span>You last completed this Deal <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?></span>
+									<!-- <span>You last completed this Deal <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?></span> -->
+
 								<?php endif; ?>
 								
 							</div>
@@ -68,7 +69,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 						
 							<?php if (isset($activeDeal['ActiveDeal']['is_completed']) && $activeDeal['ActiveDeal']['is_completed']): ?>
 								<div class="text-center">
-									<h2>Hurray! You've Unlokted this Spot Special</h2> <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?>.
+									<h2>Hurray! You've Unlokt this Spot Special</h2> <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?>.
 								</div>
 								<div class="redeem-code twelve">
 								 	<span>Spot Owner Enter this Code:</span>
@@ -147,7 +148,30 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 </div>
 
 <script>
+
+	//add a hover effect to the tile image
+	$('.tile img').hover(
+		function() {
+			$(this).siblings('.tile-footer').children('.block-actions').show();
+		},
+		function() {
+			$(this).siblings('.tile-footer').children('.block-actions').hide();
+		}
+	);
 	
+	//add same hover effect on the div that contains the buttons
+	$('.tile .tile-footer').hover(
+		function() {
+			$(this).children('.block-actions').show();
+		},
+		function() {
+			$(this).children('.block-actions').hide();
+		}
+	);
+
+	//initially hide the buttons
+	$('.tile-footer .block-actions').hide();
+
 	//////////////////////////////////////////////////
 	
 	$('#redeemButton').click(function() {

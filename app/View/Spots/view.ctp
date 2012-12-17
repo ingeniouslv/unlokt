@@ -128,6 +128,9 @@ $this->Html->add_script(array(
 		<div class="nine columns">
 			<div class="row row-fix">
 				<div class="twelve columns block-slider">
+					<div class="prem">
+						<p>Premium Users</p>
+					</div>
 					<div class="block-slider-nav">
 						<a class="left" href="javascript:void(0);"></a>
 						<a class="right" href="javascript:void(0);"></a>
@@ -157,7 +160,7 @@ $this->Html->add_script(array(
 
 <script>
 
-	var notenetflixviewer = new NetflixViewer({
+	var netflixviewer = new NetflixViewer({
 		click_left: '.left',
 		click_right: '.right',
 		container: '.block-slider',

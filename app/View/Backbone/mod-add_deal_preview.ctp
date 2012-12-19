@@ -1,3 +1,12 @@
+<h2>
+	<% if (deal.Deal.keys == 0) { %>
+		<h4><i class="icon-calendar">Event</i></h4>
+	<% } else if (deal.Deal.keys == 1) { %>
+		<h4><i class="icon-tag-2"></i> Special</h4>
+	<% } else { %>
+		<h4><i class="icon-key"></i> Reward</h4>
+	<% } %>
+</h2>
 <div class="tile">
 	<img src="/gen/temp/0/270x270/<%= deal.Deal.tmp_image_name %>">
 	<div class="tile-footer">	

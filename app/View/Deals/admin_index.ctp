@@ -4,7 +4,7 @@ $this->set('title_for_layout', 'Spot Special Manager');
 
 <div class="main-content page category">
 	<div class="container">
-		<h1>Deal Manager</h1>
+		<h1>Special Manager</h1>
 
 		<table class="zebra">
 			<thead>

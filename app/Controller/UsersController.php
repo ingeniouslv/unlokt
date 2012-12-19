@@ -236,6 +236,8 @@ class UsersController extends AppController {
 	
 	// Public user can register for Unlokt here.
 	public function register() {
+		$referer = $this->Session->read('referer');
+		
 		if ($this->request->is('post')) {
 			// Attempt to validate and save user.
 			$this->User->create();
@@ -255,7 +257,7 @@ class UsersController extends AppController {
 				// Good
 				$this->User->save();
 				$this->login_user($this->User->id);
-				if($referer = $this->Session->read('referer')) {
+				if($referer) {
 					$this->Session->delete('referer');
 					$this->redirect($referer);
 				} else {
@@ -269,8 +271,9 @@ class UsersController extends AppController {
 				$this->Session->setFlash('Please check the form and try again. Do not forget to re-enter your password.', 'alert-warning');
 			}
 		}
-		//$referrer = ($this->referer != '')? $this->referer;
-		//$this->set(compact('referrer'));
+
+		$this->set(compact('referer'));
+		
 	}
 
 	/**

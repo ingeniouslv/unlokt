@@ -434,6 +434,34 @@ class UsersController extends AppController {
 		
 	} // end of api_register()
 	
+	
+	
+	
+	public function api_my_spots() {
+		$this->User->id = $this->Auth->user('id');
+		if(!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		
+		$spot_ids = $this->User->SpotFollower->Spot->getMySpotIds($this->Auth->user('id'));
+		$spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
+		
+		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids);
+		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
+		$spotsfeed['user'] = $this->User->getUser(null, array('SpotFollower' => array('Spot' => array('Feed', 'Deal'))));
+		//$this->set(compact('user', 'feeds', 'spots', 'deals'));
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);
+	} // end of api_my_spots
+
+	
+	public function api_account() {
+		$user_id = $this->Auth->user('id');
+		$mydeals['user'] = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
+		$mydeals['deals'] = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id);
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $mydeals);
+	} // end of account()
+	
+	
 	public function account() {
 		$user_id = $this->Auth->user('id');
 		$user = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));

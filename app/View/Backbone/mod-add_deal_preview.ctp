@@ -3,11 +3,11 @@
 	<div class="tile-footer">	
 		<div class="tile-type">
 			<% if (deal.Deal.keys == 0) { %>
-				<h4><i class="icon-event"></i></h4>
+				<h4><i class="icon-calendar"></i></h4>
 			<% } else if (deal.Deal.keys == 1) { %>
-				<h4><i class="icon-coupon"></i></h4>
-			<% } else { %>
 				<h4><i class="icon-tag-2"></i></h4>
+			<% } else { %>
+				<h4><i class="icon-key"></i></h4>
 			<% } %>
 			<h2><%= h(deal.Deal.name) %></h2>
 		</div>	

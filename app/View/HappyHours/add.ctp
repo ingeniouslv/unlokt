@@ -10,7 +10,11 @@ $this->set('title_for_layout', "Add Happy Hour to '". h($spot['Spot']['name']). 
 					<div class="happyHours form">
 						<?php echo $this->Form->create('HappyHour'); ?>
 							<h1>Create Happy Hour for <a href="<?php echo $this->webroot; ?>spots/view/<?php echo $spot['Spot']['id']; ?>"><?php echo h($spot['Spot']['name']); ?></a></h1>
+							
 							<div class="control-fields">
+
+								<?php echo $this->Form->input('Title', array('type' => 'text', 'div' => 'five required')); ?>
+
 								<?php
 									echo $this->Form->input('start', array('type' => 'text', 'div' => 'control-fields', 'class' => 'timepicker', 'value' => ''));
 									echo $this->Form->input('end', array('type' => 'text', 'div' => 'control-fields', 'class' => 'timepicker', 'value' => ''));

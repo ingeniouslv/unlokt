@@ -5,6 +5,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 	<div class="navbar-admin">
 		<div class="container">
 			<div class="btn-group">
+				
 				<a class="btn btn-dark" href="<?php echo $this->webroot; ?>spots/edit/<?php echo $spot['Spot']['id']; ?>">Manage this Spot</a>
 				<a class="btn btn-dark" href="<?php echo $this->webroot; ?>deals/manage/<?php echo $spot['Spot']['id']; ?>">Manage Specials for this Spot</a>
 				<?php echo $this->Html->link('Manage Hours of Operation for this spot', array('controller'=>'hours_of_operations', 'action'=>'manage', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
@@ -70,7 +71,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 
 					<div class="four columns">
 						<?php if ($spot['Spot']['spotlight_2']): ?>
-							<h4>Spotlight Pic</h4>
+							<h4>Spotlight Mini</h4>
 							<div class="block block-white spot-custom-content small">
 								<?php echo $spot['Spot']['spotlight_2']; ?>
 								<!-- <img src="http://dummyimage.com/223x100"> -->

@@ -1,7 +1,6 @@
 // Spots.less
 // ------------------------------
 .spot {
-	// margin-bottom: @gridGutter;
 	.name {
 		margin-top: @gridGutter/2;
 	}
@@ -101,6 +100,8 @@
 .block .happy-hour {
 	padding: 0;
 }
+
+//
 
 // Options
 // --------------------
@@ -206,11 +207,6 @@ table .spot-name a {
 		overflow: hidden;
 		position: relative;
 
-		// .note-slide {
-		// 	padding-left: 0;
-		// 	padding-right: 10px;
-		// }
-
 		.block-slide:first-child, .note-slide:first-child {
 			padding-left: 0px;
 		}
@@ -229,28 +225,6 @@ table .spot-name a {
 		}
 	}
 }
-
-// #UserRegisterForm {
-// 	& > div {
-// 		float: left;
-// 		margin: 0 10px 10px 0;
-// 	}
-
-// 	& div:last-child {
-// 		clear: both;
-// 		float: none;
-// 	}
-
-// 	.control-fields {
-		
-// 		.columns {
-// 			clear: none;
-// 			float: left;
-// 			padding: 0 0px 0 0;
-			
-// 		}
-// 	}	
-// }
 
 #SpotSubmitYourBusinessForm, #SpotRecommendASpotForm{
 	.eight {
@@ -347,14 +321,44 @@ table .spot-name a {
 		margin-top: @gridGutter;
 	}
 	.number, .time {
+		color: transparent;
 		label {
 			color: #000;
 			display: block;
 		}
-		color: transparent;
 	}
 	.time {
 		margin-right: @gridGutter;
+	}
+}
+
+
+.happyHours.add {
+	h2 {
+			padding: 10px 0 5px;
+		}
+
+	.five {
+		padding: 10px 0;	
+	}
+	label {
+		text-align: left;
+		padding-right: 10px;
+	}
+	.control-fields {
+		label {
+			display: block;
+			float: left;
+			width: 45px;
+		}
+	}
+	.inline-radios {
+		label{
+			display: inline;
+			float: none;
+			
+		}
+		
 	}
 }
 //Spot Forms
@@ -427,10 +431,7 @@ table .spot-name a {
 
 // Note interface
 //
-
-	
 .review-wr, .block {
-
 	.review-item {
 		#gradient > .vertical(lighten(@btnBlueBackground, 15%), @btnBlueBackground);
 		-webkit-border-radius: 3px;
@@ -438,25 +439,20 @@ table .spot-name a {
 		border-radius: 3px;
 		position: relative;
 		padding-bottom: 0px;
-
 		color: #000;
 
-		.head {
-			
-			
+		.head {	
 			padding: 2px;
 
 			img {
 				width: 40px;
 				height: 40px;
 			}
-
 		}
 
 		.description {
 			padding-top: 5px;
-			margin-left: 15px;
-			
+			margin-left: 15px;	
 		}
 
 		.note-actions {
@@ -483,13 +479,13 @@ table .spot-name a {
 		img {
 			margin-right: 5px;
 			padding: 3px;
-
 		}
 	}
 }
 
 
-///
+//Splash Page
+//
 
 .bg-top,
 .bg-bottom {

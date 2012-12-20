@@ -63,7 +63,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 									</div> -->
 								<?php endif; ?>
 							
-							
 								<?php if (isset($activeDeal['ActiveDeal']['is_completed']) && $activeDeal['ActiveDeal']['is_completed']): ?>
 									<div class="text-center">
 										<h2>Hurray! You've Unlokt this Spot Special</h2> <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?>.
@@ -80,7 +79,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 					</div>
 				</div>	
 				<div class="row">
-					<div class="eight columns">
+					<div class="twelve columns">
 						<div class="content-group">
 							<p class="lead">The Spot Special</p>
 							<p><?php echo h($deal['Deal']['long_description']); ?></p>
@@ -91,6 +90,8 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							<p><?php echo h($deal['Deal']['fine_print']); ?></p>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="four columns">
 						<?php if($is_manager): ?>
 							<div class="content-group">
@@ -106,7 +107,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							</div>
 						<?php endif; ?>
 					</div>
-					
 				</div>
 			</div>
 

@@ -3,7 +3,7 @@ $this->set('title_for_layout', 'Account Settings');
 ?>
 <div class="main-content page user">
 	<div class="container">
-		<h1 class="page-header">Account</h1>
+		<h1 class="page-header">My Profile</h1>
 
 		<div class="row">
 			<div class="one columns">

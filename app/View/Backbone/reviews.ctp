@@ -1,4 +1,4 @@
-<div class="block block-darkgray">
+<div class="block block-darkgray nh">
 	<h4><i class="icon-pencil"></i>  Spot Notes</h4>
 </div>
 <div class="note-slider twelve">
@@ -12,7 +12,7 @@
 		<div class="note-slide columns">
 			<div class="review-item tile">
 				<div class="head">	
-					<h4><i class="icon-pencil"></i> Spot Note</h4>	
+					
 					<img src="<% print(unlokt.helpers.gen_path('user', review.Review.user_id, 40)); %>" class="pull-left">
 			
 					<!-- <?php echo $this->element('piece-rating_system', array("rating_size" => "inline")); ?> -->

@@ -147,7 +147,7 @@ $this->Html->add_script(array(
 				?>
 			<span id="reviews"></span>
 			<div class="row row-fix">
-				<div class="block block-darkgray">
+				<div class="block block-darkgray nh">
 					<h4><i class="icon-pencil"></i> Spot Notes</h4>
 				</div>
 				<div class="twelve note-slider">

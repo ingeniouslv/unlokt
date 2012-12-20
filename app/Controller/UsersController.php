@@ -574,7 +574,50 @@ class UsersController extends AppController {
 	}
 	
 	public function login_facebook() {
+		$app_id = "309486975818919";
+		$app_secret = "258dc70e86af80006ddb40407767f9fc";
+		$my_url = "development.unlokt.com/users/login_facebook";
 		
+		session_start();
+		/*
+		 * YOUR_REDIRECT_URI?
+		    error_reason=user_denied
+		   &error=access_denied
+		   &error_description=The+user+denied+your+request.
+		   &state=YOUR_STATE_VALUE
+		 */
+		
+		$code = $_REQUEST["code"];
+	
+		if(empty($code)) {
+			// Redirect to Login Dialog
+			$_SESSION['state'] = md5(uniqid(rand(), TRUE)); // CSRF protection
+			$dialog_url = "https://www.facebook.com/dialog/oauth?client_id=" 
+				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
+				. "&client_secret=" . $app_secret . "&code=" . $code
+				. $_SESSION['state']. "&scope=email";
+			
+			header("Location: $dialog_url");
+	   }
+	   
+	   if($_SESSION['state'] && ($_SESSION['state'] === $_REQUEST['state'])) {
+			// state variable matches
+			$dialog_url = "https://graph.facebook.com/oauth/access_token?" 
+				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
+				. "&client_secret=" . $app_secret . "&code=" . $code;
+			$response = file_get_contents($token_url);
+			$params = null;
+			parse_str($response, $params);
+			$_SESSION['access_token'] = $params['access_token'];
+			
+			$graph_url = "https://graph.facebook.com/me?access_token=" 
+				. $params['access_token'];
+			
+			$user = json_decode(file_get_contents($graph_url));
+			echo("Hello " . $user->name);
+		} else {
+			echo("The state does not match. You may be a victim of CSRF.");
+		}
 	}
 	
 	public function channel() {

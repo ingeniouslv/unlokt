@@ -11,7 +11,7 @@ $this->set('title_for_layout', 'Adding a Category');
 					<h2 class="form-section-label">Category Information</h2>
 					<?php
 						echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full', 'label' => false, 'placeholder' => 'Name'));
-						echo $this->Form->input('parent_id', array('empty' => 'No Parent', 'div' => 'control-fields', 'class' => 'input-full'));
+						echo $this->Form->input('parent_id', array('empty' => 'No Parent', 'div' => 'control-fields', 'class' => 'input-full', 'options' => $parentCategories));
 					?>
 					<div class="btn-group">
 						<a class="btn" href="">Cancel</a>

@@ -17,7 +17,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 	</div>
 <?php endif; ?>
 
-<div class="main-content page spot">
+<div class="main-content page-new spot">
 	<div class="container">
 		<div class="row">
 			<div class="nine columns">
@@ -66,7 +66,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<div class="row">
 					<div class="eight columns">
 						<h4>About the Spot</h4>
-						<div class="spot-description block-white block">
+						<div class="spot-description block-darkgray block">
 							<?php echo $spot['Spot']['description']; ?>
 						</div>
 					</div>
@@ -74,14 +74,14 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 					<div class="four columns">
 						<?php if ($spot['Spot']['spotlight_2']): ?>
 							<h4>Spotlight Mini</h4>
-							<div class="block block-white spot-custom-content small">
+							<div class="block block-darkgray spot-custom-content small">
 								<?php echo $spot['Spot']['spotlight_2']; ?>
 								<!-- <img src="http://dummyimage.com/223x100"> -->
 							</div>
 						<?php endif; ?>
 
 						<?php if ($happy_hour_data): ?>
-						<div class="block block-white happy-hour">
+						<div class="block block-darkgray happy-hour">
 							<?php echo $this->element('piece-happy_hour', array("happy_hour_size" => "large")); ?>
 						</div>
 						<?php endif; ?>
@@ -89,7 +89,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						<!-- Show SpotOption if not empty -->
 						<?php if (count($spot['SpotOption'])): ?>
 							<h4>Spot Features</h4>
-							<div class="block block-white">	
+							<div class="block block-darkgray">	
 								<ul class="spot-options">
 									<?php foreach ($spot['SpotOption'] as $spotOption): ?>
 										<li><i class="<?php echo h($spotOption['css_class']); ?>"></i><?php echo h($spotOption['name']); ?></li>
@@ -105,7 +105,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 
 			<div class="three columns bleed-over-content">
 				<?php if (count($attachments)): ?>
-					<div class="block block-white block-glow">
+					<div class="block block-darkgray block-glow">
 						<h4><i class="icon-picture"></i> Gallery</h4>
 						<div class="gallery">
 							<?php foreach ($attachments as $attachment): ?>

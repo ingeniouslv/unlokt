@@ -8,6 +8,17 @@
 	&.page {
 		background: @grayLighter;
 	}
+	&.page-new {
+		#gradient > .vertical(darken(@schemeGray, 5%), darken(@schemeGray, 9%));
+
+		h4 {
+			color: @gray;
+
+			i {
+				color: @white;
+			}
+		}
+	}
 }
 
 .page-header {

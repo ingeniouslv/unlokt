@@ -1,4 +1,4 @@
-<div class="block block-white block-glow">
+<div class="block block-darkgray block-glow">
 	<h4><i class="icon-info"></i> Information</h4>
 
 	<!-- If controller == deal -->

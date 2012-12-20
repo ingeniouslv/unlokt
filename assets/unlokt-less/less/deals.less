@@ -3,18 +3,27 @@
 .deal {
 	.deal-meta {
 		padding: @gridGutter/2 0;
-		border-top: 1px solid @grayLight;
-		border-bottom: 1px solid @grayLight;
+		border-top: 1px solid @borderDark;
+		border-bottom: 1px solid @borderDark;
 		width: 70%;
 		.deal-type {
+			color: @grayLight;
 			margin: 0;
+
+			i {
+				color: @white;
+			}
 		}
 
 	}
 
 	.page-header {
 		padding-bottom: 10px;
-		border-bottom: 1px solid #CCC;
+		border-bottom: 1px solid #555;
+
+		h1, h3, p {
+			color: @white;
+		}
 	}
 
 	.photo {
@@ -28,12 +37,16 @@
 	}
 
 	.content-group {
+		background-color: @grayDarkest;
+		border: 1px solid #1b1b1b;
+		color: @white;
 		margin-bottom: @gridGutter/2;
-		border-bottom: 1px solid @grayLight;
-		&:last-child {
-			margin-bottom: 0;
-			border-bottom: none;
+		padding: 5px;
+
+		.lead {
+			color: @grayLight;
 		}
+
 	}
 
 	.spot {

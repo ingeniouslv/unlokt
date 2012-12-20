@@ -85,6 +85,8 @@ class Category extends AppModel {
 		if(empty($categories)) {
 			$categories = $this->find('threaded');
 		}
+		//sort the parent categories by alpha name
+		usort($categories, array('Category', '_alphaSortCategories'));
 		//initialize threaded list
 		$threadedCategoryList = array();
 		foreach($categories as $category) {
@@ -98,8 +100,14 @@ class Category extends AppModel {
 		}
 
 		return $threadedCategoryList;
-	} 
+	}
 	
+	//Comparison function for an alpha sort on the name
+	private function _alphaSortCategories($a, $b) {
+		return strcmp($a['Category']['name'], $b['Category']['name']);
+	}
+	
+	//Discover the parent categories for a list of categories
 	public function getParentCategories() {
 		$categories = Hash::combine($this->find('all'),"{n}.Category.id","{n}");
 		

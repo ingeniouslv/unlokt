@@ -8,8 +8,10 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				
 				<a class="btn btn-dark" href="<?php echo $this->webroot; ?>spots/edit/<?php echo $spot['Spot']['id']; ?>">Manage this Spot</a>
 				<a class="btn btn-dark" href="<?php echo $this->webroot; ?>deals/manage/<?php echo $spot['Spot']['id']; ?>">Manage Specials for this Spot</a>
-				<?php echo $this->Html->link('Manage Hours of Operation for this spot', array('controller'=>'hours_of_operations', 'action'=>'manage', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
+				
 				<?php echo $this->Html->link('Manage Managers for this Spot', array('controller'=>'managers', 'action'=>'by_spot', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
+				<?php echo $this->Html->link('Manage Payments', array('controller' => 'payments', 'action' => 'method', $spot['Spot']['id'], "admin" => false), array('class' => 'btn btn-dark')); ?>
+				<?php echo $this->Html->link('Manage Hours of Operation for this spot', array('controller'=>'hours_of_operations', 'action'=>'manage', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
 			</div>
 		</div>
 	</div>

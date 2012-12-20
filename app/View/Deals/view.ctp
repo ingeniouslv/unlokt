@@ -2,7 +2,7 @@
 $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name']}"));
 ?>
 
-<div class="main-content page deal">
+<div class="main-content page-new deal">
 	<div class="container">
 		<div class="row">
 			<div class="nine columns">
@@ -29,9 +29,9 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 						<h1 class="name"><?php echo h($deal['Deal']['name']); ?></h1>
 						<h3><?php echo h($deal['Deal']['description']); ?></h3>
 
-						<?php if ($deal_completed_count): ?>
+						<p><?php if ($deal_completed_count): ?>
 						You have completed this Spot Special <?php echo $deal_completed_count; ?> time<?php echo $deal_completed_count == 1 ? '' : 's'; ?>
-						<?php endif; ?>
+						<?php endif; ?></p>
 						<div class="redeem">	
 							<div class="block block-white">
 								<div class="keys">

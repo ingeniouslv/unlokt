@@ -9,10 +9,12 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		$this->Auth->allow(array(
+			'api_login',
+			'api_register',
+			'channel',
 			'logout',
 			'login',
-			'api_register',
-			'api_login',
+			'login_facebook',
 			'reset',
 			'register'
 		));
@@ -569,5 +571,15 @@ class UsersController extends AppController {
 		}
 		
 		$this->redirect($this->request->referer());
+	}
+	
+	public function login_facebook() {
+		
+	}
+	
+	public function channel() {
+		$this->autoLayout = false;
+		echo "<script src=\"//connect.facebook.net/en_US/all.js\"></script>";
+		die();
 	}
 }

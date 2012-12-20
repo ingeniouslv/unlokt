@@ -38,6 +38,22 @@ class AppController extends Controller {
 		$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login', 'plugin' => false, 'admin' => false);
 		$this->Auth->loginRedirect = '/';
 		
+		//Check if logged in via API
+		// If API Key is passed and valid, Set session.
+		if ( isset($_POST['api_key']) && !empty($_POST['api_key'])) {
+			$this->loadModel('User');
+			$cuser = $this->User->findByApiKey($_POST['api_key']);
+			if (!isset($cuser)) {
+				$this->Session->destroy();
+				ApiComponent::error(ApiErrors::$INVALID_API_KEY);
+			} else {
+				$this->login_user($cuser['User']['id']);
+				$this->Session->id($_POST['api_key']);
+				$this->Session->write("cuser", $cuser);
+			}
+		}
+		
+		
 		// Actions to perform if a User is logged in
 		if ($user_id = $this->Auth->user('id')) {
 			
@@ -67,19 +83,6 @@ class AppController extends Controller {
 		// Remove Autorender for API responses.
 		if (isset($this->params['api'])){
 			$this->autoRender = false;
-		}
-		
-		// If API Key is passed and valid, Set session.
-		if (isset($this->params['api']) && isset($_POST['api_key']) && !empty($_POST['api_key'])) {
-			$cuser = $this->User->findByApiKey($_POST['api_key']);
-			$email = $this->User->findByEmail($_POST['email']);
-			if (!isset($cuser)) {
-				$this->Session->destroy();
-				ApiComponent::error(ApiErrors::$INVALID_API_KEY);
-			} else {
-				$this->Session->id($_POST['api_key']);
-				$this->Session->write("cuser", $cuser);
-			}
 		}
 		
 		// If we're on an admin prefix then show the Admin layout.

@@ -16,6 +16,7 @@ class SpotsController extends AppController {
 			// 'recommend_a_spot',
 			// 'submit_your_business',
 			// 'view'
+			'homepage_data_by_radius'
 		));
 		if($this->request->params['action'] == 'submit_your_business' && !$this->Auth->loggedIn()) {
 			$this->Session->write('referer', '/spot-invite');

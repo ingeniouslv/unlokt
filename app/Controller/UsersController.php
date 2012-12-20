@@ -236,6 +236,8 @@ class UsersController extends AppController {
 	
 	// Public user can register for Unlokt here.
 	public function register() {
+		$referer = $this->Session->read('referer');
+		
 		if ($this->request->is('post')) {
 			// Attempt to validate and save user.
 			$this->User->create();
@@ -255,7 +257,7 @@ class UsersController extends AppController {
 				// Good
 				$this->User->save();
 				$this->login_user($this->User->id);
-				if($referer = $this->Session->read('referer')) {
+				if($referer) {
 					$this->Session->delete('referer');
 					$this->redirect($referer);
 				} else {
@@ -269,8 +271,9 @@ class UsersController extends AppController {
 				$this->Session->setFlash('Please check the form and try again. Do not forget to re-enter your password.', 'alert-warning');
 			}
 		}
-		//$referrer = ($this->referer != '')? $this->referer;
-		//$this->set(compact('referrer'));
+
+		$this->set(compact('referer'));
+		
 	}
 
 	/**
@@ -433,6 +436,34 @@ class UsersController extends AppController {
 		}
 		
 	} // end of api_register()
+	
+	
+	
+	
+	public function api_my_spots() {
+		$this->User->id = $this->Auth->user('id');
+		if(!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		
+		$spot_ids = $this->User->SpotFollower->Spot->getMySpotIds($this->Auth->user('id'));
+		$spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
+		
+		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids);
+		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
+		$spotsfeed['user'] = $this->User->getUser(null, array('SpotFollower' => array('Spot' => array('Feed', 'Deal'))));
+		//$this->set(compact('user', 'feeds', 'spots', 'deals'));
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);
+	} // end of api_my_spots
+
+	
+	public function api_account() {
+		$user_id = $this->Auth->user('id');
+		$mydeals['user'] = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
+		$mydeals['deals'] = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id);
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $mydeals);
+	} // end of account()
+	
 	
 	public function account() {
 		$user_id = $this->Auth->user('id');

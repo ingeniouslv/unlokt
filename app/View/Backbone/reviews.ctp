@@ -1,4 +1,4 @@
-<div class="block block-darkgray">
+<div class="block block-darkgray nh">
 	<h4><i class="icon-pencil"></i>  Spot Notes</h4>
 </div>
 <div class="note-slider twelve">

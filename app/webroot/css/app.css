@@ -113,6 +113,7 @@ h5,h6,.h5,.h6{font-size:9px;font-weight:normal;}
 .block-darkgray a p{color:#c04a2f;}
 .block-darkgray h3,.block-darkgray h4,.block-darkgray li{color:#999999;}.block-darkgray h3 i,.block-darkgray h4 i,.block-darkgray li i{color:#fff;}
 .block-darkgray.nb{border:none;}
+.block-darkgray.nh{padding-bottom:0px;}
 .bleed-over-content{position:absolute;right:0;z-index:10;}.bleed-over-content .block-white{border:none;}
 .block-white{background:#ffffff;border:1px solid #cccccc;}
 .block-blue{background:#90cdcf;}

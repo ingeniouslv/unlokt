@@ -9,6 +9,11 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 			<div class="six columns tracked-content">
 				<!-- Create iframe for POSTing a photo upload in the background -->
 				<iframe id="upload-preview-image-iframe" class="hide"></iframe>
+				<h2 class="form-section-label">Select a Type</h2>
+				<?php
+					echo $this->Form->input('type', array('label' => false, 'div' => 'control-fields', 'selected' => 2, 'options' => array('Event', 'Reward', 'Special'), 'id' => 'special-type')) 
+				?>
+				
 				<h2 class="form-section-label">Picture</h2>
 				<?php
 				//////////////////////////////////////////////////
@@ -207,12 +212,26 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	
 	//////////////////////////////////////////////////
 	
-	$('#increase-keys').click(function() {
+	$('#increase-keys').click(increaseKeys);
+	$('#decrease-keys').click(function() {
+		var current_number_of_keys = parseInt($('#DealKeys').val());
+		if (current_number_of_keys == 2) {
+			return;
+		}
+		decreaseKeys();
+	});
+	
+	//////////////////////////////////////////////////
+	
+	function increaseKeys() {
 		var new_number_of_keys = parseInt($('#DealKeys').val())+1;
 		$('#DealKeys').val(new_number_of_keys).trigger('change');
 		$('#redemption-codes').append('<div class="control-fields input text required"><label for="DealRedemption' + new_number_of_keys + '">Redemption Code for Key #' + new_number_of_keys + '</label><input name="data[Deal][redemption_' + new_number_of_keys + ']" type="text" id="DealRedemption' + new_number_of_keys + '" class="twelve"/></div>');
-	});
-	$('#decrease-keys').click(function() {
+	}
+	
+	//////////////////////////////////////////////////
+	
+	function decreaseKeys() {
 		var current_number_of_keys = parseInt($('#DealKeys').val());
 		if (current_number_of_keys == 0) {
 			return;
@@ -220,7 +239,71 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		var new_number_of_keys = parseInt($('#DealKeys').val())-1;
 		$('#DealKeys').val(new_number_of_keys).trigger('change');
 		$('#DealRedemption' + current_number_of_keys).closest('div').remove();
+	}
+	
+	//////////////////////////////////////////////////
+	
+	/**
+	 * This Dropdown automatically changes the keys to the number needed for the chosen type.
+	 * It also hides the 
+	 * Event - 0
+	 * Special - 1
+	 * Reward - 2+
+	 * 
+	 **/
+	
+	$('#special-type').change(function() {
+		var current_number_of_keys = parseInt($('#DealKeys').val());
+		var desired_number_of_keys = -1;
+		var direction = '';
+		console.log($(this).val());
+		switch(parseInt($(this).val())) {
+			case 0:
+				direction = 'down';
+				desired_number_of_keys = 0;
+				break;
+			case 1:
+				direction = 'up';
+				desired_number_of_keys = 2;
+				break;
+			case 2:
+				direction = (current_number_of_keys > 1)?'down':'up';
+				desired_number_of_keys = 1;
+				
+				break;
+		}
+		
+		if(desired_number_of_keys < 2) {
+			$('#increase-keys').hide();
+			$('#decrease-keys').hide();
+		} else {
+			$('#increase-keys').show();
+			$('#decrease-keys').show();
+		}
+		
+		switch(direction) {
+			case 'down':
+				while( current_number_of_keys > desired_number_of_keys) {
+					decreaseKeys();
+					current_number_of_keys = parseInt($('#DealKeys').val());
+				}
+				break;
+			case 'up':
+				while( current_number_of_keys < desired_number_of_keys) {
+					increaseKeys();
+					current_number_of_keys = parseInt($('#DealKeys').val());
+				}
+				break;
+		}
+		
+		//$('#DealKeys').val(current_number_of_keys);
+		console.log('current keys: '+current_number_of_keys);
+		console.log('special-type: '+$(this).val());
 	});
+	
+	//start out by hiding the add/remove key buttons
+	$('#increase-keys').hide();
+	$('#decrease-keys').hide();
 	
 	//////////////////////////////////////////////////
 	

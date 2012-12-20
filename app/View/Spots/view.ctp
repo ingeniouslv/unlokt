@@ -147,6 +147,9 @@ $this->Html->add_script(array(
 				?>
 			<span id="reviews"></span>
 			<div class="row row-fix">
+				<div class="block block-darkgray">
+					<h4><i class="icon-pencil"></i> Spot Notes</h4>
+				</div>
 				<div class="twelve note-slider">
 					<div class="block-slider-nav note-slider-nav">
 						<a class="left" href="javascript:void(0);"></a>

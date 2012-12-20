@@ -109,7 +109,8 @@ h5,h6,.h5,.h6{font-size:9px;font-weight:normal;}
 .block{background:#efefef;padding:5px;margin-bottom:10px;position:relative;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;*zoom:1;}.block:before,.block:after{display:table;content:"";}
 .block:after{clear:both;}
 .block-silver{background-color:#bcbcbc;background-image:-moz-linear-gradient(top, #a1a1a1, #e4e4e4);background-image:-ms-linear-gradient(top, #a1a1a1, #e4e4e4);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#a1a1a1), to(#e4e4e4));background-image:-webkit-linear-gradient(top, #a1a1a1, #e4e4e4);background-image:-o-linear-gradient(top, #a1a1a1, #e4e4e4);background-image:linear-gradient(top, #a1a1a1, #e4e4e4);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a1a1a1', endColorstr='#e4e4e4', GradientType=0);}
-.block-darkgray{background-color:#232529;border:1px solid #1b1b1b;}.block-darkgray p,.block-darkgray span{color:#ffffff;}
+.block-darkgray{background-color:#232529;border:1px solid #111;color:#ffffff;}.block-darkgray p,.block-darkgray span{color:#ffffff;}
+.block-darkgray a p{color:#c04a2f;}
 .block-darkgray h3,.block-darkgray h4,.block-darkgray li{color:#999999;}.block-darkgray h3 i,.block-darkgray h4 i,.block-darkgray li i{color:#fff;}
 .block-darkgray.nb{border:none;}
 .bleed-over-content{position:absolute;right:0;z-index:10;}.bleed-over-content .block-white{border:none;}
@@ -456,7 +457,7 @@ table .spot-name a{display:block;color:#000000;}
 .splash-wrap{width:100%;height:100%;position:absolute;}
 .prem{display:none;}
 .prem[disabled]{display:block;position:absolute;z-index:4;width:100%;margin-left:-10px;height:100%;background:#333;opacity:0.8;}.prem[disabled] p{font-size:40px;display:block;text-align:center;margin:0 auto;background:#1A1A1A;margin-top:108px;color:#C5AC46;}
-.deal .deal-meta{padding:5px 0;border-top:1px solid #333333;border-bottom:1px solid #333333;width:70%;}.deal .deal-meta .deal-type{color:#cccccc;margin:0;}.deal .deal-meta .deal-type i{color:#ffffff;}
+.deal .deal-meta{padding:5px 0;border-top:1px solid #555;border-bottom:1px solid #555;width:70%;}.deal .deal-meta .deal-type{color:#cccccc;margin:0;}.deal .deal-meta .deal-type i{color:#ffffff;}
 .deal .page-header{padding-bottom:10px;border-bottom:1px solid #555;}.deal .page-header h1,.deal .page-header h3,.deal .page-header p{color:#ffffff;}
 .deal .photo{margin-right:10px;float:left;}
 .deal .redeem{overflow:hidden;margin-top:5px;}
@@ -470,8 +471,9 @@ table .spot-name a{display:block;color:#000000;}
 .information .section .section-content{margin-left:25px;}
 .information .section i{float:left;clear:both;}
 .information .section address{font-style:normal;}
-.information .section p{margin:0;}
-.information .section i,.spot-unlock i,.information .section [class^="icon-"],.spot-unlock [class^="icon-"]{font-size:10px;color:#777;}
+.information .section p{margin:0;color:#cccccc;}
+.information .section a p{color:#c04a2f;}
+.information .section i,.spot-unlock i,.information .section [class^="icon-"],.spot-unlock [class^="icon-"]{font-size:10px;color:#ffffff;}
 .rating-stars{direction:rtl;width:80px;margin-right:6px;*zoom:1;}.rating-stars .star{padding-right:2px;display:block;float:right;width:14px;height:15px;background:transparent url('../img/rating-stars.png') 0 -30px no-repeat;}.rating-stars .star:before{content:'';}
 .rating-stars .star:before{display:block;float:right;width:14px;height:15px;background:transparent url('../img/rating-stars.png') 0 -30px no-repeat;}
 .rating-stars .star.full:before,.rating-stars .star.full~.star:before,.rating-stars .star.one-third~.star:before,.rating-stars .star.one-half~.star:before,.rating-stars .star.two-thirds~.star:before{position:absolute;width:14px;margin:0;background-position:0 0;}
@@ -598,6 +600,8 @@ ul.payment-history li{padding:10px 0 0;}
 .splash .btn-link:first-child{margin-right:5px;}
 .splash .row{margin-left:0;}
 .splash-wrap{width:100%;height:100%;position:absolute;}
+.user .page-header{padding-bottom:10px;border-bottom:1px solid #555;}.user .page-header .name{color:#ffffff;}
+.user .user-details h1,.user .user-details h2,.user .user-details h3,.user .user-details p{color:#ffffff;}
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";}
 .clearfix:after{clear:both;}
 .cake-sql-log{color:#fff;}

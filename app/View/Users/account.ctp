@@ -1,16 +1,17 @@
 <?php
 $this->set('title_for_layout', 'Account Settings');
 ?>
-<div class="main-content page user">
+<div class="main-content page-new user">
 	<div class="container">
-		<h1 class="page-header">My Profile</h1>
-
+		<div class="page-header">
+			<h1 class="name">My Profile</h1>
+		</div>
 		<div class="row">
 			<div class="one columns">
 				<img src="<?php echo $this->Html->gen_path('user', $user['User']['id'], 80); ?>" class="profile-image" title="<?php echo h($user['User']['name']); ?>">
 			</div>
 
-			<div class="eleven columns">
+			<div class="eleven columns user-details">
 				<h2><?php echo h($user['User']['name']); ?></h2>
 				<p><?php echo h($user['User']['email']); ?></p>
 				<?php if ($user['User']['is_active']): ?>

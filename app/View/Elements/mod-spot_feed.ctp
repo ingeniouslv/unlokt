@@ -22,7 +22,5 @@
 		</div>
 		<!-- End Feed Item -->
 	<?php endforeach; ?>
-	<div class="block-actions">
-		<a class="btn btn-blue">Show More</a>
-	</div>
+
 </div>

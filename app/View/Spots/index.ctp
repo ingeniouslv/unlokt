@@ -21,9 +21,8 @@ $this->set('title_for_layout', 'Spot Manager');
 							<td class="spot-name"><?php echo $this->Html->link(__($spot['Spot']['name']), array('action' => 'view', $spot['Spot']['id'], 'admin' => false)); ?></td>
 							<td class="actions">
 								<?php echo $this->Html->link('Edit', array('action' => 'edit', $spot['Spot']['id'], "admin" => false), array('class' => 'btn')); ?>
-								<?php echo $this->Html->link('Add Payment Method', array('controller' => 'payments', 'action' => 'add_payment_method', $spot['Spot']['id'], "admin" => false), array('class' => 'btn')); ?>
-								<?php echo $this->Html->link('View Payment History', array('action' => 'payment_history', $spot['Spot']['id'], "admin" => false), array('class' => 'btn')); ?>
 								<?php echo $this->Html->link('Managers', array('controller'=>'managers', 'action'=>'by_spot', $spot['Spot']['id']), array('class' => 'btn')); ?>
+								<?php echo $this->Html->link('Manage Payments', array('controller' => 'payments', 'action' => 'method', $spot['Spot']['id'], "admin" => false), array('class' => 'btn')); ?>
 							</td>
 						</tr>
 						<?php endforeach; ?>

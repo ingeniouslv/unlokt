@@ -41,7 +41,7 @@ $this->set('title_for_layout', 'Login');
 				console.log("cancelled");
 				// cancelled
 			}
-		}, {scope:email});
+		}, {scope:'email'});
 	}
 	function testAPI() {
 		console.log('Welcome!  Fetching your information.... ');

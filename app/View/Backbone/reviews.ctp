@@ -34,7 +34,7 @@
 				</div>	
 				<div class="note-actions">
 					<span class="review-spot">Noted: <a href="<%= unlokt.settings.webroot %>spots/view/<%= review.Spot.id %>"><%= h(review.Spot.name) %></a></span>
-					<a href="javascript:void(0);" data-flag-review="<%= review.Review.id %>">Flag Note</a>
+					<a class="flag-icon" href="javascript:void(0);" data-flag-review="<%= review.Review.id %>"> &#9873;</a>
 
 					<a class="more" href="<%= unlokt.settings.webroot %>reviews/view/<%= h(review.Review.id) %>">Read More</a>
 				</div>	

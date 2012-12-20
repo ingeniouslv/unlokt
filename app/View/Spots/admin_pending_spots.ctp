@@ -4,6 +4,7 @@ $this->set('title_for_layout', 'Pending Spot Manager');
 <div class="main-content page spot">
 	<div class="container">
 		<h1>Pending Spots Manager</h1>
+			<h3>** <?php echo $this->Html->link("View active spots", array('action' => 'index', 'admin' => true)); ?> **</h3>
 		<?php echo $this->Html->link(__('Add Spot'), array('action' => 'add'), array('class' => 'btn')); ?>
 		<table class="zebra">
 			<thead>

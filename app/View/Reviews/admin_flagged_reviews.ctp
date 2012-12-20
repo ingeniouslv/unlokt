@@ -1,12 +1,10 @@
 <?php
-$this->set('title_for_layout', 'Note Manager');
+$this->set('title_for_layout', 'Flagged Note Manager');
 ?>
 <div class="main-content page category">
 	<div class="container">
-		<h1>Note Manager</h1>
-		<?php if (!empty($flagged_review_count)): ?>
-			<h3>** <?php echo $this->Html->link("There are $flagged_review_count flagged Notes", array('action' => 'flagged_reviews', 'admin' => true)); ?> **</h3>
-		<?php endif; ?>
+		<h1>Flagged Note Manager</h1>
+			<h3>** <?php echo $this->Html->link("View Notes", array('action' => 'index', 'admin' => true)); ?> **</h3>
 		<table class="zebra">
 			<thead>
 				<tr>
@@ -47,3 +45,4 @@ $this->set('title_for_layout', 'Note Manager');
 		</table>
 	</div>
 </div>
+ 

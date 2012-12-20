@@ -19,6 +19,22 @@ class ReviewsController extends AppController {
  */
 	public function admin_index() {
 		$this->Review->recursive = 0;
+		$this->paginate = array('conditions' => array('is_flagged' => false));
+		$flagged_reviews = $this->Review->find('first' , array('fields' => array('count(*) as flagged_review_count'), 'conditions' => array('is_flagged' => true), 'group' => array('is_flagged')));
+		$flagged_review_count = empty($flagged_reviews)?0:$flagged_reviews[0]['flagged_review_count'];
+		
+		$reviews = $this->paginate();
+		$this->set(compact('reviews', 'flagged_review_count'));
+	}
+	
+/**
+ * displays all flagged reviews
+ *
+ * @return void
+ */
+	public function admin_flagged_reviews() {
+		$this->Review->recursive = 0;
+		$this->paginate = array('conditions' => array('is_flagged' => true));
 		$this->set('reviews', $this->paginate());
 	}
 

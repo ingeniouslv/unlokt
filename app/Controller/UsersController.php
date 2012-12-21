@@ -576,7 +576,7 @@ class UsersController extends AppController {
 	public function login_facebook() {
 		$app_id = "309486975818919";
 		$app_secret = "258dc70e86af80006ddb40407767f9fc";
-		$my_url = "development.unlokt.com/users/login_facebook";
+		$my_url = "http://development.unlokt.com/users/login_facebook";
 		
 		session_start();
 		/*

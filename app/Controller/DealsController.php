@@ -371,4 +371,28 @@ class DealsController extends AppController {
 
 	//////////////////////////////////////////////////
 	
+	/// API functions
+	
+	public function api_view($id) {
+		$this->Deal->id = $id;
+		
+		if (!$deal = $this->Deal->getDeal($id, array('RedemptionCode'))) {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			return;
+		}
+		$contain = array('Category', 'Feed');
+		$spot = $this->Deal->Spot->getSpot($deal['Deal']['spot_id'], $contain);
+		
+		// If logged in, see if the current user has any progress on redeeming this deal.
+		if ($this->Auth->loggedIn()) {
+			// $active_deal = $this->Deal->ActiveDeal->getActiveDealByDeal($id);
+			$DealView['activeDeal'] = $this->Deal->ActiveDeal->findByDealIdAndUserId($id, $this->Auth->user('id'));
+		}
+		$DealView['user_id']= $this->Auth->user('id');
+		$DealView['deal_completed_count'] = $this->Deal->ActiveDeal->findCompletedCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $DealView);
+
+	}
+	
+	
 }

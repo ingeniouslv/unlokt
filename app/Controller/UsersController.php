@@ -593,7 +593,7 @@ class UsersController extends AppController {
 		if(empty($code)) {
 			// Redirect to Login Dialog
 			$_SESSION['state'] = md5(uniqid(rand(), TRUE)); // CSRF protection
-			$token_url = "https://www.facebook.com/dialog/oauth?client_id=" 
+			$dialog_url = "https://www.facebook.com/dialog/oauth?client_id=" 
 				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
 				. "&client_secret=" . $app_secret . "&code=" . $code
 				. $_SESSION['state']. "&scope=email";
@@ -603,7 +603,7 @@ class UsersController extends AppController {
 	   
 	   if($_SESSION['state']) {
 			// state variable matches
-			$dialog_url = "https://graph.facebook.com/oauth/access_token?" 
+			$token_url = "https://graph.facebook.com/oauth/access_token?" 
 				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
 				. "&client_secret=" . $app_secret . "&code=" . $code;
 			$response = file_get_contents($token_url);

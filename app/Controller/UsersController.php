@@ -587,6 +587,7 @@ class UsersController extends AppController {
 		 */
 		
 		debug($_SESSION);
+		debug($_REQUEST);
 		$code = $_REQUEST["code"];
 	
 		if(empty($code)) {

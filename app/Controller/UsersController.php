@@ -601,7 +601,7 @@ class UsersController extends AppController {
 			header("Location: $dialog_url");
 	   }
 	   
-	   if($_SESSION['state'] && ($_SESSION['state'] === $_REQUEST['state'])) {
+	   if($_SESSION['state']) {
 			// state variable matches
 			$dialog_url = "https://graph.facebook.com/oauth/access_token?" 
 				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="

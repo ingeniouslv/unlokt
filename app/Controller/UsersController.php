@@ -578,7 +578,6 @@ class UsersController extends AppController {
 		$app_secret = "258dc70e86af80006ddb40407767f9fc";
 		$my_url = "http://development.unlokt.com/users/login_facebook";
 		
-		session_start();
 		/*
 		 * YOUR_REDIRECT_URI?
 		    error_reason=user_denied
@@ -587,6 +586,7 @@ class UsersController extends AppController {
 		   &state=YOUR_STATE_VALUE
 		 */
 		
+		debug($_SESSION);
 		$code = $_REQUEST["code"];
 	
 		if(empty($code)) {

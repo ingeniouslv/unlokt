@@ -209,11 +209,11 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 			$('#redemption-code').focus();
 			return;
 		}
-		$.get(unlokt.settings.webroot + 'deals/redeem_with_code/' + deal_id + '/' + code, function(data) {
-			if (data == 'GOODCODE') {
+		$.getJSON(unlokt.settings.webroot + 'deals/redeem_with_code/' + deal_id + '/' + code, function(data) {
+			if (data.type == 'success') {
 				// I guess refresh the page since this is good. The new page refresh will show any progress or notifications.
 				location.reload();
-			} else if (data == 'BADCODE') {
+			} else if (data.type == 'error') {
 				// Inform the user that the entered code was incorrect.
 				flash_error('Incorrect Code. Try again.');
 			} else {

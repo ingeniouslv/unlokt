@@ -320,7 +320,8 @@ class DealsController extends AppController {
 			 	throw new Exception('Could not find a RedemptionCode for Deal '.$id);
 			 }
 			 if (strcmp($redemptionCode['RedemptionCode']['code'], $code) !== 0) {
-			 	die('BADCODE');
+ 				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			 	die('');
 			 }
 			 // The user-inputted code for this step was correct, 
 			 // so update the ActiveDeal record with appropriate information.
@@ -337,7 +338,8 @@ class DealsController extends AppController {
 			 if ($next_step == $deal['Deal']['keys']) {
 			 	$this->Deal->increment('completions');
 			 }
-			 die('GOODCODE');
+			 $this->api_view($id);
+			 die('');
 			 
 		} else {
 			// No Deal was found - let's make sure we qualify to perform this Deal, then make it so.
@@ -365,10 +367,35 @@ class DealsController extends AppController {
 			 if ($deal['Deal']['keys'] == 1) {
 			 	$this->Deal->increment('completions');
 			 }
-			die('GOODCODE');
+ 			 $this->api_view($id);
+			die('');
 		}
 	} // end of redeem_with_code()
 
 	//////////////////////////////////////////////////
+	
+	/// API functions
+	
+	public function api_view($id) {
+		$this->Deal->id = $id;
+		
+		if (!$deal = $this->Deal->getDeal($id, array('RedemptionCode'))) {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			return;
+		}
+		$contain = array('Category', 'Feed');
+		$spot = $this->Deal->Spot->getSpot($deal['Deal']['spot_id'], $contain);
+		
+		// If logged in, see if the current user has any progress on redeeming this deal.
+		if ($this->Auth->loggedIn()) {
+			// $active_deal = $this->Deal->ActiveDeal->getActiveDealByDeal($id);
+			$DealView['activeDeal'] = $this->Deal->ActiveDeal->findByDealIdAndUserId($id, $this->Auth->user('id'));
+		}
+		$DealView['user_id']= $this->Auth->user('id');
+		$DealView['deal_completed_count'] = $this->Deal->ActiveDeal->findCompletedCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $DealView);
+
+	}
+	
 	
 }

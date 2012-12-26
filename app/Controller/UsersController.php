@@ -574,12 +574,97 @@ class UsersController extends AppController {
 	}
 	
 	public function login_facebook() {
+		$app_id = "309486975818919";
+		$app_secret = "258dc70e86af80006ddb40407767f9fc";
+		$my_url = "http://development.unlokt.com/users/login_facebook";
 		
+		/*
+		 * YOUR_REDIRECT_URI?
+		    error_reason=user_denied
+		   &error=access_denied
+		   &error_description=The+user+denied+your+request.
+		   &state=YOUR_STATE_VALUE
+		 */
+		
+		debug($_SESSION);
+		debug($_REQUEST);
+		$code = $_REQUEST["code"];
+	
+		if(empty($code)) {
+			// Redirect to Login Dialog
+			$_SESSION['state'] = md5(uniqid(rand(), TRUE)); // CSRF protection
+			$dialog_url = "https://www.facebook.com/dialog/oauth?client_id=" 
+				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
+				. "&client_secret=" . $app_secret . "&code=" . $code
+				. $_SESSION['state']. "&scope=email";
+			
+			header("Location: $dialog_url");
+	   }
+	   
+	   if($_SESSION['state']) {
+			// state variable matches
+			$token_url = "https://graph.facebook.com/oauth/access_token?" 
+				. "client_id=" . $app_id . "&redirect_uri=" . urlencode($my_url)
+				. "&client_secret=" . $app_secret . "&code=" . $code;
+			$response = file_get_contents($token_url);
+			$params = null;
+			parse_str($response, $params);
+			$_SESSION['access_token'] = $params['access_token'];
+			
+			$graph_url = "https://graph.facebook.com/me?access_token=" 
+				. $params['access_token'];
+			
+			$user = json_decode(file_get_contents($graph_url));
+			
+			debug($user);
+			echo("Hello " . $user->name);
+			
+			//look up user
+			$unlokt_user = $this->User->findByEmail($user->email);
+			if(!$unlokt_user) {
+				//if user is not in the system, create user
+				$unlokt_user = array('User'=>array(
+					'email' => $user->email,
+					'first_name' => $user->first_name,
+					'last_name' => $user->last_name,
+					'is_active' => true,
+					'gender' => $user->gender,
+					'is_facebook_only' => true,
+					'facebook_id' => $user->id
+				));
+				$this->User->create();
+				$unlokt_user = $this->User->save($unlokt_user);
+			} else if(!$unlokt_user['User']['is_facebook_only']) {
+				$this->User->id = $unlokt_user['User']['id'];
+				$user_update = array('User' => array(
+					'id' => $unlokt_user['User']['id'],
+					'first_name' => $user->first_name,
+					'last_name' => $user->last_name,
+					'gender' => $user->gender,
+					'is_facebook_only' => true,
+					'facebook_id' => $user->id
+				));
+				$this->User->save($user_update);
+			}
+			
+			//if user is in the system log them in
+			$this->login_user($unlokt_user['User']['id']);
+			//bring them to the home page
+			$this->redirect('/');
+	   }
 	}
 	
 	public function channel() {
 		$this->autoLayout = false;
 		echo "<script src=\"//connect.facebook.net/en_US/all.js\"></script>";
 		die();
+	}
+	
+	public function fbtest() {
+		$this->autoLayout = false;
+		$user = $this->User->findByEmail('anthony@peacefulcomputing.com');
+		debug($user);
+		die();
+		
 	}
 }

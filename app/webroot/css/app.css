@@ -498,11 +498,12 @@ table .spot-name a{display:block;color:#000000;}
 .staggered-item img,.index+.container .staggered-item img{width:270px;height:270px;}
 .spot+.container .staggered-item img,.deal+.container .staggered-item img,.user+.container .staggered-item img{width:270px;height:270px;}
 #staggered .block a:hover{text-decoration:none;}
-.tile{color:#fff;height:270px;position:relative;width:270px;}.tile .tile-header{background:#000;background-color:rgba(0, 0, 0, 0.5);-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;padding:8px 4px 4px;position:absolute;-moz-opacity:0.60;filter:alpha(opacity=60);filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=60);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";top:0;width:270px;}.tile .tile-header .is-active{border-top:none;}
+.tile{color:#fff;height:270px;position:relative;width:270px;}.tile a.a-block{height:100%;display:block;width:100%;}
+.tile .tile-header{background:#000;background-color:rgba(0, 0, 0, 0.5);-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;padding:8px 4px 4px;position:absolute;-moz-opacity:0.60;filter:alpha(opacity=60);filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=60);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";top:0;width:270px;}.tile .tile-header .is-active{border-top:none;}
 .tile .tile-footer{background:#000;background-color:rgba(0, 0, 0, 0.6);background-image:url('/img/tile-black.png');background-repeat:repeat;bottom:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;padding:8px 4px 4px;position:absolute;width:270px;}.tile .tile-footer .happy-hour .is-active{border-bottom:1px solid #CCC;}
 .tile .tile-footer .happy-hour{padding:10px 10px 31px;}
-.tile .block-actions{width:265px;}.tile .block-actions .keys-total{position:absolute;right:90px;bottom:5px;}
-.tile .block-actions .btn{bottom:5px;position:absolute;right:2px;}
+.tile .block-actions{width:265px;}.tile .block-actions .keys-total{left:120px;bottom:1px;}
+.tile .block-actions .btn{margin-right:5px;}
 .tile .block-actions .happy-hour{color:#fff;}
 .tile .tile-type{*zoom:1;position:relative;}.tile .tile-type:before,.tile .tile-type:after{display:table;content:"";}
 .tile .tile-type:after{clear:both;}

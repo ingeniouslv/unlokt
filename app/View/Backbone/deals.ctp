@@ -82,7 +82,7 @@
 						<div class="block-actions">
 							<p><%= deal.Deal.description %></p>
 							<% if(deal.Deal.keys > 1) { %>
-							<span class="keys-total"><%= deal.Deal.keys %></span>
+							<span class="keys-total pull-left"><%= deal.Deal.keys %></span>
 							<% } %>
 							<% if(deal.Deal.keys > 0) { %>
 								<a class="btn btn-red pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Special</a>

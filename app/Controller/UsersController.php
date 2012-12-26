@@ -620,17 +620,17 @@ class UsersController extends AppController {
 			echo("Hello " . $user->name);
 			
 			//look up user
-			$unlokt_user = $this->User->findByEmail($user['email']);
+			$unlokt_user = $this->User->findByEmail($user->email);
 			if(!$unlokt_user) {
 				//if user is not in the system, create user
 				$unlokt_user = array('User'=>array(
-					'email' => $user['email'],
-					'first_name' => $user['first_name'],
-					'last_name' => $user['last_name'],
+					'email' => $user->email,
+					'first_name' => $user->first_name,
+					'last_name' => $user->last_name,
 					'is_active' => true,
-					'gender' => $user['gender'],
+					'gender' => $user->gender,
 					'is_facebook_only' => true,
-					'facebook_id' => $user['id']
+					'facebook_id' => $user->id
 				));
 				$this->User->create();
 				$unlokt_user = $this->User->save($unlokt_user);

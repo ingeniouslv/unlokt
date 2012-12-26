@@ -615,16 +615,48 @@ class UsersController extends AppController {
 				. $params['access_token'];
 			
 			$user = json_decode(file_get_contents($graph_url));
+			
 			debug($user);
 			echo("Hello " . $user->name);
-		} else {
-			echo("The state does not match. You may be a victim of CSRF.");
-		}
+			
+			//look up user
+			$unlokt_user = $this->User->findByEmail($user['email']);
+			if(!$unlokt_user) {
+				//if user is not in the system, create user
+				$unlokt_user = array('User'=>array(
+					'email' => $user['email'],
+					'first_name' => $user['first_name'],
+					'last_name' => $user['last_name'],
+					'is_active' => true,
+					'gender' => $user['gender'],
+					'is_facebook_only' => true,
+					'facebook_id' => $user['id']
+				));
+				$this->User->create();
+				$unlokt_user = $this->User->save($unlokt_user);
+			} else if(!$unlokt_user['User']['is_facebook_only']) {
+				$this->User->id = $unlokt_user['User']['id'];
+				$this->User->saveField('is_facebook_only', true);
+			}
+			
+			//if user is in the system log them in
+			$this->login_user($unlokt_user['User']['id']);
+			//bring them to the home page
+			$this->redirect('/');
+	   }
 	}
 	
 	public function channel() {
 		$this->autoLayout = false;
 		echo "<script src=\"//connect.facebook.net/en_US/all.js\"></script>";
 		die();
+	}
+	
+	public function fbtest() {
+		$this->autoLayout = false;
+		$user = $this->User->findByEmail('anthony@peacefulcomputing.com');
+		debug($user);
+		die();
+		
 	}
 }

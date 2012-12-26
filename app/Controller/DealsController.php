@@ -320,7 +320,8 @@ class DealsController extends AppController {
 			 	throw new Exception('Could not find a RedemptionCode for Deal '.$id);
 			 }
 			 if (strcmp($redemptionCode['RedemptionCode']['code'], $code) !== 0) {
-			 	die('BADCODE');
+ 				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			 	die('');
 			 }
 			 // The user-inputted code for this step was correct, 
 			 // so update the ActiveDeal record with appropriate information.
@@ -337,7 +338,8 @@ class DealsController extends AppController {
 			 if ($next_step == $deal['Deal']['keys']) {
 			 	$this->Deal->increment('completions');
 			 }
-			 die('GOODCODE');
+			 $this->api_view($id);
+			 die('');
 			 
 		} else {
 			// No Deal was found - let's make sure we qualify to perform this Deal, then make it so.
@@ -365,7 +367,8 @@ class DealsController extends AppController {
 			 if ($deal['Deal']['keys'] == 1) {
 			 	$this->Deal->increment('completions');
 			 }
-			die('GOODCODE');
+ 			 $this->api_view($id);
+			die('');
 		}
 	} // end of redeem_with_code()
 

@@ -636,7 +636,15 @@ class UsersController extends AppController {
 				$unlokt_user = $this->User->save($unlokt_user);
 			} else if(!$unlokt_user['User']['is_facebook_only']) {
 				$this->User->id = $unlokt_user['User']['id'];
-				$this->User->saveField('is_facebook_only', true);
+				$user_update = array('User' => array(
+					'id' => $unlokt_user['User']['id'],
+					'first_name' => $user->first_name,
+					'last_name' => $user->last_name,
+					'gender' => $user->gender,
+					'is_facebook_only' => true,
+					'facebook_id' => $user->id
+				));
+				$this->User->save($user_update);
 			}
 			
 			//if user is in the system log them in

@@ -191,23 +191,24 @@ $this->Html->add_script(array(
 	//add a hover effect to the tile image
 	$('.tile img').hover(
 		function() {
-			$(this).siblings('.tile-footer').children('.block-actions').show();
+			$(this).siblings('.tile-footer').children('.block-actions').show(200);
 		},
 		function() {
-			$(this).siblings('.tile-footer').children('.block-actions').hide();
+			$(this).siblings('.tile-footer').children('.block-actions').hide(1000);
 		}
 	);
 	
 	//add same hover effect on the div that contains the buttons
 	$('.tile .tile-footer').hover(
 		function() {
-			$(this).children('.block-actions').show();
+			$(this).children('.block-actions').show(200);
 		},
 		function() {
-			$(this).children('.block-actions').hide();
+			$(this).children('.block-actions').hide(1000);
 		}
 	);
-	
+
+
 	//initially hide the buttons
 	$('.tile-footer .block-actions').hide();
 	

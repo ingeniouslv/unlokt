@@ -17,6 +17,7 @@ $this->set('title_for_layout', 'Login');
 				<div class="btn-group">
 					<a class="btn btn-red" href="/users/register">Sign Up!</a>
 					<?php echo $this->Form->button('Login', array('type' => 'submit', 'class' => 'btn btn-blue')); ?>
+					<?php echo $this->Html->link('Login with Facebook', array('action' => 'login_facebook', 'admin' => false), array('class' => 'btn btn-yellow')); ?>
 				</div>
 				<!-- TODO: Forgot Password view -->
 				<div class="btn-group">

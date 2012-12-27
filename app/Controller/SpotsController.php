@@ -389,8 +389,8 @@ class SpotsController extends AppController {
 		$deal_joins = array();
 		$excluded_deal_ids = array();
 		$deal_spot_ids = array();
-		if(!empty($_GET['text']))  {
-			$search_terms = split(' ', urldecode($_GET['text']));
+		if(!empty($_GET['text']) || !empty($_GET['keywords']))  {
+			$search_terms = (!empty($_GET['text']))?split(' ', urldecode($_GET['text'])):split(' ', urldecode($_GET['keywords']));
 			$search_text_spot_conditions = array('OR' => array());
 			$deal_conditions = array('OR' => array());
 			foreach($search_terms as $search_term) {

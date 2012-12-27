@@ -181,5 +181,12 @@ class PagesController extends AppController {
 		$this->set(compact('page'));
 		
 	}
+	
+	public function api_page($slug = NULL) {
+		if(!$slug || !$page = $this->Page->findBySlugAndIsPublished($slug, 1)) {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+		}
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $page);
+	}
 }
 

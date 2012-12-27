@@ -160,7 +160,11 @@ class UsersController extends AppController {
 		$this->layout = 'splash';
 		$this->require_ssl = true;
 		if ($this->request->is('post')) {
-			if ($this->Auth->login()) {
+			$user = $this->User->findByEmail($this->data['User']['email']);
+			$is_facebook_only = ($user && !empty($user['User']['is_facebook_only']))?true:false;
+			if($is_facebook_only) {
+				$this->Session->setFlash('This account must use facebook to login');
+			} else if ($this->Auth->login()) {
 				// Redirect the user. If there's $_GET['redirect'] then direct them there - else redirect to normal action.
 				$this->redirect($this->Auth->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : null));
 			} else {
@@ -173,6 +177,7 @@ class UsersController extends AppController {
 	public function logout() {
 		$this->autoRender = false;
 		$logout_url = $this->Auth->logout();
+		$this->_logout_facebook();
 		$this->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : $logout_url);
 	}
 	
@@ -615,10 +620,61 @@ class UsersController extends AppController {
 				. $params['access_token'];
 			
 			$user = json_decode(file_get_contents($graph_url));
+			
 			debug($user);
 			echo("Hello " . $user->name);
-		} else {
-			echo("The state does not match. You may be a victim of CSRF.");
+			
+			//look up user
+			$unlokt_user = $this->User->findByEmail($user->email);
+			if(!$unlokt_user) {
+				//if user is not in the system, create user
+				$unlokt_user = array('User'=>array(
+					'email' => $user->email,
+					'first_name' => $user->first_name,
+					'last_name' => $user->last_name,
+					'is_active' => true,
+					'gender' => $user->gender,
+					'is_facebook_only' => true,
+					'facebook_id' => $user->id
+				));
+				$this->User->create();
+				$unlokt_user = $this->User->save($unlokt_user);
+			} else if(!$unlokt_user['User']['is_facebook_only']) {
+				$this->User->id = $unlokt_user['User']['id'];
+				$user_update = array('User' => array(
+					'id' => $unlokt_user['User']['id'],
+					'first_name' => $user->first_name,
+					'last_name' => $user->last_name,
+					'gender' => $user->gender,
+					'is_facebook_only' => true,
+					'facebook_id' => $user->id
+				));
+				$this->User->save($user_update);
+			}
+			
+			//if user is in the system log them in
+			$this->login_user($unlokt_user['User']['id']);
+			//bring them to the home page
+			$this->redirect('/');
+	   }
+	}
+
+	private function _logout_facebook() {
+		$app_id = "309486975818919";
+		$app_secret = "258dc70e86af80006ddb40407767f9fc";
+		//$my_url = "YOUR_LOGOUT_URL";
+
+		$token = empty($_SESSION['access_token'])?false:$_SESSION['access_token'];
+		
+		if($token) {
+			$graph_url = "https://graph.facebook.com/me/permissions?method=delete&access_token=" 
+				. $token;
+
+			$result = json_decode(file_get_contents($graph_url));
+			if($result) {
+				$this->Session->destroy();
+				//user now loged out
+ 			}
 		}
 	}
 	

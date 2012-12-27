@@ -360,6 +360,18 @@ class SpotsController extends AppController {
 					)
 				);
 			}
+			if($_GET['zip']) {
+				$spot_ids = $this->Spot->find(
+					'list', 
+					array(
+						'fields' => array('Spot.id'),
+						'conditions' => array(
+							'Spot.id' => $spot_ids,
+							'Spot.zip LIKE ' => '%'.$_GET['zip'].'%'
+						)
+					)
+				);
+			}
 			
 			$this->Spot->HappyHour->current_start_time = $start_time; 
 			$this->Spot->HappyHour->current_end_time = $end_time;

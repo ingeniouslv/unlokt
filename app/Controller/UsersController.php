@@ -173,6 +173,7 @@ class UsersController extends AppController {
 	public function logout() {
 		$this->autoRender = false;
 		$logout_url = $this->Auth->logout();
+		$this->_logout_facebook();
 		$this->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : $logout_url);
 	}
 	
@@ -667,6 +668,8 @@ class UsersController extends AppController {
 
 			$result = json_decode(file_get_contents($graph_url));
 			if($result) {
+				debug($_SESSION);
+				die();
 				session_destroy();
 				echo("User is now logged out.");
  			}

@@ -476,7 +476,9 @@ class UsersController extends AppController {
 		$user_id = $this->Auth->user('id');
 		$user = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
 		$reviews = $this->User->Review->getReviewByUserId($user_id, array('Spot'));
-		$deals = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id);
+		$deals = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id, array('Spot'));
+		debug($deals);
+		die();
 		$this->set(compact('user', 'reviews', 'deals'));
 	} // end of account()
 	

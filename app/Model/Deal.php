@@ -269,8 +269,9 @@ class Deal extends AppModel {
 		));
 	}
 	
-	public function getActiveDealsByUserId($id = null) {
+	public function getActiveDealsByUserId($id = null, $contain) {
 		if(empty($id)) $id=$this->Auth->user('id');
+		$this->Behaviors->attach('Containable');
 		$joins = array(
 			array(
 				'table' => 'active_deals',
@@ -283,7 +284,13 @@ class Deal extends AppModel {
 			)
 		);
 		
-		return $this->find('all', array('joins' => $joins));
+		$deals = $this->find('all', array('joins' => $joins, 'contain' => $contain));
+		usort($deals, array('Deal', '_sortBySpotName'));
+		return $deals;
+	}
+	
+	private function _sortBySpotName($a, $b) {
+		return strcmp($a['Spot']['name'], $b['Spot']['name']);
 	}
 	
 	/*

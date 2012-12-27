@@ -476,8 +476,7 @@ class SpotsController extends AppController {
 		//cut the array down to the requested length
 		$return['deals'] = array_slice($return['deals'], 0, $_GET['limit']);
 		//debug($return['deals']);
-		
-		
+
 		return $return;
 	}
 	

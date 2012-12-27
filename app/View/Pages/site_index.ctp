@@ -142,10 +142,12 @@ $this->Html->add_script(array(
 		params.limit = limit;
 		var url = search_url + $.param(params);
 		console.log('fetching ' + url);
+		
 		$.getJSON(url, function(results) {
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);
 			reviews.reset(results.reviews);
+			console.log(results.deals);
 			$('#staggered').masonry({
 				itemSelector : '.staggered-item',
 				columnWidth: 189
@@ -285,7 +287,9 @@ $this->Html->add_script(array(
 		$.get('/users/follow_spot/' + spot_id, function(response) {
 			if (response == 'GOOD') {
 				$that.removeClass('follow btn-red').addClass('following btn-blue').html('Unfollow Spot');
-				
+				spot_ids_i_follow.push(spot_id);
+				console.log(spot_ids_i_follow);
+				search();
 			} else {
 			}
 		});
@@ -299,6 +303,10 @@ $this->Html->add_script(array(
 		$.get('/users/unfollow_spot/' + spot_id, function(response) {
 			if (response == 'GOOD') {
 				$that.removeClass('following btn-blue').addClass('follow btn-red').html('Follow Spot');
+				var spot_id_index = _.indexOf(spot_ids_i_follow, spot_id);
+				spot_ids_i_follow.splice(spot_id_index,1);
+				console.log(spot_ids_i_follow);
+				search();
 			} else {
 			}
 		});

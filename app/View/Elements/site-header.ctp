@@ -1,4 +1,3 @@
-
 <?php if (isset($spots_i_manage) && count($spots_i_manage)): ?>
 <!-- #feedModal -->
 <div class="modal modal-feed hide" id="feedModal">

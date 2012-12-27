@@ -288,8 +288,6 @@ $this->Html->add_script(array(
 			if (response == 'GOOD') {
 				$that.removeClass('follow btn-red').addClass('following btn-blue').html('Unfollow Spot');
 				spot_ids_i_follow.push(spot_id);
-				console.log(spot_ids_i_follow);
-				search();
 			} else {
 			}
 		});
@@ -305,7 +303,6 @@ $this->Html->add_script(array(
 				$that.removeClass('following btn-blue').addClass('follow btn-red').html('Follow Spot');
 				var spot_id_index = _.indexOf(spot_ids_i_follow, spot_id);
 				spot_ids_i_follow.splice(spot_id_index,1);
-				console.log(spot_ids_i_follow);
 				search();
 			} else {
 			}

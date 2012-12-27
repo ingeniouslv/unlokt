@@ -673,7 +673,7 @@ class UsersController extends AppController {
 			$result = json_decode(file_get_contents($graph_url));
 			if($result) {
 				$this->Session->destroy();
-				//user now loged out
+				//user now logged out
  			}
 		}
 	}

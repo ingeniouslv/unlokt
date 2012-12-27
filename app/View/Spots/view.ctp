@@ -189,22 +189,12 @@ $this->Html->add_script(array(
 	});
 
 	//add a hover effect to the tile image
-	$('.tile img').hover(
+	$('.tile').hover(
 		function() {
-			$(this).siblings('.tile-footer').children('.block-actions').show();
+			$(this).children('.tile-footer').children('.block-actions').slideDown(200);
 		},
 		function() {
-			$(this).siblings('.tile-footer').children('.block-actions').hide();
-		}
-	);
-	
-	//add same hover effect on the div that contains the buttons
-	$('.tile .tile-footer').hover(
-		function() {
-			$(this).children('.block-actions').show();
-		},
-		function() {
-			$(this).children('.block-actions').hide();
+			$(this).children('.tile-footer').children('.block-actions').slideUp(200);
 		}
 	);
 	

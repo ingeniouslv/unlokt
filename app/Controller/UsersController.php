@@ -160,7 +160,11 @@ class UsersController extends AppController {
 		$this->layout = 'splash';
 		$this->require_ssl = true;
 		if ($this->request->is('post')) {
-			if ($this->Auth->login()) {
+			$user = $this->User->findByEmail($this->data['User']['email']);
+			$is_facebook_only = ($user && !empty($user['User']['is_facebook_only']))?true:false;
+			if($is_facebook_only) {
+				$this->Session->setFlash('This account must use facebook to login');
+			} else if ($this->Auth->login()) {
 				// Redirect the user. If there's $_GET['redirect'] then direct them there - else redirect to normal action.
 				$this->redirect($this->Auth->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : null));
 			} else {
@@ -660,7 +664,7 @@ class UsersController extends AppController {
 		$app_secret = "258dc70e86af80006ddb40407767f9fc";
 		//$my_url = "YOUR_LOGOUT_URL";
 
-		$token = $_SESSION["access_token"];
+		$token = empty($_SESSION['access_token'])?false:$_SESSION['access_token'];
 		
 		if($token) {
 			$graph_url = "https://graph.facebook.com/me/permissions?method=delete&access_token=" 
@@ -669,10 +673,8 @@ class UsersController extends AppController {
 			$result = json_decode(file_get_contents($graph_url));
 			if($result) {
 				$this->Session->destroy();
-				echo("User is now logged out.");
+				//user now loged out
  			}
-		} else {
-			echo("User already logged out.");
 		}
 	}
 	
@@ -680,13 +682,5 @@ class UsersController extends AppController {
 		$this->autoLayout = false;
 		echo "<script src=\"//connect.facebook.net/en_US/all.js\"></script>";
 		die();
-	}
-	
-	public function fbtest() {
-		$this->autoLayout = false;
-		$user = $this->User->findByEmail('anthony@peacefulcomputing.com');
-		debug($user);
-		die();
-		
 	}
 }

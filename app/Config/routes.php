@@ -30,6 +30,7 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'page'));
+
 	Router::connect('/spot-invite/*', array('controller' => 'spots', 'action' => 'submit_your_business'));
 	Router::connect('/channel', array('controller' => 'users', 'action' => 'channel'));
 

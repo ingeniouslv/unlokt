@@ -668,7 +668,7 @@ class UsersController extends AppController {
 
 			$result = json_decode(file_get_contents($graph_url));
 			if($result) {
-				$this->Session->destroy()
+				$this->Session->destroy();
 				echo("User is now logged out.");
  			}
 		} else {

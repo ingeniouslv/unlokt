@@ -653,6 +653,27 @@ class UsersController extends AppController {
 			$this->redirect('/');
 	   }
 	}
+
+	private function _logout_facebook() {
+		$app_id = "309486975818919";
+		$app_secret = "258dc70e86af80006ddb40407767f9fc";
+		//$my_url = "YOUR_LOGOUT_URL";
+
+		$token = $_SESSION["access_token"];
+		
+		if($token) {
+			$graph_url = "https://graph.facebook.com/me/permissions?method=delete&access_token=" 
+				. $token;
+
+			$result = json_decode(file_get_contents($graph_url));
+			if($result) {
+				session_destroy();
+				echo("User is now logged out.");
+ 			}
+		} else {
+			echo("User already logged out.");
+		}
+	}
 	
 	public function channel() {
 		$this->autoLayout = false;

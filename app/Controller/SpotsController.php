@@ -311,6 +311,8 @@ class SpotsController extends AppController {
 				$this->Spot->Deal->events_only = true;
 			} else if ($_GET['search'] == 'popular') {
 				
+			} else if ($_GET['search'] == 'favorites') {
+				$spot_ids = $this->Spot->getMySpotIds($this->Auth->user('id'));
 			}
 		} else if($_GET['search_type'] == 'advanced') {
 			if($_GET['type'] == 'spot') {

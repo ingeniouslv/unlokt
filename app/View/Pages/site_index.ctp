@@ -147,7 +147,6 @@ $this->Html->add_script(array(
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);
 			reviews.reset(results.reviews);
-			console.log(results.deals);
 			$('#staggered').masonry({
 				itemSelector : '.staggered-item',
 				columnWidth: 189

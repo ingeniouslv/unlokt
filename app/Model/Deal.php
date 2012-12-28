@@ -342,6 +342,13 @@ class Deal extends AppModel {
 			'contain' => $contain
 		));
 	}
+
+	//sorts the deals alphabetically using either deal name or spot name (in case of happy hours)
+	public function sortDeals($a, $b) {
+		$val1 = array_key_exists('Deal',$a)?$a['Deal']['name']:$a['Spot']['name'];
+		$val2 = array_key_exists('Deal',$b)?$b['Deal']['name']:$b['Spot']['name'];
+		return strcmp($val1, $val2);
+	}
 	
 
 }

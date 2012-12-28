@@ -280,6 +280,7 @@ class SpotsController extends AppController {
 	 * results.
 	 */
 	private function _get_results($spot_ids) {
+		$this->loadModel('Deal');
 		// Fetch Spots with Happy Hour and insert them between the Deals for the tiles :)
 		$this->Spot->HappyHour->order = 'ParentHappyHour.day_of_week ASC';
 		$include_happy_hours = true;
@@ -390,9 +391,12 @@ class SpotsController extends AppController {
 		$excluded_deal_ids = array();
 		$deal_spot_ids = array();
 		if(!empty($_GET['text']) || !empty($_GET['keywords']))  {
+			//keywords comes from the advanced search text box while text comes from the quick search text box.
+			//both should be treated the same and there should never be values in both variables.
 			$search_terms = (!empty($_GET['text']))?split(' ', urldecode($_GET['text'])):split(' ', urldecode($_GET['keywords']));
 			$search_text_spot_conditions = array('OR' => array());
 			$deal_conditions = array('OR' => array());
+			//generate search conditions for all keywords
 			foreach($search_terms as $search_term) {
 				$search_text_spot_conditions['OR'] = array(
 					"Spot.name LIKE '%".$search_term."%'",
@@ -416,7 +420,6 @@ class SpotsController extends AppController {
 				
 			}
 			
-			
 			$deal_conditions['Deal.spot_id'] = $spot_ids;
 			$deals = $this->Spot->Deal->find(
 				'all',
@@ -436,6 +439,28 @@ class SpotsController extends AppController {
 			$deal_ids = array_map($deal_id_list_filter, $deals);
 			$deal_spot_ids = array_map($deal_spot_id_list_filter, $deals);
 			
+			//find the hits on the spot level
+			$spot_ids = $this->Spot->find (
+				'list',
+				array(
+					'conditions' => $search_text_spot_conditions,
+					'fields' => array('Spot.id')
+				)
+			);
+			
+			//grab any deals that should be included since there was a hit on the spot
+			$included_deals_from_spot_finds = $this->Deal->find(
+				'list', 
+				array(
+					'conditions' => array('Deal.spot_id' => $spot_ids),
+					'fields' => array('id')
+				)
+			);
+			
+			//use array_values to clear the keys, use array_unique to get rid of duplicates, and use array_merge to combine arrays
+			$deal_ids = array_unique(array_merge(array_values($deal_ids), array_values($included_deals_from_spot_finds)));
+			
+			//use to prevent unrelated deals from showing up
 			$excluded_deal_ids = $this->Spot->Deal->find(
 				'list',
 				array(
@@ -444,19 +469,13 @@ class SpotsController extends AppController {
 				)
 			);
 		}
-		$spot_ids = $this->Spot->find (
-			'list',
-			array(
-				'conditions' => $search_text_spot_conditions,
-				'fields' => array('Spot.id')
-			)
-		);
+		
 		//each filter has a separate spot_id list.  These lists need to be merged together to represent all the spot_ids
 		//that have matches.
-		$spot_ids = array_merge($spot_ids, $deal_spot_ids);
-		
+		//use array_values to clear the keys, use array_unique to get rid of duplicates, and use array_merge to combine arrays
+		$spot_ids = array_unique(array_merge(array_values($spot_ids), array_values($deal_spot_ids)));
 		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
-			
+		
 		$this->Spot->Feed->limit = 3;
 		$this->Spot->Review->limit = 3;
 		
@@ -476,15 +495,8 @@ class SpotsController extends AppController {
 			$return['deals'] = $this->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
 		}
 		
-		//sorts the deals alphabetically using either deal name or spot name (in case of happy hours)
-		$sort_deals = function($a, $b) {
-			$val1 = array_key_exists('Deal',$a)?$a['Deal']['name']:$a['Spot']['name'];
-			$val2 = array_key_exists('Deal',$b)?$b['Deal']['name']:$b['Spot']['name'];
-			return strcmp($val1, $val2);
-		};
-		
 		//sort the results so happy hours aren't always at the top
-		usort($return['deals'], $sort_deals);
+		usort($return['deals'], array('Deal','sortDeals'));
 		//cut the array down to the requested length
 		$return['deals'] = array_slice($return['deals'], 0, $_GET['limit']);
 		//debug($return['deals']);

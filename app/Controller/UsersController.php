@@ -467,7 +467,7 @@ class UsersController extends AppController {
 	public function api_account() {
 		$user_id = $this->Auth->user('id');
 		$mydeals['user'] = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
-		$mydeals['deals'] = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id);
+		$mydeals['deals'] = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id, array('Spot'));
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $mydeals);
 	} // end of account()
 	

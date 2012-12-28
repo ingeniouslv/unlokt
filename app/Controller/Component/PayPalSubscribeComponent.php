@@ -76,7 +76,9 @@ class PayPalSubscribeComponent extends Component {
 		// return $this->response;
 	}
 	
-	
+	// To use a Trial, set 
+	//		$this->trial = true;
+	//		$this->TRIALTOTALBILLINGCYCLES = $how_many_months_of_free_trial
 	function subscribe($spot_id, $plan_id, $credit_card = array()) {
 		
 		Controller::loadModel('Spot');
@@ -106,6 +108,19 @@ class PayPalSubscribeComponent extends Component {
 			'AMT' => $plan['Plan']['price'],
 			'CURRENCYCODE' => 'USD'
 		);
+
+		if (!empty($this->trial)) {
+			if (empty($this->TRIALTOTALBILLINGCYCLES)) {
+				throw new NotFoundException('Expecting TRIALTOTALBILLINGCYCLES');
+			}
+			$fields = array_merge(array(
+				// The trial details
+				'TRIALBILLINGPERIOD' => 'Month',
+				'TRIALBILLINGFREQUENCY' => 1,
+				'TRIALTOTALBILLINGCYCLES' => $this->TRIALTOTALBILLINGCYCLES,
+				'TRIALAMT' => 0
+			), $fields);
+		}
 		
 		// If there is Credit Card information provided then add those fields to the $fields array.
 		if (count($credit_card)) {

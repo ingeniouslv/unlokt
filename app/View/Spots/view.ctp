@@ -17,6 +17,27 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 	</div>
 <?php endif; ?>
 
+<?php if (isset($spots_i_manage) && count($spots_i_manage)): ?>
+<!-- #feedModal -->
+<div class="modal modal-feed hide" id="attachmentModal">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal"></a>
+		<h4><i class="icon-pencil"></i>Post Feed</h4>
+	</div>
+	<div class="modal-body">
+		<?php echo $this->Form->create('Attachment', array('type' => 'file', 'class' => 'form-vertical control-group', 'url' => array('controller' => 'attachments', 'action' => 'add'))); ?>
+			<?php
+				echo $this->Form->hidden('spot_id', array('value' => $spot['Spot']['id']));
+				echo $this->Form->input('file.', array('type' => 'file', 'div' => 'control-fields', 'multiple', 'label' => 'Attachments (select multiple)', 'data-type' => 'file-input'));
+			?>
+			<div class="btn-group pull-right">
+				<?php echo $this->Form->button('Post to Gallery', array('type' => 'submit', 'class' => 'btn-blue')); ?>
+			</div>
+		<?php echo $this->Form->end(); ?>
+	</div>
+</div><!-- end of #feedModal -->
+<?php endif; ?>
+
 <div class="main-content page-new spot">
 	<div class="container">
 		<div class="row">
@@ -113,6 +134,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 							<?php endforeach; ?>
 						</div>
 						<a class="more" id="more-pics" href="javascript:void(0);">More Pics ›</a>
+						<a id="add-pics" href="javascript:void(0);" onclick="return false;">Add Pics</a>
 					</div>
 				<?php endif; ?>
 
@@ -215,6 +237,12 @@ $this->Html->add_script(array(
 	// Add a trigger for clicking "More Pics"
 	$('#more-pics').click(function() {
 		start_gallery(<?php echo $spot['Spot']['id']; ?>);
+	});
+	
+	// Add triger for clicking "Add Pics"
+	$('#add-pics').click(function() {
+		$('#attachmentModal').modal();
+		return false;
 	});
 </script>
 <?php echo $this->element('mod-gallery'); ?>

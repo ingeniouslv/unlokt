@@ -362,6 +362,11 @@ $this->Html->add_script(array(
 			// When the button is clicked, make a search happen after a millisecond.
 			setTimeout(function() {search();}, 1);
 		});
+		$('#advanced-search button').click(function() {
+			search();
+			return false;
+		});
+		
 		// When the [enter] button is pressed, make the button trigger a search and blur the keyboard.
 		$('#quick-search input[type="text"], #advanced-search input[type="text"]').keydown(function(event) {
 			event.stopPropagation();

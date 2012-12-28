@@ -74,6 +74,7 @@
 						<input type="text" id="keywords" class="input-medium">
 					</div>
 
+					
 					<button type="submit" class="btn btn-red">Search <i class="icon-search"></i></button>
 				</form>
 			</div>

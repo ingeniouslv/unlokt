@@ -96,8 +96,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						<?php if ($spot['Spot']['spotlight_2']): ?>
 							<h4>Spotlight Mini</h4>
 							<div class="block block-darkgray spot-custom-content small">
-								<?php echo $spot['Spot']['spotlight_2']; ?>
-								<!-- <img src="http://dummyimage.com/223x100"> -->
+								<?php echo $spot['Spot']['spotlight_2_parsed']; ?>
 							</div>
 						<?php endif; ?>
 

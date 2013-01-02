@@ -491,4 +491,18 @@ class Spot extends AppModel {
 			'Spot.is_pending' => 1
 		)));
 	}
+
+	// return a string of text formatted specifically for Spotlight.
+	// I.e., parse youtube links, apply certain formatting, etc.
+	public function parseSpotlightText($string) {
+		// Make 'http', 'https', and 'ftp' text into hyperlinks.
+		// Make sure to not match URLs that have a QUOTE (") in front of the URL (as this is the indicator of image tag being converted to image HTML).
+		$string = preg_replace(
+			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-]+)@',
+			'<iframe width="220" height="150" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen=""></iframe>',
+			$string
+		);
+		
+		return $string;
+	} // end of parseSpotlightText()
 }

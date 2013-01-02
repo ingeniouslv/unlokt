@@ -94,6 +94,9 @@ class SpotsController extends AppController {
 		$this->Spot->Manager->cache = true;
 		$managerOfCurrentSpot = $this->Spot->Manager->isManager();
 		$adminOfCurrentSpot = $this->Spot->Manager->isAdmin();
+
+		// Parse the Spotlight text
+		$spot['Spot']['spotlight_2_parsed'] = $this->Spot->parseSpotlightText($spot['Spot']['spotlight_2']);
 		
 		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments', 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot'));
 	}

@@ -577,7 +577,7 @@ class SpotsController extends AppController {
 			$this->Spot->create(false);
 			$this->Spot->set($this->request->data);
 			$this->Spot->set(array(
-				'is_active' => false,
+				'is_active' => true,
 				'phone' => preg_replace('/[^0-9]/', '', $this->Spot->data['Spot']['phone'])
 			));
 			

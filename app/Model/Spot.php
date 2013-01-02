@@ -67,6 +67,16 @@ class Spot extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+		),
+		'phone' => array(
+			'notempty' => array(
+				'rule' => array('phone', null, 'us'),
+				'message' => 'Phone required',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		)
 	);
 	
@@ -492,4 +502,29 @@ class Spot extends AppModel {
 			'Spot.is_pending' => 1
 		)));
 	}
+
+	// return a string of text formatted specifically for Spotlight.
+	// I.e., parse youtube links, apply certain formatting, etc.
+	public function parseSpotlightText($string) {
+		// Match the two known youtube link formats with embed code.
+		$string = preg_replace(
+			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-]+)@',
+			'<iframe width="220" height="150" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen=""></iframe>',
+			$string
+		);
+		
+		return $string;
+	} // end of parseSpotlightText()
+
+	public function address_to_coordinates($address) {
+		$lookup = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false');
+		if (!$lookup) {
+			return array(0, 0);
+		}
+		$lookup = json_decode($lookup, true);
+		if (empty($lookup['results'][0]['geometry']['location']['lat'])) {
+			return array(0, 0);
+		}
+		return array($lookup['results'][0]['geometry']['location']['lat'], $lookup['results'][0]['geometry']['location']['lng']);
+	} // end of address_to_coordinates()
 }

@@ -94,6 +94,9 @@ class SpotsController extends AppController {
 		$this->Spot->Manager->cache = true;
 		$managerOfCurrentSpot = $this->Spot->Manager->isManager();
 		$adminOfCurrentSpot = $this->Spot->Manager->isAdmin();
+
+		// Parse the Spotlight text
+		$spot['Spot']['spotlight_2_parsed'] = $this->Spot->parseSpotlightText($spot['Spot']['spotlight_2']);
 		
 		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments', 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot'));
 	}
@@ -119,6 +122,14 @@ class SpotsController extends AppController {
 			throw new NotFoundException(__('You do not have permission to this Spot.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			// Check if the address has changed without manual coordinates.
+			if (empty($this->request->data['Spot']['lat']) 
+				&& strcmp($spot['Spot']['address'].$spot['Spot']['address2'].$spot['Spot']['city'].$spot['Spot']['zip'], $this->request->data['Spot']['address'].$this->request->data['Spot']['address2'].$this->request->data['Spot']['city'].$this->request->data['Spot']['zip']) !== 0) {
+				// Address has changed - perform lookup
+				list($lat, $lng) = $this->Spot->address_to_coordinates("{$this->request->data['Spot']['address']} {$this->request->data['Spot']['address2']}, {$this->request->data['Spot']['city']}, {$this->request->data['Spot']['zip']}");
+				$this->request->data['Spot']['lat'] = $lat;
+				$this->request->data['Spot']['lng'] = $lng;
+			}
 			if ($this->Spot->save($this->request->data)) {
 				$file = $_FILES['file'];
 				if (!$file['error'] && $file['size'] && substr($file['type'], 0, 6) == 'image/') {
@@ -570,11 +581,14 @@ class SpotsController extends AppController {
 				'phone' => preg_replace('/[^0-9]/', '', $this->Spot->data['Spot']['phone'])
 			));
 			
-			if(strlen($this->Spot->data['Spot']['phone']) != 10) {
-				$this->Spot->invalidate('phone', 'invalid phone number');
-			}
 			if ($this->Spot->validates()) {
 				// Good Spot information - save and inform user to wait.
+				// Perform lookup of coordinates to save on Spot info
+				list($lat, $lng) = $this->Spot->address_to_coordinates("{$this->request->data['Spot']['address']} {$this->request->data['Spot']['address2']}, {$this->request->data['Spot']['city']}, {$this->request->data['Spot']['zip']}");
+				$this->Spot->set(array(
+					'lat' => $lat,
+					'lng' => $lng
+				));
 				$this->Spot->save();
 				$this->Session->setFlash('Spot has been submitted. Thank you.', 'alert-success');
 				$manager = array('Manager' => array('spot_id' => $this->Spot->id, 'user_id' => $this->Auth->user('id'), 'is_admin' => true));
@@ -586,5 +600,13 @@ class SpotsController extends AppController {
 		} // end of if(is('post')){}
 	}
 
-	
+	public function api_view($id) {
+		$this->Spot->id = $id;
+		
+		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed'))) {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			return;
+		}
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);
+	} // end api_view()
 }

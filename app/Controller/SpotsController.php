@@ -122,7 +122,7 @@ class SpotsController extends AppController {
 			throw new NotFoundException(__('You do not have permission to this Spot.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			// Check if the address has changed without manual coordinates
+			// Check if the address has changed without manual coordinates.
 			if (empty($this->request->data['Spot']['lat']) 
 				&& strcmp($spot['Spot']['address'].$spot['Spot']['address2'].$spot['Spot']['city'].$spot['Spot']['zip'], $this->request->data['Spot']['address'].$this->request->data['Spot']['address2'].$this->request->data['Spot']['city'].$this->request->data['Spot']['zip']) !== 0) {
 				// Address has changed - perform lookup
@@ -581,11 +581,14 @@ class SpotsController extends AppController {
 				'phone' => preg_replace('/[^0-9]/', '', $this->Spot->data['Spot']['phone'])
 			));
 			
-			if(strlen($this->Spot->data['Spot']['phone']) != 10) {
-				$this->Spot->invalidate('phone', 'invalid phone number');
-			}
 			if ($this->Spot->validates()) {
 				// Good Spot information - save and inform user to wait.
+				// Perform lookup of coordinates to save on Spot info
+				list($lat, $lng) = $this->Spot->address_to_coordinates("{$this->request->data['Spot']['address']} {$this->request->data['Spot']['address2']}, {$this->request->data['Spot']['city']}, {$this->request->data['Spot']['zip']}");
+				$this->Spot->set(array(
+					'lat' => $lat,
+					'lng' => $lng
+				));
 				$this->Spot->save();
 				$this->Session->setFlash('Spot has been submitted. Thank you.', 'alert-success');
 				$manager = array('Manager' => array('spot_id' => $this->Spot->id, 'user_id' => $this->Auth->user('id'), 'is_admin' => true));

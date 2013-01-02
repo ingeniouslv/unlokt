@@ -67,6 +67,16 @@ class Spot extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+		),
+		'phone' => array(
+			'notempty' => array(
+				'rule' => array('phone', null, 'us'),
+				'message' => 'Phone required',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		)
 	);
 	

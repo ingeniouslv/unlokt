@@ -170,7 +170,7 @@ legend{margin:0;font-family:'Open Sans',Helvetica,Arial,sans-serif;color:#1a1b20
 label,.form-section-label{margin-bottom:2px;font-weight:600;vertical-align:top;}
 .form-section-label{margin-top:10px;}
 .required label:after,label.required:after{content:'*';color:#c00;padding-left:4px;}
-input[disabled]{background:#d7d7d7;cursor:not-allowed;}input[disabled]:hover,input[disabled]:active{border:1px solid #cccccc;}
+input[disabled],input[readonly]{background:#d7d7d7;cursor:not-allowed;}input[disabled]:hover,input[readonly]:hover,input[disabled]:active,input[readonly]:active{border:1px solid #cccccc;}
 .form-vertical label,.form-vertical input[type="text"],.form-vertical input[type="password"],.form-vertical input[type="email"],.form-vertical input[type="phone"],.form-vertical input[type="date"]{display:block;}
 .form-vertical input[type="checkbox"]+label,.form-vertical input[type="radio"]+label,.form-vertical label+input[type="checkbox"],.form-vertical label+input[type="radio"],.form-vertical .checkbox+label,.form-vertical .radio+label,.form-vertical label+.checkbox,.form-vertical label+.radio{display:inline-block;*display:inline;*zoom:1;}
 .form-vertical .columns{margin-bottom:0;}

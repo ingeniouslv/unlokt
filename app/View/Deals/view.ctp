@@ -30,7 +30,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 						<h3><?php echo h($deal['Deal']['description']); ?></h3>
 
 						<p><?php if ($deal_completed_count): ?>
-						You have completed this Spot Special <?php echo $deal_completed_count; ?> time<?php echo $deal_completed_count == 1 ? '' : 's'; ?>
+						You have completed this Spot Special <?php echo $deal_completed_count; ?> time<?php echo $deal_completed_count == 1 ? ' ' : 's'; ?>
 						<?php endif; ?></p>
 						<div class="redeem">	
 							<div class="block block-white">

@@ -431,10 +431,8 @@ table .spot-name a{display:block;color:#000000;}
 .happyHours.add .control-fields label{display:block;float:left;width:45px;}
 .happyHours.add .inline-radios label{display:inline;float:none;}
 #SpotEditForm select{margin-bottom:10px;}
-.spotlight-highlight-wrapper{background-color:white;padding:5px;}.spotlight-highlight-wrapper .spotlight-highlight{margin:0 auto;position:relative;}.spotlight-highlight-wrapper .spotlight-highlight .light-left,.spotlight-highlight-wrapper .spotlight-highlight .light-right{font-family:Entypo;font-size:100px;position:absolute;top:-60px;}
-.spotlight-highlight-wrapper .spotlight-highlight .light-left{left:0;transform:rotate(75deg);-ms-transform:rotate(75deg);-moz-transform:rotate(75deg);-webkit-transform:rotate(75deg);}
-.spotlight-highlight-wrapper .spotlight-highlight .light-right{right:0;transform:rotate(75deg);-ms-transform:rotate(75deg);-moz-transform:rotate(75deg);-webkit-transform:rotate(75deg);}
-.spotlight-highlight-wrapper .spotlight-highlight h1{border-radius:3px;}
+.spotlight-highlight-wrapper{padding:5px;}.spotlight-highlight-wrapper h1,.spotlight-highlight-wrapper h2,.spotlight-highlight-wrapper h3,.spotlight-highlight-wrapper h4,.spotlight-highlight-wrapper h5,.spotlight-highlight-wrapper h6,.spotlight-highlight-wrapper span,.spotlight-highlight-wrapper p{color:#ffffff;}
+.spotlight-highlight-wrapper .spotlight-highlight{margin:0 auto;position:relative;}
 .deal .block .spot{*zoom:1;}.deal .block .spot:before,.deal .block .spot:after{display:table;content:"";}
 .deal .block .spot:after{clear:both;}
 .deal .block .spot .name{margin-top:0;}
@@ -539,7 +537,7 @@ table .spot-name a{display:block;color:#000000;}
 .bootstrap-timepicker table td a i{margin-top:2px;}.bootstrap-timepicker table td a i:before{font-size:12px;margin-right:0;}
 .bootstrap-timepicker table td input{width:42px;margin:0;text-align:center;}
 .bootstrap-timepicker-component .add-on{cursor:pointer;}.bootstrap-timepicker-component .add-on i{display:block;width:16px;height:16px;}
-div.jHtmlArea{display:inline-block;border:1px solid #ccc;background:#ffffff;}
+div.jHtmlArea{display:inline-block;border:1px solid #ccc;background:#232526;}
 div.jHtmlArea div{padding:0px;margin:0px;}
 div.jHtmlArea div iframe{border:0;margin:0;padding:0;width:100%;}
 div.jHtmlArea .ToolBar{*zoom:1;padding:0 1px;background:#ffffff url('../img/jHtml/jHtmlArea_Toolbar_Group_BG.png') repeat;}div.jHtmlArea .ToolBar:before,div.jHtmlArea .ToolBar:after{display:table;content:"";}
@@ -589,6 +587,7 @@ div.jHtmlAreaColorPickerMenu div{float:left;margin:2px;width:12px;height:14px;}
 div.jHtmlAreaColorPickerMenu div:hover{margin:0px;border:dotted 2px black;}
 div.jHtmlAreaColorPickerMenu div.automatic{width:104px;height:auto;padding:2px;}
 div.jHtmlAreaColorPickerMenu div.automatic div{margin:2px;width:12px;height:14px;border:solid 1px black;}
+.jHtmlArea div iframe html body p,.jHtmlArea div iframe html body h1,.jHtmlArea div iframe html body h2,.jHtmlArea div iframe html body h3,.jHtmlArea div iframe html body h4,.jHtmlArea div iframe html body h5,.jHtmlArea div iframe html body h6,.jHtmlArea div iframe html body span{color:#ffffff;}
 .spot-description-editor,.spot-spotlight_1-editor{width:513px;height:263px;}
 .spot-spotlight_2-editor{width:260px;height:175px;}
 .payment-icon{display:block;float:left;width:48px;height:34px;margin-right:10px;background-color:transparent;background-image:url('../img/payment_icons.png');background-position:0 0;background-repeat:no-repeat;background-size:244px 34px;}.payment-icon.visa{background-position:0 0;}

@@ -378,40 +378,14 @@ table .spot-name a {
 // Spotlight highlight
 //
 .spotlight-highlight-wrapper {
-	background-color: white;
 	padding: 5px;
 
+	h1, h2, h3, h4, h5, h6, span, p {
+		color: @white;
+	}
 	.spotlight-highlight {
 		margin: 0 auto;
 		position: relative;
-
-		.light-left, .light-right {
-			font-family: Entypo;
-			font-size: 100px;
-			position: absolute;
-			top: -60px;
-		}
-
-		.light-left {
-			left: 0;
-			transform:rotate(75deg);
-			-ms-transform:rotate(75deg);
-			-moz-transform:rotate(75deg);
-			-webkit-transform:rotate(75deg);
-		}
-
-		.light-right {
-			right: 0;
-			transform:rotate(75deg);
-			-ms-transform:rotate(75deg);
-			-moz-transform:rotate(75deg);
-			-webkit-transform:rotate(75deg);
-		}
-
-		h1 {
-			
-			border-radius: 3px;
-		}
 	}
 }
 

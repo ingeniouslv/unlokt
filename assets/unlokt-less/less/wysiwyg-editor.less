@@ -1,7 +1,7 @@
 // Wysiwyg-editor.less
 // ------------------------------
 
-div.jHtmlArea { display: inline-block; border: 1px solid #ccc; background: @white; }
+div.jHtmlArea { display: inline-block; border: 1px solid #ccc; background: @grayDarkest; }
 div.jHtmlArea div { padding: 0px; margin: 0px; }
 div.jHtmlArea div iframe { border: 0; margin: 0; padding: 0; width: 100%; }
 div.jHtmlArea .ToolBar { .clearfix; padding: 0 1px; background: #fff url('@{assetPath}img/jHtml/jHtmlArea_Toolbar_Group_BG.png') repeat;}
@@ -63,6 +63,19 @@ div.jHtmlAreaColorPickerMenu div:hover {margin: 0px; border: dotted 2px black;}
 div.jHtmlAreaColorPickerMenu div.automatic { width: 104px; height: auto; padding: 2px;}
 div.jHtmlAreaColorPickerMenu div.automatic div { margin: 2px; width: 12px; height: 14px;  border: solid 1px black;}
 
+.jHtmlArea {
+	div {
+		iframe {
+			html {
+				body {
+					p, h1,h2,h3,h4,h5,h6,span {
+						color: @white;
+					}
+				}
+			}
+		}
+	}
+}
 .spot-description-editor,
 .spot-spotlight_1-editor {
 	width: 475px + 38px;

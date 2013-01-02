@@ -122,6 +122,14 @@ class SpotsController extends AppController {
 			throw new NotFoundException(__('You do not have permission to this Spot.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			// Check if the address has changed without manual coordinates
+			if (empty($this->request->data['Spot']['lat']) 
+				&& strcmp($spot['Spot']['address'].$spot['Spot']['address2'].$spot['Spot']['city'].$spot['Spot']['zip'], $this->request->data['Spot']['address'].$this->request->data['Spot']['address2'].$this->request->data['Spot']['city'].$this->request->data['Spot']['zip']) !== 0) {
+				// Address has changed - perform lookup
+				list($lat, $lng) = $this->Spot->address_to_coordinates("{$this->request->data['Spot']['address']} {$this->request->data['Spot']['address2']}, {$this->request->data['Spot']['city']}, {$this->request->data['Spot']['zip']}");
+				$this->request->data['Spot']['lat'] = $lat;
+				$this->request->data['Spot']['lng'] = $lng;
+			}
 			if ($this->Spot->save($this->request->data)) {
 				$file = $_FILES['file'];
 				if (!$file['error'] && $file['size'] && substr($file['type'], 0, 6) == 'image/') {

@@ -495,8 +495,7 @@ class Spot extends AppModel {
 	// return a string of text formatted specifically for Spotlight.
 	// I.e., parse youtube links, apply certain formatting, etc.
 	public function parseSpotlightText($string) {
-		// Make 'http', 'https', and 'ftp' text into hyperlinks.
-		// Make sure to not match URLs that have a QUOTE (") in front of the URL (as this is the indicator of image tag being converted to image HTML).
+		// Match the two known youtube link formats with embed code.
 		$string = preg_replace(
 			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-]+)@',
 			'<iframe width="220" height="150" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen=""></iframe>',
@@ -505,4 +504,16 @@ class Spot extends AppModel {
 		
 		return $string;
 	} // end of parseSpotlightText()
+
+	public function address_to_coordinates($address) {
+		$lookup = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false');
+		if (!$lookup) {
+			return array(0, 0);
+		}
+		$lookup = json_decode($lookup, true);
+		if (empty($lookup['results'][0]['geometry']['location']['lat'])) {
+			return array(0, 0);
+		}
+		return array($lookup['results'][0]['geometry']['location']['lat'], $lookup['results'][0]['geometry']['location']['lng']);
+	} // end of address_to_coordinates()
 }

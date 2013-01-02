@@ -600,5 +600,13 @@ class SpotsController extends AppController {
 		} // end of if(is('post')){}
 	}
 
-	
+	public function api_view($id) {
+		$this->Spot->id = $id;
+		
+		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed'))) {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			return;
+		}
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);
+	} // end api_view()
 }

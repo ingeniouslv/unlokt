@@ -10,6 +10,8 @@ $this->set('title_for_layout', 'Plan Manager');
 				<tr>
 					<th><?php echo $this->Paginator->sort('name'); ?></th>
 					<th><?php echo $this->Paginator->sort('months'); ?></th>
+					<th><?php echo $this->Paginator->sort('trial_months'); ?></th>
+					<th><?php echo $this->Paginator->sort('code'); ?></th>
 					<th><?php echo $this->Paginator->sort('price'); ?></th>
 					<th><?php echo $this->Paginator->sort('is_public'); ?></th>
 					<th class="actions">Actions</th>
@@ -24,6 +26,12 @@ $this->set('title_for_layout', 'Plan Manager');
 					</td>
 					<td>
 						<?php echo h($plan['Plan']['months']); ?>
+					</td>
+					<td>
+						<?php echo h($plan['Plan']['trial_months']); ?>
+					</td>
+					<td>
+						<?php echo h($plan['Plan']['code']); ?>
 					</td>
 					<td>
 						$<?php echo number_format($plan['Plan']['price'], 2); ?>

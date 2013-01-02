@@ -80,9 +80,16 @@ class PaymentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
-	public function add_payment_method($spotId) {
+	public function add_payment_method($spotId, $plan_code = null) {
 		$this->loadModel('Plan');
-		$plans = $this->Plan->getPublicPlans();
+		if ($plan_code) {
+			if (!$plans = $this->Plan->getPlanByCode($plan_code)) {
+				$this->Session->setFlash('No plan found with that plan code. Try again.', 'alert-warning');
+				$this->redirect(array('controller' => 'payments', 'action' => 'add_payment_method', $spotId));
+			}
+		} else {
+			$plans = $this->Plan->getPublicPlans();
+		}
 		if (!isset($this->request->data['plan_id'])) {
 			$this->request->data['plan_id'] = $plans[count($plans)-1]['Plan']['id'];
 		}

@@ -16,7 +16,21 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 					</label>
 				<?php endforeach; ?>
 				<div>
-					<?php echo $this->Form->input('code', array('class' => 'input-full')); ?>
+					Have a code for another plan?<br>
+					Enter it here.
+					<?php echo $this->Form->input('code', array('class' => 'input-small', 'label' => false, 'placeholder' => 'Code')); ?>
+					<a class="btn btn-primary" id="try-code">Try Code</a>
+					<script>
+						$('#try-code').click(function() {
+							if ($(this).attr('disabled')) {
+								return;
+							}
+							location.href = '<?php echo "{$this->webroot}payments/add_payment_method/{$spot['Spot']['id']}"; ?>/' + $('#CreditCardCode').val();
+						});
+						$('#CreditCardCode').keyup(function() {
+							$('#try-code').attr('disabled', !$(this).val());
+						}).keyup();
+					</script>
 				</div>
 				<div id="code-results">
 					<!-- Placeholder for display of valid code redemptions -->

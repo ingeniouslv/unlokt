@@ -12,12 +12,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 				<input type="file" name="file" data-type="file-input"><br>
 				
 				<h2 class="form-section-label">Information</h2>
-				<?php
-				echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full', 'placeholder' => 'Name', 'name' => 'name'));
-				if ($this->Auth->user('is_super_admin') && !empty($this->request->data['Spot']['is_pending'])) {
-					echo $this->Form->input('is_pending', array('label' => 'Spot is Pending Approval'));
-				}
-				?>
+				<?php echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full', 'placeholder' => 'Name', 'name' => 'name')); ?>
 				
 				<h2 class="form-section-label">Location</h2>
 				<?php
@@ -68,6 +63,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 					<h2 class="form-section-label">Super Admin Controls</h2>
 						<?php echo $this->Form->input('is_active', array('div' => 'control-fields', 'label' => 'Active')); ?>
 						<?php echo $this->Form->input('is_premium', array('div' => 'control-fields', 'label' => 'Premium')); ?>
+						<?php echo $this->Form->input('is_pending', array('label' => 'Spot is Pending Approval')); ?>
 				<?php endif; ?>
 
 				<div class="btn-group">

@@ -336,7 +336,8 @@ class Spot extends AppModel {
 			'conditions' => array(
 				'lat BETWEEN ? AND ?' => array($lat1, $lat2),
 				'lng BETWEEN ? AND ?' => array($lng1, $lng2),
-				'is_active' => true
+				'is_active' => true,
+				'is_pending' => false
 			)
 		));
 		return array_keys($ids);
@@ -344,7 +345,7 @@ class Spot extends AppModel {
 	
 	public function getIdsByRadius($lat = 36, $lng = -115, $radius = 5) {
 		// Find Spots by distance formula.
-		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 HAVING `distance` < ? ORDER BY `distance` LIMIT 0, 20", 
+		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 AND is_pending = 0 HAVING `distance` < ? ORDER BY `distance` LIMIT 0, 20", 
 		array($lat, $lng, $lat, $radius));
 		// Now that we have our array... hopefully.
 		if (count($result)) {
@@ -360,7 +361,7 @@ class Spot extends AppModel {
 
 	public function getSpotByRadius($lat = 36, $lng = -115, $radius = 5) {
 		// Find Spots by distance formula.
-		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 HAVING `distance` < ? ORDER BY `distance` LIMIT 0, 20", 
+		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 AND is_pending = 0 HAVING `distance` < ? ORDER BY `distance` LIMIT 0, 20", 
 		array($lat, $lng, $lat, $radius));
 		// Now that we have our array... hopefully.
 		if (count($result)) {
@@ -430,7 +431,7 @@ class Spot extends AppModel {
 				)
 			)
 		);
-		$spots = $this->find('all', array('joins' => $joins, 'conditions' => array('Spot.is_active' => true)));
+		$spots = $this->find('all', array('joins' => $joins, 'conditions' => array('Spot.is_active' => true, 'Spot.is_pending' => false)));
 		$spot_ids = Hash::combine($spots, '{n}.Spot.id', '{n}.Spot.id');
 		
 		return $spot_ids;

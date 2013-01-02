@@ -50,7 +50,7 @@ $this->set('title_for_layout', 'Submit Your Business');
 							<div class="row">
 								<div class="twelve columns">
 									<div class="five pull-left">
-										<?php echo $this->Form->input('email', array('class' => 'input-full', 'label' => 'Email Address')); ?>
+										<?php echo $this->Form->input('email', array('class' => 'input-full', 'label' => 'Work Email Address')); ?>
 										
 									</div>
 									<div class="five pull-left">

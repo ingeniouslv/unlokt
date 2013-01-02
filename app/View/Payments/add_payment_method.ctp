@@ -15,6 +15,12 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 						$<?php echo number_format($plan['Plan']['price'], 2); ?></p>
 					</label>
 				<?php endforeach; ?>
+				<div>
+					<?php echo $this->Form->input('code', array('class' => 'input-full')); ?>
+				</div>
+				<div id="code-results">
+					<!-- Placeholder for display of valid code redemptions -->
+				</div>
 			</div>
 		
 			<div class="eight columns">	

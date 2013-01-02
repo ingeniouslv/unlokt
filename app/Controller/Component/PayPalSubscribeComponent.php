@@ -90,6 +90,11 @@ class PayPalSubscribeComponent extends Component {
 		if (!$plan = $this->Plan->read(null, $plan_id)) {
 			return false;
 		}
+		// Check if the plan includes TRIAL
+		if ($plan['Plan']['trial_months']) {
+			$this->trial = true;
+			$this->TRIALTOTALBILLINGCYCLES = $plan['Plan']['trial_months'];
+		}
 		
 		$fields = array(
 			// API Details

@@ -123,7 +123,7 @@ class Review extends AppModel {
 	
 	public function getReviewByUserId($ids, $contain = array()) {
 		$this->Behaviors->attach('Containable');
-		return $this->find('all', array(
+		$reviews = $this->find('all', array(
 			'conditions' => array(
 				'Review.user_id' => $ids
 			),
@@ -132,5 +132,11 @@ class Review extends AppModel {
 			'contain' => $contain
 		));
 		
+		usort($reviews, array('Review', '_sortBySpotName'));
+		return $reviews;
+	}
+	
+	private function _sortBySpotName($a, $b) {
+		return strcmp($a['Spot']['name'],$b['Spot']['name']);
 	}
 }

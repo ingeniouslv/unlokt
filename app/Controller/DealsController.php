@@ -351,7 +351,9 @@ class DealsController extends AppController {
 			// Check the $code against the RedemptionCode for step 1 redemption code.
 			$redemptionCode = $this->RedemptionCode->findByDealIdAndStep($id, 1);
 			if (strcmp($redemptionCode['RedemptionCode']['code'], $code) !== 0) {
-				die('BADCODE');
+				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+				die('');
+				//die('BADCODE');
 			}
 			$this->Deal->ActiveDeal->create(false);
 			$this->Deal->ActiveDeal->save(array(

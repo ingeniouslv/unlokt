@@ -77,7 +77,7 @@
 							<% } else { %>
 								<h4><i class="icon-key"></i></h4>
 							<% } %>
-							<h2><%= deal.Spot.name %></h2>
+							<h2><%= deal.Deal.name %></h2>
 						</div>
 						<div class="block-actions">
 							<p><%= deal.Deal.description %></p>

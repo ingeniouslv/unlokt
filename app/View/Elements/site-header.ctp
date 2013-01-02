@@ -28,10 +28,10 @@
 		<h4><i class="icon-pencil"></i>Add Note</h4>
 	</div>
 	<div class="modal-body">
-		<?php echo $this->Form->create('Review', array('class' => 'form-vertical control-group')); ?>
+		<?php echo $this->Form->create('Review', array('class' => 'form-vertical control-group', 'controller' => 'reviews', 'action' => 'add/'. $spot['Spot']['id'])); ?>
 			<?php
 				echo $this->Form->input('name', array('label' => 'Title for Note', 'div' => 'control-fields'));
-				echo $this->Form->input('review', array('div' => 'control-fields'));
+				echo $this->Form->input('review', array('type' => 'textarea', 'label' => 'Note',  'div' => 'control-fields'));
 				echo $this->Form->input('stars', array('type' => 'select', 'div' => 'control-fields', 'options' => array(''=>'-Select-',1=>1,2=>2,3=>3,4=>4,5=>5)));
 			?>
 			<div class="btn-group pull-right">

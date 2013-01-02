@@ -10,7 +10,7 @@
 	<!-- Simple / Quick Search Tab -->
 	<div id="quick-search" class="filter-quick block tab-content active">
 		<div class="row">
-			<div class="nine columns">
+			<div class="ten columns">
 				<ul class="nav">
 					<li class="active explore" data-search="explore">
 						<a href="javascript:void(0);" title="">
@@ -28,10 +28,11 @@
 					<li data-search="deals"><a href="javascript:void(0);" title=""><i class="icon-key"></i> Specials</a></li>
 					<li data-search="events"><a href="javascript:void(0);" title=""><i class="icon-calendar"></i> Events</a></li>
 					<li data-search="popular"><a href="javascript:void(0);" title=""><i class="icon-heart"></i> Popular</a></li>
+					<li data-search="favorites"><a href="javascript:void(0);" title=""><i class="icon-star"></i> Favorites</a></li>
 				</ul>
 			</div>
 
-			<div class="three columns">
+			<div class="two columns">
 				<form class="form-horizontal">
 					<div class="input-search">
 						<input type="text" class="input-full search" placeholder="Search for anything">
@@ -74,6 +75,7 @@
 						<input type="text" id="keywords" class="input-medium">
 					</div>
 
+					
 					<button type="submit" class="btn btn-red">Search <i class="icon-search"></i></button>
 				</form>
 			</div>

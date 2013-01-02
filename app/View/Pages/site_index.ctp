@@ -142,6 +142,7 @@ $this->Html->add_script(array(
 		params.limit = limit;
 		var url = search_url + $.param(params);
 		console.log('fetching ' + url);
+		
 		$.getJSON(url, function(results) {
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);
@@ -285,7 +286,7 @@ $this->Html->add_script(array(
 		$.get('/users/follow_spot/' + spot_id, function(response) {
 			if (response == 'GOOD') {
 				$that.removeClass('follow btn-red').addClass('following btn-blue').html('Unfollow Spot');
-				
+				spot_ids_i_follow.push(spot_id);
 			} else {
 			}
 		});
@@ -299,6 +300,9 @@ $this->Html->add_script(array(
 		$.get('/users/unfollow_spot/' + spot_id, function(response) {
 			if (response == 'GOOD') {
 				$that.removeClass('following btn-blue').addClass('follow btn-red').html('Follow Spot');
+				var spot_id_index = _.indexOf(spot_ids_i_follow, spot_id);
+				spot_ids_i_follow.splice(spot_id_index,1);
+				search();
 			} else {
 			}
 		});
@@ -357,6 +361,11 @@ $this->Html->add_script(array(
 			// When the button is clicked, make a search happen after a millisecond.
 			setTimeout(function() {search();}, 1);
 		});
+		$('#advanced-search button').click(function() {
+			search();
+			return false;
+		});
+		
 		// When the [enter] button is pressed, make the button trigger a search and blur the keyboard.
 		$('#quick-search input[type="text"], #advanced-search input[type="text"]').keydown(function(event) {
 			event.stopPropagation();

@@ -269,8 +269,9 @@ class Deal extends AppModel {
 		));
 	}
 	
-	public function getActiveDealsByUserId($id = null) {
+	public function getActiveDealsByUserId($id = null, $contain) {
 		if(empty($id)) $id=$this->Auth->user('id');
+		$this->Behaviors->attach('Containable');
 		$joins = array(
 			array(
 				'table' => 'active_deals',
@@ -283,7 +284,13 @@ class Deal extends AppModel {
 			)
 		);
 		
-		return $this->find('all', array('joins' => $joins));
+		$deals = $this->find('all', array('joins' => $joins, 'contain' => $contain, 'group' => array('Deal.id')));
+		usort($deals, array('Deal', '_sortBySpotName'));
+		return $deals;
+	}
+	
+	private function _sortBySpotName($a, $b) {
+		return strcmp($a['Spot']['name'], $b['Spot']['name']);
 	}
 	
 	/*
@@ -334,6 +341,13 @@ class Deal extends AppModel {
 			'order' => 'Deal.created DESC',
 			'contain' => $contain
 		));
+	}
+
+	//sorts the deals alphabetically using either deal name or spot name (in case of happy hours)
+	public function sortDeals($a, $b) {
+		$val1 = array_key_exists('Deal',$a)?$a['Deal']['name']:$a['Spot']['name'];
+		$val2 = array_key_exists('Deal',$b)?$b['Deal']['name']:$b['Spot']['name'];
+		return strcmp($val1, $val2);
 	}
 	
 

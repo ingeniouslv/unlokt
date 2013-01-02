@@ -58,17 +58,18 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 					<?php echo $this->Form->input('friday', array('class' => 'checkbox', 'checked', 'label' => 'Fri')); ?>
 					<?php echo $this->Form->input('saturday', array('class' => 'checkbox', 'checked', 'label' => 'Sat')); ?>
 				</div>
-				<?php echo $this->Form->input('is_active', array('div' => 'control-fields')); ?>
-				<?php echo $this->Form->input('is_public', array('div' => 'control-fields')); ?>
+				<?php echo $this->Form->hidden('is_active', array('div' => 'control-fields', 'value' => true)); ?>
+				<?php echo $this->Form->hidden('is_public', array('div' => 'control-fields', 'value' => true)); ?>
 
 
 				<div class="row">
 					<div class="five columns">
 						<h2 class="form-section-label">Keys</h2>
 						<?php echo $this->Form->input('keys', array('div' => 'control-fields', 'readonly', 'class' => 'twelve')); ?>
-						<div class="btn-group">
+						<div class="btn-group" id="reward-group">
 							<a href="javascript:void(0);" class="btn btn-primary" id="increase-keys">More Keys</a>
 							<a href="javascript:void(0);" class="btn btn-primary" id="decrease-keys">Less Keys</a>
+							<?php echo $this->Form->input('keyCodeSame', array('type' => 'checkbox', 'label' => 'Use One Code For All Keys', 'id' => 'keyCodeSame')); ?>
 						</div>
 					</div>
 					<div id="redemption-codes" class="seven columns">
@@ -212,6 +213,35 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	
 	//////////////////////////////////////////////////
 	
+	$('#DealRedemption1').on('keyup', function () {
+		if(useSameCodes) {
+			$('#redemption-codes input:not(:first)').attr('value', $('#DealRedemption1').val());
+		}
+	});
+	
+	//////////////////////////////////////////////////
+	var useSameCodes = $('#keyCodeSame').attr('checked')?true:false;
+	$('#keyCodeSame').change(function () {
+		useSameCodes = !useSameCodes;
+		updateCodes();
+	});
+	
+	//////////////////////////////////////////////////
+	
+	function updateCodes() {
+		if(useSameCodes) {
+			console.log('use same codes');
+			$('#redemption-codes input:not(:first)').attr('readonly', 'readonly');
+			$('#redemption-codes input:not(:first)').attr('value', $('#DealRedemption1').val());
+		} else {
+			console.log('use different codes');
+			$('#redemption-codes input:not(:first)').attr('readonly', 'readonly');
+			$('#redemption-codes input:not(:first)').attr('value', '');
+		}
+	}
+	
+	//////////////////////////////////////////////////
+	
 	$('#increase-keys').click(increaseKeys);
 	$('#decrease-keys').click(function() {
 		var current_number_of_keys = parseInt($('#DealKeys').val());
@@ -227,6 +257,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		var new_number_of_keys = parseInt($('#DealKeys').val())+1;
 		$('#DealKeys').val(new_number_of_keys).trigger('change');
 		$('#redemption-codes').append('<div class="control-fields input text required"><label for="DealRedemption' + new_number_of_keys + '">Redemption Code for Key #' + new_number_of_keys + '</label><input name="data[Deal][redemption_' + new_number_of_keys + ']" type="text" id="DealRedemption' + new_number_of_keys + '" class="twelve"/></div>');
+		updateCodes();
 	}
 	
 	//////////////////////////////////////////////////
@@ -239,6 +270,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		var new_number_of_keys = parseInt($('#DealKeys').val())-1;
 		$('#DealKeys').val(new_number_of_keys).trigger('change');
 		$('#DealRedemption' + current_number_of_keys).closest('div').remove();
+		updateCodes();
 	}
 	
 	//////////////////////////////////////////////////
@@ -274,11 +306,9 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		}
 		
 		if(desired_number_of_keys < 2) {
-			$('#increase-keys').hide();
-			$('#decrease-keys').hide();
+			$('#reward-group').hide();
 		} else {
-			$('#increase-keys').show();
-			$('#decrease-keys').show();
+			$('#reward-group').show();
 		}
 		
 		switch(direction) {
@@ -302,8 +332,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	});
 	
 	//start out by hiding the add/remove key buttons
-	$('#increase-keys').hide();
-	$('#decrease-keys').hide();
+	$('#reward-group').hide();
 	
 	//////////////////////////////////////////////////
 	

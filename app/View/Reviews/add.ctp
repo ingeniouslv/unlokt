@@ -8,7 +8,7 @@ $this->set('title_for_layout', h("Add Note for {$spot['Spot']['name']}"));
 		<?php echo $this->Form->create('Review', array('class' => 'form-vertical control-group')); ?>
 			<?php
 				echo $this->Form->input('name', array('label' => 'Title for Note', 'div' => 'control-fields'));
-				echo $this->Form->input('review', array('div' => 'control-fields'));
+				echo $this->Form->input('review', array('label' => 'Note', 'div' => 'control-fields'));
 				echo $this->Form->input('stars', array('type' => 'select', 'div' => 'control-fields', 'options' => array(''=>'-Select-',1=>1,2=>2,3=>3,4=>4,5=>5)));
 			?>
 			<div class="btn-group">

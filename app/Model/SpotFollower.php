@@ -49,4 +49,10 @@ class SpotFollower extends AppModel {
 		$spotList = $this->Spot->find('list', array('joins' => $joins));
 		return $spotList;
 	} // end of getSpotListByUser()
+	
+	public function deleteAll($conditions, $cascade = true, $callbacks = false) {
+		$result = parent::deleteAll($conditions, $cascade, $callbacks);
+		$this->clear_cache();
+		return $result;
+	}
 }

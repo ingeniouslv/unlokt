@@ -467,7 +467,7 @@ class UsersController extends AppController {
 	public function api_account() {
 		$user_id = $this->Auth->user('id');
 		$mydeals['user'] = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
-		$mydeals['deals'] = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id);
+		$mydeals['deals'] = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id, array('Spot'));
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $mydeals);
 	} // end of account()
 	
@@ -476,7 +476,7 @@ class UsersController extends AppController {
 		$user_id = $this->Auth->user('id');
 		$user = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
 		$reviews = $this->User->Review->getReviewByUserId($user_id, array('Spot'));
-		$deals = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id);
+		$deals = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id, array('Spot'));
 		$this->set(compact('user', 'reviews', 'deals'));
 	} // end of account()
 	
@@ -673,7 +673,7 @@ class UsersController extends AppController {
 			$result = json_decode(file_get_contents($graph_url));
 			if($result) {
 				$this->Session->destroy();
-				//user now loged out
+				//user now logged out
  			}
 		}
 	}

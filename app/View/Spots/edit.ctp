@@ -41,14 +41,36 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 				</div>
 
 				<h2 class="form-section-label">Latitude &amp; Longitude</h2>
-				<div class="control-group row">
-					<div class="six columns">
-						<?php echo $this->Form->input('lat', array('div' => 'control-fields', 'placeholder' => 'Latitude', 'class' => 'input-full')); ?>
-					</div>
-					<div class="six columns">
-						<?php echo $this->Form->input('lng', array('div' => 'control-fields', 'placeholder' => 'Logitude', 'class' => 'input-full')); ?>
+				<div class="control-group row" id="coordinates-automatic">
+					<div class="columns">
+						Latitude and Longitude coordinates are calculated automatically. If you wish to manually input the coordinates, click the button below.
+						<div>
+							<a class="btn" id="coordinates-manual-button">Switch to manual coordinate input</a>
+						</div>
 					</div>
 				</div>
+				<div class="control-group row hide" id="coordinates-manual">
+					<div class="six columns">
+						<?php echo $this->Form->input('lat', array('div' => 'control-fields', 'placeholder' => 'Latitude', 'class' => 'input-full', 'disabled' => 'disabled')); ?>
+					</div>
+					<div class="six columns">
+						<?php echo $this->Form->input('lng', array('div' => 'control-fields', 'placeholder' => 'Logitude', 'class' => 'input-full', 'disabled' => 'disabled')); ?>
+					</div>
+					<div class="columns">
+						<a class="btn" id="coordinates-automatic-button">Switch to automatic coordinate lookup</a>
+					</div>
+				</div>
+				<script>
+					// Script for toggling the coordinate lookup divs.
+					$('#coordinates-manual-button').click(function() {
+						$('#coordinates-automatic').hide();
+						$('#coordinates-manual').show().find('input').attr('disabled', false);
+					});
+					$('#coordinates-automatic-button').click(function() {
+						$('#coordinates-manual').hide().find('input').attr('disabled', true);
+						$('#coordinates-automatic').show();
+					});
+				</script>
 
 				<h2 class="form-section-label">Details</h2>
 				<?php

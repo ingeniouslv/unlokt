@@ -263,7 +263,7 @@ $this->Html->add_script(array(
 	updateGeo();
 	//get geolocation from browser when page runs
 	if(!location_id) {
-		if(typeof(navigator.geolocatoin) != undefined) {
+		if(typeof(navigator.geolocation) != undefined) {
 			navigator.geolocation.getCurrentPosition(GetLocation);
 		}
 	}

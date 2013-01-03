@@ -7,9 +7,9 @@
 			<h3 class="title"><a href="<%= unlokt.settings.webroot %>spots/view/<%= feed.Spot.id %>"><%= h(feed.Spot.name) %></a></h3>
 			<div class="description">
 				<p><%= h(feed.Feed.feed) %></p>
-				<% if (typeof feed.Attachment !== 'undefined' && _.isArray(feed.Attachment) && feed.Attachment.length > 0) { %>
+				<% if (typeof feed.Attachment !== 'undefined' && _.isArray(feed.Attachment) && feed.Attachment.length > 0) { log('attachment length: ' + feed.Attachment.length); %>
 					<div class="attachments">
-						<% for (var x in feed.Attachment) { if (typeof feed.Attachment[x] === 'undefined' || typeof feed.Attachment[x].id === 'undefined') {continue;} %>
+						<% for (var x in feed.Attachment) { if (typeof feed.Attachment[x] === 'undefined' || typeof feed.Attachment[x].id === 'undefined') {continue;} console.log('feed attachment id: ' + feed.Attachment[x].id); %>
 							<img data-attachment-id="<%= feed.Attachment[x].id %>" data-spot-id="<%= feed.Spot.id %>" src="<% print(unlokt.helpers.gen_path('attachment', feed.Attachment[x].id, 40, 40)); %>">
 						<% /*End of for()*/ } %>
 					</div>

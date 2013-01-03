@@ -2,9 +2,9 @@
 $this->set('title_for_layout', 'Login');
 ?>
 <div class="page">
-	<div class="container">
+	<div>
 		<div class="row row-centered">
-			<div class="six columns mod-box">
+			<div class="columns mod-box">
 				<div class="logo">
 					<img src="/img/main-logo.png" alt="">
 				</div>

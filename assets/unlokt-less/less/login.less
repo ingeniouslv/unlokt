@@ -1,16 +1,32 @@
 .splash {
-	height: 293px;
+	height: 283px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: -146.5px;
-	margin-left: -480px;
+	margin-top: -141.5px;
+	margin-left: -240px;
 	z-index: 100;
+	width: 480px;
+
+	.alert {
+		.container {
+			width: 480px;
+
+			span {
+				padding-left: 5px;
+			}
+		}
+	}
+
+	#authMessage {
+		padding: 5px;
+	}
 
 	.mod-box {
 		padding: 20px;
 		position: relative;
 		margin: 0 auto;
+		width: 480px;
 		#gradient > .vertical(@schemeGray, @schemeGrayDark);
 		.border-radius(3px);
 

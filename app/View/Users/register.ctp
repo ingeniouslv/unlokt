@@ -3,13 +3,8 @@ $this->set('title_for_layout', 'Register for Free Account');
 ?>
 <div class="main-content page">
 	<div class="container">	
-		<div class="row columns eight">	
-			<?php if(!empty($referer)): ?>
+		<div class="row columns eight">
 				<h1 class="page-header">Register for an Account</h1>
-			<?php else : ?>
-				<h1 class="page-header">Register for a Free Account</h1>
-			<?php endif; ?>
-			
 			<?php
 			echo $this->Form->create('User', array('class' => 'control-group form-vertical'));
 			?>

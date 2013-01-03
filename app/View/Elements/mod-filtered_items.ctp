@@ -5,23 +5,21 @@
 			<div class="block-slide <?php if (isset($item_class)) { echo $item_class; } else { echo ''; } ?> columns <?php if (isset($id)) { echo $id; } else { echo 'staggered'; } ?>-item">
 				<div class="tile">
 					<?php if (isset($deal['HappyHour'])): ?>
-						<a href="<%= unlokt.settings.webroot %>spots/view/<%= deal.Spot.id %>">
+						<a href="<?php echo $this->webroot; ?>spots/view/<?php echo $deal['Spot']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('spot', $deal['Spot']['id'], 270); ?>">
 						</a>	
 					<?php elseif ($deal['Deal']['keys'] == 0): ?>
-						<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
+						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
-						</a>	
-					<!-- 					<img src="http://placehold.it/223x223"> -->
+						</a>
 						
 					<?php elseif ($deal['Deal']['keys'] == 1): ?>
-						<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
+						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
-						</a>	
-					<!-- 					<img src="http://placehold.it/223x223"> -->
+						</a>
 						
 					<?php else: ?>
-						<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
+						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
 						</a>	
 						

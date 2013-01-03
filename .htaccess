@@ -6,11 +6,11 @@ RewriteRule ^gen/(.+)/(\d+)/(\d+)x(\d+)/?(.*)$ gen/index.php?type=$1&id=$2&width
 # Redirect www.unlokt.com to unlokt.com
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
-RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^(.*)$ http://unlokt.com/$1 [R=301,L]
 
 RewriteCond %{HTTPS} on
 RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^(.*)$ https://unlokt.com/$1 [R=301,L]
 
 RewriteRule ^$ app/webroot/ [L]
 RewriteRule (.*) app/webroot/$1 [L]

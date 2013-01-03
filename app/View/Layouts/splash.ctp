@@ -3,6 +3,12 @@
 	<div id="body-container">
 		<div class="splash-wrap">	
 			<div class="splash">
+				<?php if($this->Session->check('Message')): ?>
+					<?php
+						echo $this->Session->flash();
+						echo $this->Session->flash('auth');
+					?>
+				<?php endif; ?>
 				<?php echo $this->fetch('content'); ?>
 			</div>
 			<div class="bg-top"></div>

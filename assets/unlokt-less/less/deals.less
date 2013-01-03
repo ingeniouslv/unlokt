@@ -36,6 +36,12 @@
 	.redeem {
 		overflow: hidden;
 		margin-top: @gridGutter/2;
+
+		.onekey {
+			.btn-red {
+				margin: 5px 10px;
+			}
+		}
 	}
 
 	.content-group {
@@ -88,5 +94,13 @@
 }
 
 .ui-datepicker {
-	background-color: #fff;
+	background-color: @white;
+	border: 1px solid @grayLight;
+	.box-shadow(0px 0px 3px 0px @gray);
+	padding: 5px;
+
+	.ui-datepicker-next {
+		float: right;
+	}
 }
+

@@ -458,7 +458,7 @@ table .spot-name a{display:block;color:#000000;}
 .splash .row{margin-left:0;}
 .splash-wrap{width:100%;height:100%;position:absolute;}
 .prem{display:none;}
-.prem[disabled]{display:block;position:absolute;z-index:4;width:100%;margin-left:-10px;height:100%;background:#333;opacity:0.8;}.prem[disabled] p{font-size:40px;display:block;text-align:center;margin:0 auto;background:#1A1A1A;margin-top:108px;color:#C5AC46;}
+.prem[disabled]{display:block;position:absolute;z-index:4;width:100%;margin-left:-10px;height:100%;background:#333;opacity:0.8;}.prem[disabled] p{font-size:40px;display:block;text-align:center;margin:0 auto;background:#1A1A1A;background:#30353d;margin-top:108px;color:#C5AC46;}
 .deal .deal-meta{padding:5px 0;border-top:1px solid #555;border-bottom:1px solid #555;width:70%;}.deal .deal-meta .deal-type{color:#cccccc;margin:0;}.deal .deal-meta .deal-type i{color:#ffffff;}
 .deal .page-header{padding-bottom:10px;border-bottom:1px solid #555;}.deal .page-header h1,.deal .page-header h3,.deal .page-header p{color:#ffffff;}
 .deal .photo{height:200px;margin-right:10px;width:200px;float:left;}

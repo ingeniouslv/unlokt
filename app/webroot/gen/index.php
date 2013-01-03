@@ -66,7 +66,8 @@ $config = array(
 				'user' => $root_path.DS.'user-missing.png',
 				'node' => $root_path.DS.'node-missing.png',
 				'playlist' => $root_path.DS.'node-missing.png',
-				'spot' => $root_path.DS.'node-missing.png'
+				'spot' => $root_path.DS.'node-missing.png',
+				'key' => $root_path.DS.'no-image_2.gif'
 			),
 
 		// Generate thumbnail Imagick convert command path

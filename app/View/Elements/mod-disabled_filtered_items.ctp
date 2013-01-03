@@ -5,7 +5,7 @@
 			<div class="tile">
 				
 				<a href="<?php echo $this->webroot; ?>">
-					<img src="<?php echo $this->webroot; ?>">
+					<img src="<?php echo $this->Html->gen_path('key', 0, 223); ?>">
 				</a>
 				
 				<div class="tile-footer">
@@ -21,7 +21,7 @@
 			<div class="tile">
 				
 				<a href="<?php echo $this->webroot; ?>">
-					<img src="<?php echo $this->webroot; ?>">
+					<img src="<?php echo $this->Html->gen_path('key', 0, 223); ?>">
 				</a>
 				
 				<div class="tile-footer">
@@ -37,7 +37,7 @@
 			<div class="tile">
 				
 				<a href="<?php echo $this->webroot; ?>">
-					<img src="<?php echo $this->webroot; ?>">
+					<img src="<?php echo $this->Html->gen_path('key', 0, 223); ?>">
 				</a>
 				
 				<div class="tile-footer">

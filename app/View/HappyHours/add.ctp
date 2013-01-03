@@ -13,7 +13,7 @@ $this->set('title_for_layout', "Add Happy Hour to '". h($spot['Spot']['name']). 
 							
 							<div class="control-fields">
 
-								<?php echo $this->Form->input('Title', array('type' => 'text', 'div' => 'five required')); ?>
+								<?php echo $this->Form->input('title', array('type' => 'text', 'div' => 'five required')); ?>
 
 								<?php
 									echo $this->Form->input('start', array('type' => 'text', 'div' => 'control-fields', 'class' => 'timepicker', 'value' => ''));

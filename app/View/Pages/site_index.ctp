@@ -36,12 +36,12 @@ $this->Html->add_script(array(
 
 	//////////////////////////////////////////////////
 	
-	// var deals = new DealCollection();
-	// var dealsview = new DealView({
-		// collection: deals,
-		// template: templates['deals'],
-		// el: $('#homepagedeal')
-	// });
+	var deals = new DealCollection();
+	var dealsview = new DealView({
+		collection: deals,
+		template: templates['deals'],
+		el: $('#homepagedeal')
+	});
 	
 	//////////////////////////////////////////////////
 	

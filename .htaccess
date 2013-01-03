@@ -7,5 +7,5 @@ RewriteRule ^gen/(.+)/(\d+)/(\d+)x(\d+)/?(.*)$ gen/index.php?type=$1&id=$2&width
 RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [L]
 
-RewriteRule    ^$ app/webroot/    [L]
-RewriteRule    (.*) app/webroot/$1 [L]
+RewriteRule ^$ app/webroot/ [L]
+RewriteRule (.*) app/webroot/$1 [L]

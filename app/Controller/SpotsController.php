@@ -609,4 +609,21 @@ class SpotsController extends AppController {
 		}
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);
 	} // end api_view()
+	
+	public function admin_approve($id=null) {
+		$this->Spot->id = $id;
+		
+		if(!$this->Spot->exists()) {
+			$this->Session->setFlash('Invalid spot id.', 'alert-warning');
+		} else {
+			if($this->Spot->saveField('is_pending', false)) {
+				$this->Session->setFlash('The spot was approved.');
+			} else {
+				$this->Session->setFlash('The spot could not be approved.');
+			}
+		}
+
+		$this->redirect(array('action' => 'index', 'admin' => true));
+		
+	}
 }

@@ -16,7 +16,9 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 					</label>
 				<?php endforeach; ?>
 				<div>
-					<?php echo $this->Form->input('code', array('class' => 'input-full')); ?>
+					Have a code for another plan?<br>
+					Enter it here.
+					<?php echo $this->Form->input('code', array('class' => 'input-small', 'label' => false, 'placeholder' => 'Code')); ?>
 				</div>
 				<div id="code-results">
 					<!-- Placeholder for display of valid code redemptions -->

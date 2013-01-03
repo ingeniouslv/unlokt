@@ -12,8 +12,10 @@ $this->set('title_for_layout', "Edit Plan '".$this->data['Plan']['name']."'");
 					
 					<h2 class="form-section-label">Plan Information</h2>
 					<?php
-						echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full', 'label' => false, 'placeholder' => 'Name'));
-						echo $this->Form->input('months', array('div' => 'control-fields', 'class' => 'input-full', 'label' => false, 'placeholder' => 'Months'));
+						echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full', 'placeholder' => 'Name'));
+						echo $this->Form->input('months', array('div' => 'control-fields', 'class' => 'input-full', 'placeholder' => 'Months'));
+						echo $this->Form->input('trial_months', array('div' => 'control-fields', 'class' => 'input-full', 'placeholder' => 'Trial Months'));
+						echo $this->Form->input('code', array('div' => 'control-fields', 'class' => 'input-full', 'label' => 'Plan Code', 'placeholder' => 'Plan Code'));
 						echo $this->Form->input('price');
 						echo $this->Form->input('is_public');
 					?>

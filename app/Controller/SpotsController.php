@@ -623,7 +623,7 @@ class SpotsController extends AppController {
 			}
 		}
 
-		$this->redirect(array('action' => 'index', 'admin' => true));
+		$this->redirect(array('action' => 'pending_spots', 'admin' => true));
 		
 	}
 }

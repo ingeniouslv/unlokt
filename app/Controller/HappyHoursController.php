@@ -69,6 +69,9 @@ class HappyHoursController extends AppController {
 		}
 		// If the user is submitting HappyHour data, then check and parse and stuff.
 		if ($this->request->is('post')) {
+			//change given times to military time
+			$this->request->data['HappyHour']['start'] = date('H:i', strtotime($this->request->data['HappyHour']['start']));
+			$this->request->data['HappyHour']['end'] = date('H:i', strtotime($this->request->data['HappyHour']['end']));
 			$this->request->data['HappyHour']['spot_id'] = $spot_id;
 			$this->HappyHour->create();
 			$this->HappyHour->set($this->request->data);

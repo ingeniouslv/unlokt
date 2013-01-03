@@ -22,24 +22,26 @@
 </div><!-- end of #feedModal -->
 <?php endif; ?>
 
-<div class="modal modal-feed hide" id="reviewModal">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal"></a>
-		<h4><i class="icon-pencil"></i>Add Note</h4>
-	</div>
-	<div class="modal-body">
-		<?php echo $this->Form->create('Review', array('class' => 'form-vertical control-group', 'controller' => 'reviews', 'action' => 'add/'. $spot['Spot']['id'])); ?>
-			<?php
-				echo $this->Form->input('name', array('label' => 'Title for Note', 'div' => 'control-fields'));
-				echo $this->Form->input('review', array('type' => 'textarea', 'label' => 'Note',  'div' => 'control-fields'));
-				echo $this->Form->input('stars', array('type' => 'select', 'div' => 'control-fields', 'options' => array(''=>'-Select-',1=>1,2=>2,3=>3,4=>4,5=>5)));
-			?>
-			<div class="btn-group pull-right">
-				<?php echo $this->Form->button('Submit Note', array('type' => 'submit', 'class' => 'btn btn-red')); ?>
-			</div>
-		<?php echo $this->Form->end(); ?>
-	</div>
-</div><!-- end of #reviewModal -->
+<?php if (!empty($spot['Spot']['id'])): ?>
+	<div class="modal modal-feed hide" id="reviewModal">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal"></a>
+			<h4><i class="icon-pencil"></i>Add Note</h4>
+		</div>
+		<div class="modal-body">
+			<?php echo $this->Form->create('Review', array('class' => 'form-vertical control-group', 'controller' => 'reviews', 'action' => 'add/'. $spot['Spot']['id'])); ?>
+				<?php
+					echo $this->Form->input('name', array('label' => 'Title for Note', 'div' => 'control-fields'));
+					echo $this->Form->input('review', array('type' => 'textarea', 'label' => 'Note',  'div' => 'control-fields'));
+					echo $this->Form->input('stars', array('type' => 'select', 'div' => 'control-fields', 'options' => array(''=>'-Select-',1=>1,2=>2,3=>3,4=>4,5=>5)));
+				?>
+				<div class="btn-group pull-right">
+					<?php echo $this->Form->button('Submit Note', array('type' => 'submit', 'class' => 'btn btn-red')); ?>
+				</div>
+			<?php echo $this->Form->end(); ?>
+		</div>
+	</div><!-- end of #reviewModal -->
+<?php endif; ?>
 
 <header>
 	<div class="navbar">

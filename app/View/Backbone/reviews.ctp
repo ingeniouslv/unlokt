@@ -15,17 +15,7 @@
 					
 					<img src="<% print(unlokt.helpers.gen_path('user', review.Review.user_id, 40)); %>" class="pull-left">
 			
-					<!-- <?php echo $this->element('piece-rating_system', array("rating_size" => "inline")); ?> -->
 					
-					<div class="rating votes" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-						<div class="rating-stars">
-							<%
-							var empty_stars = 5 - review.Review.stars;
-							print('<span class="star"></span>'.repeat(empty_stars));
-							print('<span class="star full"></span>'.repeat(review.Review.stars));
-							%>
-						</div>
-					</div><!-- end of .rating.votes -->
 					
 					<% if (review.Review.name) { %>
 						<h3 class="title"><%= h(review.Review.name) %></h3>

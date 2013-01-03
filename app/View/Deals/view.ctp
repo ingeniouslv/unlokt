@@ -57,12 +57,18 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 										</div>
 									<?php endif; ?>
 									<?php if (!$deal['Deal']['limit_per_customer'] || $deal_completed_count < $deal['Deal']['limit_per_customer']): ?>
-										<div class="pull-right">
-											<?php if ($deal['Deal']['keys'] > 1): ?>
+										
+										<?php if ($deal['Deal']['keys'] > 1): ?>
+											<div class="pull-right">
 												<span class="keys-total large"><?php echo $deal['Deal']['keys']; ?></span>
-											<?php endif; ?>
-											<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo', 'id' => 'redeemButton')); ?>
-										</div>
+												<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo', 'id' => 'redeemButton')); ?>
+											</div>
+										<?php elseif ($deal['Deal']['keys'] <= 1): ?>
+											<div class="hidden">
+												<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo pull-right', 'id' => 'redeemButton')); ?>
+											</div>
+											
+										<?php endif; ?>
 									<?php endif; ?>
 								
 									<?php if (isset($activeDeal['ActiveDeal']['is_completed']) && $activeDeal['ActiveDeal']['is_completed']): ?>

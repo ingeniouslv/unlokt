@@ -68,7 +68,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 								<span class="icon-wrapper"><i class="icon-spotlight">&#128266;</i></span>
 								Spotlight Box
 							</h4>
-							<div class="spot-custom-content large">
+							<div class="block block-darkgray spot-custom-content large">
 								
 								<div class="spotlight-highlight-wrapper">
 									<div class="spotlight-highlight">

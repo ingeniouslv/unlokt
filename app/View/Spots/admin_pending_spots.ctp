@@ -31,6 +31,7 @@ $this->set('title_for_layout', 'Pending Spot Manager');
 						?>
 					</td>
 					<td class="actions">
+						<?php echo $this->Html->link('Approve', array('controller' => 'spots', 'action' => 'approve', $spot['Spot']['id'], 'admin' => true), array('class' => 'btn btn-blue')); ?>
 						<?php echo $this->Html->link('Managers', array('controller' => 'managers', 'action' => 'by_spot', $spot['Spot']['id'], 'admin' => false), array('class' => 'btn')); ?>
 						<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $spot['Spot']['id'], "admin" => false), array('class' => 'btn')); ?>
 						<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $spot['Spot']['id']), array('class' => 'btn btn-red'), __('Are you sure you want to delete # %s?', $spot['Spot']['id'])); ?>

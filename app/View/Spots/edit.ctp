@@ -72,9 +72,11 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 				echo $this->Form->input('phone', array('div' => 'control-fields', 'placeholder' => '(702) 987-3333'));
 				echo $this->Form->input('url', array('div' => 'control-fields', 'label' => 'URL', 'placeholder' => 'http://www.example.com', 'class' => 'input-full'));
 				echo $this->Form->input('email', array('div' => 'control-fields', 'label' => 'Business Email', 'placeholder' => 'info@example.com', 'class' => 'input-full'));
-				echo $this->Form->input('Category', array('div' => 'control-fields', 'class' => 'input-full'));
-				echo $this->Form->input('SpotOption', array('div' => 'control-fields', 'label' => 'Spot Options', 'class' => 'input-full'));
 				?>
+				<h2 class="form-section-label">Categories</h2>
+				<?php echo $this->Form->select('Category', $categories, array('div' => 'control-fields', 'class' => 'input-full', 'multiple' => 'checkbox')); ?>
+				<h2 class="form-section-label">Spot Options</h2>
+				<?php echo $this->Form->select('SpotOption', $spotOptions, array('div' => 'control-fields', 'class' => 'input-full', 'multiple' => 'checkbox')); ?>
 
 				<h2 class="form-section-label">Profile</h2>
 				<?php echo $this->Form->input('spotlight_1', array('div' => 'control-fields', 'label' => 'Spotlight', 'class' => 'spot-spotlight_1-editor', 'data-type' => 'editor')); ?>

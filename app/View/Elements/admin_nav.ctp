@@ -14,6 +14,7 @@
 					echo $this->Html->link('Plans', array('controller' => 'plans', 'action' => 'index', 'admin' => true), array('class'=>'btn btn-dark'));
 					echo $this->Html->link('Notes', array('controller' => 'reviews', 'action' => 'index', 'admin' => true), array('class'=>'btn btn-dark'));
 					echo $this->Html->link('Specials', array('controller' => 'deals', 'action' => 'index', 'admin' => true), array('class'=>'btn btn-dark'));
+					echo $this->Html->link('Spot Options', array('controller' => 'spot_options', 'action' => 'index', 'admin' => true), array('class'=>'btn btn-dark')); 
 					echo $this->Html->link('Spots', array('controller' => 'spots', 'action' => 'index', 'admin' => true), array('class'=>'btn btn-dark'));
 					echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index', 'admin' => true), array('class'=>'btn btn-dark'));
 				}

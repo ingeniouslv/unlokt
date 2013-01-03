@@ -30,10 +30,6 @@ $this->set('title_for_layout', "Payment Method for '".$spot['Spot']['name']."'")
 							</label>
 						</li>
 					<?php endif; ?>
-					<?php foreach($payments as $payment): ?>
-						
-						
-					<?php endforeach; ?>
 				</ul>
 			</div>
 		</div>

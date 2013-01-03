@@ -151,16 +151,24 @@ $this->Html->add_script(array(
 	<div class="row">
 		<div class="nine columns">
 			<div class="row row-fix">
-				<div class="twelve columns block-slider">
-					<div class="prem">
-						<p>Premium Users</p>
+				<?php if (empty($spot['Spot']['is_premium'])): ?>
+					<div class="twelve columns block-slider">
+						<div class="prem" disabled>
+							<p>Premium Users</p>
+						</div>
+						
+						<?php echo $this->element('mod-disabled_filtered_items'); ?>
 					</div>
-					<div class="block-slider-nav">
-						<a class="left" href="javascript:void(0);"></a>
-						<a class="right" href="javascript:void(0);"></a>
+				<?php else: ?>
+					<div class="twelve columns block-slider">
+						<div class="block-slider-nav">
+							<a class="left" href="javascript:void(0);"></a>
+							<a class="right" href="javascript:void(0);"></a>
+						</div>
+						<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
 					</div>
-					<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
-				</div>
+				<?php endif; ?>
+				
 			</div>
 			<a name="feeds"></a>
 				<?php

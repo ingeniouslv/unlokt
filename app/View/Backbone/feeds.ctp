@@ -9,8 +9,8 @@
 				<p><%= h(feed.Feed.feed) %></p>
 				<% if (typeof feed.Attachment !== 'undefined' && _.isArray(feed.Attachment) && feed.Attachment.length > 0) { log('attachment length: ' + feed.Attachment.length); %>
 					<div class="attachments">
-						<% for (var x in feed.Attachment) { if (typeof feed.Attachment[x] === 'undefined' || typeof feed.Attachment[x].id === 'undefined') {continue;} console.log('feed attachment id: ' + feed.Attachment[x].id); %>
-							<img data-attachment-id="<%= feed.Attachment[x].id %>" data-spot-id="<%= feed.Spot.id %>" src="<% print(unlokt.helpers.gen_path('attachment', feed.Attachment[x].id, 40, 40)); %>">
+						<% for (var x in feed.Attachment) { %>
+							<% log('x is ' + x); %>
 						<% /*End of for()*/ } %>
 					</div>
 					<% /*End if*/ } %>

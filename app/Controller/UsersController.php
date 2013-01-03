@@ -243,6 +243,7 @@ class UsersController extends AppController {
 	
 	// Public user can register for Unlokt here.
 	public function register() {
+		App::uses('CakeEmail', 'Network/Email');
 		$referer = $this->Session->read('referer');
 		
 		if ($this->request->is('post')) {
@@ -264,7 +265,16 @@ class UsersController extends AppController {
 				// Good
 				$this->User->save();
 				$this->login_user($this->User->id);
-				if($referer) {
+				$email = new CakeEmail('pcmail');
+				$email->to($this->request->data['User']['email'])
+					->subject('Welcome to '.SITE_NAME)
+					->template('users-register')
+					->viewVars(array(
+						'name' => "{$this->request->data['User']['first_name']} {$this->request->data['User']['last_name']}",
+						'email' => $this->request->data['User']['email']
+					))
+					->send();
+				if ($referer) {
 					$this->Session->delete('referer');
 					$this->redirect($referer);
 				} else {

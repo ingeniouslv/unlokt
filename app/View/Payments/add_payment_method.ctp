@@ -29,7 +29,12 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 						});
 						$('#CreditCardCode').keyup(function() {
 							$('#try-code').attr('disabled', !$(this).val());
-						}).keyup();
+						}).keyup().keydown(function(event) {
+							if (event.which == 13) {
+								event.preventDefault();
+								$('#try-code').click();
+							}
+						});
 					</script>
 				</div>
 				<div id="code-results">

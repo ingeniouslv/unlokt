@@ -151,15 +151,15 @@ $this->Html->add_script(array(
 	<div class="row">
 		<div class="nine columns">
 			<div class="row row-fix">
-				<?php if (empty($spot['Spot']['is_premium'])): ?>
+				<?php if (empty($spot['Spot']['is_premium']) && $managerOfCurrentSpot): ?>
 					<div class="twelve columns block-slider">
 						<div class="prem" disabled>
-							<p>Premium Users</p>
+							<p>Upgrade to Premium</p>
 						</div>
 						
 						<?php echo $this->element('mod-disabled_filtered_items'); ?>
 					</div>
-				<?php else: ?>
+				<?php elseif (!empty($spot['Spot']['is_premium'])): ?>
 					<div class="twelve columns block-slider">
 						<div class="block-slider-nav">
 							<a class="left" href="javascript:void(0);"></a>

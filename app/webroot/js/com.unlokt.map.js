@@ -98,9 +98,9 @@ com.unlokt.map.prototype.center = function(lat, lng) {
 com.unlokt.map.prototype.resetMarkers = function() {
 	// Set all the current marker's map to null (if there are any)
 	if (typeof this.markers == 'object' && this.markers.length) {
-		for (var i in this.markers) {
-			this.markers[i].setMap(null);
-		}
+		_.each(this.markers, function(marker) {
+			marker.setMap(null);
+		});
 	}
 	// Clear/create/reset the object of markers
 	this.markers = [];
@@ -152,9 +152,10 @@ com.unlokt.map.prototype.fitMapToBounds = function() {
 
 // Add markers to the current map. This is similar to setMarkers() except this method does not delete old markers first.
 com.unlokt.map.prototype.addMarkers = function(markerData) {
-	for (var i in markerData) {
-		this.addMarker(markerData[i]);
-	}
+	// var that = this;
+	_.each(markerData, function(marker) {
+		this.addMarker(marker);
+	}, this);
 	return this;
 }; // end of addMarkers();
 
@@ -172,18 +173,17 @@ com.unlokt.map.prototype.addMarkers = function(markerData) {
 // checkMarkers() will iterate through the markers and delete any which are out of bounds.
 com.unlokt.map.prototype.checkBoundMarkers = function() {
 	var map_bounds = this.map.getBounds();
-	for (var i in this.markers) {
-		var marker = this.markers[i];
+	_.each(this.markers, function(marker, i) {
 		// If the marker does not fit within the map bounds, remove it from our map.
 		if (!map_bounds.contains(marker.position)) {
 			marker.setMap(null);
-			this.marker_ids.splice(this.marker_ids.indexOf(marker.id), 1);
+			this.marker_ids.splice(_.indexOf(this.marker_ids, marker.id), 1);
 			this.markers.splice(i, 1);
 			if (marker.id == this.infowindow.id) {
 				this.infowindow.close();
 			}
 		}
-	}
+	}, this);
 };
 
 com.unlokt.map.prototype.updateFeed = function() {

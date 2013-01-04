@@ -19,6 +19,7 @@
 	$cssFiles = array('app.css');
 	$jsFiles = array_merge(
 		array(
+			'libs/json2',
 			'libs/voxel-fileinput',
 			'libs/xdate',
 			'libs/bootstrap-timepicker',

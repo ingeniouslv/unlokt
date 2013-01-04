@@ -97,7 +97,7 @@ $this->Html->add_script(array(
 				// Attempt to re-call this method after a short timeout.
 				// Hopefully this is the only exception being thrown at this time, because the errors are different per browser.
 				setTimeout(function() {
-					search();
+					search(limit);
 				}, 100);
 				return;
 			}
@@ -147,15 +147,9 @@ $this->Html->add_script(array(
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);
 			reviews.reset(results.reviews);
-			$('#staggered').masonry({
-				itemSelector : '.staggered-item',
-				columnWidth: 189
-			});
 			if (search_by_bounds && typeof results.spots != 'undefined' && results.spots.length > 0) {
 				show_spots_on_map(results.spots);
 			}
-			//change the masonry width to accommodate the new size
-			$(function(){$("#staggered").masonry({itemSelector:".staggered-item",columnWidth:280})});
 			
 			initFooters();
 
@@ -316,7 +310,8 @@ $this->Html->add_script(array(
 	// Note, this marker data is being passed to com.unlokt.map.js - which is then rendering the infowindow.
 	function show_spots_on_map(spots) {
 		var markers = [];
-		_.each(spots, function(spot) {
+		_.each(spots, function(Spot) {
+			var spot = Spot.Spot;
 			var marker = {
 				lat: spot.lat,
 				lng: spot.lng,

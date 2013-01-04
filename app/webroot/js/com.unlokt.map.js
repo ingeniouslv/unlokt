@@ -118,10 +118,6 @@ com.unlokt.map.prototype.setMarkers = function(markerData) {
 
 com.unlokt.map.prototype.addMarker = function(markerData) {
 	if (_.indexOf(this.marker_ids, markerData.id) != -1) {
-		// console.log('marker already exists');
-		// console.log(this.marker_ids);
-		// console.log(markerData.id);
-		// console.log(_.indexOf(this.marker_ids, markerData.id));
 		return;
 	}
 	// Create icon. This will later be determined by the type of location
@@ -163,17 +159,6 @@ com.unlokt.map.prototype.addMarkers = function(markerData) {
 	return this;
 }; // end of addMarkers();
 
-// com.unlokt.map.prototype.removeMarker = function(id) {
-	// this.marker_ids.splice(this.marker_ids.indexOf(id), 1);
-	// for (var i in this.markers) {
-		// var marker = this.markers[i];
-		// if (marker.id == id) {
-			// marker.setMap(null);
-			// this.markers.splice(i, 1);
-		// }
-	// }
-// };
-
 // checkMarkers() will iterate through the markers and delete any which are out of bounds.
 com.unlokt.map.prototype.checkBoundMarkers = function() {
 	var map_bounds = this.map.getBounds();
@@ -190,44 +175,44 @@ com.unlokt.map.prototype.checkBoundMarkers = function() {
 	}, this);
 };
 
-com.unlokt.map.prototype.updateFeed = function() {
-	var that = this;
-	console.log('poll ' + this.settings.feed_url());
-	$.getJSON(this.settings.feed_url(), function(markers) {
-		console.log('updateFeed() fetched ' + markers.length + ' markers');
-		that.addMarkers(markers).checkBoundMarkers();
-	});
-	return this;
-};
+// com.unlokt.map.prototype.updateFeed = function() {
+// 	var that = this;
+// 	console.log('poll ' + this.settings.feed_url());
+// 	$.getJSON(this.settings.feed_url(), function(markers) {
+// 		console.log('updateFeed() fetched ' + markers.length + ' markers');
+// 		that.addMarkers(markers).checkBoundMarkers();
+// 	});
+// 	return this;
+// };
 
-com.unlokt.map.prototype.registerEvents = function(trigger) {
-	// this.timeout = setTimeout(function() {}, 1);
-	var that = this;
-	var timeout_length = 100; // number of milliseconds to wait to no more events
-	// Create two events.
-	// FIRST EVENT - listen to when the center of the map has changed.
-	google.maps.event.addListener(this.map, 'center_changed', function() {
-		clearTimeout(that.timeout);
-		that.timeout = setTimeout(function() {
-			that.updateFeed();
-		}, timeout_length);
-	});
-	// SECOND EVENT - listen to when the zoom has chanhed.
-	google.maps.event.addListener(this.map, 'zoom_changed', function() {
-		clearTimeout(that.timeout);
-		that.timeout = setTimeout(function() {
-			that.updateFeed();
-		}, timeout_length);
-	});
-	// Now that we have added the two listeners to the map, 
-	// determine if we should execute the updateFeed() automatically.
-	if (trigger) {
-		this.timeout = setTimeout(function() {
-			that.updateFeed();
-		}, 500);
-	}
-	return this;
-};
+// com.unlokt.map.prototype.registerEvents = function(trigger) {
+// 	// this.timeout = setTimeout(function() {}, 1);
+// 	var that = this;
+// 	var timeout_length = 100; // number of milliseconds to wait to no more events
+// 	// Create two events.
+// 	// FIRST EVENT - listen to when the center of the map has changed.
+// 	google.maps.event.addListener(this.map, 'center_changed', function() {
+// 		clearTimeout(that.timeout);
+// 		that.timeout = setTimeout(function() {
+// 			that.updateFeed();
+// 		}, timeout_length);
+// 	});
+// 	// SECOND EVENT - listen to when the zoom has chanhed.
+// 	google.maps.event.addListener(this.map, 'zoom_changed', function() {
+// 		clearTimeout(that.timeout);
+// 		that.timeout = setTimeout(function() {
+// 			that.updateFeed();
+// 		}, timeout_length);
+// 	});
+// 	// Now that we have added the two listeners to the map, 
+// 	// determine if we should execute the updateFeed() automatically.
+// 	if (trigger) {
+// 		this.timeout = setTimeout(function() {
+// 			that.updateFeed();
+// 		}, 500);
+// 	}
+// 	return this;
+// };
 
 com.unlokt.map.prototype.infoWindow = function(event, marker) {
 	var info_window_parts = [];

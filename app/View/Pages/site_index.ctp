@@ -316,8 +316,7 @@ $this->Html->add_script(array(
 	// Note, this marker data is being passed to com.unlokt.map.js - which is then rendering the infowindow.
 	function show_spots_on_map(spots) {
 		var markers = [];
-		for (var i in spots) {
-			var spot = spots[i].Spot;
+		_.each(spots, function(spot) {
 			var marker = {
 				lat: spot.lat,
 				lng: spot.lng,
@@ -327,7 +326,7 @@ $this->Html->add_script(array(
 				id: spot.id
 			};
 			markers.push(marker);
-		}
+		});
 		window.homepagemap.addMarkers(markers);
 		window.homepagemap.checkBoundMarkers();
 	}
@@ -430,17 +429,6 @@ $this->Html->add_script(array(
 	bind_filter_actions();
 </script>
 <script>
-	// Trigger the Deal tiles to stagger so beautifully.
-	// $('#staggered').masonry({
-	// 	itemSelector : '.staggered-item',
-	// 	columnWidth: 189
-	// });
-	// $("#staggered").gridalicious({
-	// 	width: 300,
-	// 	gutter: 10,
-	// 	selector: '.staggered-item'
-	// });
-	
 	// Add a live binding for attachment images being clicked to open a gallery
 	$('body').on('click', '.attachments img', function() {
 		var spot_id = $(this).data('spot-id');

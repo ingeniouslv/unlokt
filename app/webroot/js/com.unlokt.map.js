@@ -162,6 +162,7 @@ com.unlokt.map.prototype.addMarkers = function(markerData) {
 // checkMarkers() will iterate through the markers and delete any which are out of bounds.
 com.unlokt.map.prototype.checkBoundMarkers = function() {
 	var map_bounds = this.map.getBounds();
+	log(this.markers);
 	_.each(this.markers, function(marker, i) {
 		// If the marker does not fit within the map bounds, remove it from our map.
 		log(marker);

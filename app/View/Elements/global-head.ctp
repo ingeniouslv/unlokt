@@ -12,7 +12,7 @@
 	?>
 	<link href="http://fonts.googleapis.com/css?family=Asap:400,700|Open+Sans:400,600,600italic,700" rel="stylesheet" type="text/css">
 	<script src="//bits.wikimedia.org/geoiplookup"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 	<?php
 	// $cssFiles = array('default.dev.css');
@@ -23,7 +23,7 @@
 			'libs/xdate',
 			'libs/bootstrap-timepicker',
 			'libs/bootstrap-datepicker',
-			'underscore-min.js',
+			'libs/underscore-min.js',
 			'backbone-min.js',
 			'unlokt.bb.global.js',
 			'bootstrap-alert.js',

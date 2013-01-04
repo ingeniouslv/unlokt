@@ -165,7 +165,7 @@ com.unlokt.map.prototype.checkBoundMarkers = function() {
 	log(this.markers);
 	_.each(this.markers, function(marker, i) {
 		// If the marker does not fit within the map bounds, remove it from our map.
-		log(marker);
+		console.log(marker);
 		if (!map_bounds.contains(marker.position)) {
 			marker.setMap(null);
 			this.marker_ids.splice(_.indexOf(this.marker_ids, marker.id), 1);

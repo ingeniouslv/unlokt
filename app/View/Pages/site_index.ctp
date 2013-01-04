@@ -32,8 +32,6 @@ $this->Html->add_script(array(
 <script src="/js/nf-slider-call.js"></script>
 <script>
 
-	log('test IE logging');
-
 	//////////////////////////////////////////////////
 	
 	var deals = new DealCollection();

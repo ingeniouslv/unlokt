@@ -117,7 +117,7 @@ com.unlokt.map.prototype.setMarkers = function(markerData) {
 }; // end of setMarkers();
 
 com.unlokt.map.prototype.addMarker = function(markerData) {
-	if (this.marker_ids.indexOf(markerData.id) != -1) {
+	if (_.indexOf(this.marker_ids, markerData.id) != -1) {
 		return;
 	}
 	// Create icon. This will later be determined by the type of location
@@ -152,7 +152,6 @@ com.unlokt.map.prototype.fitMapToBounds = function() {
 
 // Add markers to the current map. This is similar to setMarkers() except this method does not delete old markers first.
 com.unlokt.map.prototype.addMarkers = function(markerData) {
-	// var that = this;
 	_.each(markerData, function(marker) {
 		this.addMarker(marker);
 	}, this);

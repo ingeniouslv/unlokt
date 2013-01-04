@@ -59,28 +59,33 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 									<?php if (!$deal['Deal']['limit_per_customer'] || $deal_completed_count < $deal['Deal']['limit_per_customer']): ?>
 										
 										<?php if ($deal['Deal']['keys'] > 1): ?>
-											<div class="pull-right">
-												<span class="keys-total large"><?php echo $deal['Deal']['keys']; ?></span>
-												<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo', 'id' => 'redeemButton')); ?>
-											</div>
+											<div class="redeem-activity">	
+												<div class="pull-right">
+													<span class="keys-total large"><?php echo $deal['Deal']['keys']; ?></span>
+													<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo', 'id' => 'redeemButton')); ?>
+												</div>
+											</div>	
 										<?php elseif ($deal['Deal']['keys'] <= 1): ?>
-											<div class="hidden">
-												<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo pull-right', 'id' => 'redeemButton')); ?>
-											</div>
-											
+											<div class="redeem-activity">	
+												<div class="pull-right">
+													<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo', 'id' => 'redeemButton')); ?>
+												</div>
+											</div>	
 										<?php endif; ?>
 									<?php endif; ?>
 								
 									<?php if (isset($activeDeal['ActiveDeal']['is_completed']) && $activeDeal['ActiveDeal']['is_completed']): ?>
-										<div class="text-center">
-											<h2>Hurray! You've Unlokt this Spot Special</h2> <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?>.
-										</div>
-										<div class="redeem-code twelve">
-										 	<span>Spot Owner Enter this Code:</span>
-											<code>
-												<?php echo h($deal['Deal']['sku']); ?>
-											</code>
-										</div>
+										<div class="redemption">
+											<div class="text-center">
+												<h2>Hurray! You've Unlokt this Spot Special</h2> <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?>.
+											</div>
+											<div class="redeem-code twelve">
+											 	<span>Spot Owner Enter this Code:</span>
+												<code>
+													<?php echo h($deal['Deal']['sku']); ?>
+												</code>
+											</div>
+										</div>	
 									<?php endif; ?>
 								</div>
 							</div><!-- end of .redeem -->

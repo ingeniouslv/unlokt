@@ -96,7 +96,7 @@ class SpotsController extends AppController {
 		$adminOfCurrentSpot = $this->Spot->Manager->isAdmin();
 
 		// Parse the Spotlight text
-		$spot['Spot']['spotlight_2_parsed'] = $this->Spot->parseSpotlightText($spot['Spot']['spotlight_2']);
+		// $spot['Spot']['spotlight_2_parsed'] = $this->Spot->parseSpotlightText($spot['Spot']['spotlight_2']);
 		
 		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments', 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot'));
 	}
@@ -130,7 +130,13 @@ class SpotsController extends AppController {
 				$this->request->data['Spot']['lat'] = $lat;
 				$this->request->data['Spot']['lng'] = $lng;
 			}
-			if ($this->Spot->save($this->request->data)) {
+			$this->Spot->set($this->request->data);
+			// Parse the WYSIWYG fields.
+			$this->Spot->parseWysiwygText('description');
+			$this->Spot->parseWysiwygText('spotlight_1');
+			$this->Spot->parseWysiwygText('spotlight_2');
+
+			if ($this->Spot->save()) {
 				$file = $_FILES['file'];
 				if (!$file['error'] && $file['size'] && substr($file['type'], 0, 6) == 'image/') {
 					convert($file['tmp_name'], store_path('spot', $id, 'default.jpg'));

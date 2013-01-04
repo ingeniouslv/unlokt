@@ -72,7 +72,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 								
 								<div class="spotlight-highlight-wrapper">
 									<div class="spotlight-highlight">
-										<?php echo $spot['Spot']['spotlight_1']; ?>
+										<?php echo $spot['Spot']['spotlight_1_parsed']; ?>
 									</div>
 								</div>	
 								<!-- <img src="http://dummyimage.com/476x210"> -->
@@ -88,7 +88,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 					<div class="eight columns">
 						<h4>About the Spot</h4>
 						<div class="spot-description block-darkgray block">
-							<?php echo $spot['Spot']['description']; ?>
+							<?php echo $spot['Spot']['description_parsed']; ?>
 						</div>
 					</div>
 

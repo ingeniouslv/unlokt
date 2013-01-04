@@ -2,7 +2,7 @@
 	<h4><i class="icon-megaphone"></i> Spot Feed</h4>
 	<% for (var i in feeds) { 
 	/* We have this bug in IE8 where the 'feed' object is delivered with other properties (such as indexOf). We want to skip any 'i' which isn't numeric */
-	if (!/\d+/.test(i)) { continue; }
+	if (!/^[0-9]+$/.test(i)) { continue; }
 	var feed = feeds[i]; %>
 		<!-- Feed Item -->
 		<div class="feed-item">

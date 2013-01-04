@@ -152,69 +152,11 @@ com.unlokt.map.prototype.fitMapToBounds = function() {
 
 // Add markers to the current map. This is similar to setMarkers() except this method does not delete old markers first.
 com.unlokt.map.prototype.addMarkers = function(markerData) {
-	console.log('adding markers');
 	_.each(markerData, function(marker) {
 		this.addMarker(marker);
 	}, this);
 	return this;
 }; // end of addMarkers();
-
-// checkMarkers() will iterate through the markers and delete any which are out of bounds.
-com.unlokt.map.prototype.checkBoundMarkers = function() {
-	// var map_bounds = this.map.getBounds();
-	// log(this.markers);
-	// _.each(this.markers, function(marker, i) {
-	// 	// If the marker does not fit within the map bounds, remove it from our map.
-	// 	console.log(marker);
-	// 	if (!map_bounds.contains(marker.position)) {
-	// 		marker.setMap(null);
-	// 		this.marker_ids.splice(_.indexOf(this.marker_ids, marker.id), 1);
-	// 		this.markers.splice(i, 1);
-	// 		if (marker.id == this.infowindow.id) {
-	// 			this.infowindow.close();
-	// 		}
-	// 	}
-	// }, this);
-};
-
-// com.unlokt.map.prototype.updateFeed = function() {
-// 	var that = this;
-// 	console.log('poll ' + this.settings.feed_url());
-// 	$.getJSON(this.settings.feed_url(), function(markers) {
-// 		console.log('updateFeed() fetched ' + markers.length + ' markers');
-// 		that.addMarkers(markers).checkBoundMarkers();
-// 	});
-// 	return this;
-// };
-
-// com.unlokt.map.prototype.registerEvents = function(trigger) {
-// 	// this.timeout = setTimeout(function() {}, 1);
-// 	var that = this;
-// 	var timeout_length = 100; // number of milliseconds to wait to no more events
-// 	// Create two events.
-// 	// FIRST EVENT - listen to when the center of the map has changed.
-// 	google.maps.event.addListener(this.map, 'center_changed', function() {
-// 		clearTimeout(that.timeout);
-// 		that.timeout = setTimeout(function() {
-// 			that.updateFeed();
-// 		}, timeout_length);
-// 	});
-// 	// SECOND EVENT - listen to when the zoom has chanhed.
-// 	google.maps.event.addListener(this.map, 'zoom_changed', function() {
-// 		clearTimeout(that.timeout);
-// 		that.timeout = setTimeout(function() {
-// 			that.updateFeed();
-// 		}, timeout_length);
-// 	});
-// 	// Now that we have added the two listeners to the map, 
-// 	// determine if we should execute the updateFeed() automatically.
-// 	if (trigger) {
-// 		this.timeout = setTimeout(function() {
-// 			that.updateFeed();
-// 		}, 500);
-// 	}
-// 	return this;
-// };
 
 com.unlokt.map.prototype.infoWindow = function(event, marker) {
 	var info_window_parts = [];

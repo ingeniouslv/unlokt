@@ -141,7 +141,6 @@ $this->Html->add_script(array(
 		}
 		params.limit = limit;
 		var url = search_url + $.param(params);
-		console.log('fetching ' + url);
 		
 		$.getJSON(url, function(results) {
 			feeds.reset(results.feeds);
@@ -197,7 +196,6 @@ $this->Html->add_script(array(
 	//////////////////////////////////////////////////
 	
 	function updateGeo() {
-		console.log(location_id);
 		if(location_id)  {
 			for(var i = 0; i < locations.length; i ++) {
 				if(locations[i].Location.id == location_id)break;
@@ -323,7 +321,6 @@ $this->Html->add_script(array(
 			markers.push(marker);
 		});
 		window.homepagemap.addMarkers(markers);
-		window.homepagemap.checkBoundMarkers();
 	}
 	
 	//////////////////////////////////////////////////

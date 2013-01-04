@@ -1,6 +1,9 @@
 <div class="row" id="staggered">
 	<!-- Filtered Item-->
-	<% for (var i in deals) { var deal = deals[i]; %>
+	<% for (var i in deals) { 
+	/* We have this bug in IE8 where the 'deals' object is delivered with other properties (such as indexOf). We want to skip any 'i' which isn't numeric */
+	if (!/^[0-9]+$/.test(i)) { continue; }
+	var deal = deals[i]; %>
 		<div class="columns staggered-item">
 			<div class="tile">
 				<% if (typeof deal.HappyHour != 'undefined') { %>

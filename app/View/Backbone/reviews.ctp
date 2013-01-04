@@ -7,7 +7,10 @@
 		<a class="right" href="javascript:void(0);"></a>
 	</div>
 	<div class="note-slider-container review-wr">
-		<% for (var i in reviews) { var review = reviews[i]; %>
+		<% for (var i in reviews) {
+		/* We have this bug in IE8 where the 'reviews' object is delivered with other properties (such as indexOf). We want to skip any 'i' which isn't numeric */
+		if (!/^[0-9]+$/.test(i)) { continue; }
+		var review = reviews[i]; %>
 		<!-- Review Item -->
 		<div class="note-slide columns">
 			<div class="review-item tile">

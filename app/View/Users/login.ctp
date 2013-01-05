@@ -21,7 +21,7 @@ $this->set('title_for_layout', 'Login');
 				</div>
 				<div class="tip warning" style="display: none;">
 					<h4>Warning</h4>
-					<p>If you login with facebook you will not be able to login without facebook anymore</p>
+					<p>If you login with facebook you will not be able to Log In without facebook anymore</p>
 				</div>
 				<!-- TODO: Forgot Password view -->
 				<div class="btn-group">

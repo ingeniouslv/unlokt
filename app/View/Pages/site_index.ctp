@@ -32,8 +32,6 @@ $this->Html->add_script(array(
 <script src="/js/nf-slider-call.js"></script>
 <script>
 
-	log('test IE logging');
-
 	//////////////////////////////////////////////////
 	
 	var deals = new DealCollection();
@@ -97,7 +95,7 @@ $this->Html->add_script(array(
 				// Attempt to re-call this method after a short timeout.
 				// Hopefully this is the only exception being thrown at this time, because the errors are different per browser.
 				setTimeout(function() {
-					search();
+					search(limit);
 				}, 100);
 				return;
 			}
@@ -141,21 +139,14 @@ $this->Html->add_script(array(
 		}
 		params.limit = limit;
 		var url = search_url + $.param(params);
-		console.log('fetching ' + url);
 		
 		$.getJSON(url, function(results) {
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);
 			reviews.reset(results.reviews);
-			$('#staggered').masonry({
-				itemSelector : '.staggered-item',
-				columnWidth: 189
-			});
 			if (search_by_bounds && typeof results.spots != 'undefined' && results.spots.length > 0) {
 				show_spots_on_map(results.spots);
 			}
-			//change the masonry width to accommodate the new size
-			$(function(){$("#staggered").masonry({itemSelector:".staggered-item",columnWidth:280})});
 			
 			initFooters();
 
@@ -203,7 +194,6 @@ $this->Html->add_script(array(
 	//////////////////////////////////////////////////
 	
 	function updateGeo() {
-		console.log(location_id);
 		if(location_id)  {
 			for(var i = 0; i < locations.length; i ++) {
 				if(locations[i].Location.id == location_id)break;
@@ -316,8 +306,8 @@ $this->Html->add_script(array(
 	// Note, this marker data is being passed to com.unlokt.map.js - which is then rendering the infowindow.
 	function show_spots_on_map(spots) {
 		var markers = [];
-		for (var i in spots) {
-			var spot = spots[i].Spot;
+		_.each(spots, function(Spot) {
+			var spot = Spot.Spot;
 			var marker = {
 				lat: spot.lat,
 				lng: spot.lng,
@@ -327,9 +317,8 @@ $this->Html->add_script(array(
 				id: spot.id
 			};
 			markers.push(marker);
-		}
+		});
 		window.homepagemap.addMarkers(markers);
-		window.homepagemap.checkBoundMarkers();
 	}
 	
 	//////////////////////////////////////////////////
@@ -430,17 +419,6 @@ $this->Html->add_script(array(
 	bind_filter_actions();
 </script>
 <script>
-	// Trigger the Deal tiles to stagger so beautifully.
-	// $('#staggered').masonry({
-	// 	itemSelector : '.staggered-item',
-	// 	columnWidth: 189
-	// });
-	// $("#staggered").gridalicious({
-	// 	width: 300,
-	// 	gutter: 10,
-	// 	selector: '.staggered-item'
-	// });
-	
 	// Add a live binding for attachment images being clicked to open a gallery
 	$('body').on('click', '.attachments img', function() {
 		var spot_id = $(this).data('spot-id');

@@ -10,7 +10,7 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 	<div class="modal-body">
 		<div class="image">
 			<div class="image-wrapper">	
-				<img src="http://placehold.it/600x450">
+				<img src="">
 			</div>		
 		</div>
 		<div class="image-selecter-nav">

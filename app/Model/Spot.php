@@ -544,6 +544,9 @@ class Spot extends AppModel {
 			'<iframe width="220" height="150" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen=""></iframe>',
 			$string
 		);
+		
+		$string = preg_replace('/&lt;!--(.*?)-->/', '', $string);
+		$string = trim($string);
 		$this->data['Spot'][$field.'_parsed'] = $string;
 	} // end of parseWysiwygText()
 

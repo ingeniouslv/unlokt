@@ -33,7 +33,6 @@
 				<?php
 					echo $this->Form->input('name', array('label' => 'Title for Note', 'div' => 'control-fields'));
 					echo $this->Form->input('review', array('type' => 'textarea', 'label' => 'Note',  'div' => 'control-fields'));
-					echo $this->Form->input('stars', array('type' => 'select', 'div' => 'control-fields', 'options' => array(''=>'-Select-',1=>1,2=>2,3=>3,4=>4,5=>5)));
 				?>
 				<div class="btn-group pull-right">
 					<?php echo $this->Form->button('Submit Note', array('type' => 'submit', 'class' => 'btn btn-red')); ?>

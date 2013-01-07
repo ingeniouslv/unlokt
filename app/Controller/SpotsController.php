@@ -144,13 +144,13 @@ class SpotsController extends AppController {
 					convert($file['tmp_name'], store_path('spot', $id, 'default.jpg'));
 					delete_cache('spot', $id);
 				}
-				$this->Session->setFlash(__('The spot has been saved'), 'alert-success');
+				$this->Session->setFlash('The spot has been saved', 'alert-success');
 				if (!empty($this->request->data['Spot']['is_pending'])) {
 					$this->redirect(array('action' => 'pending_spots', 'admin' => true));
 				}
 				$this->redirect(array('action' => 'view', $id));
 			} else {
-				$this->Session->setFlash(__('The spot could not be saved. Please, try again.'), 'alert-warning');
+				$this->Session->setFlash('The spot could not be saved. Please, try again.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $spot;
@@ -208,10 +208,10 @@ class SpotsController extends AppController {
 					convert($file['tmp_name'], store_path('spot', $id, 'default.jpg'));
 					delete_cache('spot', $id);
 				}
-				$this->Session->setFlash(__('The spot has been saved'));
+				$this->Session->setFlash('The spot has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The spot could not be saved. Please, try again.'));
+				$this->Session->setFlash('The spot could not be saved. Please, try again.', 'alert-warning');
 			}
 		}
 		$categories = $this->Spot->Category->getThreadedList();
@@ -262,10 +262,10 @@ class SpotsController extends AppController {
 			throw new NotFoundException(__('Invalid spot'));
 		}
 		if ($this->Spot->delete()) {
-			$this->Session->setFlash(__('Spot deleted'));
+			$this->Session->setFlash('Spot deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Spot was not deleted'));
+		$this->Session->setFlash('Spot was not deleted', 'alert-warning');
 		$this->redirect(array('action' => 'index'));
 	}
 	

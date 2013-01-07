@@ -162,7 +162,12 @@ class ReviewsController extends AppController {
 		if ($this->request->is('ajax')) {
 			die('OK');
 		}
-		$this->redirect(array('controller' => 'spots', 'action' => 'view', $spot_id));
+		//redirect super admins back to the admin index of the reviews
+		if($this->Auth->user('is_super_admin')) {
+			$this->redirect(array('action' => 'index', 'admin' => true));
+		} else {
+			$this->redirect(array('controller' => 'spots', 'action' => 'view', $spot_id));
+		}
 		// if (!$this->Review->exists()) {
 			// throw new NotFoundException(__('Invalid review'));
 		// }

@@ -169,9 +169,9 @@ class FeedsController extends AppController {
 				die();
 			}
 			$this->Session->setFlash('Feed deleted', 'alert-success');
-			$this->redirect(array('action' => 'index'));
+			$this->redirect(array('action' => 'index', 'admin' => true));
 		}
 		$this->Session->setFlash('Feed was not deleted', 'alert-error');
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('action' => 'index', 'admin' => true));
 	}
 }

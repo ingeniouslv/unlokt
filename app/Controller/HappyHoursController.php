@@ -99,10 +99,10 @@ class HappyHoursController extends AppController {
 					$this->HappyHour->save();
 				}
 				
-				$this->Session->setFlash(__('The happy hour has been saved'));
+				$this->Session->setFlash('The happy hour has been saved', 'alert-success');
 				$this->redirect(array('action' => 'manage', $spot_id));
 			} else {
-				$this->Session->setFlash(__('The happy hour could not be saved. Please, try again.'));
+				$this->Session->setFlash('The happy hour could not be saved. Please, try again.', 'alert-warning');
 			}
 		}
 		$this->set(compact('spot'));
@@ -122,10 +122,10 @@ class HappyHoursController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->HappyHour->save($this->request->data)) {
-				$this->Session->setFlash(__('The happy hour has been saved'));
+				$this->Session->setFlash('The happy hour has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The happy hour could not be saved. Please, try again.'));
+				$this->Session->setFlash('The happy hour could not be saved. Please, try again.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->HappyHour->read(null, $id);
@@ -155,10 +155,10 @@ class HappyHoursController extends AppController {
 			throw new NotFoundException('You do not have permission to manage this Spot');
 		}
 		if ($this->HappyHour->delete()) {
-			$this->Session->setFlash(__('Happy hour deleted'));
+			$this->Session->setFlash('Happy hour deleted', 'alert-success');
 			$this->redirect(array('action' => 'manage', $spot['Spot']['id']));
 		}
-		$this->Session->setFlash(__('Happy hour was not deleted'));
+		$this->Session->setFlash('Happy hour was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'manage', $spot['Spot']['id']));
 	}
 }

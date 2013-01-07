@@ -224,6 +224,9 @@ class SpotsController extends AppController {
 
 	public function admin_index() {
 		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			),
 			'conditions' => array(
 				'Spot.is_pending' => 0
 			),
@@ -237,6 +240,9 @@ class SpotsController extends AppController {
 	
 	public function admin_pending_spots() {
 		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			),
 			'conditions' => array(
 				'Spot.is_pending' => 1
 			),

@@ -19,7 +19,7 @@ class CategoriesController extends AppController {
  */
 	public function admin_index() {
 		$this->Category->recursive = 0;
-		$this->paginate = array( 'order' => array('Category.name' => 'desc'));
+		$this->paginate = array( 'order' => array('Category.name' => 'asc'));
 		$this->set('categories', $this->paginate());
 	}
 
@@ -47,10 +47,10 @@ class CategoriesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Category->create();
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash(__('The category has been saved'));
+				$this->Session->setFlash('The category has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
+				$this->Session->setFlash('The category could not be saved. Please, try again.', 'alert-warning');
 			}
 		}
 		$parentCategories = $this->Category->ParentCategory->find('list');
@@ -71,10 +71,10 @@ class CategoriesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash(__('The category has been saved'));
+				$this->Session->setFlash('The category has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
+				$this->Session->setFlash('The category could not be saved. Please, try again.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->Category->read(null, $id);
@@ -100,10 +100,10 @@ class CategoriesController extends AppController {
 			throw new NotFoundException(__('Invalid category'));
 		}
 		if ($this->Category->delete()) {
-			$this->Session->setFlash(__('Category deleted'));
+			$this->Session->setFlash('Category deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Category was not deleted'));
+		$this->Session->setFlash('Category was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'index'));
 	}
 }

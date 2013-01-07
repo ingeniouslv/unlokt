@@ -130,10 +130,10 @@ class FeedsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Feed->save($this->request->data)) {
-				$this->Session->setFlash(__('The feed has been saved'));
+				$this->Session->setFlash('The feed has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The feed could not be saved. Please, try again.'));
+				$this->Session->setFlash('The feed could not be saved. Please, try again.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->Feed->read(null, $id);
@@ -168,10 +168,10 @@ class FeedsController extends AppController {
 			if ($this->request->is('ajax')) {
 				die();
 			}
-			$this->Session->setFlash(__('Feed deleted'));
+			$this->Session->setFlash('Feed deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Feed was not deleted'));
+		$this->Session->setFlash('Feed was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'index'));
 	}
 }

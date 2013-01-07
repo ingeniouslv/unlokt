@@ -73,10 +73,10 @@ class PaymentsController extends AppController {
 			throw new NotFoundException(__('Invalid payment'));
 		}
 		if ($this->Payment->delete()) {
-			$this->Session->setFlash(__('Payment deleted'));
+			$this->Session->setFlash('Payment deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Payment was not deleted'));
+		$this->Session->setFlash('Payment was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'index'));
 	}
 	

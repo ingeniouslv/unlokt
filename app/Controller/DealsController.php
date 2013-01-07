@@ -18,6 +18,11 @@ class DealsController extends AppController {
  */
 	public function admin_index() {
 		$this->Deal->recursive = 0;
+		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			)
+		);
 		$this->set('deals', $this->paginate());
 	}
 	
@@ -280,7 +285,7 @@ class DealsController extends AppController {
 				$this->Session->write('deal_wizard', $this->request->data);
 				$this->redirect(array('action' => 'deal_wizard_step_2'));
 			} else {
-				$this->Session->setFlash('Please check the form and try again.');
+				$this->Session->setFlash('Please check the form and try again.', 'alert-warning');
 			}
 		} else {
 			// There is no post data - load default values and send them to the view.

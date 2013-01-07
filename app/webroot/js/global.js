@@ -263,7 +263,7 @@ $(document).ready(function() {
 			placeholder: input.attr('placeholder'),
 			value: input.attr('placeholder'),
 			id: input.attr('id'),
-			readonly: true
+			readonly: false
 		}).addClass(input.attr('class'));
 	}
 

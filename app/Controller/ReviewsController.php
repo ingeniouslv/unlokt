@@ -86,11 +86,11 @@ class ReviewsController extends AppController {
 			if ($this->Review->save($this->request->data)) {
 				// The review was saved successfully; update the metrics on the Spot itself.
 				$this->Review->Spot->id = $spot_id;
-				$this->Review->Spot->add_rating($this->request->data['Review']['stars']);
-				$this->Session->setFlash(__('The Review has been saved'));
+				//$this->Review->Spot->add_rating($this->request->data['Review']['stars']);
+				$this->Session->setFlash('The Review has been saved', 'alert-success');
 				$this->redirect(array('controller' => 'spots', 'action' => 'view', $spot_id));
 			} else {
-				$this->Session->setFlash(__('The Review could not be saved. Please, try again.'));
+				$this->Session->setFlash('The Review could not be saved. Please, try again.', 'alert-warning');
 			}
 		}
 		
@@ -111,10 +111,10 @@ class ReviewsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Review->save($this->request->data)) {
-				$this->Session->setFlash(__('The review has been saved'));
+				$this->Session->setFlash('The review has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The review could not be saved. Please, try again.'));
+				$this->Session->setFlash('The review could not be saved. Please, try again.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->Review->read(null, $id);
@@ -176,7 +176,7 @@ class ReviewsController extends AppController {
 		if ($this->request->is('ajax')) {
 			die('Review Flagged');
 		}
-		$this->Session->setFlash('Review Flagged');
+		$this->Session->setFlash('Review Flagged', 'alert-success');
 		$this->redirect($this->referer());		
 	}
 

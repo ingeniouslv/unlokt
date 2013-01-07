@@ -110,7 +110,7 @@ class UsersController extends AppController {
 				// Clear passwords before sending user back to the browser.
 				$this->request->data['User']['password'] = '';
 				$this->request->data['User']['password2'] = '';
-				$this->Session->setFlash('Please check the form and try again. Do not forget to re-enter your password.');
+				$this->Session->setFlash('Please check the form and try again. Do not forget to re-enter your password.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->User->read(null, $id);
@@ -136,10 +136,10 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->User->delete()) {
-			$this->Session->setFlash(__('User deleted'));
+			$this->Session->setFlash('User deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('User was not deleted'));
+		$this->Session->setFlash('User was not deleted', 'alert-warning');
 		$this->redirect(array('action' => 'index'));
 	}
 	
@@ -163,7 +163,7 @@ class UsersController extends AppController {
 			$user = $this->User->findByEmail($this->data['User']['email']);
 			$is_facebook_only = ($user && !empty($user['User']['is_facebook_only']))?true:false;
 			if($is_facebook_only) {
-				$this->Session->setFlash('This account must use facebook to login');
+				$this->Session->setFlash('This account must use facebook to login', 'alert-warning');
 			} else if ($this->Auth->login()) {
 				// Redirect the user. If there's $_GET['redirect'] then direct them there - else redirect to normal action.
 				$this->redirect($this->Auth->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : null));

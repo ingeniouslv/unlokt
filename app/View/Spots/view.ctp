@@ -59,9 +59,9 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 					<h1 class="name"><?php echo h($spot['Spot']['name']); ?></h1>
 					<?php
 					// Don't show the reviews if there are not any ratings yet.
-					if ($spot['Spot']['rating_count']):
-						echo $this->element('piece-rating_system');
-					endif; ?>
+					// if ($spot['Spot']['rating_count']):
+						// echo $this->element('piece-rating_system');
+					// endif; ?>
 					<div class="row">
 						<?php if ($spot['Spot']['spotlight_1']): ?>
 							<h4>

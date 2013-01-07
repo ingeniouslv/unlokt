@@ -23,10 +23,6 @@ var FeedView = Backbone.View.extend({
 	initialize: function() {
 		this.template = _.template(this.options.template);
 		this.collection.on('reset', this.render, this);
-		// If our view starts and we don't have any data, make sure to call fetch() on the collection.
-		if (!this.collection.length) {
-			// this.collection.fetch();
-		}
 	},
 	render: function() {
 		this.$el.html(this.template({feeds: this.collection.toJSON()}));

@@ -4,8 +4,13 @@ RewriteEngine on
 RewriteRule ^gen/(.+)/(\d+)/(\d+)x(\d+)/?(.*)$ gen/index.php?type=$1&id=$2&width=$3&height=$4&image=$5 [L]
 
 # Redirect www.unlokt.com to unlokt.com
+RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [L]
+RewriteRule ^(.*)$ http://unlokt.com/$1 [R=301,L]
+
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
+RewriteRule ^(.*)$ https://unlokt.com/$1 [R=301,L]
 
 RewriteRule ^$ app/webroot/ [L]
 RewriteRule (.*) app/webroot/$1 [L]

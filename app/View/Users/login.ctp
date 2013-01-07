@@ -16,12 +16,12 @@ $this->set('title_for_layout', 'Login');
 				?>
 				<div class="btn-group">
 					<a class="btn btn-red" href="/users/register">Sign Up!</a>
-					<?php echo $this->Form->button('Log in', array('type' => 'submit', 'class' => 'btn btn-blue')); ?>
-					<?php echo $this->Html->link('Log in', array('action' => 'login_facebook', 'admin' => false), array('class' => 'btn btn-fb')); ?>
+					<?php echo $this->Form->button('Log In', array('type' => 'submit', 'class' => 'btn btn-blue')); ?>
+					<?php echo $this->Html->link('Log In', array('action' => 'login_facebook', 'admin' => false), array('class' => 'btn btn-fb')); ?>
 				</div>
 				<div class="tip warning" style="display: none;">
 					<h4>Warning</h4>
-					<p>If you login with facebook you will not be able to login without facebook anymore</p>
+					<p>If you login with facebook you will not be able to Log In without facebook anymore</p>
 				</div>
 				<!-- TODO: Forgot Password view -->
 				<div class="btn-group">

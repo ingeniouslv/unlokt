@@ -523,18 +523,29 @@ class Spot extends AppModel {
 		)));
 	}
 
-	// return a string of text formatted specifically for Spotlight.
+	// parse string of text formatted specifically for Spotlight.
 	// I.e., parse youtube links, apply certain formatting, etc.
-	public function parseSpotlightText($string) {
-		// Match the two known youtube link formats with embed code.
+	public function parseWysiwygText($field = null) {
+		if (empty($field) || !isset($this->data['Spot'][$field])) {
+			throw new NotFoundException('Expecting field and data for field.');
+		}
+		$string = $this->data['Spot'][$field];
+		// First - escape all HTML. Then un-escape desired tags.
+		$string = htmlspecialchars($string);
+		// $string = str_replace('&lt;div', '<div', $string);
+		// $string = str_replace('&lt;span', '<span', $string);
+		// $string = str_replace('&lt;h1', '<div', $string);
+		$string = preg_replace('@&lt;(/?(div|span|font|h1|h2|h3|h4|h5|h6|br|a|p|img|b|u|i|s)[^a-zA-Z])@', '<$1', $string);
+		$string = str_replace('&gt;', '>', $string);
+		$string = str_replace('&quot;', '"', $string);
+
 		$string = preg_replace(
 			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-]+)@',
 			'<iframe width="220" height="150" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen=""></iframe>',
 			$string
 		);
-		
-		return $string;
-	} // end of parseSpotlightText()
+		$this->data['Spot'][$field.'_parsed'] = $string;
+	} // end of parseWysiwygText()
 
 	public function address_to_coordinates($address) {
 		$lookup = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false');

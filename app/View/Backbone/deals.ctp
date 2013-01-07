@@ -1,6 +1,6 @@
 <div class="row" id="staggered">
 	<!-- Filtered Item-->
-	<% for (var i in deals) { var deal = deals[i]; %>
+	<% _.each(deals, function(deal) { %>
 		<div class="columns staggered-item">
 			<div class="tile">
 				<% if (typeof deal.HappyHour != 'undefined') { %>
@@ -61,7 +61,7 @@
 							<p><%= deal.Spot.short_description %></p>
 							<% if(_.indexOf(spot_ids_i_follow, parseInt(deal.Spot.id)) > -1) { %>
 								<a class="btn btn-blue pull-right following" href="javascript:void(0);" data-spot-id="<%= deal.Spot.id %>">Unfollow Spot</a>
-							<% } else  { %>
+							<% } else { %>
 								<a class="btn btn-red pull-right follow" href="javascript:void(0);" data-spot-id="<%= deal.Spot.id %>">Follow Spot</a>
 							<% } %>
 						</div>
@@ -81,10 +81,10 @@
 						</div>
 						<div class="block-actions">
 							<p><%= deal.Deal.description %></p>
-							<% if(deal.Deal.keys > 1) { %>
+							<% if (deal.Deal.keys > 1) { %>
 							<span class="keys-total pull-left"><%= deal.Deal.keys %></span>
 							<% } %>
-							<% if(deal.Deal.keys > 0) { %>
+							<% if (deal.Deal.keys > 0) { %>
 								<a class="btn btn-red pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Special</a>
 							<% } else { %>
 								<a class="btn btn-red pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Event</a>
@@ -106,7 +106,10 @@
 
 			</div>
 		</div>
-	<% } %>
+	<% }); %>
+
+
+
 </div>
 	<!-- End Filtered Item -->
 

@@ -72,7 +72,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 								
 								<div class="spotlight-highlight-wrapper">
 									<div class="spotlight-highlight">
-										<?php echo $spot['Spot']['spotlight_1']; ?>
+										<?php echo $spot['Spot']['spotlight_1_parsed']; ?>
 									</div>
 								</div>	
 								<!-- <img src="http://dummyimage.com/476x210"> -->
@@ -88,7 +88,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 					<div class="eight columns">
 						<h4>About the Spot</h4>
 						<div class="spot-description block-darkgray block">
-							<?php echo $spot['Spot']['description']; ?>
+							<?php echo $spot['Spot']['description_parsed']; ?>
 						</div>
 					</div>
 
@@ -171,15 +171,15 @@ $this->Html->add_script(array(
 	<div class="row">
 		<div class="nine columns">
 			<div class="row row-fix">
-				<?php if (empty($spot['Spot']['is_premium'])): ?>
+				<?php if (empty($spot['Spot']['is_premium']) && $managerOfCurrentSpot): ?>
 					<div class="twelve columns block-slider">
 						<div class="prem" disabled>
-							<p>Premium Users</p>
+							<p>Upgrade to Premium</p>
 						</div>
 						
 						<?php echo $this->element('mod-disabled_filtered_items'); ?>
 					</div>
-				<?php else: ?>
+				<?php elseif (!empty($spot['Spot']['is_premium'])): ?>
 					<div class="twelve columns block-slider">
 						<div class="block-slider-nav">
 							<a class="left" href="javascript:void(0);"></a>

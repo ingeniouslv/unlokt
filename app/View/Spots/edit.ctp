@@ -13,6 +13,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 				
 				<h2 class="form-section-label">Information</h2>
 				<?php echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full', 'placeholder' => 'Name', 'name' => 'name')); ?>
+				<?php echo $this->Form->input('parent_spot_id', array('div' => 'control-fields', 'class' => 'input-full', 'options' => $parentSpots, 'empty' => 'No Parent Spot')); ?>
 				
 				<h2 class="form-section-label">Location</h2>
 				<?php

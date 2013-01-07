@@ -220,6 +220,19 @@ class Spot extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'ChildSpot' => array(
+			'className' => 'Spot',
+			'foreignKey' => 'parent_spot_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Payment' => array(
 			'className' => 'Payment',
 			'foreignKey' => 'spot_id',
@@ -246,6 +259,13 @@ class Spot extends AppModel {
 		'Plan' => array(
 			'className' => 'Plan',
 			'foreignKey' => 'plan_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'ParentSpot' => array(
+			'className' => 'Spot',
+			'foreignKey' => 'parent_spot_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -527,4 +547,22 @@ class Spot extends AppModel {
 		}
 		return array($lookup['results'][0]['geometry']['location']['lat'], $lookup['results'][0]['geometry']['location']['lng']);
 	} // end of address_to_coordinates()
+	
+	//get all the spots that a given user manages that have null for parent_spot_id.
+	//return these in a list form eg array('id' => 'name - address address2 city, state zip)
+	public function getParentSpotList($userId = null, $skipTheseIds = array()) {
+		if(empty($userId))$userId = $this->Auth->user('id');
+		$spot_ids = $this->Manager->find('list', array('fields' => array('spot_id'), 'conditions' => array('user_id' => $userId)));
+		$parent_spots = $this->find('all', array( 'conditions' => array('id' => $spot_ids, 'id NOT' => $skipTheseIds), 'fields' => array('id', 'name', 'address', 'address2', 'city', 'state', 'zip')));
+		$parent_spot_list = array();
+		foreach($parent_spots as $spot) {
+			$parent_spot_list[$spot['Spot']['id']] = $spot['Spot']['name'] . ' - ' .
+				 $spot['Spot']['address'] . ' ' .
+				 (empty($spot['Spot']['address2'])?'': $spot['Spot']['address2'] . ' ') .
+				 $spot['Spot']['city'] . ', ' .
+				 $spot['Spot']['state'] . ' ' . 
+				 $spot['Spot']['zip'];
+		}
+		return $parent_spot_list;
+	}
 }

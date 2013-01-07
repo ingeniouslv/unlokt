@@ -61,15 +61,19 @@ class DealsController extends AppController {
 		}
 		
 		$spot = $this->Deal->Spot->findById($spot_id);
-		$this->paginate = array(
+		
+		 
+		$paginate_array = array(
 			'conditions' => array(
-				'spot_id' => $spot_id,
 				'is_active' => $show_active
 			),
 			'order' => array(
 				'created'
 			)
 		);
+		$paginate_array['conditions']['spot_id'] = ($spot['Spot']['parent_spot_id'] != null)? $spot['Spot']['parent_spot_id'] :$spot_id;
+		
+		$this->paginate = $paginate_array;
 		
 		$deals = $this->paginate();
 		
@@ -120,8 +124,11 @@ class DealsController extends AppController {
 			$this->request->data['Deal']['start_date'] = date('Y-m-d', strtotime($this->request->data['Deal']['start_date']));
 			$this->request->data['Deal']['end_date'] = date('Y-m-d', strtotime($this->request->data['Deal']['end_date']));
 			$this->Deal->set($this->request->data);
+			
+			//if the spot has a parent spot, add the deal to the parent spot
+			$deal_spot_id = ($spot['Spot']['parent_spot_id'] != null)? $spot['Spot']['parent_spot_id'] : $spot_id;
 			$this->Deal->set(array(
-				'spot_id' => $spot_id,
+				'spot_id' => $deal_spot_id,
 				'is_active' => 1
 			));
 			// Do all the validation here.

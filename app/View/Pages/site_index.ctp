@@ -222,6 +222,9 @@ $this->Html->add_script(array(
 				$("#current-location").html("<i class=\"icon-direction\"></i>" + closestLocation.Location.name);
 			}
 		}
+		if (typeof window.homepagemap.center !== "undefined") {
+			window.homepagemap.center(Geo.lat, Geo.lng);
+		}
 	}
 	
 	//////////////////////////////////////////////////
@@ -404,7 +407,10 @@ $this->Html->add_script(array(
 	//////////////////////////////////////////////////
 	
 	function initialize_homepage_map() {
-		window.homepagemap = new com.unlokt.map('homepagemap');
+		window.homepagemap = new com.unlokt.map('homepagemap', {
+			lat: Geo.lat,
+			lng: Geo.lng
+		});
 		$('#homepagemap').addClass('initiated');
 		// Add some listeners so that panning or zooming on the map causes re-searching.
 		var timeout_length = 100; // number of milliseconds to wait to no more events

@@ -117,6 +117,26 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 								</ul>
 							</div>	
 						<?php endif; ?>
+						<!-- Show SpotOption if not empty -->
+						<?php if (count($other_spots)): ?>
+							<h4>Other Locations</h4>
+							<div class="block block-darkgray">	
+								<ul class="other-spot">
+									<?php foreach ($other_spots as $otherSpot): ?>
+										<li>
+											<?php 
+												$address = $otherSpot['Spot']['address'] . 
+													($otherSpot['Spot']['address2']?' ' . $otherSpot['Spot']['address2']:'') . 
+													' ' . $otherSpot['Spot']['city'] . 
+													', ' . $otherSpot['Spot']['state'] . 
+													' ' . $otherSpot['Spot']['zip'];
+												echo $this->Html->link(h($address), array('action' => 'view', $otherSpot['Spot']['id']));
+											?>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							</div>	
+						<?php endif; ?>
 					</div>
 				</div>
 				<!-- End Spot Content -->

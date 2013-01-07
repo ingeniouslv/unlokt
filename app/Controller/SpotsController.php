@@ -79,7 +79,9 @@ class SpotsController extends AppController {
 		
 		$this->Spot->Feed->limit = 5;
 		
-		$deals = $this->Spot->Deal->getDealsBySpotIds($id);
+		//get all other locations linked to this location
+		$other_spots = $this->Spot->find('all', array('conditions' => array('OR' => array('Spot.parent_spot_id' => $spot['Spot']['id'], 'Spot.id' => $spot['Spot']['parent_spot_id']), 'Spot.id NOT' => $spot['Spot']['id'])));
+		$deals = ($spot['Spot']['parent_spot_id'] != null) ? $this->Spot->Deal->getDealsBySpotIds($spot['Spot']['parent_spot_id']) : $this->Spot->Deal->getDealsBySpotIds($id);
 		$feeds = $this->Spot->Feed->getFeedBySpotIds($id, array('Spot', 'Attachment'));
 		$reviews = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
 		$attachments = $this->Spot->Attachment->getAttachmentBySpotIds($id);
@@ -98,7 +100,7 @@ class SpotsController extends AppController {
 		// Parse the Spotlight text
 		$spot['Spot']['spotlight_2_parsed'] = $this->Spot->parseSpotlightText($spot['Spot']['spotlight_2']);
 		
-		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments', 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot'));
+		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments', 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot', 'other_spots'));
 	}
 
 /**
@@ -147,12 +149,13 @@ class SpotsController extends AppController {
 		} else {
 			$this->request->data = $spot;
 		}
+		$parentSpots = $this->Spot->getParentSpotList($this->Auth->user('id'), $id);
 		$categories = $this->Spot->Category->getThreadedList();
 		
 		$spotOptions = $this->Spot->SpotOption->find('list');
 		// Admins will be allowed to edit the Location of the Spot
 		$locations = $this->Spot->Location->find('list');
-		$this->set(compact('categories','spotOptions', 'locations', 'spot'));
+		$this->set(compact('categories','spotOptions', 'locations', 'spot', 'parentSpots'));
 	}
 	
 	// public function admin_edit($id = null) {
@@ -617,9 +620,9 @@ class SpotsController extends AppController {
 			$this->Session->setFlash('Invalid spot id.', 'alert-warning');
 		} else {
 			if($this->Spot->saveField('is_pending', false)) {
-				$this->Session->setFlash('The spot was approved.');
+				$this->Session->setFlash('The spot was approved.', 'alert-success');
 			} else {
-				$this->Session->setFlash('The spot could not be approved.');
+				$this->Session->setFlash('The spot could not be approved.', 'alert-warning');
 			}
 		}
 

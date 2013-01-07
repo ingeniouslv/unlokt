@@ -65,7 +65,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 				<div class="row">
 					<div class="five columns">
 						<h2 class="form-section-label">Keys</h2>
-						<?php echo $this->Form->input('keys', array('div' => 'control-fields', 'readonly', 'class' => 'twelve')); ?>
+						<?php echo $this->Form->input('keys', array('div' => 'control-fields', 'class' => 'twelve')); ?>
 						<div class="btn-group" id="reward-group">
 							<a href="javascript:void(0);" class="btn btn-primary" id="increase-keys">More Keys</a>
 							<a href="javascript:void(0);" class="btn btn-primary" id="decrease-keys">Less Keys</a>
@@ -235,7 +235,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 			$('#redemption-codes input:not(:first)').attr('value', $('#DealRedemption1').val());
 		} else {
 			console.log('use different codes');
-			$('#redemption-codes input:not(:first)').attr('readonly', 'readonly');
+			$('#redemption-codes input:not(:first)').removeAttr('readonly');
 			$('#redemption-codes input:not(:first)').attr('value', '');
 		}
 	}

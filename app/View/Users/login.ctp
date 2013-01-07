@@ -12,7 +12,7 @@ $this->set('title_for_layout', 'Login');
 				<?php
 				echo $this->Form->create('User', array('class' => 'control-group form-vertical form-centered'));
 				echo $this->Form->input('email', array('div' => 'control-fields', 'label' => false, 'class' => 'input-full', 'placeholder' => 'Email'));
-				echo $this->Form->input('password', array('div' => 'control-fields', 'label' => false, 'class' => 'input-full', 'placeholder' => 'Password'));
+				echo $this->Form->input('password', array('div' => 'control-fields pword', 'label' => false, 'class' => 'input-full', 'placeholder' => 'Password'));
 				?>
 				<div class="btn-group">
 					<a class="btn btn-red" href="/users/register">Sign Up!</a>
@@ -21,7 +21,7 @@ $this->set('title_for_layout', 'Login');
 				</div>
 				<div class="tip warning" style="display: none;">
 					<h4>Warning</h4>
-					<p>If you login with facebook you will not be able to Log In without facebook anymore</p>
+					<p>If you log in with Facebook you will not be able to log in without Facebook anymore.</p>
 				</div>
 				<!-- TODO: Forgot Password view -->
 				<div class="btn-group">

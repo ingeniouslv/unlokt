@@ -6,7 +6,6 @@
 			
 			<div class="head">
 				<img src="<?php echo $this->Html->gen_path('user', $review['User']['id'], 40); ?>" class="pull-left">
-				<?php echo $this->element('piece-rating_system', array("rating_size" => "inline", 'review' => $review)); ?>
 				<h3 class="title"><?php echo htmlspecialchars($review['Review']['name']); ?></h3>
 			</div>
 

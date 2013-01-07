@@ -19,7 +19,12 @@ class ReviewsController extends AppController {
  */
 	public function admin_index() {
 		$this->Review->recursive = 0;
-		$this->paginate = array('conditions' => array('is_flagged' => false));
+		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			),
+			'conditions' => array('is_flagged' => false)
+			);
 		$flagged_reviews = $this->Review->find('first' , array('fields' => array('count(*) as flagged_review_count'), 'conditions' => array('is_flagged' => true), 'group' => array('is_flagged')));
 		$flagged_review_count = empty($flagged_reviews)?0:$flagged_reviews[0]['flagged_review_count'];
 		
@@ -34,7 +39,12 @@ class ReviewsController extends AppController {
  */
 	public function admin_flagged_reviews() {
 		$this->Review->recursive = 0;
-		$this->paginate = array('conditions' => array('is_flagged' => true));
+		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			),
+			'conditions' => array('is_flagged' => true)
+		);
 		$this->set('reviews', $this->paginate());
 	}
 
@@ -152,7 +162,12 @@ class ReviewsController extends AppController {
 		if ($this->request->is('ajax')) {
 			die('OK');
 		}
-		$this->redirect(array('controller' => 'spots', 'action' => 'view', $spot_id));
+		//redirect super admins back to the admin index of the reviews
+		if($this->Auth->user('is_super_admin')) {
+			$this->redirect(array('action' => 'index', 'admin' => true));
+		} else {
+			$this->redirect(array('controller' => 'spots', 'action' => 'view', $spot_id));
+		}
 		// if (!$this->Review->exists()) {
 			// throw new NotFoundException(__('Invalid review'));
 		// }

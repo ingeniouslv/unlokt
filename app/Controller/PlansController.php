@@ -19,6 +19,11 @@ class PlansController extends AppController {
  */
 	public function admin_index() {
 		$this->Plan->recursive = 0;
+		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			),
+		);
 		$this->set('plans', $this->paginate());
 	}
 
@@ -46,10 +51,10 @@ class PlansController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Plan->create();
 			if ($this->Plan->save($this->request->data)) {
-				$this->Session->setFlash(__('The plan has been saved'));
+				$this->Session->setFlash('The plan has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The plan could not be saved. Please, try again.'));
+				$this->Session->setFlash('The plan could not be saved. Please, try again.', 'alert-error');
 			}
 		}
 	}
@@ -68,10 +73,10 @@ class PlansController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Plan->save($this->request->data)) {
-				$this->Session->setFlash(__('The plan has been saved'));
+				$this->Session->setFlash('The plan has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The plan could not be saved. Please, try again.'));
+				$this->Session->setFlash('The plan could not be saved. Please, try again.', 'alert-error');
 			}
 		} else {
 			$this->request->data = $this->Plan->read(null, $id);
@@ -95,10 +100,10 @@ class PlansController extends AppController {
 			throw new NotFoundException(__('Invalid plan'));
 		}
 		if ($this->Plan->delete()) {
-			$this->Session->setFlash(__('Plan deleted'));
+			$this->Session->setFlash('Plan deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Plan was not deleted'));
+		$this->Session->setFlash('Plan was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'index'));
 	}
 }

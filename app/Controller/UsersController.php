@@ -28,6 +28,7 @@ class UsersController extends AppController {
  */
 	public function admin_index() {
 		$this->User->recursive = 0;
+		$this->paginate = array('order' => array('User.last_name' => 'asc', 'User.first_name' => 'asc'));
 		$this->set('users', $this->paginate());
 	}
 
@@ -485,7 +486,7 @@ class UsersController extends AppController {
 	public function account() {
 		$user_id = $this->Auth->user('id');
 		$user = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
-		$reviews = $this->User->Review->getReviewByUserId($user_id, array('Spot'));
+		$reviews = $this->User->Review->getReviewByUserId($user_id, array('Spot', 'User'));
 		$deals = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id, array('Spot'));
 		$this->set(compact('user', 'reviews', 'deals'));
 	} // end of account()

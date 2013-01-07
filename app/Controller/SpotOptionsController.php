@@ -14,6 +14,11 @@ class SpotOptionsController extends AppController {
  */
 	public function admin_index() {
 		$this->SpotOption->recursive = 0;
+		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			)
+		);
 		$this->set('spotOptions', $this->paginate());
 	}
 

@@ -91,10 +91,10 @@ class HoursOfOperationsController extends AppController {
 			// die();
 			$this->HoursOfOperation->create();
 			if ($this->HoursOfOperation->save($hours_of_operation)) {
-				$this->Session->setFlash(__('The hours of operation has been saved'));
+				$this->Session->setFlash('The hours of operation has been saved', 'alert-success');
 				$this->redirect(array('action' => 'manage', $this->HoursOfOperation->Spot->id));
 			} else {
-				$this->Session->setFlash(__('The hours of operation could not be saved. Please, try again.'));
+				$this->Session->setFlash('The hours of operation could not be saved. Please, try again.', 'alert-warning');
 			}
 		}
 		$spot = $this->HoursOfOperation->Spot->findById($spot_id);
@@ -125,10 +125,10 @@ class HoursOfOperationsController extends AppController {
 		}
 		
 		if ($this->HoursOfOperation->delete()) {
-			$this->Session->setFlash(__('Hours of operation deleted'));
+			$this->Session->setFlash('Hours of operation deleted', 'alert-success');
 			$this->redirect(array('action' => 'manage', $hours_of_operation['HoursOfOperation']['spot_id']));
 		}
-		$this->Session->setFlash(__('Hours of operation was not deleted'));
+		$this->Session->setFlash('Hours of operation was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'manage', $hours_of_operation['HoursOfOperation']['spot_id']));
 	}
 }

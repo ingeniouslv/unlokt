@@ -98,6 +98,11 @@ class PagesController extends AppController {
  */
 	public function admin_index() {
 		$this->Page->recursive = 0;
+		$this->paginate = array(
+			'order' => array(
+				'title' => 'asc'
+			),
+		);
 		$pages = $this->paginate();
 		
 		$this->set(compact('pages'));
@@ -112,10 +117,10 @@ class PagesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Page->create();
 			if ($this->Page->save($this->request->data)) {
-				$this->Session->setFlash(__('The page has been saved'));
+				$this->Session->setFlash('The page has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The page could not be saved. Please, try again.'));
+				$this->Session->setFlash('The page could not be saved. Please, try again.', 'alert-error');
 			}
 		}
 	}
@@ -134,10 +139,10 @@ class PagesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Page->save($this->request->data)) {
-				$this->Session->setFlash(__('The page has been saved'));
+				$this->Session->setFlash('The page has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The page could not be saved. Please, try again.'));
+				$this->Session->setFlash('The page could not be saved. Please, try again.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->Page->read(null, $id);
@@ -161,10 +166,10 @@ class PagesController extends AppController {
 			throw new NotFoundException(__('Invalid page'));
 		}
 		if ($this->Page->delete()) {
-			$this->Session->setFlash(__('Page deleted'));
+			$this->Session->setFlash('Page deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Page was not deleted'));
+		$this->Session->setFlash('Page was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'index'));
 	}
 	

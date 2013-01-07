@@ -170,7 +170,7 @@ function bind_general_user_actions() {
 	
 	// Flagging reviews for review.
 	$('body').on('click', '[data-flag-review]', function() {
-		if (!confirm('Are you sure you want to flag this Review? An administrator will review this Review.')) {
+		if (!confirm('Are you sure you want to flag this Note? An administrator will review this Note.')) {
 			return;
 		}
 		var review_id = $(this).data('flag-review');

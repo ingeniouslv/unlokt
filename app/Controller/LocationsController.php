@@ -19,6 +19,11 @@ class LocationsController extends AppController {
  */
 	public function admin_index() {
 		$this->Location->recursive = 0;
+		$this->paginate = array(
+			'order' => array(
+				'name' => 'asc'
+			),
+		);
 		$this->set('locations', $this->paginate());
 	}
 
@@ -46,10 +51,10 @@ class LocationsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Location->create();
 			if ($this->Location->save($this->request->data)) {
-				$this->Session->setFlash(__('The location has been saved'));
+				$this->Session->setFlash('The location has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The location could not be saved. Please, try again.'));
+				$this->Session->setFlash('The location could not be saved. Please, try again.', 'alert-warning');
 			}
 		}
 	}
@@ -68,10 +73,10 @@ class LocationsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Location->save($this->request->data)) {
-				$this->Session->setFlash(__('The location has been saved'));
+				$this->Session->setFlash('The location has been saved', 'alert-success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The location could not be saved. Please, try again.'));
+				$this->Session->setFlash('The location could not be saved. Please, try again.', 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->Location->read(null, $id);
@@ -95,10 +100,10 @@ class LocationsController extends AppController {
 			throw new NotFoundException(__('Invalid location'));
 		}
 		if ($this->Location->delete()) {
-			$this->Session->setFlash(__('Location deleted'));
+			$this->Session->setFlash('Location deleted', 'alert-success');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Location was not deleted'));
+		$this->Session->setFlash('Location was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'index'));
 	}
 }

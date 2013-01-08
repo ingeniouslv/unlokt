@@ -10,23 +10,6 @@
 		<h3 class="name text-">
 			<a href="<?php echo "{$this->webroot}spots/view/{$spot['Spot']['id']}"; ?>"><?php echo h($spot['Spot']['name']); ?></a>
 		</h3>
-		<!-- Rating -->
-		<?php
-		// Determine whether or not to show the rating based upon if there are any ratings yet.
-		if (!empty($spot['Spot']['rating_count'])):
-		?>
-			<!-- Start Rating -->
-			<div class="rating votes clearfix" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-			<?php
-			// Calculate  FULL STARS, PARTIAL STAR, EMPTY STARS
-			$full_stars = floor($spot['Spot']['rating']);
-			$partial_star = round(fmod($spot['Spot']['rating'], $full_stars), 2);
-			$empty_stars = 5 - ceil($spot['Spot']['rating']);
-			?>
-				
-			</div>
-			<!-- End Rating -->
-		<?php endif; ?>
 	</div>
 	<!-- END SPOT NAME -->
 	<?php endif; ?>

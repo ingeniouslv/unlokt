@@ -23,32 +23,7 @@
 			$partial_star = round(fmod($spot['Spot']['rating'], $full_stars), 2);
 			$empty_stars = 5 - ceil($spot['Spot']['rating']);
 			?>
-				<div class="rating-stars">
-					<?php
-					echo str_repeat('<span class="star"></span>', $empty_stars);
-					$class = null;
-					switch (true) {
-						case $partial_star <= .33:
-							$class = 'one-third';
-							break;
-						case $partial_star <= .5:
-							$class = 'one-half';
-							break;
-						case $partial_star <= .66:
-						default:
-							$class = 'two-thirds';
-							break;
-					}
-					if ($partial_star > 0) {
-						echo "<span class=\"star $class\"></span>";
-					}
-					echo str_repeat('<span class="star full"></span>', $full_stars);
-					?>
-				</div>
-	
-				<div class="rating-value">
-					<span class="value-group"><span itemprop="ratingValue"><?php echo $spot['Spot']['rating']; ?></span> of 5</span>
-				</div>
+				
 			</div>
 			<!-- End Rating -->
 		<?php endif; ?>

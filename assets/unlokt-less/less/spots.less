@@ -447,7 +447,7 @@ table .spot-name a {
 		}	
 
 		.more {
-			color: #88723b;
+			color: darken(@blue, 48%);
 			padding: 0 5px 5px 0;
 		}
 
@@ -578,10 +578,10 @@ table .spot-name a {
 
 //
 
-.prem{
+.premium{
 	display: none;
 }
-.prem[disabled] {
+.premium.disabled {
 	display: block;
 	position: absolute;
 	z-index: 4;
@@ -591,13 +591,10 @@ table .spot-name a {
 	background: #333;
 	opacity: 0.8;
 	p {
-		font-size: 40px;
-		display: block;
-		text-align: center;
-		margin: 0 auto;
-		background: #1A1A1A;
 		background: @schemeGray;
-		margin-top: 108px;
 		color: #C5AC46;
+		font-size: 40px;
+		margin: 108px auto 0;
+		text-align: center;
 	}
 }

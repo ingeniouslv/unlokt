@@ -107,7 +107,7 @@
 	.explore {
 		padding-left: 15px;
 		padding-right: 7.5px;
-		border-left: none;
+		border-left: 1px solid transparent;
 		.border-radius(3px 0px 0px 3px);
 		&:hover {
 			a.clear {
@@ -170,6 +170,7 @@
 .filter .nav {
 	.clearfix;
 	li {
+		border-left: 1px solid transparent;
 		float: left;
 		padding-top: 12px;
 		height: 46px;
@@ -183,7 +184,6 @@
 		a {
 			display: block;
 			padding: 10px 10px 8px;
-			border-left: 1px solid transparent;
 			font-weight: bold;
 			font-size: 10px;
 			text-transform: uppercase;
@@ -207,17 +207,18 @@
 		}
 
 		&:hover {
+			border-left: 1px solid darken(@blue, 20%);
 			cursor: pointer;
 			
+			#gradient > .vertical(lighten(@btnBlueBackground, 5%), darken(@btnBlueBackground, 15%));
 			a i, a {
 				color: @white;
 				text-shadow: 0 1px 1px #929292, 0 0 0 rgba(0, 0, 0, 0.35);
 			}
-			.box-shadow(inset 0px 0px 2px 0px #ddd);
-			#gradient > .vertical(lighten(@btnBlueBackground, 5%), darken(@btnBlueBackground, 15%));
 		}
 
 		&.active {
+			border-left: 1px solid darken(@blue, 20%);
 			#gradient > .vertical(lighten(@btnBlueBackground, 5%), darken(@btnBlueBackground, 15%));
 
 			a {

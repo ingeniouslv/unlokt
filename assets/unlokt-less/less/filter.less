@@ -107,15 +107,17 @@
 	.explore {
 		padding-left: 15px;
 		padding-right: 7.5px;
-		border-left: 1px solid transparent;
+		border: none;
 		.border-radius(3px 0px 0px 3px);
 		&:hover {
+			border: none;
 			a.clear {
 				border-right: 1px solid @white;
 			}
 		}
 
 		&.active {
+			border: none;
 			a {
 				color: @white;
 			}
@@ -172,10 +174,9 @@
 	li {
 		border-left: 1px solid transparent;
 		float: left;
-		padding-top: 12px;
 		height: 46px;
+		padding-top: 12px;
 		
-
 		i {
 			font-size: 12px;
 			line-height: 10px;

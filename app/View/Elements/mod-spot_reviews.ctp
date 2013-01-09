@@ -3,7 +3,7 @@
 	<!-- Review Item -->
 	<div class="note-slide columns ">	
 		<div class="review-item tile">
-			
+			<?php debug($review['User']); ?>
 			<div class="head">
 				<img src="<?php echo $this->Html->gen_path('user', $review['User']['id'], 40); ?>" class="pull-left">
 				

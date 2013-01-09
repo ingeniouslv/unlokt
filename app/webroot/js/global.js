@@ -53,14 +53,14 @@ $(function() {
 	bind_general_user_actions();
 	$('.timepicker').timepicker();
 	$('.datepicker').datepicker();
-	$('[data-type="editor"]').htmlarea({
-		toolbar: [
-			["bold", "italic", "underline", "|", "forecolor"],
-			["p", "h1", "h2", "h3", "h4", "h5", "h6"],
-			["link", "unlink", "|", "image"]
-		],
-		css: '/css/jhtml.css'
-	});
+	// $('[data-type="editor"]').htmlarea({
+	// 	toolbar: [
+	// 		["bold", "italic", "underline", "|", "forecolor"],
+	// 		["p", "h1", "h2", "h3", "h4", "h5", "h6"],
+	// 		["link", "unlink", "|", "image"]
+	// 	],
+	// 	css: '/css/jhtml.css'
+	// });
 });
 
 /* Author: Zach Jones <zach@peacefulcomputing.com>

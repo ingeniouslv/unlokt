@@ -181,6 +181,19 @@ class Spot extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'HoursOfOperation' => array(
+			'className' => 'HoursOfOperation',
+			'foreignKey' => 'spot_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Manager' => array(
 			'className' => 'Manager',
 			'foreignKey' => 'spot_id',
@@ -540,7 +553,7 @@ class Spot extends AppModel {
 		$string = str_replace('&quot;', '"', $string);
 
 		$string = preg_replace(
-			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-]+)@',
+			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-_]+)@',
 			'<iframe width="220" height="150" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen=""></iframe>',
 			$string
 		);

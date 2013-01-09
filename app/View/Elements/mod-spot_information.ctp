@@ -69,14 +69,19 @@
 			
 		</div>
 
-		<div class="section">
-			<h5 class="section-name"><span>Schedule</span></h5>
-			<i class="icon-clock-2"></i>
-			<div class="section-content">
-				<p>Mon&ndash;Thu, Sun <span class="pull-right">10 am &ndash; 10 pm</span></p>
-				<p>Fri&ndash;Sat <span class="pull-right">10 am &ndash; 11 pm</span></p>
+		<?php if (!empty($spot['HoursOfOperation'])): ?>
+			<div class="section">
+				<h5 class="section-name"><span>Schedule</span></h5>
+				<i class="icon-clock-2"></i>
+				<div class="section-content">
+					<!-- <p>Mon&ndash;Thu, Sun <span class="pull-right">10 am &ndash; 10 pm</span></p>
+					<p>Fri&ndash;Sat <span class="pull-right">10 am &ndash; 11 pm</span></p> -->
+					<?php foreach ($spot['HoursOfOperation'] as $hoursOfOperation): ?>
+						<p><?php echo $hoursOfOperation['short_string']; ?></p>
+					<?php endforeach; ?>
+				</div>
 			</div>
-		</div>
+		<?php endif; ?>
 		
 		<?php if ($spot['Spot']['url']): ?>
 			<div class="section">

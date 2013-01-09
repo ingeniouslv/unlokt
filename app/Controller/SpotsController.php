@@ -62,7 +62,8 @@ class SpotsController extends AppController {
 			'SpotOption',
 			'SpotFollower' => array(
 				'conditions' => array('SpotFollower.user_id' => $this->Auth->user('id'))
-			)
+			),
+			'HoursOfOperation'
 		);
 		
 		if (!$spot = $this->Spot->getSpot(null, $extra_contain)) {

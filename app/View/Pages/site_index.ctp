@@ -140,6 +140,7 @@ $this->Html->add_script(array(
 		params.limit = limit;
 		var url = search_url + $.param(params);
 		
+		console.log(url);
 		$.getJSON(url, function(results) {
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);

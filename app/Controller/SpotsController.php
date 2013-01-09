@@ -276,6 +276,8 @@ class SpotsController extends AppController {
 	}
 	
 	public function homepage_data_by_radius($lat, $lng, $radius = 5/* the amount of miles from origin*/) {
+		//debug($radius);
+		$radius = 50;
 		$this->autoRender = false;
 		$this->Spot->cache = true;
 		// First, get a list of Spot ids. With these IDs we will query the other data types we need.
@@ -331,8 +333,27 @@ class SpotsController extends AppController {
 			} else if ($_GET['search'] == 'happy-hour') {
 				$include_deals = false;
 			} else if ($_GET['search'] == 'deals') {
+				$start_time = date('H:i', strtotime('today 12am'));
+				$end_time = date('H:i', strtotime('today 11:59pm'));
+				
+				$this->Spot->Deal->current_start_time = $start_time;
+				$this->Spot->Deal->current_end_time = $end_time;
+				$this->Spot->Deal->current_start_date = date('Y-m-d', strtotime('today'));
+				$this->Spot->Deal->current_end_date = date('Y-m-d', strtotime('+7 day'));
+				$this->Spot->Deal->current_day_of_week = array(0,1,2,3,4,5,6);
+				
 				$include_happy_hours = false;
+				$this->Spot->Deal->specials_only = true;
 			} else if ($_GET['search'] == 'events') {
+				$start_time = date('H:i', strtotime('today 12am'));
+				$end_time = date('H:i', strtotime('today 11:59pm'));
+				
+				$this->Spot->Deal->current_start_time = $start_time;
+				$this->Spot->Deal->current_end_time = $end_time;
+				$this->Spot->Deal->current_start_date = date('Y-m-d', strtotime('today'));
+				$this->Spot->Deal->current_end_date = date('Y-m-d', strtotime('+7 day'));
+				$this->Spot->Deal->current_day_of_week = array(0,1,2,3,4,5,6);
+				
 				$include_happy_hours = false;
 				$this->Spot->Deal->events_only = true;
 			} else if ($_GET['search'] == 'popular') {
@@ -526,6 +547,7 @@ class SpotsController extends AppController {
 		//sort the results so happy hours aren't always at the top
 		usort($return['deals'], array('Deal','sortDeals'));
 		//cut the array down to the requested length
+		//debug($_GET['limit']);
 		$return['deals'] = array_slice($return['deals'], 0, $_GET['limit']);
 		//debug($return['deals']);
 

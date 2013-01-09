@@ -10,7 +10,7 @@ $this->set('title_for_layout', 'Password Reset Request');
 					<div class="two columns">
 						<?php echo $this->Form->label('email', 'Email', array('class' => 'required') ); ?>
 					</div>
-					<?php echo $this->Form->input('email', array('class' => 'twelve', 'label' => false, 'div' => 'five columns')); ?>
+					<?php echo $this->Form->input('email', array('class' => 'twelve', 'label' => false, 'div' => 'five columns control-fields')); ?>
 				</div>
 			<div class="btn-group">
 				<?php echo $this->Form->submit('Reset Password', array('class' => 'btn btn-blue')); ?>

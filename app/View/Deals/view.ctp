@@ -107,7 +107,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 				</div>
 				<div class="row">
 					<div class="four columns">
-						<?php if($is_manager): ?>
+						<?php if($deal['Deal']['keys'] > 0 && $is_manager): ?>
 							<div class="content-group">
 								<p class="lead">Redemption Codes</p>
 								<p>

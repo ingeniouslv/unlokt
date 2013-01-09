@@ -286,6 +286,9 @@ class SpotsController extends AppController {
 		
 		$return = $this->_get_results($spot_ids);
 		
+		$spots_i_follow = $this->Spot->SpotFollower->getSpotListByUser();
+		$return['spot_ids_i_follow'] = array_keys($spots_i_follow);
+
 		//print_r($return);
 		//die();
 		die(json_encode($return));

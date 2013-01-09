@@ -20,7 +20,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							<?php elseif ($deal['Deal']['keys'] == 1): ?>
 								<i class="icon-tag-2"></i> Spot Special
 							<?php else: ?>
-								<i class="icon-key"></i> Spot Special
+								<i class="icon-key"></i> Reward
 							<?php endif; ?>
 						</h5>
 					</div>

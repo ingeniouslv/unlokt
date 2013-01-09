@@ -551,6 +551,7 @@ class Spot extends AppModel {
 		$string = preg_replace('@&lt;(/?(div|span|font|h1|h2|h3|h4|h5|h6|br|a|p|img|b|u|i|s)[^a-zA-Z])@', '<$1', $string);
 		$string = str_replace('&gt;', '>', $string);
 		$string = str_replace('&quot;', '"', $string);
+		$string = str_replace('&amp;', '&', $string);
 
 		$string = preg_replace(
 			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-_]+)@',

@@ -26,7 +26,7 @@ $this->set('title_for_layout', 'Login');
 				<!-- TODO: Forgot Password view -->
 				<div class="btn-group">
 					<a class="btn-link" href="/pages/about">About Us  </a>
-					<a class="btn-link" href="/users/forgot_password">Forgot Password?</a>
+					<a class="btn-link" href="/users/reset">Forgot Password?</a>
 				</div>
 				<?php
 				echo $this->Form->end();

@@ -181,6 +181,19 @@ class Spot extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'HoursOfOperation' => array(
+			'className' => 'HoursOfOperation',
+			'foreignKey' => 'spot_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Manager' => array(
 			'className' => 'Manager',
 			'foreignKey' => 'spot_id',

@@ -206,6 +206,10 @@ $this->Html->add_script(array(
 					</div>
 					<?php echo $this->element('mod-spot_reviews'); ?>
 				</div>	
+				<div class="block-actions btn-group">
+					<a class="btn btn-blue" href="javascript:void(0);" onclick="$('#reviewModal').modal();"><i class="icon-pencil"></i>Add Note</a>
+					<a class="btn" href="<?php echo $this->webroot; ?>reviews/reviews_by_spot/<?php echo $spot['Spot']['id']; ?>">Show More Notes</a>
+				</div>
 			</div>
 		</div>
 	</div>

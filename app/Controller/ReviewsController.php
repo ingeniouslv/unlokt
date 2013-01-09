@@ -212,7 +212,8 @@ class ReviewsController extends AppController {
 			'contain' => array(
 				'User' => array(
 					'fields' => array(
-						'name'
+						'name',
+						'id'
 					)
 				)
 			)

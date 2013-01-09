@@ -173,7 +173,7 @@ $this->Html->add_script(array(
 			<div class="row row-fix">
 				<?php if (empty($spot['Spot']['is_premium']) && $managerOfCurrentSpot): ?>
 					<div class="twelve columns block-slider">
-						<div class="prem" disabled>
+						<div class="premium disabled">
 							<p>Upgrade to Premium</p>
 						</div>
 						

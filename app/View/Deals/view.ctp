@@ -170,13 +170,13 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 	//add a hover effect to the tile image
 	$('.tile').hover(
 		function() {
-			$(this).children('.tile-footer').children('.block-actions').show(300);
+			$(this).children('.tile-footer').children('.block-actions').slideDown(200);
 		},
 		function() {
-			$(this).children('.tile-footer').children('.block-actions').hide(250);
+			$(this).children('.tile-footer').children('.block-actions').slideUp(200);
 		}
 	);
-
+	
 	//initially hide the buttons
 	$('.tile-footer .block-actions').hide();
 

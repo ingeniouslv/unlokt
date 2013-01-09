@@ -80,9 +80,9 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 				<?php echo $this->Form->select('SpotOption', $spotOptions, array('div' => 'control-fields', 'class' => 'input-full', 'multiple' => 'checkbox')); ?>
 
 				<h2 class="form-section-label">Profile</h2>
-				<?php echo $this->Form->input('spotlight_1', array('div' => 'control-fields', 'label' => 'Spotlight', 'class' => 'spot-spotlight_1-editor', 'data-type' => 'editor')); ?>
-				<?php echo $this->Form->input('description', array('div' => 'control-fields', 'class' => 'spot-description-editor', 'data-type' => 'editor')); ?>
-				<?php echo $this->Form->input('spotlight_2', array('div' => 'control-fields', 'label' => 'Spotlight Mini', 'class' => 'spot-spotlight_2-editor', 'data-type' => 'editor')); ?>
+				<?php echo $this->Form->input('spotlight_1', array('div' => 'control-fields', 'label' => 'Spotlight', 'class' => 'spot-spotlight_1-editor tinymce')); ?>
+				<?php echo $this->Form->input('description', array('div' => 'control-fields', 'class' => 'spot-description-editor tinymce')); ?>
+				<?php echo $this->Form->input('spotlight_2', array('div' => 'control-fields', 'label' => 'Spotlight Mini', 'class' => 'spot-spotlight_2-editor tinymce')); ?>
 				
 				<?php if($this->Auth->user('is_super_admin')) : ?>
 					<h2 class="form-section-label">Super Admin Controls</h2>
@@ -106,3 +106,40 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	$().ready(function() {
+		$('textarea.tinymce').tinymce({
+			// Location of TinyMCE script
+			script_url : '<?php echo $this->webroot; ?>js/libs/tiny_mce/tiny_mce.js',
+
+			// General options
+			theme : "advanced",
+			//plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
+
+			// Theme options
+			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword|,formatselect,",
+			theme_advanced_buttons2 : ",undo,redo,|,link,unlink,image,cleanup,code,|,forecolor,",
+			theme_advanced_toolbar_location : "top",
+			theme_advanced_toolbar_align : "left",
+			theme_advanced_statusbar_location : "bottom",
+			theme_advanced_resizing : true,
+
+			// Example content CSS (should be your site CSS)
+			content_css : "<?php echo $this->webroot; ?>css/content.css",
+
+			// Drop lists for link/image/media/template dialogs
+			template_external_list_url : "lists/template_list.js",
+			external_link_list_url : "lists/link_list.js",
+			external_image_list_url : "lists/image_list.js",
+			media_external_list_url : "lists/media_list.js",
+
+			// Replace values for the template plugin
+			template_replace_values : {
+				username : "Some User",
+				staffid : "991234"
+			}
+		});
+	});
+</script>

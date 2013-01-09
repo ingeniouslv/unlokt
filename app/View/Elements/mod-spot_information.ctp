@@ -10,48 +10,6 @@
 		<h3 class="name text-">
 			<a href="<?php echo "{$this->webroot}spots/view/{$spot['Spot']['id']}"; ?>"><?php echo h($spot['Spot']['name']); ?></a>
 		</h3>
-		<!-- Rating -->
-		<?php
-		// Determine whether or not to show the rating based upon if there are any ratings yet.
-		if (!empty($spot['Spot']['rating_count'])):
-		?>
-			<!-- Start Rating -->
-			<div class="rating votes clearfix" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-			<?php
-			// Calculate  FULL STARS, PARTIAL STAR, EMPTY STARS
-			$full_stars = floor($spot['Spot']['rating']);
-			$partial_star = round(fmod($spot['Spot']['rating'], $full_stars), 2);
-			$empty_stars = 5 - ceil($spot['Spot']['rating']);
-			?>
-				<div class="rating-stars">
-					<?php
-					echo str_repeat('<span class="star"></span>', $empty_stars);
-					$class = null;
-					switch (true) {
-						case $partial_star <= .33:
-							$class = 'one-third';
-							break;
-						case $partial_star <= .5:
-							$class = 'one-half';
-							break;
-						case $partial_star <= .66:
-						default:
-							$class = 'two-thirds';
-							break;
-					}
-					if ($partial_star > 0) {
-						echo "<span class=\"star $class\"></span>";
-					}
-					echo str_repeat('<span class="star full"></span>', $full_stars);
-					?>
-				</div>
-	
-				<div class="rating-value">
-					<span class="value-group"><span itemprop="ratingValue"><?php echo $spot['Spot']['rating']; ?></span> of 5</span>
-				</div>
-			</div>
-			<!-- End Rating -->
-		<?php endif; ?>
 	</div>
 	<!-- END SPOT NAME -->
 	<?php endif; ?>
@@ -111,14 +69,19 @@
 			
 		</div>
 
-		<div class="section">
-			<h5 class="section-name"><span>Schedule</span></h5>
-			<i class="icon-clock-2"></i>
-			<div class="section-content">
-				<p>Mon&ndash;Thu, Sun <span class="pull-right">10 am &ndash; 10 pm</span></p>
-				<p>Fri&ndash;Sat <span class="pull-right">10 am &ndash; 11 pm</span></p>
+		<?php if (!empty($spot['HoursOfOperation'])): ?>
+			<div class="section">
+				<h5 class="section-name"><span>Schedule</span></h5>
+				<i class="icon-clock-2"></i>
+				<div class="section-content">
+					<!-- <p>Mon&ndash;Thu, Sun <span class="pull-right">10 am &ndash; 10 pm</span></p>
+					<p>Fri&ndash;Sat <span class="pull-right">10 am &ndash; 11 pm</span></p> -->
+					<?php foreach ($spot['HoursOfOperation'] as $hoursOfOperation): ?>
+						<p><?php echo $hoursOfOperation['short_string']; ?></p>
+					<?php endforeach; ?>
+				</div>
 			</div>
-		</div>
+		<?php endif; ?>
 		
 		<?php if ($spot['Spot']['url']): ?>
 			<div class="section">

@@ -34,12 +34,13 @@
 			'com.unlokt.map.js',
 			'bootstrap-tab',
 			'libs/jquery.masonry',
-			'libs/jHtmlArea-0.7.5.min',
-			'libs/jHtmlArea.ColorPickerMenu-0.7.0.min',
+			// 'libs/jHtmlArea-0.7.5.min',
+			// 'libs/jHtmlArea.ColorPickerMenu-0.7.0.min',
 			'backbone_templates',
 			'libs/jquery-ui-1.9.1.custom.min',
 			'libs/jquery.easing.1.3',
-			'libs/consolelog'
+			'libs/consolelog',
+			'libs/tiny_mce/jquery.tinymce'
 			),
 		$this->Html->get_script()
 	);

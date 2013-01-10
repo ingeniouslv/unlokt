@@ -335,8 +335,10 @@ class UsersController extends AppController {
 			);
 			
 			$saved = $this->User->SpotFollower->save($spot_follower_data);
-			
-			if($this->request->is('ajax') || ($mobile) ) {
+			if ($mobile){
+				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
+				die();
+			} elseif($this->request->is('ajax')) {
 				die($saved?'GOOD':'The spot could not be followed. Please, try again.');
 			} else {
 				if($saved) {
@@ -361,7 +363,10 @@ class UsersController extends AppController {
 		}
 		$conditions = array('SpotFollower.spot_id' => $spot_id, 'SpotFollower.user_id' => $this->Auth->user('id'));
 		$deleted = $this->User->SpotFollower->deleteAll($conditions);
-		if($this->request->is('ajax') || ($mobile)) {
+		if ($mobile){
+			ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
+			die();
+		} elseif($this->request->is('ajax')) {
 			die($deleted?'GOOD':'The spot could not be unfollowed. Please, try again.');
 		} else {
 			if($deleted) {

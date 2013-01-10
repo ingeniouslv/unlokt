@@ -316,7 +316,7 @@ class UsersController extends AppController {
 	 * Call this method to create a relationship between the current logged in user and the given spot.
 	 * If a duplicate relationship already exists, nothing will be done.
 	 */
-	public function follow_spot($spot_id = null) {
+	public function follow_spot($spot_id = null, $mobile = null) {
 		$this->autorender = false;
 		$this->User->SpotFollower->Spot->id = $spot_id;
 		if(!$this->User->SpotFollower->Spot->exists()) {
@@ -336,7 +336,7 @@ class UsersController extends AppController {
 			
 			$saved = $this->User->SpotFollower->save($spot_follower_data);
 			
-			if($this->request->is('ajax')) {
+			if($this->request->is('ajax') || ($mobile) ) {
 				die($saved?'GOOD':'The spot could not be followed. Please, try again.');
 			} else {
 				if($saved) {
@@ -353,7 +353,7 @@ class UsersController extends AppController {
 	/**
 	 * Call this action to remove the relationship between a user and a model.
 	 */
-	public function unfollow_spot($spot_id = null) {
+	public function unfollow_spot($spot_id = null, $mobile = null) {
 		$this->autorender = false;
 		$this->User->SpotFollower->Spot->id = $spot_id;
 		if(!$this->User->SpotFollower->Spot->exists()) {
@@ -361,7 +361,7 @@ class UsersController extends AppController {
 		}
 		$conditions = array('SpotFollower.spot_id' => $spot_id, 'SpotFollower.user_id' => $this->Auth->user('id'));
 		$deleted = $this->User->SpotFollower->deleteAll($conditions);
-		if($this->request->is('ajax')) {
+		if($this->request->is('ajax') || ($mobile)) {
 			die($deleted?'GOOD':'The spot could not be unfollowed. Please, try again.');
 		} else {
 			if($deleted) {

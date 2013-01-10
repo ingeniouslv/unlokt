@@ -12,6 +12,13 @@ class LocationsController extends AppController {
 		parent::beforeFilter();
 	}
 
+
+	public function api_get() {
+		$this->autorender = false;
+		$location_options = $this->Location->find('list');
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $location_options);
+	}
+
 /**
  * admin_index method
  *

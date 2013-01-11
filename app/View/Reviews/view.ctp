@@ -34,13 +34,6 @@ $this->set('title_for_layout', "Note '". h($review['Review']['name']). "'");
 						<h2>Spot</h2>
 					<?php echo $this->Html->link(__($review['Spot']['name']), array('controller' => 'spots', 'action' => 'view', $review['Spot']['id'])); ?>
 					</div>
-					<div class="two columns">
-						<h2>Stars</h2>
-					<?php echo h($review['Review']['stars']); ?>
-
-					<!-- TODO: Fix $spot in writing system -->
-					<?php // echo $this->element('piece-rating_system'); ?>
-					</div>
 					<div class="three columns">
 						<h2>Created</h2>
 						<?php echo date(STANDARD_DATE_TIME, strtotime($review['Review']['created'])); ?>

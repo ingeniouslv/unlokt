@@ -85,11 +85,7 @@
 				<div class="dropdown-menu pull-right">
 					<?php  echo $this->Form->create('User', array('action' => 'set_location', 'class' => 'form-vertical control-group')); ?>
 						<div class="control-fields">
-							<?php echo $this->Form->input('location_id', array('label' => 'Choose a city', 'div' => false, 'options' => $location_options, 'id' => 'city-chooser', 'class' => 'twelve', 'data-no-sb' => '', 'empty' => '(Select Location)', 'selected' => $user['User']['location_id'])); ?>
-							<!-- <select id="city-chooser" class="twelve" data-no-sb>
-								<option>Las Vegas</option>
-								<option>Los Angeles</option>
-							</select> -->
+							<?php echo $this->Form->input('location_id', array('label' => 'Choose a city', 'div' => false, 'options' => $location_options, 'id' => 'city-chooser', 'class' => 'twelve', 'data-no-sb' => '', 'empty' => '(Select Location)', 'selected' => (!empty($user['User']) ? $user['User']['location_id'] : null))); ?>
 						</div>
 
 						<div class="btn-group">

@@ -51,11 +51,6 @@
 						<li><a href="javascript:void(0);" class="text-yellow" onclick="$('#feedModal').modal();"><i class="icon-pencil"></i>Post to Feed</a></li>
 						<li><a href="<?php echo $this->webroot; ?>spots">Spots I Manage</a></li>
 					<?php endif; ?>
-					<?php if (!empty($spots_i_follow)): ?>
-						<li>
-							<?php echo $this->Html->link( 'My Spots', array('controller'=>'users', 'action' => 'my_spots', 'admin' => false)); ?>
-						</li>
-					<?php endif; ?>
 					<li><a href="<?php echo $this->webroot; ?>users/account" title="My Profile">My Profile</a></li>
 					<?php if ($this->Auth->user('is_super_admin')): ?>
 						<li><a href="<?php echo $this->webroot; ?>admin/users" title="Administration">Administration</a></li>

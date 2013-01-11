@@ -554,8 +554,14 @@ class Spot extends AppModel {
 		$string = str_replace('&amp;', '&', $string);
 
 		$string = preg_replace(
-			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-_]+)@',
+			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-_]+)(?:[&;a-zA-Z0-9%=]*)?@',
 			'<iframe width="220" height="150" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen=""></iframe>',
+			$string
+		);
+
+		$string = preg_replace(
+			'@https?://(?:www\.)?facebook\.com/([a-zA-Z0-9\.]+)(?:[\?&;a-zA-Z0-9%=]*)?@',
+			'<a href="https://facebook.com/$1" class="facebook" target="_blank">Facebook</a>',
 			$string
 		);
 		

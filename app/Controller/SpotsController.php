@@ -299,6 +299,9 @@ class SpotsController extends AppController {
 		
 		$return = $this->_get_results($spot_ids);
 		
+		$spots_i_follow = $this->Spot->SpotFollower->getSpotListByUser();
+		$return['spot_ids_i_follow'] = array_keys($spots_i_follow);
+
 		//print_r($return);
 		//die();
 		die(json_encode($return));
@@ -654,10 +657,13 @@ class SpotsController extends AppController {
 	public function api_view($id) {
 		$this->Spot->id = $id;
 		
-		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed'))) {
+		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed','SpotOption','HoursOfOperation'))) {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 			return;
 		}
+		$spot['Reviews'] = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
+		$spot['Attachements'] = $this->Spot->Attachment->getAttachmentBySpotIds($id);
+		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);
 	} // end api_view()
 	

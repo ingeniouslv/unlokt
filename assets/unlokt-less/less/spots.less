@@ -78,6 +78,22 @@
 	.is-active,
 	.times {
 		border-top: 1px solid @grayLight;
+		
+		.weekday {
+			color: @gray;
+			padding: 2px 0;
+			.clearfix;
+		}
+		p {
+			.clearfix;
+
+			span {
+				display: block;
+				width: 95px;
+				word-wrap: break-word;
+				.pull-left;
+			}
+		}
 	}
 
 	.is-active {
@@ -435,7 +451,7 @@ table .spot-name a {
 		}
 
 		.description {
-			padding-top: 5px;
+			padding-top: 25px;
 			margin-left: 15px;	
 		}
 

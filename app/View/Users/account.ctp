@@ -57,27 +57,17 @@ $this->set('title_for_layout', 'Account Settings');
 	});
 
 	//add a hover effect to the tile image
-$('.tile img').hover(
-	function() {
-		$(this).siblings('.tile-footer').children('.block-actions').show();
-	},
-	function() {
-		$(this).siblings('.tile-footer').children('.block-actions').hide();
-	}
-);
-
-//add same hover effect on the div that contains the buttons
-$('.tile .tile-footer').hover(
-	function() {
-		$(this).children('.block-actions').show();
-	},
-	function() {
-		$(this).children('.block-actions').hide();
-	}
-);
-
-//initially hide the buttons
-$('.tile-footer .block-actions').hide();
+		$('.tile').hover(
+			function() {
+				$(this).children('.tile-footer').children('.block-actions').slideDown(200);
+			},
+			function() {
+				$(this).children('.tile-footer').children('.block-actions').slideUp(200);
+			}
+		);
+		
+		//initially hide the buttons
+		$('.tile-footer .block-actions').hide();
 
 </script>
 <!-- <div class="container">

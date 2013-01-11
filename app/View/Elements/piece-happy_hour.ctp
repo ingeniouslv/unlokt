@@ -55,11 +55,11 @@ if (isset($happy_hour_size)):?>
 				if($happy_hour['HappyHour']['day_of_week'] != $last_day_of_week_index):
 					$last_day_of_week_index = $happy_hour['HappyHour']['day_of_week'];
 			?>
-					<div class="clearfix"><?php echo $days_of_week[$last_day_of_week_index]; ?></div>
+					<div class="weekday"><?php echo $days_of_week[$last_day_of_week_index]; ?></div>
 			<?php
 				endif;
 			?>
-			<p><?php echo $happy_hour['HappyHour']['title']; ?> <b class="pull-right"><?php echo $from; ?> to <?php echo $to; ?></b></p>
+			<p><span><?php echo $happy_hour['HappyHour']['title']; ?></span><b class="pull-right"><?php echo $from; ?> to <?php echo $to; ?></b></p>
 			<!-- <p>Mon &ndash; Wed <b class="pull-right">4:00 pm to 7:00 pm</b></p>
 			<p>Fri &amp; Sat <b class="pull-right">2:00 pm to 12:00 am</b></p> -->
 			<?php endforeach; ?>

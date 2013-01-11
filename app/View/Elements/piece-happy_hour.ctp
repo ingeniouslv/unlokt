@@ -45,10 +45,19 @@ if (isset($happy_hour_size)):?>
 		<!-- Show the HappyHour schedule -->
 		<div class="times">
 			<?php
+			$last_day_of_week_index = -1;
+			
 			foreach ($happy_hour_data as $happy_hour):
 				$from = str_replace(':00', '', date('g:i a', strtotime($happy_hour['HappyHour']['start'])));
 				$to = str_replace(':00', '', date('g:i a', strtotime($happy_hour['HappyHour']['end'])));
 				$day_of_week = $days_of_week["{$happy_hour['HappyHour']['day_of_week']}"];
+				
+				if($happy_hour['HappyHour']['day_of_week'] != $last_day_of_week_index):
+					$last_day_of_week_index = $happy_hour['HappyHour']['day_of_week'];
+			?>
+					<div class="clearfix"><?php echo $days_of_week[$last_day_of_week_index]; ?></div>
+			<?php
+				endif;
 			?>
 			<p><?php echo $happy_hour['HappyHour']['title']; ?> <b class="pull-right"><?php echo $from; ?> to <?php echo $to; ?></b></p>
 			<!-- <p>Mon &ndash; Wed <b class="pull-right">4:00 pm to 7:00 pm</b></p>

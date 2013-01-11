@@ -32,7 +32,7 @@ class DealsController extends AppController {
 		$this->Deal->id = $id;
 		
 		if (!$deal = $this->Deal->getDeal($id, array('RedemptionCode'))) {
-			throw new NotFoundException('Could not find Deal');
+			throw new NotFoundException('Could not find ');
 		}
 		$contain = array('Category', 'Feed');
 		$spot = $this->Deal->Spot->getSpot($deal['Deal']['spot_id'], $contain);
@@ -95,7 +95,7 @@ class DealsController extends AppController {
 	
 	public function statistics($id = null) {
 		if (!$id || !$deal = $this->Deal->read(null, $id)) {
-			throw new NotFoundException('Deal not found.');
+			throw new NotFoundException('Special not found.');
 		}
 		// Ensure we have access.
 		$this->Deal->Spot->id = $deal['Deal']['spot_id'];
@@ -166,7 +166,7 @@ class DealsController extends AppController {
 				// Copy over the tmp_image_file
 				mkdir(store_path('deal', $this->Deal->id), 0777, true);
 				copy($tmp_image_file, store_path('deal', $this->Deal->id, 'default.jpg'));
-				$this->Session->setFlash('Deal created successfully.', 'alert-success');
+				$this->Session->setFlash('Special created successfully.', 'alert-success');
 				$this->redirect(array('action' => 'manage', $spot_id));
 			} else {
 				$this->Session->setFlash('Form could not be saved. Check the form and try again.', 'alert-warning');
@@ -253,10 +253,10 @@ class DealsController extends AppController {
 			$deal = $this->Deal->read(null, $id);
 			$deal['Deal']['is_active'] = !$deal['Deal']['is_active'];
 			if ($this->Deal->save($deal)) {
-				$this->Session->setFlash(__('The deal has been saved'), 'alert-success');
+				$this->Session->setFlash(__('The special has been saved'), 'alert-success');
 				$this->redirect($this->request->referer());
 			} else {
-				$this->Session->setFlash(__('The deal could not be saved. Please, try again.'), 'alert-warning');
+				$this->Session->setFlash(__('The special could not be saved. Please, try again.'), 'alert-warning');
 			}
 		} else {
 			$this->request->data = $this->Deal->read(null, $id);
@@ -319,7 +319,7 @@ class DealsController extends AppController {
 			throw new NotFoundException('Missing require parameter(s)');
 		}
 		if (!$deal = $this->Deal->read(null, $id)) {
-			throw new NotFoundException('Could not find Deal');
+			throw new NotFoundException('Could not find Special');
 		}
 		$this->loadModel('RedemptionCode');
 		
@@ -329,7 +329,7 @@ class DealsController extends AppController {
 			// Grab the next RedemptionCode for this Deal, and then match it to the user's input.
 			$next_step = $activeDeal['ActiveDeal']['completed_step'] + 1;
 			 if (!$redemptionCode = $this->RedemptionCode->findByDealIdAndStep($id, $next_step)) {
-			 	throw new Exception('Could not find a RedemptionCode for Deal '.$id);
+			 	throw new Exception('Could not find a RedemptionCode for Special '.$id);
 			 }
 			 if (strcmp($redemptionCode['RedemptionCode']['code'], $code) !== 0) {
  				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
@@ -357,7 +357,7 @@ class DealsController extends AppController {
 			// No Deal was found - let's make sure we qualify to perform this Deal, then make it so.
 			$done_count = $this->Deal->ActiveDeal->findCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
 			if ($deal['Deal']['limit_per_customer'] && $done_count >= $deal['Deal']['limit_per_customer']) {
-				throw new NotFoundException('You have redeemed this Deal too many times.');
+				throw new NotFoundException('You have redeemed this Special too many times.');
 			}
 			// Start Deal since we are not beyond the limit. Woot.
 			// Check the $code against the RedemptionCode for step 1 redemption code.

@@ -3,7 +3,6 @@
 	<!-- Review Item -->
 	<div class="note-slide columns ">	
 		<div class="review-item tile">
-			
 			<div class="head">
 				<img src="<?php echo $this->Html->gen_path('user', $review['User']['id'], 40); ?>" class="pull-left">
 				
@@ -22,8 +21,4 @@
 	</div>	
 	<!-- End Review Item -->
 	<?php endforeach; ?>
-</div>
-<div class="block-actions btn-group">
-	<a class="btn btn-blue" href="javascript:void(0);" onclick="$('#reviewModal').modal();"><i class="icon-pencil"></i>Add Note</a>
-	<a class="btn" href="<?php echo $this->webroot; ?>reviews/reviews_by_spot/<?php echo $spot['Spot']['id']; ?>">Show More Notes</a>
 </div>

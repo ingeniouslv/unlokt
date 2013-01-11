@@ -281,8 +281,21 @@ class SpotsController extends AppController {
 		$radius = 50;
 		$this->autoRender = false;
 		$this->Spot->cache = true;
-		// First, get a list of Spot ids. With these IDs we will query the other data types we need.
-		$spot_ids = $this->Spot->getIdsByRadius($lat, $lng, $radius);
+		
+		//check if the coordinates match one of our stored locations
+		$location = $this->Spot->Location->findByLatAndLng($lat,$lng);
+		
+		$spot_ids = array();
+		if($_GET['search_type'] == 'quick' && $_GET['search'] == 'explore' && $location) {
+			//user is using a location as their coordinates so, show all spots that are associated with that location
+			$spot_ids = $this->Spot->find('list', array('conditions' => array('location_id' => $location['Location']['id'], 'is_active' => true, 'is_pending' => false)));
+		} else {
+			//user is using their own coordinates, so grab all spots within a given radius around the user
+			// First, get a list of Spot ids. With these IDs we will query the other data types we need.
+			$spot_ids = $this->Spot->getIdsByRadius($lat, $lng, $radius);
+		}
+		
+		
 		
 		$return = $this->_get_results($spot_ids);
 		

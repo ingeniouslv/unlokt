@@ -21,6 +21,7 @@ $days_of_week = array(
 				<table class="zebra">
 					<thead>
 						<tr>
+							<th>Title</th>
 							<th>Day of Week</th>
 							<th>Start Time</th>
 							<th>End Time</th>
@@ -31,6 +32,7 @@ $days_of_week = array(
 					<tbody>
 						<?php foreach ($happyHours as $happyHour): ?>
 							<tr>
+								<td><?php echo $happyHour['HappyHour']['title']; ?></td>
 								<td><?php echo $days_of_week["{$happyHour['HappyHour']['day_of_week']}"]; ?></td>
 								<td><?php echo date('g:i a', strtotime($happyHour['HappyHour']['start'])); ?></td>
 								<td><?php echo date('g:i a', strtotime($happyHour['HappyHour']['end'])); ?></td>

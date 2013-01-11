@@ -162,7 +162,8 @@ input[type="checkbox"],input[type="radio"]{margin-right:5px;}input[type="checkbo
 fieldset{background:#efefef;padding:5px;margin-bottom:10px;position:relative;*zoom:1;border:none;margin:0;padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}fieldset:before,fieldset:after{display:table;content:"";}
 fieldset:after{clear:both;}
 fieldset .review-item{background-color:#b0dbdd;background-image:-moz-linear-gradient(top, #c5e5e6, #90cdcf);background-image:-ms-linear-gradient(top, #c5e5e6, #90cdcf);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#c5e5e6), to(#90cdcf));background-image:-webkit-linear-gradient(top, #c5e5e6, #90cdcf);background-image:-o-linear-gradient(top, #c5e5e6, #90cdcf);background-image:linear-gradient(top, #c5e5e6, #90cdcf);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c5e5e6', endColorstr='#90cdcf', GradientType=0);-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;position:relative;padding-bottom:0px;color:#000;}fieldset .review-item .head{padding:2px;}fieldset .review-item .head img{width:40px;height:40px;}
-fieldset .review-item .description{padding-top:25px;margin-left:15px;}
+fieldset .review-item .title{margin-top:10px;}
+fieldset .review-item .description{padding-top:10px;margin-left:10px;}
 fieldset .review-item .note-actions{position:absolute;bottom:0;width:270px;}
 fieldset .review-item .more{color:#20494a;padding:0 5px 5px 0;}
 fieldset .review-item .review-spot{margin-left:5px;}
@@ -445,7 +446,8 @@ table .spot-name a{display:block;color:#000000;}
 .deal .block .spot .photo{height:40px;width:40px;}
 .infoWinContainer{background-color:red;border:1px solid #ccc;}
 .review-wr .review-item,.block .review-item{background-color:#b0dbdd;background-image:-moz-linear-gradient(top, #c5e5e6, #90cdcf);background-image:-ms-linear-gradient(top, #c5e5e6, #90cdcf);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#c5e5e6), to(#90cdcf));background-image:-webkit-linear-gradient(top, #c5e5e6, #90cdcf);background-image:-o-linear-gradient(top, #c5e5e6, #90cdcf);background-image:linear-gradient(top, #c5e5e6, #90cdcf);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c5e5e6', endColorstr='#90cdcf', GradientType=0);-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;position:relative;padding-bottom:0px;color:#000;}.review-wr .review-item .head,.block .review-item .head{padding:2px;}.review-wr .review-item .head img,.block .review-item .head img{width:40px;height:40px;}
-.review-wr .review-item .description,.block .review-item .description{padding-top:25px;margin-left:15px;}
+.review-wr .review-item .title,.block .review-item .title{margin-top:10px;}
+.review-wr .review-item .description,.block .review-item .description{padding-top:10px;margin-left:10px;}
 .review-wr .review-item .note-actions,.block .review-item .note-actions{position:absolute;bottom:0;width:270px;}
 .review-wr .review-item .more,.block .review-item .more{color:#20494a;padding:0 5px 5px 0;}
 .review-wr .review-item .review-spot,.block .review-item .review-spot{margin-left:5px;}

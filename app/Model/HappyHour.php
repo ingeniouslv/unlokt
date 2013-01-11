@@ -106,7 +106,8 @@ class HappyHour extends AppModel {
 				'HappyHour.parent_happy_hour_id' => null,
 				'HappyHour.spot_id' => $spot_id
 			),
-			'contain' => $contain
+			'contain' => $contain,
+			'orderBy' => array('HappyHour.day_of_week')
 		));
 	}
 	

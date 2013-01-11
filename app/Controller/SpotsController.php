@@ -648,6 +648,9 @@ class SpotsController extends AppController {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 			return;
 		}
+		$spot['Reviews'] = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
+		$spot['Attachements'] = $this->Spot->Attachment->getAttachmentBySpotIds($id);
+		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);
 	} // end api_view()
 	

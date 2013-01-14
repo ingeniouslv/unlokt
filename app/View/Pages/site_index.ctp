@@ -213,7 +213,7 @@ $this->Html->add_script(array(
 				$("#current-location").html("<i class=\"icon-direction\"></i>" + closestLocation.Location.name);
 			}
 		}
-		if (typeof window.homepagemap.center !== "undefined") {
+		if (typeof window.homepagemap !== "undefined" && typeof window.homepagemap.center !== "undefined") {
 			window.homepagemap.center(Geo.lat, Geo.lng);
 		}
 	}

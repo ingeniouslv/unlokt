@@ -124,15 +124,21 @@
 	}
 }
 .dropdown-menu.pull-right {
+		left: -92px; // IE Fix
+		left: -moz-initial; // FireFox Fix
 		left: initial;
 		right: 20px;
 
 		&:after {
+			left: 255px; // IE Fix
+			left: -moz-initial;
 			left: initial;
 			right:20px;
 		}
 
 		&:before {
+			left: 255px; // IE Fix
+			left: -moz-initial;
 			left: initial;
 			right: 20px;
 		}

@@ -14,7 +14,7 @@
 					<div class="head">	
 						<img src="<% print(unlokt.helpers.gen_path('user', review.Review.user_id, 40)); %>" class="pull-left">
 						<% if (review.Review.name) { %>
-							<h2 class="title"><%= h(review.Review.name) %></h2>
+							<h3 class="title"><%= h(review.Review.name) %></h3>
 						<% } %>
 					</div>	
 					

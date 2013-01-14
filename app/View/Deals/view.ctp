@@ -73,7 +73,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 											</div>	
 										<?php endif; ?>
 									<?php endif; ?>
-								
 									<?php if (isset($activeDeal['ActiveDeal']['is_completed']) && $activeDeal['ActiveDeal']['is_completed']): ?>
 										<div class="redemption">
 											<div class="text-center">

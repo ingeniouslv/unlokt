@@ -6,7 +6,7 @@
 			<div class="head">
 				<img src="<?php echo $this->Html->gen_path('user', $review['User']['id'], 40); ?>" class="pull-left">
 				
-				<h2 class="title"><?php echo htmlspecialchars($review['Review']['name']); ?></h2>
+				<h3 class="title"><?php echo htmlspecialchars($review['Review']['name']); ?></h3>
 			</div>
 
 			<p class="description"><?php echo htmlspecialchars($review['Review']['review']); ?></p>

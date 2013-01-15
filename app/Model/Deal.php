@@ -352,5 +352,10 @@ class Deal extends AppModel {
 		return strcmp($val1, $val2);
 	}
 	
+	//sorts the deals alphabetically using either deal name or spot name (in case of happy hours)
+	public function sortDealsBySpotViews($a, $b) {
+		return $a['Spot']['views'] < $b['Spot']['views'];
+	}
+	
 
 }

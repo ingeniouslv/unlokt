@@ -337,6 +337,7 @@ class SpotsController extends AppController {
 		$include_deals = true;
 		$include_spots_in_deals = false;
 		$randomize = false;
+		$order_by_views = false;
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {
 				$include_spots_in_deals = true;
@@ -390,7 +391,7 @@ class SpotsController extends AppController {
 				$include_happy_hours = false;
 				$this->Spot->Deal->events_only = true;
 			} else if ($_GET['search'] == 'popular') {
-				
+				$order_by_views = true;
 			} else if ($_GET['search'] == 'favorites') {
 				$spot_ids = $this->Spot->getMySpotIds($this->Auth->user('id'));
 			}
@@ -580,6 +581,8 @@ class SpotsController extends AppController {
 		//sort the results so happy hours aren't always at the top
 		if($randomize) {
 			shuffle($return['deals']);
+		} else if ($order_by_views) {
+			usort($return['deals'], array('Deal','sortDealsBySpotViews'));
 		} else {
 			usort($return['deals'], array('Deal','sortDeals'));
 		}

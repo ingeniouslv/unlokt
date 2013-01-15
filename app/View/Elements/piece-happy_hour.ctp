@@ -59,7 +59,7 @@ if (isset($happy_hour_size)):?>
 			<?php
 				endif;
 			?>
-			<p><span><?php echo $happy_hour['HappyHour']['title']; ?></span><b class="pull-right"><?php echo $from; ?> to <?php echo $to; ?></b></p>
+			<p><span><?php echo $this->Html->link($happy_hour['HappyHour']['title'], '#', array('onclick' => 'return false;', 'title' => $happy_hour['HappyHour']['description'])); ?></span><b class="pull-right"><?php echo $from; ?> to <?php echo $to; ?></b></p>
 			<!-- <p>Mon &ndash; Wed <b class="pull-right">4:00 pm to 7:00 pm</b></p>
 			<p>Fri &amp; Sat <b class="pull-right">2:00 pm to 12:00 am</b></p> -->
 			<?php endforeach; ?>

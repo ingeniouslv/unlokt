@@ -25,6 +25,7 @@ $days_of_week = array(
 							<th>Day of Week</th>
 							<th>Start Time</th>
 							<th>End Time</th>
+							<th>Description</th>
 							<th class="actions">Actions</th>
 						</tr>
 					</thead>
@@ -36,6 +37,7 @@ $days_of_week = array(
 								<td><?php echo $days_of_week["{$happyHour['HappyHour']['day_of_week']}"]; ?></td>
 								<td><?php echo date('g:i a', strtotime($happyHour['HappyHour']['start'])); ?></td>
 								<td><?php echo date('g:i a', strtotime($happyHour['HappyHour']['end'])); ?></td>
+								<td><?php echo h($happyHour['HappyHour']['description']); ?></td>
 								<td class="actions">
 									<a class="btn btn-red" href="<?php echo $this->webroot; ?>happy_hours/delete/<?php echo $happyHour['HappyHour']['id']; ?>" onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
 								</td>

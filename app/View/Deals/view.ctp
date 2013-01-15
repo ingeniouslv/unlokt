@@ -165,20 +165,24 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 		</div>
 	</div>
 </div>
+<button class="fb-share">share to facebook</button>
 <div id="fb-root"></div>
 <script>
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId      : '<?php echo $app_id; ?>', // App ID
-			channelUrl : '<?php echo $channel_url; ?>', // Channel File
-			status     : true, // check login status
-			cookie     : true, // enable cookies to allow the server to access the session
-			xfbml      : true  // parse XFBML
-		});
-		FB.ui({ 
-			method: 'feed' 
-		});
-	};
+	$('.fb-share').click(function() {
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '<?php echo $app_id; ?>', // App ID
+				channelUrl : '<?php echo $channel_url; ?>', // Channel File
+				status     : true, // check login status
+				cookie     : true, // enable cookies to allow the server to access the session
+				xfbml      : true  // parse XFBML
+			});
+			FB.ui({ 
+				method: 'feed' 
+			});
+		};
+	});
+	
 	// Load the SDK Asynchronously
 	(function(d){
 		var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];

@@ -75,12 +75,27 @@
 		margin: 0;
 	}
 
+	.title {
+
+		span {
+			font-weight: 600;
+			white-space: nowrap;
+
+			&.end-time {
+				padding: 5px 7px;
+				background: @grayDark;
+				color: @white;
+				.border-radius(@borderRadius*2);
+			}
+		}
+	}
+
 	.is-active,
 	.times {
 		border-top: 1px solid @grayLight;
 		
 		.weekday {
-			color: @gray;
+			color: @grayLight;
 			padding: 2px 0;
 			.clearfix;
 		}
@@ -88,18 +103,18 @@
 			margin: 0 0 5px;
 			.clearfix;
 
-			a {
-
+			.title {
+				margin: 0 0 5px;
 			}
 
 			.long-description {
+				background: lighten(#262A30, 5%);
 				.border-radius(3px);
 				clear: both;
 				float: none;
 				padding: 5px;
 				text-align: left;
 				width: auto;
-				.block-darkgray;
 				.clearfix;
 			}
 

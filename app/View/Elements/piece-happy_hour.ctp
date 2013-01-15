@@ -60,11 +60,11 @@ if (isset($happy_hour_size)):?>
 				endif;
 			?>
 			<p>
-				<span>
+				<span class="title">
 					<a href="javascript:void(0);" class="happy-hour-title"><?php echo $happy_hour['HappyHour']['title']; ?></a>
 				</span>
 				<b class="pull-right"><?php echo $from; ?> to <?php echo $to; ?></b>
-				<span class="long-description"></span>
+				<span class="long-description"><?php echo $happy_hour['HappyHour']['description']; ?></span>
 			</p>
 			<!-- <p>Mon &ndash; Wed <b class="pull-right">4:00 pm to 7:00 pm</b></p>
 			<p>Fri &amp; Sat <b class="pull-right">2:00 pm to 12:00 am</b></p> -->

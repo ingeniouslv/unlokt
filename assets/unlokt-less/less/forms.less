@@ -621,3 +621,37 @@ form.custom .custom {
 		}
 	}
 }
+.paging {
+	padding: 0 0 25px;
+	position: relative;
+	
+	span {
+		display: inline;
+		padding: 0 5px 0 0;
+	}
+
+	.next,
+	.prev {
+		bottom: 0;
+		display: block;
+		position: absolute;
+		.btn;
+		.btn-blue;
+
+		a {
+			color: #000;
+			text-decoration: none;
+		}
+		&.disabled {
+			&:hover {
+
+			}
+		}
+	}
+	.prev {
+		left: 0;
+	}
+	.next {
+		left: 75px;
+	}
+}

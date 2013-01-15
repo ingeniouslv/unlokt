@@ -243,6 +243,16 @@ $this->Html->add_script(array(
 		});
 	});
 
+	// Happy Hour Long Descriptions
+	var happyHourTitle = $('a.happy-hour-title');
+	var longDescription = $('span.long-description');
+
+	happyHourTitle.click(
+		function() {
+			longDescription.slideToggle(200);
+		}
+	);
+
 	//add a hover effect to the tile image
 	$('.tile').hover(
 		function() {

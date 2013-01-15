@@ -16,6 +16,5 @@
 			<div class="bg-separator"></div>
 		</div>	
 	</div>
-
 </body>
 </html>

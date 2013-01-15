@@ -178,7 +178,9 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 			xfbml      : true  // parse XFBML
 		});
 		FB.ui({ 
-			method: 'feed' 
+			method: 'feed',
+			description: 'Sharing a Deal.',
+			link: 'http://development.unlokt.com/deals/view/<?php echo $deal['Deal']['id']; ?>' 
 		});
 	});
 	

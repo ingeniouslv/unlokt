@@ -180,7 +180,8 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 		FB.ui({ 
 			method: 'feed',
 			name: '<?php echo $deal['Deal']['name'] ?>',
-			description: '<?php echo $deal['Deal']['description']; ?>',
+			caption: '<?php echo $deal['Deal']['description']; ?>',
+			description: '<?php echo $deal['Deal']['long_description']; ?>',
 			picture: '<?php echo "http://development.unlokt.com".$this->Html->gen_path('deal', $deal['Deal']['id'], 200); ?>',
 			link: 'http://development.unlokt.com/deals/view/<?php echo $deal['Deal']['id']; ?>' 
 		});

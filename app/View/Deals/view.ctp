@@ -181,7 +181,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 			method: 'feed',
 			name: '<?php echo $deal['Deal']['name'] ?>',
 			description: '<?php echo $deal['Deal']['description']; ?>',
-			image: '<?php echo "http://developement.unlokt.com".$this->Html->gen_path('deal', $deal['Deal']['id'], 200); ?>',
+			picture: '<?php echo "http://developement.unlokt.com".$this->Html->gen_path('deal', $deal['Deal']['id'], 200); ?>',
 			link: 'http://development.unlokt.com/deals/view/<?php echo $deal['Deal']['id']; ?>' 
 		});
 	});

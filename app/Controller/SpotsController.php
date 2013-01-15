@@ -336,6 +336,7 @@ class SpotsController extends AppController {
 		$include_happy_hours = true;
 		$include_deals = true;
 		$include_spots_in_deals = false;
+		$randomize = false;
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {
 				$include_spots_in_deals = true;
@@ -343,6 +344,8 @@ class SpotsController extends AppController {
 				$include_happy_hours = false;
 				if($_GET['subsearch'] == 'my-spots') {
 					$spot_ids = $this->Spot->getMySpotIds($this->Auth->user('id'));
+				} else {
+					$randomize = true;
 				}
 			} else if ($_GET['search'] == 'tonight') {
 				$start_time = date('H:i', strtotime('today 6pm'));
@@ -567,7 +570,12 @@ class SpotsController extends AppController {
 		}
 		
 		//sort the results so happy hours aren't always at the top
-		usort($return['deals'], array('Deal','sortDeals'));
+		if($randomize) {
+			shuffle($return['deals']);
+		} else {
+			usort($return['deals'], array('Deal','sortDeals'));
+		}
+		
 		//cut the array down to the requested length
 		//debug($_GET['limit']);
 		$return['deals'] = array_slice($return['deals'], 0, $_GET['limit']);

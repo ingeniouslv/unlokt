@@ -97,10 +97,10 @@ class ReviewsController extends AppController {
 				// The review was saved successfully; update the metrics on the Spot itself.
 				$this->Review->Spot->id = $spot_id;
 				//$this->Review->Spot->add_rating($this->request->data['Review']['stars']);
-				$this->Session->setFlash('The Review has been saved', 'alert-success');
+				$this->Session->setFlash('The Note has been saved', 'alert-success');
 				$this->redirect(array('controller' => 'spots', 'action' => 'view', $spot_id));
 			} else {
-				$this->Session->setFlash('The Review could not be saved. Please, try again.', 'alert-warning');
+				$this->Session->setFlash('The Note could not be saved. Please, try again.', 'alert-warning');
 			}
 		}
 		

@@ -36,7 +36,7 @@
 			<i class="icon-location"></i>
 			<div class="section-content">
 				<address>
-					<a href="">
+					<a href="https://maps.google.com/?q=<?php echo h($spot['Spot']['address']); ?> <?php echo h($spot['Spot']['city']); ?> <?php echo h($spot['Spot']['state']); ?> <?php echo h($spot['Spot']['zip']); ?>" target= "_blank">
 						<p><?php echo h($spot['Spot']['address']); ?>
 						   <?php echo h($spot['Spot']['address2']); ?><br>
 						   <?php echo h($spot['Spot']['city']); ?>, 

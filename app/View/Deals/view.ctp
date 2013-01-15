@@ -37,13 +37,16 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 						<?php if ($deal['Deal']['keys']): ?>
 							<div class="redeem">	
 								<div class="block block-white">
-									<?php if ($deal['Deal']['keys'] > 1): ?>
+									<?php // if($deal['Deal']['keys'] == 1 && !$activeDeal): ?>
+									<?php // endif; ?>
+
+									<?php if ($deal['Deal']['keys'] >= 1): ?>
 										<div class="keys">
 											<?php if (!isset($activeDeal) || !$activeDeal): ?>
 												<?php
 												echo str_repeat('<i class="icon-key"></i>', $deal['Deal']['keys']);
 												?>
-												<span>You need <?php echo $deal['Deal']['keys']; ?> keys</span>
+												<span>You need <?php echo $deal['Deal']['keys']; ?> key<?php echo $deal['Deal']['keys'] == 1 ? '' : 's'; ?></span>
 											<?php elseif (isset($activeDeal['ActiveDeal']['is_completed']) && !$activeDeal['ActiveDeal']['is_completed']):
 												$remaining_keys = ($deal['Deal']['keys'] - $activeDeal['ActiveDeal']['completed_step']);
 												echo str_repeat('<i class="icon-key has-key"></i>', $activeDeal['ActiveDeal']['completed_step']);
@@ -57,7 +60,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 										</div>
 									<?php endif; ?>
 									<?php if (!$deal['Deal']['limit_per_customer'] || $deal_completed_count < $deal['Deal']['limit_per_customer']): ?>
-										
 										<?php if ($deal['Deal']['keys'] > 1): ?>
 											<div class="redeem-activity">	
 												<div class="pull-right">

@@ -15,7 +15,7 @@
 	<?php endif; ?>
 	
 	<div class="information">
-		<img src="http://maps.google.com/maps/api/staticmap?center=<?php echo h($spot['Spot']['lat']); ?>,<?php echo h($spot['Spot']['lng']); ?>&amp;zoom=12&amp;size=212x212&amp;key=<?php echo GOOGLE_MAPS_API_KEY; ?>" width="212" height="212">
+		<img src="http://maps.google.com/maps/api/staticmap?center=<?php echo h($spot['Spot']['lat']); ?>,<?php echo h($spot['Spot']['lng']); ?>&amp;zoom=12&amp;size=212x212&amp;key=<?php echo GOOGLE_MAPS_API_KEY; ?>&amp;sensor=false" width="212" height="212">
 
 		<?php if (isset($spot['Category']) && count($spot['Category'])): ?>
 			<div class="section">

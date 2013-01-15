@@ -8,6 +8,7 @@ $this->set('title_for_layout', 'User Manager');
 		<table class="zebra">
 			<thead>
 				<tr>
+					<th><?php echo $this->Paginator->sort('id'); ?></th>
 					<th><?php echo $this->Paginator->sort('name'); ?></th>
 					<th><?php echo $this->Paginator->sort('email'); ?></th>
 					<th><?php echo $this->Paginator->sort('is_active', 'Active'); ?></th>
@@ -20,6 +21,9 @@ $this->set('title_for_layout', 'User Manager');
 			<tbody>
 				<?php foreach ($users as $user): ?>
 				<tr>
+					<td>
+						<?php echo $user['User']['id']; ?>
+					</td>
 					<td class="user-name">
 						<?php echo $this->Html->link(__($user['User']['name']), array('action' => 'view', $user['User']['id'])); ?>
 					</td>
@@ -44,5 +48,22 @@ $this->set('title_for_layout', 'User Manager');
 				<?php endforeach; ?>
 			</tbody>
 		</table>
+		
+		<p>
+			<?php
+				echo $this->Paginator->counter(array(
+				'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+				));
+			?>
+		</p>
+
+		<div class="paging">
+			<?php
+				echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+				echo $this->Paginator->numbers(array('separator' => ''));
+				echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+			?>
+		</div>
+		
 	</div>
 </div>

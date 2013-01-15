@@ -40,7 +40,7 @@
 						</div>
 						<div class="block-actions">
 							<div class="happy-hour">
-								<p><%= deal.HappyHour.title %> - <span>Happening 'till <span class="end-time"><% print(happy_hour_end_xdate.toString('h:mm tt')); %></span></span> </p>
+								<p><%= deal.HappyHour.title %> - <span><b>Happening 'till <span class="end-time"><% print(happy_hour_end_xdate.toString('h:mm tt')); %></span></b></span> </p>
 								<div class="is-active">
 									<%= deal.HappyHour.description %>
 								</div>

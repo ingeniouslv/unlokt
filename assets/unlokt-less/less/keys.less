@@ -76,8 +76,9 @@
 }
 
 .keys {
-	.pull-left;
+	left: 5px;
 	margin-top: 3px;
+	position: absolute;
 
 	span {
 		display: block;
@@ -96,6 +97,17 @@
 
 	i.has-key {
 		color: @schemeOrange;
+	}
+	& + .redemption {
+		margin-top: 0!important;
+
+		.mask {
+			background: #fafafa;
+			height: 20px;
+			left: 0;
+			position: absolute;
+			width: 10px;
+		}
 	}
 }
 

@@ -236,10 +236,11 @@ table.zebra tr.table-actions th,table.zebra tr.table-actions td{background-color
 .keys-total:before{display:block;position:absolute;width:10px;height:0;top:50%;left:-18px;margin-top:-4px;content:'';border-color:transparent #DD9E35 transparent transparent;border-width:4px;border-style:solid;}
 .keys-total.large{height:39px;margin-left:42px;padding:0 14px;font-size:20px;line-height:39px;}.keys-total.large:after{width:25px;height:39px;top:1px;left:-42px;font-size:39px;line-height:39px;}
 .keys-total.large:before{width:10px;left:-25px;margin-top:-8px;border-width:8px;}
-.keys{float:left;margin-top:3px;}.keys span{display:block;font-size:10px;font-weight:400;color:#333;}
+.keys{left:5px;margin-top:3px;position:absolute;}.keys span{display:block;font-size:10px;font-weight:400;color:#333;}
 .keys i{color:#cccccc;}
 .keys i:before{width:0.35em;}
 .keys i.has-key{color:#dd9e35;}
+.keys+.redemption{margin-top:0!important;}.keys+.redemption .mask{background:#fafafa;height:20px;left:0;position:absolute;width:10px;}
 .block-actions .keys-total+.btn{float:right;}
 .navbar{padding:7px 0;background:#1a1b20;}
 .navbar-big{padding:10px 0 2px;background-color:#272b31;background-image:-moz-linear-gradient(top, #30353d, #1a1b20);background-image:-ms-linear-gradient(top, #30353d, #1a1b20);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#30353d), to(#1a1b20));background-image:-webkit-linear-gradient(top, #30353d, #1a1b20);background-image:-o-linear-gradient(top, #30353d, #1a1b20);background-image:linear-gradient(top, #30353d, #1a1b20);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#30353d', endColorstr='#1a1b20', GradientType=0);z-index:10;-webkit-box-shadow:0 2px 3px rgba(0, 0, 0, 0.45);-moz-box-shadow:0 2px 3px rgba(0, 0, 0, 0.45);box-shadow:0 2px 3px rgba(0, 0, 0, 0.45);}
@@ -327,7 +328,6 @@ ul.list .list-actions{float:right;margin-left:10px;}
 .icon-moon:before{content:'c';}
 .icon-heart:before{content:'d';}
 .icon-tag-1:before{content:'e';}
-.icon-tag-2:before{content:'f';}
 .icon-clock-1:before{content:'g';}
 .icon-clock-2:before{content:'h';}
 .icon-megaphone:before{content:'i';}
@@ -362,7 +362,8 @@ ul.list .list-actions{float:right;margin-left:10px;}
 .option-dollar:before{content:'l';}
 .flag-icon:before{font-family:Entypo;}
 .icon-wrapper{display:inline-block;margin-top:10px;}
-.icon-spotlight{font-family:Entypo;font-size:250%;font-style:normal;font-weight:normal;text-transform:none;speak:none;display:inline-block;text-decoration:inherit;text-align:center;padding:0px 3px 0px 3px;margin-top:-16px;height:20px;}
+.icon-spotlight{font-family:'Entypo';font-size:250%;font-style:normal;font-weight:normal;text-transform:none;speak:none;display:inline-block;text-decoration:inherit;text-align:center;padding:0px 3px 0px 3px;margin-top:-16px;height:20px;}
+.icon-tag-2:before{content:'\26A1';font-family:'Entypo';}
 a i:hover{text-decoration:none;}
 h1.logo{display:inline-block;width:190px;height:63px;margin:0;padding:0;text-indent:-9999px;background:transparent url('../img/main-logo.png') 0 0 no-repeat;*display:inline;*zoom:1;}
 .profile-image{margin-right:10px;}
@@ -473,7 +474,7 @@ table .spot-name a{display:block;color:#000000;}
 .deal .redeem{overflow:hidden;margin-top:5px;}.deal .redeem .onekey .btn-red{margin:5px 10px;}
 .deal .redeem-activity{*zoom:1;}.deal .redeem-activity:before,.deal .redeem-activity:after{display:table;content:"";}
 .deal .redeem-activity:after{clear:both;}
-.deal .redemption{background:#fafafa;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;border:1px solid #eee;padding:5px;margin-top:10px;*zoom:1;}.deal .redemption:before,.deal .redemption:after{display:table;content:"";}
+.deal .redemption{background:#fafafa;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;border:1px solid #eee;clear:both;padding:5px;position:relative;margin-top:10px;*zoom:1;}.deal .redemption:before,.deal .redemption:after{display:table;content:"";}
 .deal .redemption:after{clear:both;}
 .deal .content-group{background-color:#262A30;border:1px solid #000;color:#ffffff;margin-bottom:5px;padding:5px;}.deal .content-group .lead{color:#cccccc;}
 .deal .spot{margin-bottom:5px;}

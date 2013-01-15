@@ -330,7 +330,8 @@ class Deal extends AppModel {
 			'OR' => $current_day_of_week
 		);
 		if(!empty($this->events_only)) $conditions['Deal.keys'] = 0;
-		if(!empty($this->specials_only)) $conditions['Deal.keys >'] = 0; 
+		if(!empty($this->specials_only)) $conditions['Deal.keys'] = 1;
+		if(!empty($this->rewards_and_specials_only)) $conditions ['Deal.keys >'] = 0; 
 		
 		//print_r($conditions);
 		if (count($skipTheseIds)) {

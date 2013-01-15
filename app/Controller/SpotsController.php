@@ -347,6 +347,8 @@ class SpotsController extends AppController {
 				} else {
 					$randomize = true;
 				}
+			} else if ($_GET['search'] == 'now') {
+				$this->Spot->Deal->specials_only = true;
 			} else if ($_GET['search'] == 'tonight') {
 				$start_time = date('H:i', strtotime('today 6pm'));
 				$end_time = date('H:i', strtotime('today 11:59pm'));
@@ -374,7 +376,7 @@ class SpotsController extends AppController {
 				$this->Spot->Deal->current_day_of_week = array(0,1,2,3,4,5,6);
 				
 				$include_happy_hours = false;
-				$this->Spot->Deal->specials_only = true;
+				$this->Spot->Deal->specials_and_rewards_only = true;
 			} else if ($_GET['search'] == 'events') {
 				$start_time = date('H:i', strtotime('today 12am'));
 				$end_time = date('H:i', strtotime('today 11:59pm'));

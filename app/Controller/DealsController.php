@@ -29,6 +29,9 @@ class DealsController extends AppController {
 	//////////////////////////////////////////////////
 	
 	public function view($id) {
+		$app_id = "309486975818919";
+		$channel_url = "http://development.unlokt.com/channel";
+		
 		$this->Deal->id = $id;
 		
 		if (!$deal = $this->Deal->getDeal($id, array('RedemptionCode'))) {
@@ -49,7 +52,7 @@ class DealsController extends AppController {
 		$deal_completed_count = $this->Deal->ActiveDeal->findCompletedCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
 		
 		$this->Deal->increment('views');
-		$this->set(compact('deal', 'spot', 'activeDeal', 'deals', 'deal_completed_count', 'is_manager'));
+		$this->set(compact('deal', 'spot', 'activeDeal', 'deals', 'deal_completed_count', 'is_manager', 'app_id', 'channel_url'));
 	}
 	
 	//////////////////////////////////////////////////

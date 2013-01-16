@@ -61,7 +61,7 @@ if (isset($happy_hour_size)):?>
 			?>
 			<p>
 				<span class="title">
-					<a href="javascript:void(0);" class="happy-hour-title"><?php echo $happy_hour['HappyHour']['title']; ?></a>
+					<?php echo $this->Html->link($happy_hour['HappyHour']['title'], 'javascript:void(0);', array('onclick' => 'return false;', 'class' => 'happy-hour-title')); ?>
 				</span>
 				<b class="pull-right"><?php echo $from; ?> to <?php echo $to; ?></b>
 				<span class="long-description"><?php echo $happy_hour['HappyHour']['description']; ?></span>

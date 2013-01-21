@@ -142,7 +142,11 @@ class SpotsController extends AppController {
 			if ($this->Spot->save()) {
 				$file = $_FILES['file'];
 				if (!$file['error'] && $file['size'] && substr($file['type'], 0, 6) == 'image/') {
-					convert($file['tmp_name'], store_path('spot', $id, 'default.jpg'));
+					$filename = $spot['Spot']['id'] . '_' . time() . '_' . rand(0,1000000);
+					$filename = md5($filename).".jpg";
+					$this->Spot->saveField('image_name', $filename);
+					
+					convert($file['tmp_name'], store_path('spot', $id, $filename));
 					delete_cache('spot', $id);
 				}
 				$this->Session->setFlash('The spot has been saved', 'alert-success');

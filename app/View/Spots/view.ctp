@@ -55,7 +55,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						?>
 					</div>
 
-					<img class="photo" src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200); ?>" width="200" height="200">
+					<img class="photo" src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200, null, $spot['Spot']['image_name']); ?>" width="200" height="200">
 					<h1 class="name"><?php echo h($spot['Spot']['name']); ?></h1>
 					<?php
 					// Don't show the reviews if there are not any ratings yet.

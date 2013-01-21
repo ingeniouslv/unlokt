@@ -535,12 +535,18 @@ class UsersController extends AppController {
 			}
 			// If the data on the User model is valid then save it.
 			if ($this->User->validates()) {
-				$this->User->save();
+				
 				// Check if a picture is being uploaded.
 				if (isset($_FILES['file']) && is_array($_FILES['file']) && !$_FILES['file']['error']) {
-					convert($_FILES['file']['tmp_name'], store_path('user', $this->Auth->user('id'), 'default.jpg'));
+					$filename = $user['User']['id'] . '_' . time() . '_' . rand(0,1000000);
+					$filename = md5($filename).".jpg";
+					$this->User->set('image_name', $filename);
+					
+					convert($_FILES['file']['tmp_name'], store_path('user', $this->Auth->user('id'), $filename));
 					delete_cache('user', $this->Auth->user('id'));
 				}
+				
+				$this->User->save();
 				$this->force_reauthorization($this->Auth->user('id'));
 				$this->Session->setFlash('Your account settings have been saved.', 'alert-success');
 				$this->redirect(array('action' => 'account'));

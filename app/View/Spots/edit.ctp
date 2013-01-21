@@ -8,7 +8,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 			<div class="six columns">
 				<?php echo $this->Form->create('Spot', array('class' => 'form-vertical control-group', 'type' => 'file')); ?>
 				<h2 class="form-section-label">Spot Picture</h2>
-				<img src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200); ?>?<?php echo time(); ?>"><br>
+				<img src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200, null, $spot['Spot']['image_name']); ?>?<?php echo time(); ?>"><br>
 				<input type="file" name="file" data-type="file-input"><br>
 				
 				<h2 class="form-section-label">Information</h2>

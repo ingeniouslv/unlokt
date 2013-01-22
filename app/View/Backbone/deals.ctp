@@ -59,7 +59,6 @@
 							
 						</div>
 						<div class="block-actions">
-							<p><%= deal.Spot.short_description %></p>
 							<% if(_.indexOf(spot_ids_i_follow, parseInt(deal.Spot.id)) > -1) { %>
 								<a class="btn btn-blue pull-right following" href="javascript:void(0);" data-spot-id="<%= deal.Spot.id %>">Unfollow Spot</a>
 							<% } else { %>

@@ -144,7 +144,6 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 			</div>
 
 			<div class="three columns bleed-over-content">
-				<?php if (count($attachments)): ?>
 					<div class="block block-darkgray block-glow">
 						<h4><i class="icon-picture"></i> Gallery</h4>
 						<div class="gallery">
@@ -155,7 +154,6 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						<a class="more" id="more-pics" href="javascript:void(0);">More Pics ›</a>
 						<a id="add-pics" href="javascript:void(0);" onclick="return false;">Add Pics</a>
 					</div>
-				<?php endif; ?>
 
 				<?php echo $this->element('mod-spot_information'); ?>
 			</div>

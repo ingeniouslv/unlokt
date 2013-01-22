@@ -48,7 +48,7 @@ class DealsController extends AppController {
 		$this->Deal->Spot->id = $deal['Deal']['spot_id'];
 		$is_manager = $this->Deal->Spot->Manager->isManager();
 		$is_manager = ($is_manager)?$is_manager:$this->Auth->user('is_super_admin');
-		$deals = $this->Deal->getDealBySpotIds($spot['Spot']['id'], array(), array($id));
+		$deals = $this->Deal->getDealsBySpotIds($spot['Spot']['id'], array(), array($id));
 		$deal_completed_count = $this->Deal->ActiveDeal->findCompletedCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
 		
 		$this->Deal->increment('views');

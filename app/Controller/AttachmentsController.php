@@ -66,4 +66,37 @@ class AttachmentsController extends AppController {
 			$this->redirect($this->request->referer() ? $this->request->referer() : $this->webroot);
 		}
 	}
+	
+	public function index($spot_id) {
+		if(!$spot = $this->Attachment->Spot->read(null, $spot_id)) {
+			throw new NotFoundException('Invalid Spot ID');
+		}
+		
+		$attachments = $this->Attachment->findAllBySpotId($spot_id);
+		
+		$this->set(compact('attachments'));
+	}
+	
+	public function delete($id) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Attachment->id = $id;
+		if (!$attachment = $this->Attachment->read(null, $id)) {
+			throw new NotFoundException(__('Invalid attachment'));
+		}
+		
+		
+		$this->Attachment->Spot->id = $attachment['Attachment']['spot_id'];
+		if (!$this->Attachment->Spot->Manager->isManager()) {
+			throw new NotFoundException('You do not have permission to do this.');
+		}
+		
+		if ($this->Attachment->delete()) {
+			$this->Session->setFlash('Attachment deleted', 'alert-success');
+			$this->redirect(array('action' => 'index', $attachment['Attachment']['spot_id']));
+		}
+		$this->Session->setFlash('Attachment was not deleted', 'alert-error');
+		$this->redirect(array('action' => 'index', $attachment['Attachment']['spot_id']));
+	}
 }

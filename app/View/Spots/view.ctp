@@ -12,6 +12,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<?php echo $this->Html->link('Manage Managers', array('controller'=>'managers', 'action'=>'by_spot', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
 				<?php echo $this->Html->link('Manage Payments', array('controller' => 'payments', 'action' => 'method', $spot['Spot']['id'], "admin" => false), array('class' => 'btn btn-dark')); ?>
 				<?php echo $this->Html->link('Manage Hours of Operation', array('controller'=>'hours_of_operations', 'action'=>'manage', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
+				<?php echo $this->Html->link('Manage Gallery', array('controller'=>'attachments', 'action'=>'index', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
 			</div>
 		</div>
 	</div>

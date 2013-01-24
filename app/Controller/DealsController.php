@@ -360,6 +360,8 @@ class DealsController extends AppController {
 			// No Deal was found - let's make sure we qualify to perform this Deal, then make it so.
 			$done_count = $this->Deal->ActiveDeal->findCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
 			if ($deal['Deal']['limit_per_customer'] && $done_count >= $deal['Deal']['limit_per_customer']) {
+				ApiComponent::error(ApiErrors::$MAX_REDEEM);
+				die('');
 				throw new NotFoundException('You have redeemed this Special too many times.');
 			}
 			// Start Deal since we are not beyond the limit. Woot.

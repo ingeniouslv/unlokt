@@ -15,9 +15,9 @@ $this->set('title_for_layout', 'Login');
 				echo $this->Form->input('password', array('div' => 'control-fields pword', 'label' => false, 'class' => 'input-full', 'placeholder' => 'Password'));
 				?>
 				<div class="btn-group">
-					<a class="btn btn-red" href="/users/register">Sign Up!</a>
+					<!-- <a class="btn btn-red" href="/users/register">Sign Up!</a> -->
 					<?php echo $this->Form->button('Log In', array('type' => 'submit', 'class' => 'btn btn-blue')); ?>
-					<?php echo $this->Html->link('Log In', array('action' => 'login_facebook', 'admin' => false), array('class' => 'btn btn-fb')); ?>
+					<?php //echo $this->Html->link('Log In', array('action' => 'login_facebook', 'admin' => false), array('class' => 'btn btn-fb')); ?>
 				</div>
 				<div class="tip warning" style="display: none;">
 					<h4>Warning</h4>

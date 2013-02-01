@@ -331,8 +331,7 @@ class Deal extends AppModel {
 		);
 		if(!empty($this->events_only)) $conditions['Deal.keys'] = 0;
 		if(!empty($this->specials_only)) $conditions['Deal.keys'] = 1;
-		if(!empty($this->rewards_and_specials_only)) $conditions ['Deal.keys >'] = 0; 
-		
+		if(!empty($this->rewards_and_specials_only)) $conditions ['Deal.keys >'] = 0;
 		//print_r($conditions);
 		if (count($skipTheseIds)) {
 			$conditions['Deal.id NOT'] = $skipTheseIds;

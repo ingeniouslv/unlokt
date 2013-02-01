@@ -45,15 +45,15 @@
 		$this->Html->get_script()
 	);
 	
-	if (Configure::read('debug') == 2) {
+	// if (Configure::read('debug') == 2) {
 		// Don't compress/cache css/js when we are in debug mode
 		echo $this->Html->css($cssFiles);
 		echo $this->Html->script($jsFiles);
-	} else {
-		echo $this->Html->css($cssFiles);
-		$this->Combinator->add_libs('js', $jsFiles);
-		echo $this->Combinator->scripts('js');
-	}
+	// } else {
+	// 	echo $this->Html->css($cssFiles);
+	// 	$this->Combinator->add_libs('js', $jsFiles);
+	// 	echo $this->Combinator->scripts('js');
+	// }
 	?>
 
 	<script type="text/javascript">

@@ -8,7 +8,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 			<div class="six columns">
 				<?php echo $this->Form->create('Spot', array('class' => 'form-vertical control-group', 'type' => 'file')); ?>
 				<h2 class="form-section-label">Spot Picture</h2>
-				<img src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200); ?>?<?php echo time(); ?>"><br>
+				<img src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200, null, $spot['Spot']['image_name']); ?>?<?php echo time(); ?>"><br>
 				<input type="file" name="file" data-type="file-input"><br>
 				
 				<h2 class="form-section-label">Information</h2>
@@ -117,10 +117,10 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 
 			// General options
 			theme : "advanced",
-			//plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
+			plugins : "paste",
 
 			// Theme options
-			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword|,formatselect,",
+			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword,|,formatselect,",
 			theme_advanced_buttons2 : ",undo,redo,|,link,unlink,image,cleanup,code,|,forecolor,",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
@@ -149,10 +149,10 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 
 			// General options
 			theme : "advanced",
-			//plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
+			plugins : "paste",
 
 			// Theme options
-			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword|,formatselect,",
+			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword,|,formatselect,",
 			theme_advanced_buttons2 : ",undo,redo,|,link,unlink,image,cleanup,code,|,",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",

@@ -9,6 +9,8 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 	</div>
 	<div class="modal-body">
 		<div class="image">
+			<a class="left" href="javascript:void(0);">&lsaquo;</a>
+			<a class="right" href="javascript:void(0);">&rsaquo;</a>
 			<div class="image-wrapper">	
 				<img src="">
 			</div>		
@@ -37,8 +39,28 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 		events: {
 			'click .images img': 'click_to_load',
 			'click .image-selecter-nav .left': 'click_left',
-			'click .image-selecter-nav .right': 'click_right'
+			'click .image-selecter-nav .right': 'click_right',
+			'click .image .left' : 'click_to_load_left',
+			'click .image .right' : 'click_to_load_right'
 		},
+		
+		//////////////////////////////////////////////////
+		
+		click_to_load_right: function(event) {
+			if(this.options.current_index < this.options.data.length - 1) {
+				var attachment_id = parseInt(this.options.data[this.options.current_index+1]);
+				this.load_image(attachment_id);
+			}
+		}, // end of click_to_load()
+		
+		//////////////////////////////////////////////////
+		
+		click_to_load_left: function(event) {
+			if(this.options.current_index > 0) {
+				var attachment_id = parseInt(this.options.data[this.options.current_index-1]);
+				this.load_image(attachment_id);
+			}
+		}, // end of click_to_load()
 		
 		//////////////////////////////////////////////////
 		
@@ -85,6 +107,13 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 			// Clear the 'active' class on all of the images
 			this.$('.images img.active').removeClass('active');
 			var $pic_container = this.$('.lazy[data-attachment-id="' + attachment_id + '"]').addClass('active').parent();
+			//update current index
+			this.options.current_index =  _.indexOf(this.options.data, attachment_id + "");
+			//if current index is at the beginning or end, hide the proper left or right buttons
+			$('.image .right, .image .left').show();
+			if(this.options.current_index == 0) $('.image .left').hide(); //hide left button
+			if(this.options.current_index == this.options.data.length - 1) $('.image .right').hide(); //hide right button
+			
 			var slider_width = this.$('.images').width();
 			var container_width = this.$('.image-selecter').width();
 			var slider_left = parseInt(this.$('.images').css('left').replace(/[^0-9]/, ''));

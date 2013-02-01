@@ -8,7 +8,7 @@ $this->set('title_for_layout', 'Account Settings');
 		</div>
 		<div class="row">
 			<div class="one columns">
-				<img src="<?php echo $this->Html->gen_path('user', $user['User']['id'], 80); ?>" class="profile-image" title="<?php echo h($user['User']['name']); ?>">
+				<img src="<?php echo $this->Html->gen_path('user', $user['User']['id'], 80, null, $user['User']['image_name']); ?>" class="profile-image" title="<?php echo h($user['User']['name']); ?>">
 			</div>
 
 			<div class="eleven columns user-details">

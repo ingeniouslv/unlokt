@@ -132,12 +132,15 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 	</div>
 </div>
 
+
 <div class="container">
 	<div class="row">
-		<div class="nine columns">
-			<?php echo $this->element('mod-filtered_items', array('class' => 'fixed')); ?>
-			<?php //echo $this->element('mod-spot_feed'); ?>
-			<?php //echo $this->element('mod-spot_reviews'); ?>
+		<div class="nine columns block-slider">
+			<div class="block-slider-nav">
+				<a class="left" href="javascript:void(0);"></a>
+				<a class="right" href="javascript:void(0);"></a>
+			</div>
+			<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
 		</div>
 	</div>
 </div>
@@ -197,6 +200,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 	}(document));
 </script>
 
+<script src="/js/nf-slider-call.js"></script>
 
 <script>
 

@@ -8,7 +8,7 @@
 				<?php echo $this->Form->hidden('spot_id', array('value' => $spot['Spot']['id'])); ?>
 				<div class="control-group-row">
 					<div class="six columns">
-						<?php echo $this->Form->input('open_time', array('type' => 'text', 'class' => 'timepicker input-full', 'div' => 'control-fields')); ?>
+						<?php echo $this->Form->input('open_time', array('type' => 'text', 'class' => 'timepicker2 input-full', 'div' => 'control-fields', 'value' => '8:00 AM')); ?>
 					</div>
 					<div class="six columns">
 						<?php echo $this->Form->input('close_time', array('type' => 'text', 'class' => 'timepicker input-full', 'div' => 'control-fields')); ?>
@@ -30,3 +30,6 @@
 		</div>
 	</div>
 </div>
+<script>
+	$('.timepicker2').timepicker({defaultTime:'value'});
+</script>

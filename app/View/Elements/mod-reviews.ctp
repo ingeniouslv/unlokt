@@ -5,7 +5,7 @@
 		<div class="review-item tile">
 			
 			<div class="head">
-				<img src="<?php echo $this->Html->gen_path('user', $review['User']['id'], 40); ?>" class="pull-left">
+				<img src="<?php echo $this->Html->gen_path('user', $review['User']['id'], 40, null, $review['User']['image_name']); ?>" class="pull-left">
 				<h3 class="title"><?php echo htmlspecialchars($review['Review']['name']); ?></h3>
 			</div>
 

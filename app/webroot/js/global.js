@@ -33,7 +33,7 @@ com.unlokt.prototype.helpers = {
 			throw 'Missing a required parameter.';
 		}
 		// Must be a square image if the height is undefined.
-		if (typeof height == 'undefined') {
+		if (typeof height == 'undefined' || height == null) {
 			height = width;
 		}
 		if (typeof file == 'undefined') {

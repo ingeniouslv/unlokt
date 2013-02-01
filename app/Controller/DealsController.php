@@ -48,7 +48,7 @@ class DealsController extends AppController {
 		$this->Deal->Spot->id = $deal['Deal']['spot_id'];
 		$is_manager = $this->Deal->Spot->Manager->isManager();
 		$is_manager = ($is_manager)?$is_manager:$this->Auth->user('is_super_admin');
-		$deals = $this->Deal->getDealBySpotIds($spot['Spot']['id'], array(), array($id));
+		$deals = $this->Deal->getDealsBySpotIds($spot['Spot']['id'], array(), array($id));
 		$deal_completed_count = $this->Deal->ActiveDeal->findCompletedCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
 		
 		$this->Deal->increment('views');
@@ -360,6 +360,8 @@ class DealsController extends AppController {
 			// No Deal was found - let's make sure we qualify to perform this Deal, then make it so.
 			$done_count = $this->Deal->ActiveDeal->findCountByDealIdAndAndUserId($id, $this->Auth->user('id'));
 			if ($deal['Deal']['limit_per_customer'] && $done_count >= $deal['Deal']['limit_per_customer']) {
+				ApiComponent::error(ApiErrors::$MAX_REDEEM);
+				die('');
 				throw new NotFoundException('You have redeemed this Special too many times.');
 			}
 			// Start Deal since we are not beyond the limit. Woot.

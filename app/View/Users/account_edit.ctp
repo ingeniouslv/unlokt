@@ -12,8 +12,8 @@ $this->set('title_for_layout', 'Account Settings');
 						<?php echo $this->Form->label('picture', 'Picture'); ?>
 					</div>
 					<div class="ten columns">
-						<img src="<?php echo $this->Html->gen_path('user', $this->Auth->user('id'), 80); ?>" class="pull-left profile-image">
-						<p>Fore best results, use an image of 160x160 pixels<br>File formats accepted are JPEG, PNG, and GIF.</p>
+						<img src="<?php echo $this->Html->gen_path('user', $this->Auth->user('id'), 80, null, $user['User']['image_name']); ?>" class="pull-left profile-image">
+						<p>For best results, use an image of 160x160 pixels<br>File formats accepted are JPEG, PNG, and GIF.</p>
 						<input type="file" name="file" class="input" data-type="file-input">
 					</div>
 				</div>

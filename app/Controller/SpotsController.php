@@ -142,7 +142,11 @@ class SpotsController extends AppController {
 			if ($this->Spot->save()) {
 				$file = $_FILES['file'];
 				if (!$file['error'] && $file['size'] && substr($file['type'], 0, 6) == 'image/') {
-					convert($file['tmp_name'], store_path('spot', $id, 'default.jpg'));
+					$filename = $spot['Spot']['id'] . '_' . time() . '_' . rand(0,1000000);
+					$filename = md5($filename).".jpg";
+					$this->Spot->saveField('image_name', $filename);
+					
+					convert($file['tmp_name'], store_path('spot', $id, $filename));
 					delete_cache('spot', $id);
 				}
 				$this->Session->setFlash('The spot has been saved', 'alert-success');
@@ -361,7 +365,7 @@ class SpotsController extends AppController {
 			} else if ($_GET['search'] == 'happy-hour') {
 				$include_deals = false;
 				
-				$start_time = date('H:i', strtotime('today 12am'));
+				$start_time = date('H:i', time());
 				$end_time = date('H:i', strtotime('today 11:59pm'));
 				
 				$this->Spot->HappyHour->current_start_time = $start_time;
@@ -377,7 +381,7 @@ class SpotsController extends AppController {
 				$this->Spot->Deal->current_day_of_week = array(0,1,2,3,4,5,6);
 				
 				$include_happy_hours = false;
-				$this->Spot->Deal->specials_and_rewards_only = true;
+				$this->Spot->Deal->rewards_and_specials_only = true;
 			} else if ($_GET['search'] == 'events') {
 				$start_time = date('H:i', strtotime('today 12am'));
 				$end_time = date('H:i', strtotime('today 11:59pm'));
@@ -681,7 +685,7 @@ class SpotsController extends AppController {
 	public function api_view($id) {
 		$this->Spot->id = $id;
 		
-		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed','SpotOption','HoursOfOperation'))) {
+		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed','SpotOption','HoursOfOperation', 'Deal'))) {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 			return;
 		}

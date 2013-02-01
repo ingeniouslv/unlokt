@@ -12,7 +12,7 @@
 			<div class="note-slide columns">
 				<div class="review-item tile">
 					<div class="head">	
-						<img src="<% print(unlokt.helpers.gen_path('user', review.Review.user_id, 40)); %>" class="pull-left">
+						<img src="<% print(unlokt.helpers.gen_path('user', review.Review.user_id, 40, 40, review.User.image_name)); %>" class="pull-left">
 						<% if (review.Review.name) { %>
 							<h3 class="title"><%= h(review.Review.name) %></h3>
 						<% } %>

@@ -181,8 +181,8 @@ $this->Html->add_script(array(
 				<?php elseif (!empty($spot['Spot']['is_premium'])): ?>
 					<div class="twelve columns block-slider">
 						<div class="block-slider-nav">
-							<a class="left" href="javascript:void(0);"></a>
-							<a class="right" href="javascript:void(0);"></a>
+							<a class="left" href="javascript:void(0);">&lsaquo;</a>
+							<a class="right" href="javascript:void(0);">&rsaquo;</a>
 						</div>
 						<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
 					</div>
@@ -200,8 +200,8 @@ $this->Html->add_script(array(
 				</div>
 				<div class="twelve note-slider">
 					<div class="block-slider-nav note-slider-nav">
-						<a class="left" href="javascript:void(0);"></a>
-						<a class="right" href="javascript:void(0);"></a>
+						<a class="left" href="javascript:void(0);">&lsaquo;</a>
+						<a class="right" href="javascript:void(0);">&rsaquo;</a>
 					</div>
 					<?php echo $this->element('mod-spot_reviews'); ?>
 				</div>	

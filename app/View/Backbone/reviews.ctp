@@ -3,8 +3,8 @@
 </div>
 <div class="note-slider twelve">
 	<div class="block-slider-nav note-slider-nav">
-		<a class="left" href="javascript:void(0);"></a>
-		<a class="right" href="javascript:void(0);"></a>
+		<a class="left" href="javascript:void(0);">&lsaquo;</a>
+		<a class="right" href="javascript:void(0);">&rsaquo;</a>
 	</div>
 	<div class="note-slider-container review-wr">
 		<% _.each(reviews, function(review) { %>

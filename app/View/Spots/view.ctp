@@ -12,7 +12,6 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<?php echo $this->Html->link('Manage Managers', array('controller'=>'managers', 'action'=>'by_spot', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
 				<?php echo $this->Html->link('Manage Payments', array('controller' => 'payments', 'action' => 'method', $spot['Spot']['id'], "admin" => false), array('class' => 'btn btn-dark')); ?>
 				<?php echo $this->Html->link('Manage Hours of Operation', array('controller'=>'hours_of_operations', 'action'=>'manage', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
-				<?php echo $this->Html->link('Manage Gallery', array('controller'=>'attachments', 'action'=>'index', $spot['Spot']['id']), array('class' => 'btn btn-dark')); ?>
 			</div>
 		</div>
 	</div>
@@ -56,7 +55,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						?>
 					</div>
 
-					<img class="photo" src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200, null, $spot['Spot']['image_name']); ?>" width="200" height="200">
+					<img class="photo" src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200); ?>" width="200" height="200">
 					<h1 class="name"><?php echo h($spot['Spot']['name']); ?></h1>
 					<?php
 					// Don't show the reviews if there are not any ratings yet.
@@ -118,6 +117,13 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 								</ul>
 							</div>	
 						<?php endif; ?>
+						<h4>Social Media</h4>
+						<div class="block block-darkgray">
+							<a href="facebook.com" class="s-facebook"></a>
+							<a href="twitter.com" class="s-twitter"></a>
+							<a href="instagram.com" class="s-instagram"></a>
+							<i></i>
+						</div>
 						<!-- Show SpotOption if not empty -->
 						<?php if (count($other_spots)): ?>
 							<h4>Other Locations</h4>
@@ -145,6 +151,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 			</div>
 
 			<div class="three columns bleed-over-content">
+				<?php if (count($attachments)): ?>
 					<div class="block block-darkgray block-glow">
 						<h4><i class="icon-picture"></i> Gallery</h4>
 						<div class="gallery">
@@ -155,6 +162,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						<a class="more" id="more-pics" href="javascript:void(0);">More Pics ›</a>
 						<a id="add-pics" href="javascript:void(0);" onclick="return false;">Add Pics</a>
 					</div>
+				<?php endif; ?>
 
 				<?php echo $this->element('mod-spot_information'); ?>
 			</div>
@@ -181,8 +189,8 @@ $this->Html->add_script(array(
 				<?php elseif (!empty($spot['Spot']['is_premium'])): ?>
 					<div class="twelve columns block-slider">
 						<div class="block-slider-nav">
-							<a class="left" href="javascript:void(0);">&lsaquo;</a>
-							<a class="right" href="javascript:void(0);">&rsaquo;</a>
+							<a class="left" href="javascript:void(0);"></a>
+							<a class="right" href="javascript:void(0);"></a>
 						</div>
 						<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
 					</div>
@@ -200,8 +208,8 @@ $this->Html->add_script(array(
 				</div>
 				<div class="twelve note-slider">
 					<div class="block-slider-nav note-slider-nav">
-						<a class="left" href="javascript:void(0);">&lsaquo;</a>
-						<a class="right" href="javascript:void(0);">&rsaquo;</a>
+						<a class="left" href="javascript:void(0);"></a>
+						<a class="right" href="javascript:void(0);"></a>
 					</div>
 					<?php echo $this->element('mod-spot_reviews'); ?>
 				</div>	

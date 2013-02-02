@@ -3,7 +3,7 @@
 	<% _.each(feeds, function(feed) { %>
 		<!-- Feed Item -->
 		<div class="feed-item">
-			<img src="<% print(unlokt.helpers.gen_path('spot', feed.Spot.id, 40, 40, feed.Spot.image_name)); %>" class="pull-left">
+			<img src="<% print(unlokt.helpers.gen_path('spot', feed.Spot.id, 40, 40, feed.Spot.image_name)); %>" class="pull-right">
 			<h3 class="title"><a href="<%= unlokt.settings.webroot %>spots/view/<%= feed.Spot.id %>"><%= h(feed.Spot.name) %></a></h3>
 			<div class="description">
 				<p><%= h(feed.Feed.feed) %></p>

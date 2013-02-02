@@ -35,8 +35,8 @@ $this->set('title_for_layout', 'Account Settings');
 		<div class="five columns">
 			<div class="note-slider">
 				<div class="block-slider-nav note-slider-nav">
-					<a class="left" href="javascript:void(0);">&lsaquo;</a>
-					<a class="right" href="javascript:void(0);">&rsaquo;</a>
+					<a class="left" href="javascript:void(0);"></a>
+					<a class="right" href="javascript:void(0);"></a>
 				</div>
 				<?php echo $this->element('mod-reviews'); ?>
 			</div>

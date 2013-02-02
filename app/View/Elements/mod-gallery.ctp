@@ -13,6 +13,7 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 				<a class="left" href="javascript:void(0);">&lsaquo;</a>
 				<a class="right" href="javascript:void(0);">&rsaquo;</a>
 			</div>	
+				
 			<div class="image-wrapper">	
 				<img src="">
 			</div>		

@@ -135,8 +135,8 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 	<div class="row">
 		<div class="nine columns block-slider">
 			<div class="block-slider-nav">
-				<a class="left" href="javascript:void(0);">&lsaquo;</a>
-				<a class="right" href="javascript:void(0);">&rsaquo;</a>
+				<a class="left" href="javascript:void(0);"></a>
+				<a class="right" href="javascript:void(0);"></a>
 			</div>
 			<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
 		</div>

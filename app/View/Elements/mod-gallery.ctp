@@ -9,8 +9,11 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 	</div>
 	<div class="modal-body">
 		<div class="image">
-			<a class="left" href="javascript:void(0);">&lsaquo;</a>
-			<a class="right" href="javascript:void(0);">&rsaquo;</a>
+			<div class="image-selecter-nav">
+				<a class="left" href="javascript:void(0);">&lsaquo;</a>
+				<a class="right" href="javascript:void(0);">&rsaquo;</a>
+			</div>	
+				
 			<div class="image-wrapper">	
 				<img src="">
 			</div>		
@@ -111,8 +114,6 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 			this.options.current_index =  _.indexOf(this.options.data, attachment_id + "");
 			//if current index is at the beginning or end, hide the proper left or right buttons
 			$('.image .right, .image .left').show();
-			if(this.options.current_index == 0) $('.image .left').hide(); //hide left button
-			if(this.options.current_index == this.options.data.length - 1) $('.image .right').hide(); //hide right button
 			
 			var slider_width = this.$('.images').width();
 			var container_width = this.$('.image-selecter').width();

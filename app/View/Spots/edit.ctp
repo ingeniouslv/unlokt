@@ -84,6 +84,13 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 				<?php echo $this->Form->input('description', array('div' => 'control-fields', 'class' => 'spot-description-editor tinymce')); ?>
 				<?php echo $this->Form->input('spotlight_2', array('div' => 'control-fields', 'label' => 'Spotlight Mini', 'class' => 'spot-spotlight_2-editor tinymce')); ?>
 				
+				<h2 class="form-section-label">Social Media</h2>
+				<?php
+					echo $this->Form->input('facebook_url', array('div' => 'control-fields', 'label' => 'Facebook', 'class' => 'input-full'));
+					echo $this->Form->input('twitter_url', array('div' => 'control-fields', 'label' => 'Twitter', 'class' => 'input-full'));
+					echo $this->Form->input('instagram_url', array('div' => 'control-fields', 'label' => 'Instagram', 'class' => 'input-full'));
+				?>
+				
 				<?php if($this->Auth->user('is_super_admin')) : ?>
 					<h2 class="form-section-label">Super Admin Controls</h2>
 						<?php echo $this->Form->input('is_active', array('div' => 'control-fields', 'label' => 'Active')); ?>

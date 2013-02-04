@@ -131,8 +131,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 		</div>
 	</div>
 </div>
-
-
 <div class="container">
 	<div class="row">
 		<div class="nine columns block-slider">
@@ -144,14 +142,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 		</div>
 	</div>
 </div>
-
-<script>
-	// Trigger the Deal tiles to stagger so beautifully.
-	$('#staggered').masonry({
-		itemSelector : '.staggered-item'
-	});
-</script>
-
 <div class="modal modal-redeem hide" id="redeemModal">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal"></a>
@@ -203,6 +193,20 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 <script src="/js/nf-slider-call.js"></script>
 
 <script>
+
+	$(document).ready(function() {
+
+		var netflixviewer = new NetflixViewer({
+			click_left: '.left',
+			click_right: '.right',
+			container: '.block-slider',
+			slider: '.block-slider-container',
+			item_padding: 10,
+			el: $('.block-slider').parent(),
+			slider_speed: 15,
+			slider_distance: 6
+		});
+	});
 
 	//add a hover effect to the tile image
 	$('.tile').hover(

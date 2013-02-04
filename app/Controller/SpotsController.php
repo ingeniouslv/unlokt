@@ -165,7 +165,7 @@ class SpotsController extends AppController {
 		
 		$spotOptions = $this->Spot->SpotOption->find('list');
 		// Admins will be allowed to edit the Location of the Spot
-		$locations = $this->Spot->Location->find('list');
+		$locations = $this->Spot->Location->find('list', array('conditions' => array('Location.is_active' => true)));
 		$this->set(compact('categories','spotOptions', 'locations', 'spot', 'parentSpots'));
 	}
 	
@@ -584,7 +584,7 @@ class SpotsController extends AppController {
 		
 		//sort the results so happy hours aren't always at the top
 		if($randomize) {
-			shuffle($return['deals']);
+			usort($return['deals'], array('Deal', 'sortDealsByRandomDelta'));
 		} else if ($order_by_views) {
 			usort($return['deals'], array('Deal','sortDealsBySpotViews'));
 		} else {

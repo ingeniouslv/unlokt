@@ -13,6 +13,7 @@ $this->set('title_for_layout', 'Add a Location');
 						echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => false, 'placeholder' => 'Name'));
 						echo $this->Form->input('lat', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => false, 'placeholder' => 'Latitude'));
 						echo $this->Form->input('lng', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => false, 'placeholder' => 'Longitude'));
+						echo $this->Form->input('is_active', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => 'Active'));
 					?>
 					<div class="btn-group">
 						<a class="btn" href="">Cancel</a>

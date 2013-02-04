@@ -117,13 +117,6 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 								</ul>
 							</div>	
 						<?php endif; ?>
-						<h4>Social Media</h4>
-						<div class="block block-darkgray">
-							<a href="facebook.com" class="s-facebook"></a>
-							<a href="twitter.com" class="s-twitter"></a>
-							<a href="instagram.com" class="s-instagram"></a>
-							<i></i>
-						</div>
 						<!-- Show SpotOption if not empty -->
 						<?php if (count($other_spots)): ?>
 							<h4>Other Locations</h4>

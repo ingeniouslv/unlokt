@@ -93,5 +93,14 @@
 			</div>
 		<?php endif; ?>
 		
+		<div class="section">
+			<h5 class="section-name"><span>Social Media</span></h5>
+			<i class="icon-link"></i>
+			<div class="section-content">
+				<a href="facebook.com" class="s-facebook"></a>
+				<a href="twitter.com" class="s-twitter"></a>
+				<a href="instagram.com" class="s-instagram"></a>
+			</div>
+		</div>
 	</div>
 </div>

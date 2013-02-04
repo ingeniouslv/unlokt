@@ -40,11 +40,15 @@
 		.pull-right;
 		display: inline-block;
 		margin-bottom: @gridGutter;
-		min-width: 384px;
+		
 
 		img {
-			float: right;
+			float: left;
 			display: block;
+
+			&:last-child {
+				margin-right: 0;
+			}
 		}
 	}
 

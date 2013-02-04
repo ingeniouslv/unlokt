@@ -289,7 +289,7 @@ ul.list .list-actions{float:right;margin-left:10px;}
 .feed-item .description,.review-item .description{*zoom:1;}.feed-item .description:before,.review-item .description:before,.feed-item .description:after,.review-item .description:after{display:table;content:"";}
 .feed-item .description:after,.review-item .description:after{clear:both;}
 .feed-item .description p,.review-item .description p{word-wrap:break-word;overflow:hidden;color:white;}
-.feed-item .attachments,.review-item .attachments{float:right;display:inline-block;margin-bottom:10px;min-width:384px;}.feed-item .attachments img,.review-item .attachments img{float:right;display:block;}
+.feed-item .attachments,.review-item .attachments{float:right;display:inline-block;margin-bottom:10px;}.feed-item .attachments img,.review-item .attachments img{float:left;display:block;}.feed-item .attachments img:last-child,.review-item .attachments img:last-child{margin-right:0;}
 .feed-item:last-child,.review-item:last-child{border-bottom:0;margin-bottom:0;}
 .feed-item+.block-actions,.review-item+.block-actions{margin-top:-5px;padding:0;border:none;text-align:right;}.feed-item+.block-actions i:before,.review-item+.block-actions i:before{line-height:100%;font-size:130%;}
 .review-item .review-spot{margin-left:45px;font-size:10px;font-weight:bold;color:#666666;}
@@ -373,7 +373,7 @@ ul.list .list-actions{float:right;margin-left:10px;}
 .icon-wrapper{display:inline-block;margin-top:10px;}
 .icon-spotlight{font-family:'Entypo';font-size:250%;font-style:normal;font-weight:normal;text-transform:none;speak:none;display:inline-block;text-decoration:inherit;text-align:center;padding:0px 3px 0px 3px;margin-top:-16px;height:20px;}
 a i:hover{text-decoration:none;}
-.s-twitter,.s-facebook,.s-instagram{background-repeat:repeat-none;content:' ';display:inline-block;height:33px;margin:2px 2px 0 0;width:33px;}
+.s-twitter,.s-facebook,.s-instagram{background-repeat:repeat-none;content:' ';display:inline-block;height:23px;margin:2px 2px 0 0;width:23px;}
 .s-twitter{background-image:url('/img/twitter-icon.png');-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;}
 .s-facebook{background-image:url('/img/facebook-icon.png');}
 .s-instagram{background-image:url('/img/instagram-icon.png');}

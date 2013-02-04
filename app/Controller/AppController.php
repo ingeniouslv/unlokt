@@ -97,7 +97,7 @@ class AppController extends Controller {
 			//if they aren't logged in, do regular redirect stuff.
 		}
 		
-		$location_options = $this->Location->find('list');
+		$location_options = $this->Location->find('list', array('conditions' => array('Location.is_active' => true)));
 		
 		$this->set(compact('spots_i_manage', 'spots_i_follow', 'spot_ids_i_follow', 'location_options', 'user'));
 		parent::beforeFilter();

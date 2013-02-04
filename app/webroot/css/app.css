@@ -373,7 +373,7 @@ ul.list .list-actions{float:right;margin-left:10px;}
 .icon-wrapper{display:inline-block;margin-top:10px;}
 .icon-spotlight{font-family:'Entypo';font-size:250%;font-style:normal;font-weight:normal;text-transform:none;speak:none;display:inline-block;text-decoration:inherit;text-align:center;padding:0px 3px 0px 3px;margin-top:-16px;height:20px;}
 a i:hover{text-decoration:none;}
-.i-twitter,.i-facebook,.i-instagram{background-repeat:repeat-none;content:' ';display:inline-block;height:23px;margin:2px 2px 0 0;width:23px;}
+.i-twitter,.i-facebook,.i-instagram{background-repeat:no-repeat;content:' ';display:inline-block;height:23px;margin:2px 2px 0 0;width:23px;}
 .i-twitter{background-image:url('/img/twitter-icon.png');-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;}
 .i-facebook{background-image:url('/img/facebook-icon.png');}
 .i-instagram{background-image:url('/img/instagram-icon.png');}
@@ -404,6 +404,7 @@ img.polaroid{border-color:#ffffff;border-style:solid;border-width:5px 5px 15px 5
 .spot .photo{margin-right:10px;float:left;}
 .spot .page-header{padding-bottom:10px;border-bottom:1px solid #555;}
 .spot .row .row .block-white,.deal .row .row .block-white{border:1px solid #cccccc;}
+.spot.page .btn-group,.deal.page .btn-group{margin-top:10px;}
 .spot-status{display:inline-block;width:8px;height:8px;margin-left:5px;vertical-align:middle;-webkit-border-radius:100%;-moz-border-radius:100%;border-radius:100%;*display:inline;*zoom:1;}.spot-status.is-open{background:#390;}
 .spot-status.is-closed{background:#c00;}
 .spot-custom-content{overflow:hidden;margin-bottom:10px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}.spot-custom-content.large{max-height:123px;}

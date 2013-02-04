@@ -99,13 +99,13 @@
 				<i class="icon-link"></i>
 				<div class="section-content">
 					<?php if ($spot['Spot']['facebook_url']): ?>
-						<a href="http://<?php echo h($spot['Spot']['facebook_url']); ?>" target="_blank" class="i-facebook"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['facebook_url'])); ?></a>
+						<a href="http://<?php echo h($spot['Spot']['facebook_url']); ?>" target="_blank" class="i-facebook"></a>
 					<?php endif; ?>
 					<?php if ($spot['Spot']['twitter_url']): ?>
-						<a href="http://<?php echo h($spot['Spot']['twitter_url']); ?>" target="_blank" class="i-twitter"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['twitter_url'])); ?></a>
+						<a href="http://<?php echo h($spot['Spot']['twitter_url']); ?>" target="_blank" class="i-twitter"></a>
 					<?php endif; ?>
 					<?php if ($spot['Spot']['instagram_url']): ?>
-						<a href="http://<?php echo h($spot['Spot']['instagram_url']); ?>" target="_blank" class="i-instagram"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['instagram_url'])); ?></a>
+						<a href="http://<?php echo h($spot['Spot']['instagram_url']); ?>" target="_blank" class="i-instagram"></a>
 					<?php endif; ?>
 				</div>
 			</div>

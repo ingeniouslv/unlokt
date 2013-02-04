@@ -15,6 +15,7 @@ $this->set('title_for_layout', "Editing Location '".h($this->data['Location']['n
 						echo $this->Form->input('name', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => 'Name'));
 						echo $this->Form->input('lat', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => 'Latitude'));
 						echo $this->Form->input('lng', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => 'Longitude'));
+						echo $this->Form->input('is_active', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => 'Active'));
 					?>
 					<div class="btn-group">
 						<a class="btn" href="">Cancel</a>

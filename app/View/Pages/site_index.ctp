@@ -7,7 +7,7 @@ $this->Html->add_script(array(
 	'libs/jquery.grid-a-licious.min'
 ));
 ?>
-<div class="showcase" id="showcase" style="background-image: url('<?php echo $this->webroot; ?>img/bg.jpg');">
+<div class="showcase" id="showcase" style="background-image: url('<?php echo $this->webroot; ?>img/bg.png');">
 	<div id="homepagemap" style="height: 300px;"></div>
 </div>
 <div class="main-content">

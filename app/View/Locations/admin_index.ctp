@@ -11,6 +11,7 @@ $this->set('title_for_layout', 'Location Manager');
 					<th><?php echo $this->Paginator->sort('name'); ?></th>
 					<th><?php echo $this->Paginator->sort('lat', 'Latitude'); ?></th>
 					<th><?php echo $this->Paginator->sort('lng', 'Longitude'); ?></th>
+					<th><?php echo $this->Paginator->sort('is_active', 'Active'); ?></th>
 					<th class="actions">Actions</th>
 				</tr>
 			</thead>
@@ -26,6 +27,9 @@ $this->set('title_for_layout', 'Location Manager');
 					</td>
 					<td>
 						<?php echo $location['Location']['lng']; ?>
+					</td>
+					<td>
+						<?php echo ($location['Location']['is_active'])?'Yes':'No'; ?>
 					</td>
 					<td class="actions">
 						<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $location['Location']['id']), array('class' => 'btn')); ?>

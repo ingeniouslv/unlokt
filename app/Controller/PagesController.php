@@ -85,7 +85,7 @@ class PagesController extends AppController {
 		$categories = $this->Spot->Category->getThreadedList();
 		$parent_categories = $this->Spot->Category->getParentCategories();
 		$geolocation = $this->Location->getGeolocation();
-		$locations = $this->Location->find('all');
+		$locations = $this->Location->find('all', array('conditions' => array('Location.is_active' => true)));
 		
 		$this->set(compact('feed', 'categories', 'parent_categories', 'locations', 'geolocation'));
 		

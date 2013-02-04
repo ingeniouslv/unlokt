@@ -356,5 +356,10 @@ class Deal extends AppModel {
 		return $a['Spot']['views'] < $b['Spot']['views'];
 	}
 	
+	//sorts the deals alphabetically using either deal name or spot name (in case of happy hours)
+	public function sortDealsByRandomDelta($a, $b) {
+		return $a['Spot']['random_delta'] > $b['Spot']['random_delta'];
+	}
+	
 
 }

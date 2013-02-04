@@ -89,8 +89,10 @@ img.polaroid {
 		position: absolute;
 		width: 600px;
 
-		.left, 
-		.right {
+		.left,
+		.right,
+		.s-left,
+		.s-right {
 			background-color: #fff;
 			color:#666666;
 			display: block;
@@ -108,13 +110,15 @@ img.polaroid {
 			}
 		}
 
-		.left {
+		.left,
+		.s-left {
 			left: 0;
 			border-radius: 0px 25px 25px 0px;
 			text-align: left;
 		}
 
-		.right {
+		.right,
+		.s-right {
 			right: 0;
 			border-radius: 25px 0px 0px 25px;
 			text-align: right;

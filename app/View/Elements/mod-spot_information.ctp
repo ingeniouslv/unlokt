@@ -88,7 +88,24 @@
 				<h5 class="section-name"><span>Website</span></h5>
 				<i class="icon-link"></i>
 				<div class="section-content">
-					<a href="<?php echo h($spot['Spot']['url']); ?>" target="_blank"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['url'])); ?></a>
+					<a href="http://<?php echo h($spot['Spot']['url']); ?>" target="_blank"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['url'])); ?></a>
+				</div>
+			</div>
+		<?php endif; ?>
+		
+		<?php if ($spot['Spot']['facebook_url'] || $spot['Spot']['twitter_url'] || $spot['Spot']['instagram_url']): ?>
+			<div class="section">
+				<h5 class="section-name"><span>Social Media</span></h5>
+				<div class="section-content">
+					<?php if ($spot['Spot']['facebook_url']): ?>
+						<a href="http://<?php echo h($spot['Spot']['facebook_url']); ?>" target="_blank" class="facebook"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['facebook_url'])); ?></a>
+					<?php endif; ?>
+					<?php if ($spot['Spot']['twitter_url']): ?>
+						<a href="http://<?php echo h($spot['Spot']['twitter_url']); ?>" target="_blank" class="twitter"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['twitter_url'])); ?></a>
+					<?php endif; ?>
+					<?php if ($spot['Spot']['instagram_url']): ?>
+						<a href="http://<?php echo h($spot['Spot']['instagram_url']); ?>" target="_blank" class="instagram"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['instagram_url'])); ?></a>
+					<?php endif; ?>
 				</div>
 			</div>
 		<?php endif; ?>

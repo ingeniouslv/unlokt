@@ -32,6 +32,7 @@
 				if (typeof deal.HappyHour != 'undefined') {
 					/* Create a date so we can parse the time. Le Sigh. */
 					var happy_hour_end_xdate = new XDate('2012-01-01 ' + deal.ParentHappyHour.end);
+					var happy_hour_start_xdate = new XDate('2012-01-01 ' + deal.ParentHappyHour.start);
 					/* In this case, happy hour is currently happening */ %>
 					<div class="tile-footer">	
 						<div class="tile-type">
@@ -41,7 +42,7 @@
 						<div class="block-actions">
 							<div class="happy-hour">
 								<div class="title">	
-									<p><%= deal.HappyHour.title %><span class="end-time-wrapper"><b>Happening 'till <span class="end-time"><% print(happy_hour_end_xdate.toString('h:mm tt')); %></span></b></span> </p>
+									<p><%= deal.HappyHour.title %><span class="end-time-wrapper"><b><span class="end-time"><% print(happy_hour_start_xdate.toString('h:mm tt')); %></span> - <span class="end-time"><% print(happy_hour_end_xdate.toString('h:mm tt')); %></span></b></span> </p>
 								</div>	
 								<div class="is-active">
 									<%= deal.HappyHour.description %>

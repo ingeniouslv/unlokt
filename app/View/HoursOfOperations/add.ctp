@@ -22,6 +22,11 @@
 						<?php echo $this->Form->input('end_day', array('options' => array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'), 'div' => 'control-fields', 'class' => 'input-full')); ?>
 					</div>
 				</div>
+				<div class="control-group-row">
+					<div class="six columns">
+						<?php echo $this->Form->input('is_closed', array('div' => 'control-fields', 'value' => 1, 'label' => 'Closed')); ?>
+					</div>
+				</div>
 				<div class="btn-group">
 					<?php echo $this->Form->button('Add Hours of Operation', array('class' => 'btn btn-blue', 'type' => 'submit')); ?>
 				</div>

@@ -5,12 +5,14 @@
 		<table class="zebra">
 			<tr>
 					<th>Hours</th>
+					<th>Closed</th>
 					<th class="actions">Actions</th>
 			</tr>
 			<?php
 			foreach ($hours_of_operations as $hours_of_operation): ?>
 			<tr>
 				<td><?php echo h($hours_of_operation['HoursOfOperation']['short_string']); ?>&nbsp;</td>
+				<td><?php echo $hours_of_operation['HoursOfOperation']['is_closed']?'Yes':'No'; ?>&nbsp;</td>
 				<td class="actions">
 					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $hours_of_operation['HoursOfOperation']['id']), array('class' => 'btn btn-red'), __('Are you sure you want to delete # %s?', $hours_of_operation['HoursOfOperation']['id'])); ?>
 				</td>

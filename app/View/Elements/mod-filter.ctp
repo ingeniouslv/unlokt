@@ -51,8 +51,10 @@
 					<div class="control-group">
 						<label for="type">Looking For</label>
 						<select id="type">
-							<option value="spot" selected>A place to go</option>
-							<option value="deal">Spot Special</option>
+							<option value="spot" selected>A Spot to Go</option>
+							<option value="event">Events</option>
+							<option value="happy-hour">Happy Hour</option>
+							<option value="deal">Spot Specials</option>
 						</select>
 					</div>
 
@@ -62,6 +64,8 @@
 							<option value="today">Today</option>
 							<option value="tomorrow" selected>Tomorrow</option>
 							<option value="next3days">Next 3 Days</option>
+							<option value="nextweek">Next Week</option>
+							<option value="nextmonth">Next Month</option>
 						</select>
 					</div>
 					<?php echo $this->Form->input('Category', array('div' => 'control-group', 'id' => 'category', 'empty' => '- Any -'));?>

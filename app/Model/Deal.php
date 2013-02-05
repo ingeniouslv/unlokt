@@ -299,13 +299,20 @@ class Deal extends AppModel {
 	public function getDealBySpotIds($ids, $contain = array(), $skipTheseIds = array()) {
 		$this->Behaviors->attach('Containable');
 		
+		//default start date to today
 		$current_start_date = isset($this->current_start_date) ? $this->current_start_date : date('Y-m-d');
+		//default end date to today
 		$current_end_date = isset($this->current_end_date) ? $this->current_end_date : date('Y-m-d');
+		//default start time to now
 		$current_start_time = isset($this->current_start_time) ? $this->current_start_time : date('H:i');
+		//default time to within 3 hours
 		$current_end_time = isset($this->current_end_time) ? $this->current_end_time : date('H:i', strtotime('+3 hour'));
+		//numerical representation of day of the week
 		$cdow = isset($this->current_day_of_week) ? $this->current_day_of_week : array(date('l') => 1);
 		$current_day_of_week = array();
 		$i = 0;
+		
+		//check if given days are within a deal's start and end date.
 		foreach($cdow as $key=>$val) {
 			$current_day_of_week[] = array(
 				$key=>$val,
@@ -329,10 +336,17 @@ class Deal extends AppModel {
 			'Deal.end_time >' => $current_start_time,
 			'OR' => $current_day_of_week
 		);
+		//only want events
 		if(!empty($this->events_only)) $conditions['Deal.keys'] = 0;
+		//only want specials
 		if(!empty($this->specials_only)) $conditions['Deal.keys'] = 1;
-		if(!empty($this->rewards_and_specials_only)) $conditions ['Deal.keys >'] = 0;
+		//want rewards and specials
+		if(!empty($this->rewards_and_specials_only)) $conditions['Deal.keys >'] = 0;
+		//want events and specials
+		if(!empty($this->events_and_specials_only)) $conditions['Deal.keys <'] = 2;
 		//print_r($conditions);
+		
+		//allow skipping of specific ids (helps the search work by ignoring specific ids that still match to a desired spot)
 		if (count($skipTheseIds)) {
 			$conditions['Deal.id NOT'] = $skipTheseIds;
 		}

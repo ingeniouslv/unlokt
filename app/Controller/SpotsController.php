@@ -289,7 +289,7 @@ class SpotsController extends AppController {
 		//check if the coordinates match one of our stored locations
 		$location = $this->Spot->Location->findByLatAndLng($lat,$lng);
 		$spot_ids = array();
-		if($_GET['search_type'] == 'quick' && $_GET['search'] == 'explore' && $location) {
+		if($location) {
 			//user is using a location as their coordinates so, show all spots that are associated with that location
 			$spot_ids = $this->Spot->find('list', array(
 				'conditions' => array(
@@ -342,6 +342,8 @@ class SpotsController extends AppController {
 		$include_spots_in_deals = false;
 		$randomize = false;
 		$order_by_views = false;
+		$this->Spot->Deal->limit = $_GET['limit'];
+		$this->Spot->HappyHour->limit = $_GET['limit'];
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {
 				$include_spots_in_deals = true;
@@ -355,6 +357,7 @@ class SpotsController extends AppController {
 			} else if ($_GET['search'] == 'now') {
 				$this->Spot->Deal->specials_only = true;
 			} else if ($_GET['search'] == 'tonight') {
+				$this->Spot->Deal->events_and_specials_only = true;
 				$start_time = date('H:i', strtotime('today 6pm'));
 				$end_time = date('H:i', strtotime('today 11:59pm'));
 				$this->Spot->HappyHour->current_start_time = $start_time;
@@ -401,9 +404,17 @@ class SpotsController extends AppController {
 			}
 		} else if($_GET['search_type'] == 'advanced') {
 			if($_GET['type'] == 'spot') {
+				$include_spots_in_deals = true;
 				$include_deals = false;
+				$include_happy_hours = false;
 			} else if($_GET['type'] == 'deal') {
 				$include_happy_hours = false;
+				$this->Spot->Deal->rewards_and_specials_only = true;
+			} else if($_GET['type'] == 'happy-hour') {
+				$include_deals = false;
+			} else if($_GET['type'] == 'event') {
+				$include_happy_hours = false;
+				$this->Deal->events_only = true;
 			}
 			
 			if($_GET['when'] == 'today') {
@@ -425,6 +436,20 @@ class SpotsController extends AppController {
 				$end_date = date('Y-m-d', strtotime('+2 day'));
 				$day_of_week = array(date('w'), date('w', strtotime('+1 day')), date('w', strtotime('+2 day')));
 				$day_of_week_indexes = array(date('l') => 1, date('l', strtotime('+1 day')) => 1, date('l', strtotime('+2 day')) => 1);
+			} else if($_GET['when'] == 'nextweek') {
+				$start_time = date('H:i', strtotime('today 12am'));
+				$end_time = date('H:i', strtotime('+1 week 11:59:59pm'));
+				$start_date = date('Y-m-d');
+				$end_date = date('Y-m-d', strtotime('+1 week'));
+				$day_of_week = array(0, 1, 2, 3, 4, 5, 6);
+				$day_of_week_indexes = array('Sunday' => 1, 'Monday' => 1, 'Tuesday' => 1, 'Wednesday' => 1, 'Thursday' => 1, 'Friday' => 1, 'Saturday' => 1, 'Sunday' => 1);
+			} else if($_GET['when'] == 'nextmonth') {
+				$start_time = date('H:i', strtotime('today 12am'));
+				$end_time = date('H:i', strtotime('+1 month 11:59:59pm'));
+				$start_date = date('Y-m-d');
+				$end_date = date('Y-m-d', strtotime('+1 month'));
+				$day_of_week = array(0, 1, 2, 3, 4, 5, 6);
+				$day_of_week_indexes = array('Sunday' => 1, 'Monday' => 1, 'Tuesday' => 1, 'Wednesday' => 1, 'Thursday' => 1, 'Friday' => 1, 'Saturday' => 1, 'Sunday' => 1);
 			}
 			if($_GET['category']) {
 				$spot_ids = $this->Spot->find(
@@ -563,8 +588,8 @@ class SpotsController extends AppController {
 		$spot_ids = array_unique(array_merge(array_values($spot_ids), array_values($deal_spot_ids)));
 		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
 		
-		$this->Spot->Feed->limit = 3;
-		$this->Spot->Review->limit = 3;
+		$this->Spot->Feed->limit = 5;
+		$this->Spot->Review->limit = 5;
 		
 		$return = array();
 		$return['feeds'] = $this->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot', 'Attachment'));

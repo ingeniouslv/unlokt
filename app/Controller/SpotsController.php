@@ -592,7 +592,7 @@ class SpotsController extends AppController {
 		$this->Spot->Review->limit = 5;
 		
 		$return = array();
-		$return['feeds'] = $this->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot', 'Attachment'));
+		$return['feeds'] = $this->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot', 'Attachment'=>array('limit' => 1, 'order' => array('Attachment.Created' => 'DESC'))));
 		$return['deals'] = array();
 		$return['reviews'] = $this->Spot->Review->getReviewBySpotIds($spot_ids, array('User', 'Spot'));
 		$return['spots'] = $this->Spot->getFullSpots($spot_ids);

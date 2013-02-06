@@ -81,6 +81,21 @@
 							<h2><%= deal.Deal.name %></h2>
 						</div>
 						<div class="block-actions">
+							<% if(deal.Deal.keys == 0) { %>
+								<p>
+									<%
+										var startDate = new XDate(deal.Deal.start_date);
+										var today = new XDate();
+										var displayDate = '';
+										if(startDate < today){
+											displayDate = today.toString('ddd d MMM');
+										}else{
+											displayDate = startDate.toString('ddd d MMM');
+										}
+									%>
+									<%= displayDate %>
+								</p>
+							<% } %>
 							<p><%= deal.Deal.description %></p>
 							<% if (deal.Deal.keys > 1) { %>
 							<span class="keys-total pull-left"><%= deal.Deal.keys %></span>

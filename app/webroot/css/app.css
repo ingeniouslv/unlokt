@@ -280,7 +280,7 @@ ul.list .list-actions{float:right;margin-left:10px;}
 .page-header{margin-bottom:10px;*zoom:1;}.page-header:before,.page-header:after{display:table;content:"";}
 .page-header:after{clear:both;}
 .showcase+.main-content{-webkit-box-shadow:0 -2px 290px #000000;-moz-box-shadow:0 -2px 290px #000000;box-shadow:0 -2px 290px #000000;margin-bottom:0;}
-.note-slider-container+.btn-tap{float:right;margin-right:10px;}.note-slider-container+.btn-tap:before{content:'';}
+.note-slider-container+.btn{float:right;margin-right:5px;}
 .feed-item,.review-item{margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #333333;*zoom:1;}.feed-item:before,.review-item:before,.feed-item:after,.review-item:after{display:table;content:"";}
 .feed-item:after,.review-item:after{clear:both;}
 .feed-item a.more,.review-item a.more{color:#90cdcf;float:right;}

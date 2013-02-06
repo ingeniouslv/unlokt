@@ -29,6 +29,9 @@ var DealView = Backbone.View.extend({
 		}
 	},
 	render: function() {
-		this.$el.html(this.template({deals: this.collection.toJSON(), new_limit: this.collection.length + 10}));
+		var deal_new_limit = (this.collection.length > 0)?this.collection.at(0).get('deal_new_limit'):10;
+		var feed_new_limit = (this.collection.length > 0)?this.collection.at(0).get('feed_limit'):5;
+		var review_new_limit = (this.collection.length > 0)?this.collection.at(0).get('review_limit'):5;
+		this.$el.html(this.template({deals: this.collection.toJSON(), deal_new_limit: deal_new_limit, feed_new_limit: feed_new_limit, review_new_limit: review_new_limit}));
 	}
 });

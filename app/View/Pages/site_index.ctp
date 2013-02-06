@@ -68,10 +68,12 @@ $this->Html->add_script(array(
 	var location_id = <?php echo json_encode($user['User']['location_id']); ?>;
 	var category_id = <?php echo json_encode(isset($_GET['category'])?$_GET['category']:false); ?>;
 	
-	function search(limit) {
+	function search(deal_limit, feed_limit, review_limit) {
 
 		//set the default number of deals shown
-		if(typeof(limit)==='undefined') limit = 10;
+		if(typeof(deal_limit)==='undefined') deal_limit = 10;
+		if(typeof(feed_limit)==='undefined') feed_limit = 5;
+		if(typeof(review_limit)==='undefined') review_limit = 5;
 		var search_type,
 			url,
 			radius = 10,
@@ -95,7 +97,7 @@ $this->Html->add_script(array(
 				// Attempt to re-call this method after a short timeout.
 				// Hopefully this is the only exception being thrown at this time, because the errors are different per browser.
 				setTimeout(function() {
-					search(limit);
+					search(deal_limit, feed_limit, review_limit);
 				}, 100);
 				return;
 			}
@@ -137,7 +139,9 @@ $this->Html->add_script(array(
 				};
 				break;
 		}
-		params.limit = limit;
+		params.deal_limit = deal_limit;
+		params.feed_limit = feed_limit;
+		params.review_limit = review_limit;
 		var url = search_url + $.param(params);
 		
 		console.log(url);

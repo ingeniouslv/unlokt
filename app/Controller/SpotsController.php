@@ -342,8 +342,6 @@ class SpotsController extends AppController {
 		$include_spots_in_deals = false;
 		$randomize = false;
 		$order_by_views = false;
-		$this->Spot->Deal->limit = $_GET['limit'];
-		$this->Spot->HappyHour->limit = $_GET['limit'];
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {
 				$include_spots_in_deals = true;
@@ -588,8 +586,8 @@ class SpotsController extends AppController {
 		$spot_ids = array_unique(array_merge(array_values($spot_ids), array_values($deal_spot_ids)));
 		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
 		
-		$this->Spot->Feed->limit = 5;
-		$this->Spot->Review->limit = 5;
+		$this->Spot->Feed->limit = $_GET['feed_limit'];
+		$this->Spot->Review->limit = $_GET['review_limit'];
 		
 		$return = array();
 		$return['feeds'] = $this->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot', 'Attachment'=>array('limit' => 1, 'order' => array('Attachment.Created' => 'DESC'))));
@@ -618,10 +616,24 @@ class SpotsController extends AppController {
 		
 		//cut the array down to the requested length
 		//debug($_GET['limit']);
-		$return['deals'] = array_slice($return['deals'], 0, $_GET['limit']);
+		$return['deals'] = array_slice($return['deals'], 0, $_GET['deal_limit']);
 		//debug($return['deals']);
+		
+		//fill the arrays with current limits of deals, feeds, and reviews
+		array_filter($return['deals'], array($this, 'setNewLimits'));
+		array_filter($return['feeds'], array($this, 'setNewLimits'));
+		array_filter($return['reviews'], array($this, 'setNewLimits'));
 
 		return $return;
+	}
+
+	public function setNewLimits(&$item) {
+		$item['deal_new_limit'] = intval($_GET['deal_limit']) + 10;
+		$item['feed_new_limit'] = intval($_GET['feed_limit']) + 5;
+		$item['review_new_limit'] = intval($_GET['review_limit']) + 5;
+		$item['deal_limit'] = intval($_GET['deal_limit']);
+		$item['feed_limit'] = intval($_GET['feed_limit']);
+		$item['review_limit'] = intval($_GET['review_limit']);
 	}
 	
 	private function _get_happy_hours($spot_ids) {

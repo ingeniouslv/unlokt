@@ -19,4 +19,5 @@
 		</div>
 		<!-- End Feed Item -->
 	<% }); %>
+	<a class="btn-tap" href="javascript:search(<%= deal_new_limit %>, <%= feed_new_limit %>, <%= review_new_limit %>);">Show More</a>
 </div>

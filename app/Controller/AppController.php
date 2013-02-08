@@ -38,10 +38,11 @@ class AppController extends Controller {
 		$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login', 'plugin' => false, 'admin' => false);
 		$this->Auth->loginRedirect = '/';
 		
-		//Check if logged in via API
+		// Check if logged in via API
 		// If API Key is passed and valid, Set session.
-		if ( isset($_POST['api_key']) && !empty($_POST['api_key'])) {
+		if (!empty($_POST['api_key'])) {
 			$this->loadModel('User');
+			$this->User->cache = true;
 			$cuser = $this->User->findByApiKey($_POST['api_key']);
 			if (!isset($cuser)) {
 				$this->Session->destroy();
@@ -81,7 +82,7 @@ class AppController extends Controller {
 		header('Access-Control-Allow-Headers: Content-Type');
 		
 		// Remove Autorender for API responses.
-		if (isset($this->params['api'])){
+		if (isset($this->params['api'])) {
 			$this->autoRender = false;
 		}
 		

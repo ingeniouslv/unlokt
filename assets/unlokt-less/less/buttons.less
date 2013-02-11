@@ -97,6 +97,17 @@ button {
 	}
 }
 
+.btn-gold {
+	border: 1px solid darken(#f6d04d,20%);
+	color: #ffffff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	#gradient > .vertical(lighten(#f6d04d, 5%), darken(#f6d04d, 10%));
+	&:hover,
+	&:focus {
+		#gradient > .vertical(lighten(#f6d04d, 5%), darken(#f6d04d, 20%));
+	}
+}
+
 .btn-dark {
 	color: @white;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);

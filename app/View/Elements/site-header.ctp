@@ -35,7 +35,7 @@
 					echo $this->Form->input('review', array('type' => 'textarea', 'label' => 'Note',  'div' => 'control-fields'));
 				?>
 				<div class="btn-group pull-right">
-					<?php echo $this->Form->button('Submit Note', array('type' => 'submit', 'class' => 'btn btn-red')); ?>
+					<?php echo $this->Form->button('Submit Note', array('type' => 'submit', 'class' => 'btn btn-yellow')); ?>
 				</div>
 			<?php echo $this->Form->end(); ?>
 		</div>
@@ -89,7 +89,7 @@
 						</div>
 
 						<div class="btn-group">
-							<?php echo $this->Html->link('Locate Me', array('controller' => 'users', 'action' => 'set_location'), array('class' => 'btn btn-red')) ?>
+							<?php echo $this->Html->link('Locate Me', array('controller' => 'users', 'action' => 'set_location'), array('class' => 'btn btn-yellow')) ?>
 							<button type="submit" class="btn btn-blue six">Update Location</button>
 							
 						</div>

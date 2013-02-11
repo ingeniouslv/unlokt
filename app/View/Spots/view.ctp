@@ -49,7 +49,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 							if(count($spot['SpotFollower'])) {
 								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Unfollow Spot', array('controller' => 'users', 'action' => 'unfollow_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-large follow', 'escape' => false));
 							} else {
-								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Follow Spot', array('controller' => 'users', 'action' => 'follow_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-large btn-red follow', 'escape' => false));
+								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Follow Spot', array('controller' => 'users', 'action' => 'follow_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-large btn-yellow follow', 'escape' => false));
 							}
 							
 						?>

@@ -38,7 +38,7 @@
 						<h2><?php echo h($deal['Spot']['name']); ?></h2>
 					</div>
 					<div class="block-actions">
-						<a class="btn btn-red" href="<?php echo $this->webroot; ?>spots/view/<?php echo $deal['Deal']['spot_id']; ?>">View Spot</a>
+						<a class="btn btn-yellow" href="<?php echo $this->webroot; ?>spots/view/<?php echo $deal['Deal']['spot_id']; ?>">View Spot</a>
 					</div>
 					<?php else: ?>	
 					<div class="tile-footer">
@@ -61,9 +61,9 @@
 								endif;
 								if($deal['Deal']['keys'] > 0):
 							?>	
-								<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Special</a>
+								<a class="btn btn-yellow pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Special</a>
 							<?php else: ?>
-								<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
+								<a class="btn btn-yellow pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
 							<?php endif; ?>
 						</div>
 					</div>

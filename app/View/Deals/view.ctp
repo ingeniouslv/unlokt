@@ -64,13 +64,13 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 											<div class="redeem-activity">	
 												<div class="pull-right">
 													<span class="keys-total large"><?php echo $deal['Deal']['keys']; ?></span>
-													<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo', 'id' => 'redeemButton')); ?>
+													<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-yellow btn-jumbo', 'id' => 'redeemButton')); ?>
 												</div>
 											</div>	
 										<?php elseif ($deal['Deal']['keys'] <= 1): ?>
 											<div class="redeem-activity">	
 												<div class="pull-right">
-													<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-red btn-jumbo', 'id' => 'redeemButton')); ?>
+													<?php echo $this->Html->link('Redeem', 'javascript:void(0);', array('class' => 'btn btn-yellow btn-jumbo', 'id' => 'redeemButton')); ?>
 												</div>
 											</div>	
 										<?php endif; ?>
@@ -154,7 +154,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 			<input type="text" class="twelve" id="redemption-code" placeholder="Redemption Code">
 		</div>
 		<div class="btn-group">
-			<button class="btn btn-red btn-jumbo twelve" id="executeRedeem">Redeem</button>
+			<button class="btn btn-yellow btn-jumbo twelve" id="executeRedeem">Redeem</button>
 		</div>
 	</div>
 </div>

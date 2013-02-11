@@ -35,7 +35,7 @@
 					echo $this->Form->input('review', array('type' => 'textarea', 'label' => 'Note',  'div' => 'control-fields'));
 				?>
 				<div class="btn-group pull-right">
-					<?php echo $this->Form->button('Submit Note', array('type' => 'submit', 'class' => 'btn btn-yellow')); ?>
+					<?php echo $this->Form->button('Submit Note', array('type' => 'submit', 'class' => 'btn btn-blue')); ?>
 				</div>
 			<?php echo $this->Form->end(); ?>
 		</div>

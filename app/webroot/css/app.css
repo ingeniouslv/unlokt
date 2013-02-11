@@ -448,6 +448,8 @@ table .spot-name a{display:block;color:#000000;}
 #CreditCardAddPaymentMethodForm .eight .required input[type="text"],#CreditCardAddPaymentMethodForm .eight .required select{display:block;}
 #CreditCardAddPaymentMethodForm input[type="radio"]{margin-top:-3px;}
 #CreditCardAddPaymentMethodForm .payment-icon{float:none;margin-right:8px;display:inline-block;}#CreditCardAddPaymentMethodForm .payment-icon:last-child{margin-right:0;}
+#CreditCardAddPaymentMethodForm #CreditCardCode{float:left;margin:5px 10px 0 0;}
+#CreditCardAddPaymentMethodForm #try-code{margin-top:5px;}
 .happyHours.add .btn-group,.happyHours.add .number,.happyHours.add .time{float:left;}
 .happyHours.add .btn-group,.happyHours.add .number{clear:both;margin-top:10px;}
 .happyHours.add .number,.happyHours.add .time{color:transparent;}.happyHours.add .number label,.happyHours.add .time label{color:#000;display:block;}

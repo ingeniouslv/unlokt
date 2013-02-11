@@ -11,6 +11,7 @@
 		public static $INVALID_API_KEY							= array(7,"Invalid API Passed");
 		public static $INVALID_LOGIN							= array(8,"Invalid User Name Or Password");
 		public static $MAX_REDEEM								= array(9,"You have redeemed this Special too many times");
+		public static $MISMATCH_FACEBOOK_CREDENTIALS			= array(10,"Facebook- and User-supplied credentials do not match");
 		
 	}
 	

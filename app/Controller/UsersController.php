@@ -11,6 +11,7 @@ class UsersController extends AppController {
 		$this->Auth->allow(array(
 			'api_login',
 			'api_register',
+			'api_facebook_login_check',
 			'channel',
 			'logout',
 			'login',
@@ -424,6 +425,35 @@ class UsersController extends AppController {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 		}
 	}
+
+	// When a user has authenticated on Facebook, check here to see if the login exists and is valid.
+	public function api_facebook_login_check() {
+		if ($this->request->is('post') && !empty($_POST['token']) && !empty($_POST['email'])) {
+			// Verify that the FB access token is valid and matches
+			$facebook_token_response = json_decode(@file_get_contents("https://graph.facebook.com/me?access_token={$_POST['token']}"), true);
+			if (empty($facebook_token_response) || !empty($facebook_token_response['error'])) {
+				ApiComponent::error(ApiErrors::$MISMATCH_FACEBOOK_CREDENTIALS);
+			}
+			// Match the user-supplied email vs. facebook-supplied email
+			$facebook_email = str_replace('\u0040', '@', $facebook_token_response['email']);
+			$user_email = $_POST['email'];
+			if (strcmp($facebook_email, $user_email) !== 0) {
+				ApiComponent::error(ApiErrors::$MISMATCH_FACEBOOK_CREDENTIALS);
+			}
+			// We have a valid facebook token. This indicates the user's identity can be trusted as the user.
+			// Check for existing account.
+			$user = $this->User->findByEmail($user_email);
+			if (!$user) {
+				// User not found in system by email address - tell the API that the user needs to register.
+				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array('register' => true));
+			} else {
+				// User was found - great! Respond with the api_key
+				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array('api_key' => $user['User']['api_key']));
+			}
+		} else {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+		}
+	} // api_facebook_login_check()
 	
 	public function api_logout(){
 		$this->Session->destroy(); 
@@ -658,7 +688,7 @@ class UsersController extends AppController {
 			
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);
-			if(!$unlokt_user) {
+			if (!$unlokt_user) {
 				//if user is not in the system, create user
 				$unlokt_user = array('User'=>array(
 					'email' => $user->email,
@@ -671,7 +701,7 @@ class UsersController extends AppController {
 				));
 				$this->User->create();
 				$unlokt_user = $this->User->save($unlokt_user);
-			} else if(!$unlokt_user['User']['is_facebook_only']) {
+			} else if (!$unlokt_user['User']['is_facebook_only']) {
 				$this->User->id = $unlokt_user['User']['id'];
 				$user_update = array('User' => array(
 					'id' => $unlokt_user['User']['id'],

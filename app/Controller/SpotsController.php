@@ -334,6 +334,11 @@ class SpotsController extends AppController {
 	 * results.
 	 */
 	private function _get_results($spot_ids) {
+		//set limits if they are not passed through
+		if(empty($_GET['deal_limit'])) $_GET['deal_limit'] = 10;
+		if(empty($_GET['feed_limit'])) $_GET['feed_limit'] = 5;
+		if(empty($_GET['review_limit'])) $_GET['review_limit'] = 5;
+		
 		$this->loadModel('Deal');
 		// Fetch Spots with Happy Hour and insert them between the Deals for the tiles :)
 		$this->Spot->HappyHour->order = 'ParentHappyHour.day_of_week ASC';

@@ -24,7 +24,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							<?php endif; ?>
 						</h5>
 					</div>
-
+					<button class="fb-share btn-fb">Share</button>
 					<div class="row">
 						<h1 class="name"><?php echo h($deal['Deal']['name']); ?></h1>
 						<h3><?php echo h($deal['Deal']['description']); ?></h3>
@@ -145,7 +145,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 			</div>
 		</div>	
 	</div>
-	<button class="fb-share btn-fb">share to facebook</button>
 </div>
 <div class="modal modal-redeem hide" id="redeemModal">
 	<div class="modal-header">

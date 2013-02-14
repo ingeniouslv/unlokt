@@ -7,7 +7,7 @@
 			<?php if (isset($feed['Attachment']) && count($feed['Attachment'])): ?>
 				<div class="attachments">
 					<?php foreach ($feed['Attachment'] as $attachment): ?>
-						<img data-attachment-id="<?php echo $attachment['id']; ?>" data-spot-id="<?php echo $feed['Spot']['id']; ?>" src="<?php echo $this->Html->gen_path('attachment', $attachment['id'], 40); ?>"> 
+						<img data-attachment-id="<?php echo $attachment['id']; ?>" data-spot-id="<?php echo $feed['Spot']['id']; ?>" src="<?php echo $this->Html->gen_path('attachment', $attachment['id'], 40, null, $spot['Spot']['image_name']); ?>"> 
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>

@@ -145,18 +145,18 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 			</div>
 
 			<div class="three columns bleed-over-content">
-				<?php if (count($attachments)): ?>
-					<div class="block block-darkgray block-glow">
-						<h4><i class="icon-picture"></i> Gallery</h4>
-						<div class="gallery">
-							<?php foreach ($attachments as $attachment): ?>
-								<a class="gallery-image" data-attachment-id="<?php echo $attachment['Attachment']['id']; ?>" href="javascript:void(0);" title="<?php echo h($attachment['Attachment']['name']); ?>"><img src="<?php echo $this->Html->gen_path('attachment', $attachment['Attachment']['id'], 100); ?>" alt="<?php echo h($attachment['Attachment']['name']); ?>"></a>
-							<?php endforeach; ?>
-						</div>
-						<a class="more" id="more-pics" href="javascript:void(0);">More Pics ›</a>
-						<a id="add-pics" href="javascript:void(0);" onclick="return false;">Add Pics</a>
+				
+				<div class="block block-darkgray block-glow">
+					<h4><i class="icon-picture"></i> Gallery</h4>
+					<div class="gallery">
+						<?php foreach ($attachments as $attachment): ?>
+							<a class="gallery-image" data-attachment-id="<?php echo $attachment['Attachment']['id']; ?>" href="javascript:void(0);" title="<?php echo h($attachment['Attachment']['name']); ?>"><img src="<?php echo $this->Html->gen_path('attachment', $attachment['Attachment']['id'], 100); ?>" alt="<?php echo h($attachment['Attachment']['name']); ?>"></a>
+						<?php endforeach; ?>
 					</div>
-				<?php endif; ?>
+					<a class="more" id="more-pics" href="javascript:void(0);">More Pics ›</a>
+					<a id="add-pics" href="javascript:void(0);" onclick="return false;">Add Pics</a>
+				</div>
+				
 
 				<?php echo $this->element('mod-spot_information'); ?>
 			</div>

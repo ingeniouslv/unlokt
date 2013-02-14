@@ -3,7 +3,7 @@
 	<?php foreach ($feeds as $feed): ?>
 		<!-- Feed Item -->
 		<div class="feed-item">
-			<img src="<?php echo $this->Html->gen_path('spot', $feed['Spot']['id'], 40); ?>" class="pull-left">
+			<img src="<?php echo $this->Html->gen_path('spot', $feed['Spot']['id'], 40, null, $spot['Spot']['image_name']); ?>" class="pull-left">
 			<?php if (isset($feed['Attachment']) && count($feed['Attachment'])): ?>
 				<div class="attachments">
 					<?php foreach ($feed['Attachment'] as $attachment): ?>

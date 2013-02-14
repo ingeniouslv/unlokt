@@ -6,7 +6,7 @@
 	<!-- Only show this piece of content when we're on the Deals controller. Hopefully this logic will win -->
 	<?php if ($this->params['controller'] == 'deals'): ?>
 	<div class="spot">
-		<img class="photo" src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 40); ?>" width="40" height="40">
+		<img class="photo" src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 40, null, $spot['Spot']['image_name']); ?>" width="40" height="40">
 		<h3 class="name text-">
 			<a href="<?php echo "{$this->webroot}spots/view/{$spot['Spot']['id']}"; ?>"><?php echo h($spot['Spot']['name']); ?></a>
 		</h3>

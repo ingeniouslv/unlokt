@@ -1,7 +1,7 @@
 <div class="filter">
 	<!-- Filter Tabs -->
 	<ul class="tabs filter-tabs">
-		<li class="advanced-search-tab"><a href="#advanced-search" data-toggle="tab">Advanced Search</a></li>
+		<li class="advanced-search-tab"><a href="#advanced-search" data-toggle="tab">Search +</a></li>
 		<li class="active quick-search-tab"><a href="#quick-search" data-toggle="tab">Quick Search</a></li>
 		<li class="toggle-map map-search-tab"><a href="javascript:void(0);"><i class="icon-map"></i></a></li>
 	</ul>

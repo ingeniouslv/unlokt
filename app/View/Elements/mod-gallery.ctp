@@ -9,7 +9,7 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 	</div>
 	<div class="modal-body">
 		<div class="image">
-			<div class="static">
+			<div class="image-nav">
 				<a class="left s-left" href="javascript:void(0);">&lsaquo;</a>
 				<a class="right s-right" href="javascript:void(0);">&rsaquo;</a>
 			</div>	
@@ -43,8 +43,8 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 			'click .images img': 'click_to_load',
 			'click .image-selecter-nav .left': 'click_left',
 			'click .image-selecter-nav .right': 'click_right',
-			'click .image .static .left' : 'click_to_load_left',
-			'click .image .static .right' : 'click_to_load_right'
+			'click .image .image-nav .left' : 'click_to_load_left',
+			'click .image .image-nav .right' : 'click_to_load_right'
 		},
 		
 		//////////////////////////////////////////////////

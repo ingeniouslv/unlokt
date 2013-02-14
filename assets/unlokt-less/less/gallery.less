@@ -84,21 +84,20 @@ img.polaroid {
 		}
 	}
 
-	.static {
-		font-size:36px;
-		height: 540px;
+	.image-nav {
+		height: 450px;
 		position: absolute;
 		width: 600px;
 
-		.s-left,
-		.s-right {
+		.left,
+		.right {
 			background-color: @white;
 			color:#666666;
 			display: block;
 			font-size: 36px;
 			height: 36px;
 			line-height: 30px;
-			margin-top: -50px;
+			margin-top: -5px;
 			position: absolute;
 			top: 50%;
 			width: 23px;
@@ -109,18 +108,18 @@ img.polaroid {
 			}
 		}
 
-		.s-left {
+		.left {
 			left: 37px;
 			border-radius: 25px 0px 0px 25px;
 			padding: 5px 8px 10px 7px;
-			text-align: left;
+			text-align: center;
 		}
 
-		.s-right {
+		.right {
 			right: 37px;
 			border-radius: 0px 25px 25px 0px;
 			padding: 5px 7px 10px 8px;
-			text-align: right;
+			text-align: center;
 		}
 	}
 
@@ -130,9 +129,7 @@ img.polaroid {
 		width: 600px;
 
 		.left,
-		.right,
-		.s-left,
-		.s-right {
+		.right {
 			background-color: #fff;
 			color:#666666;
 			display: block;
@@ -150,15 +147,13 @@ img.polaroid {
 			}
 		}
 
-		.left,
-		.s-left {
+		.left {
 			left: 0;
 			border-radius: 0px 25px 25px 0px;
 			text-align: left;
 		}
 
-		.right,
-		.s-right {
+		.right {
 			right: 0;
 			border-radius: 25px 0px 0px 25px;
 			text-align: right;

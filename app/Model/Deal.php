@@ -333,7 +333,7 @@ class Deal extends AppModel {
 			'Deal.start_date <=' => $current_end_date,
 			'Deal.end_date >=' => $current_start_date,
 			'Deal.start_time <=' => $current_end_time,
-			'Deal.end_time >' => $current_start_time,
+			'Deal.end_time >=' => $current_start_time,
 			'OR' => $current_day_of_week
 		);
 		//only want events

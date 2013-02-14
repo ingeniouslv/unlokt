@@ -584,6 +584,11 @@ class SpotsController extends AppController {
 				)
 			);
 		}
+
+		$this->Spot->Deal->limit = intval($_GET['deal_limit']) * 2;
+		$this->Spot->HappyHour->limit = intval($_GET['deal_limit']) * 2;
+		$this->Spot->Feed->limit = $_GET['feed_limit'];
+		$this->Spot->Review->limit = $_GET['review_limit'];
 		
 		//each filter has a separate spot_id list.  These lists need to be merged together to represent all the spot_ids
 		//that have matches.
@@ -591,8 +596,7 @@ class SpotsController extends AppController {
 		$spot_ids = array_unique(array_merge(array_values($spot_ids), array_values($deal_spot_ids)));
 		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
 		
-		$this->Spot->Feed->limit = $_GET['feed_limit'];
-		$this->Spot->Review->limit = $_GET['review_limit'];
+		
 		
 		$return = array();
 		$return['feeds'] = $this->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot', 'Attachment'=>array('limit' => 1, 'order' => array('Attachment.Created' => 'DESC'))));
@@ -628,7 +632,7 @@ class SpotsController extends AppController {
 		array_filter($return['deals'], array($this, 'setNewLimits'));
 		array_filter($return['feeds'], array($this, 'setNewLimits'));
 		array_filter($return['reviews'], array($this, 'setNewLimits'));
-
+		
 		return $return;
 	}
 

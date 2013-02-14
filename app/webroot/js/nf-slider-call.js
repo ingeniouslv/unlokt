@@ -82,7 +82,7 @@ var NetflixViewer = Backbone.View.extend({
 			return;
 		}
 		var that = this;
-		var container_width = this.options.$container.width() + 10;
+		var container_width = this.options.$container.width();
 		var slider_width = this.options.$slider.width();
 		// If the slider isn't bigger than the container then there's no need to scroll.
 		if (slider_width <= container_width) {
@@ -130,7 +130,7 @@ var NetflixViewer = Backbone.View.extend({
 			return;
 		}
 		var that = this;
-		var container_width = this.options.$container.width() + 10;
+		var container_width = this.options.$container.width();
 		var slider_width = this.options.$slider.width();
 		// var distance_to_move = container_width * this.options.slider_multiplier;
 		var distance_to_move = this.options.slider_distance;

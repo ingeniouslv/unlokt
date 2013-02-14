@@ -141,6 +141,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 			<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
 		</div>
 	</div>
+	<button class="fb-share btn-fb">share to facebook</button>
 </div>
 <div class="modal modal-redeem hide" id="redeemModal">
 	<div class="modal-header">
@@ -158,7 +159,6 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 		</div>
 	</div>
 </div>
-<button class="fb-share">share to facebook</button>
 <div id="fb-root"></div>
 <script>
 	$('.fb-share').click(function() {

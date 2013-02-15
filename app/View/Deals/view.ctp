@@ -24,7 +24,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							<?php endif; ?>
 						</h5>
 					</div>
-
+					<button class="fb-share btn-fb">Share</button>
 					<div class="row">
 						<h1 class="name"><?php echo h($deal['Deal']['name']); ?></h1>
 						<h3><?php echo h($deal['Deal']['description']); ?></h3>
@@ -133,15 +133,18 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 </div>
 <div class="container">
 	<div class="row">
-		<div class="nine columns block-slider">
-			<div class="block-slider-nav">
-				<a class="left" href="javascript:void(0);"></a>
-				<a class="right" href="javascript:void(0);"></a>
+		<div class="nine columns">
+			<div class="row row-fix">
+				<div class="twelve columns block-slider">
+					<div class="block-slider-nav">
+						<a class="left" href="javascript:void(0);"></a>
+						<a class="right" href="javascript:void(0);"></a>
+					</div>
+					<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
+				</div>
 			</div>
-			<?php echo $this->element('mod-filtered_items', array('class' => 'fixed block-slider-container')); ?>
-		</div>
+		</div>	
 	</div>
-	<button class="fb-share btn-fb">share to facebook</button>
 </div>
 <div class="modal modal-redeem hide" id="redeemModal">
 	<div class="modal-header">
@@ -172,9 +175,9 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 		});
 		FB.ui({ 
 			method: 'feed',
-			name: '<?php echo $deal['Deal']['name'] ?>',
-			caption: '<?php echo $deal['Deal']['description']; ?>',
-			description: '<?php echo $deal['Deal']['long_description']; ?>',
+			name: '<?php echo h($deal['Deal']['name']); ?>',
+			caption: '<?php echo h($deal['Deal']['description']); ?>',
+			description: '<?php echo h($deal['Deal']['long_description']); ?>',
 			picture: '<?php echo "http://development.unlokt.com".$this->Html->gen_path('deal', $deal['Deal']['id'], 200); ?>',
 			link: 'http://development.unlokt.com/deals/view/<?php echo $deal['Deal']['id']; ?>' 
 		});

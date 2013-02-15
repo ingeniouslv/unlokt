@@ -43,8 +43,8 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 			'click .images img': 'click_to_load',
 			'click .image-selecter-nav .left': 'click_left',
 			'click .image-selecter-nav .right': 'click_right',
-			'click .image .image-nav .left' : 'click_to_load_left',
-			'click .image .image-nav .right' : 'click_to_load_right'
+			'click .image .left' : 'click_to_load_left',
+			'click .image .right' : 'click_to_load_right'
 		},
 		
 		//////////////////////////////////////////////////
@@ -114,6 +114,8 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 			this.options.current_index =  _.indexOf(this.options.data, attachment_id + "");
 			//if current index is at the beginning or end, hide the proper left or right buttons
 			$('.image .right, .image .left').show();
+			// if(this.options.current_index == 0) $('.image .left').hide(); //hide left button
+			// if(this.options.current_index == this.options.data.length - 1) $('.image .right').hide(); //hide right button
 			
 			var slider_width = this.$('.images').width();
 			var container_width = this.$('.image-selecter').width();

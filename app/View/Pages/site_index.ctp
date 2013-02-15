@@ -285,7 +285,7 @@ $this->Html->add_script(array(
 		var $that = $(this);
 		$.get('/users/follow_spot/' + spot_id, function(response) {
 			if (response == 'GOOD') {
-				$that.removeClass('follow btn-red').addClass('following btn-blue').html('Unfollow Spot');
+				$that.removeClass('follow btn-yellow').addClass('following btn-blue').html('Unfollow Spot');
 				spot_ids_i_follow.push(spot_id);
 			} else {
 			}
@@ -299,7 +299,7 @@ $this->Html->add_script(array(
 		var $that = $(this);
 		$.get('/users/unfollow_spot/' + spot_id, function(response) {
 			if (response == 'GOOD') {
-				$that.removeClass('following btn-blue').addClass('follow btn-red').html('Follow Spot');
+				$that.removeClass('following btn-blue').addClass('follow btn-yellow').html('Follow Spot');
 				var spot_id_index = _.indexOf(spot_ids_i_follow, spot_id);
 				spot_ids_i_follow.splice(spot_id_index,1);
 				search();

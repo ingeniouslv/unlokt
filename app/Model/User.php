@@ -193,7 +193,7 @@ class User extends AppModel {
 			$user = $this->read(null, $user);
 			if (empty($user['User']['api_key'])){
 				$api_key = md5($user['User']['id'].$session_id.microtime(true));
-				// $this->create(false);
+				$this->create(false);
 				$this->save(array('User' => array('id' => $user['User']['id'], 'api_key' => $api_key)));
 				$this->log('Generated API key for user_id: '.$user['User']['id'].' email: '.$user['User']['email'], 'debug');
 				return true;

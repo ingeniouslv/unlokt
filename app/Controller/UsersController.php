@@ -465,7 +465,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			// Attempt to validate and save user.
 			$user = $this->User->findByEmail($this->request->data['User']['email']);
-			if (isset($user)){
+			if (!empty($user)) {
 				ApiComponent::error(ApiErrors::$EMAIL_IN_USE);
 				return;
 			}

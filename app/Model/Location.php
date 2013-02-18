@@ -27,5 +27,12 @@ class Location extends AppModel {
 		return $coords;
 	}
 	
+	public function activeLocations() {
+		return $this->find('all', array(
+			'conditions' => array(
+				'is_active' => 1
+			)
+		));
+	}
 	
 }

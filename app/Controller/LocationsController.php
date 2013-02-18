@@ -15,7 +15,7 @@ class LocationsController extends AppController {
 
 	public function api_get() {
 		$this->autorender = false;
-		$location_options = $this->Location->find('all');
+		$location_options = $this->Location->activeLocations();
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $location_options);
 	}
 

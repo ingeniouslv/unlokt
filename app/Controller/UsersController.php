@@ -471,11 +471,14 @@ class UsersController extends AppController {
 			}
 			
 			$this->User->set($this->request->data);
-			$this->User->set('password', $this->bcrypt_hash($this->request->data['User']['password']));
-			if (!$this->request->data['User']['password'] || strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
-				//Password missing
-				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
-				return;
+			// If the user isn't a facebook-only user then require password.
+			if (empty($this->request->data['User']['is_facebook_only'])) {
+				$this->User->set('password', $this->bcrypt_hash($this->request->data['User']['password']));
+				if (!$this->request->data['User']['password'] || strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
+					//Password missing
+					ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+					return;
+				}
 			}
 			
 			if ($this->User->validates()) {

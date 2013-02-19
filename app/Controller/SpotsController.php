@@ -85,6 +85,7 @@ class SpotsController extends AppController {
 		$deals = ($spot['Spot']['parent_spot_id'] != null) ? $this->Spot->Deal->getDealsBySpotIds($spot['Spot']['parent_spot_id']) : $this->Spot->Deal->getDealsBySpotIds($id);
 		$feeds = $this->Spot->Feed->getFeedBySpotIds($id, array('Spot', 'Attachment'));
 		$reviews = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
+		$this->Spot->Attachment->limit = 6;
 		$attachments = $this->Spot->Attachment->getAttachmentBySpotIds($id);
 		$happy_hour_data = $this->Spot->HappyHour->getHappyHourParents(null, array('ChildHappyHour'));
 		
@@ -736,6 +737,7 @@ class SpotsController extends AppController {
 			return;
 		}
 		$spot['Reviews'] = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
+		$this->Spot->Attachment->limit = 60;
 		$spot['Attachements'] = $this->Spot->Attachment->getAttachmentBySpotIds($id);
 		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);

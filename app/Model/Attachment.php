@@ -56,7 +56,7 @@ class Attachment extends AppModel {
 			'conditions' => array(
 				'Attachment.spot_id' => $ids
 			),
-			'limit' => 60,
+			'limit' => $this->limit,
 			'order' => 'Attachment.created DESC',
 			'contain' => $contain
 		));

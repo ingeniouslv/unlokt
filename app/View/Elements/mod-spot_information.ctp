@@ -88,7 +88,7 @@
 				<h5 class="section-name"><span>Website</span></h5>
 				<i class="icon-link"></i>
 				<div class="section-content">
-					<a href="http://<?php echo h($spot['Spot']['url']); ?>" target="_blank"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['url'])); ?></a>
+					<a href="<?php echo h($spot['Spot']['url']); ?>" target="_blank"><?php echo h(preg_replace('@^(http://|https://)(.*)@', '$2', $spot['Spot']['url'])); ?></a>
 				</div>
 			</div>
 		<?php endif; ?>

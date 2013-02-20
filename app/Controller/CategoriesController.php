@@ -8,7 +8,9 @@ App::uses('AppController', 'Controller');
 class CategoriesController extends AppController {
 
 	public function beforeFilter() {
-		$this->Auth->allow(array());
+		$this->Auth->allow(
+			'api_category_list'
+		);
 		parent::beforeFilter();
 	}
 
@@ -105,5 +107,10 @@ class CategoriesController extends AppController {
 		}
 		$this->Session->setFlash('Category was not deleted', 'alert-error');
 		$this->redirect(array('action' => 'index'));
+	}
+
+	public function api_category_list() {
+		$categories = $this->Category->getThreadedList();
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $categories);
 	}
 }

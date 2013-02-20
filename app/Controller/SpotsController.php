@@ -139,6 +139,10 @@ class SpotsController extends AppController {
 			$this->Spot->parseWysiwygText('description');
 			$this->Spot->parseWysiwygText('spotlight_1');
 			$this->Spot->parseWysiwygText('spotlight_2');
+			$this->Spot->parseWysiwygTextMobile('description');
+			$this->Spot->parseWysiwygTextMobile('spotlight_1');
+			$this->Spot->parseWysiwygTextMobile('spotlight_2');
+
 
 			if ($this->Spot->save()) {
 				$file = $_FILES['file'];

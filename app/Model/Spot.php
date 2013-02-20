@@ -589,7 +589,7 @@ class Spot extends AppModel {
 
 		$string = preg_replace(
 			'@(?:https?://(?:youtube\.com|www\.youtube\.com|youtu\.be)/(?:watch\?v=)?)([a-zA-Z0-9\-_]+)(?:[&;a-zA-Z0-9%=]*)?@',
-			'<a href="http://www.youtube.com/watch?v=$1" target="_blank"><img src="http://img.youtube.com/vi/$1/0.jpg"></a>',
+			'<a class="spot-video" href="http://www.youtube.com/watch?v=$1" target="_blank"><img src="http://img.youtube.com/vi/$1/0.jpg"></a>',
 			$string
 		);
 

@@ -80,12 +80,14 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 											<div class="text-center">
 												<h2>Hurray! You've Unlokt this Spot Special</h2> <?php echo date('F jS, Y g:i A', strtotime($activeDeal['ActiveDeal']['completed_date'])); ?>.
 											</div>
-											<div class="redeem-code twelve">
-											 	<span>Spot Owner Enter this Code:</span>
-												<code>
-													<?php echo h($deal['Deal']['sku']); ?>
-												</code>
-											</div>
+											<?php if (!empty()): ?>
+												<div class="redeem-code twelve">
+												 	<span>Spot Owner Enter this Code:</span>
+													<code>
+														<?php echo h($deal['Deal']['sku']); ?>
+													</code>
+												</div>
+											<?php endif; ?>
 										</div>	
 									<?php endif; ?>
 								</div>

@@ -94,7 +94,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							</div><!-- end of .redeem -->
 						<?php endif; ?>
 					</div>
-				</div>	
+				</div>
 				<div class="row">
 					<div class="twelve columns">
 						<div class="content-group">

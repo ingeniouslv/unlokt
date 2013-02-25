@@ -76,7 +76,7 @@ $this->Html->add_script(array(
 		if(typeof(review_limit)==='undefined') review_limit = 5;
 		var search_type,
 			url,
-			radius = 5,
+			radius = 3,
 			search_url;
 		
 		if ($('.quick-search-tab.active').length) {

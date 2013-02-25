@@ -76,7 +76,7 @@ $this->Html->add_script(array(
 		if(typeof(review_limit)==='undefined') review_limit = 5;
 		var search_type,
 			url,
-			radius = 10,
+			radius = 5,
 			search_url;
 		
 		if ($('.quick-search-tab.active').length) {
@@ -144,6 +144,7 @@ $this->Html->add_script(array(
 		params.review_limit = review_limit;
 		var url = search_url + $.param(params);
 		
+		console.log(url);
 		$.getJSON(url, function(results) {
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);

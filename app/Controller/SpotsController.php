@@ -287,14 +287,14 @@ class SpotsController extends AppController {
 	
 	public function homepage_data_by_radius($lat, $lng, $radius = 5/* the amount of miles from origin*/) {
 		//debug($radius);
-		$radius = 50;
+		// $radius = 50;
 		$this->autoRender = false;
 		$this->Spot->cache = true;
 		
 		//check if the coordinates match one of our stored locations
 		$location = $this->Spot->Location->findByLatAndLng($lat,$lng);
 		$spot_ids = array();
-		if($location) {
+		if ($location) {
 			//user is using a location as their coordinates so, show all spots that are associated with that location
 			$spot_ids = $this->Spot->find('list', array(
 				'conditions' => array(

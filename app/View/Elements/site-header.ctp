@@ -89,7 +89,7 @@
 						</div>
 
 						<div class="btn-group">
-							<?php echo $this->Html->link('Locate Me', array('controller' => 'users', 'action' => 'set_location'), array('class' => 'btn btn-yellow')) ?>
+							<?php echo $this->Html->link('Near Me', array('controller' => 'users', 'action' => 'set_location'), array('class' => 'btn btn-yellow')) ?>
 							<button type="submit" class="btn btn-blue six">Update Location</button>
 							
 						</div>

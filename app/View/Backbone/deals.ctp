@@ -84,13 +84,18 @@
 							<% if(deal.Deal.keys == 0) { %>
 								<p>
 									<%
-										var startDate = new XDate(deal.Deal.start_date);
-										var today = new XDate();
+										/* Loop through a weeks worth of days.
+											The soonest matching day should be selected as the next occurrence date.
+											This logic might have to be adjusted later to skip date ranges or something. */
+										var xdate = new XDate();
 										var displayDate = '';
-										if(startDate < today){
-											displayDate = today.toString('ddd d MMM');
-										}else{
-											displayDate = startDate.toString('ddd d MMM');
+										for (var i = 0; i < 7; i ++) {
+											xdate.addDays(i ? 1 : 0);
+											var day_of_week = xdate.toString('dddd').toLowerCase();
+											if (deal.Deal[day_of_week] == 1) {
+												displayDate = xdate.toString('ddd d MMM');
+												break;
+											}
 										}
 									%>
 									<%= displayDate %>

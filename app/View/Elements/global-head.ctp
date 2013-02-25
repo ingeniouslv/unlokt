@@ -34,26 +34,16 @@
 			'com.unlokt.map.js',
 			'bootstrap-tab',
 			'libs/jquery.masonry',
-			// 'libs/jHtmlArea-0.7.5.min',
-			// 'libs/jHtmlArea.ColorPickerMenu-0.7.0.min',
 			'backbone_templates',
 			'libs/jquery-ui-1.9.1.custom.min',
 			'libs/jquery.easing.1.3',
 			'libs/consolelog',
 			'libs/tiny_mce/jquery.tinymce'
-			),
+		),
 		$this->Html->get_script()
 	);
-	
-	// if (Configure::read('debug') == 2) {
-		// Don't compress/cache css/js when we are in debug mode
-		echo $this->Html->css($cssFiles);
-		echo $this->Html->script($jsFiles);
-	// } else {
-	// 	echo $this->Html->css($cssFiles);
-	// 	$this->Combinator->add_libs('js', $jsFiles);
-	// 	echo $this->Combinator->scripts('js');
-	// }
+	echo $this->Html->css($cssFiles);
+	echo $this->Html->script($jsFiles);
 	?>
 
 	<script type="text/javascript">

@@ -107,6 +107,29 @@ class ReviewsController extends AppController {
 		$this->set(compact('spot'));
 	}
 
+	public function api_add($spot_id = null) {
+		if (!$spot_id) {
+			throw new NotFoundException('Spot ID Required');
+		}
+		if (!$spot = $this->Review->Spot->read(null, $spot_id)) {
+			throw new NotFoundException('Spot not found');
+		}
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException('Requires POST');
+		}
+		// Create Review object with user_id and spot_id prepopulated.
+		$this->Review->create(array(
+			'user_id' => $this->Auth->user('id'),
+			'spot_id' => $spot_id,
+			'ip' => $_SERVER['REMOTE_ADDR']
+		));
+		if ($this->Review->save($this->request->data)) {
+			ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array());
+		} else {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+		}
+	} // end of api_add
+
 /**
  * edit method
  *

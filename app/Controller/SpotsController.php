@@ -85,6 +85,7 @@ class SpotsController extends AppController {
 		$deals = ($spot['Spot']['parent_spot_id'] != null) ? $this->Spot->Deal->getDealsBySpotIds($spot['Spot']['parent_spot_id']) : $this->Spot->Deal->getDealsBySpotIds($id);
 		$feeds = $this->Spot->Feed->getFeedBySpotIds($id, array('Spot', 'Attachment'));
 		$reviews = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
+		$this->Spot->Attachment->limit = 6;
 		$attachments = $this->Spot->Attachment->getAttachmentBySpotIds($id);
 		$happy_hour_data = $this->Spot->HappyHour->getHappyHourParents(null, array('ChildHappyHour'));
 		
@@ -138,6 +139,10 @@ class SpotsController extends AppController {
 			$this->Spot->parseWysiwygText('description');
 			$this->Spot->parseWysiwygText('spotlight_1');
 			$this->Spot->parseWysiwygText('spotlight_2');
+			$this->Spot->parseWysiwygTextMobile('description');
+			$this->Spot->parseWysiwygTextMobile('spotlight_1');
+			$this->Spot->parseWysiwygTextMobile('spotlight_2');
+
 
 			if ($this->Spot->save()) {
 				$file = $_FILES['file'];
@@ -282,14 +287,14 @@ class SpotsController extends AppController {
 	
 	public function homepage_data_by_radius($lat, $lng, $radius = 5/* the amount of miles from origin*/) {
 		//debug($radius);
-		$radius = 50;
+		// $radius = 50;
 		$this->autoRender = false;
 		$this->Spot->cache = true;
 		
 		//check if the coordinates match one of our stored locations
 		$location = $this->Spot->Location->findByLatAndLng($lat,$lng);
 		$spot_ids = array();
-		if($location) {
+		if ($location) {
 			//user is using a location as their coordinates so, show all spots that are associated with that location
 			$spot_ids = $this->Spot->find('list', array(
 				'conditions' => array(
@@ -611,7 +616,7 @@ class SpotsController extends AppController {
 			$return['deals'] = array_merge($happy_hour_spots, $return['deals']);
 		}
 		if($include_spots_in_deals) {
-			$return['deals'] = $this->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
+			$return['deals'] = $this->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids, 'Spot.parent_spot_id' => NULL)));
 		}
 		
 		//sort the results so happy hours aren't always at the top
@@ -736,6 +741,7 @@ class SpotsController extends AppController {
 			return;
 		}
 		$spot['Reviews'] = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
+		$this->Spot->Attachment->limit = 60;
 		$spot['Attachements'] = $this->Spot->Attachment->getAttachmentBySpotIds($id);
 		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);

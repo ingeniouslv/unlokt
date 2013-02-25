@@ -465,21 +465,24 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			// Attempt to validate and save user.
 			$user = $this->User->findByEmail($this->request->data['User']['email']);
-			if (isset($user)){
+			if (!empty($user)) {
 				ApiComponent::error(ApiErrors::$EMAIL_IN_USE);
 				return;
 			}
 			
 			$this->User->set($this->request->data);
-			$this->User->set('password', $this->bcrypt_hash($this->request->data['User']['password']));
-			if (!$this->request->data['User']['password'] || strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
-				//Password missing
-				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
-				return;
+			// If the user isn't a facebook-only user then require password.
+			if (empty($this->request->data['User']['is_facebook_only'])) {
+				$this->User->set('password', $this->bcrypt_hash($this->request->data['User']['password']));
+				if (!$this->request->data['User']['password'] || strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
+					//Password missing
+					ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+					return;
+				}
 			}
 			
 			if ($this->User->validates()) {
-				//Sucess
+				// Sucess
 				$this->User->save();
 				$this->User->generate_api_key($this->User->id,  $this->Session->id());
 				$this->login_user($this->User->id);

@@ -7,7 +7,7 @@ $this->Html->add_script(array(
 	'libs/jquery.grid-a-licious.min'
 ));
 ?>
-<div class="showcase" id="showcase" style="background-image: url('<?php echo $this->webroot; ?>img/bg.png');">
+<div class="showcase" id="showcase">
 	<div id="homepagemap" style="height: 300px;"></div>
 </div>
 <div class="main-content">
@@ -76,7 +76,7 @@ $this->Html->add_script(array(
 		if(typeof(review_limit)==='undefined') review_limit = 5;
 		var search_type,
 			url,
-			radius = 10,
+			radius = 3,
 			search_url;
 		
 		if ($('.quick-search-tab.active').length) {
@@ -260,19 +260,18 @@ $this->Html->add_script(array(
 	//////////////////////////////////////////////////
 	updateGeo();
 	//get geolocation from browser when page runs
-	if(!location_id) {
+	if (!location_id) {
 		if(typeof(navigator.geolocation) != "undefined") {
 			navigator.geolocation.getCurrentPosition(GetLocation);
 		}
 	}
 	
-	if(category_id) {
+	if (category_id) {
 		$('.quick-search-tab').removeClass('active');
 		$('.advanced-search-tab').addClass('active');
 		$('#quick-search').hide();
 		$('#advanced-search').show();
 		$('#category').children('[value="'+category_id+'"]').attr('selected', true);
-		$('#type').children('[value="deal"]').attr('selected', true);
 	}
 	
 	// Execute search when the page runs.

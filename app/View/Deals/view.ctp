@@ -98,7 +98,11 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 				<div class="row">
 					<div class="twelve columns">
 						<div class="content-group">
-							<p class="lead">The Spot Special</p>
+							<?php if (!$deal['Deal']['keys']): ?>
+								<p class="lead">Event Detail</p>
+							<?php else: ?>
+								<p class="lead">The Spot Special</p>
+							<?php endif; ?>
 							<p><?php echo h($deal['Deal']['long_description']); ?></p>
 						</div>
 

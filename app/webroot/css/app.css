@@ -2562,7 +2562,7 @@ ul.list .list-actions {
 .showcase {
   position: relative;
   height: 300px;
-  background: #1a1b20 url('../img/bg.png') 50% 50% no-repeat;
+  background: #1a1b20 url('../img/bg.png') 50% 100% no-repeat;
   z-index: 1;
   -webkit-background-size: cover;
   -moz-background-size: cover;

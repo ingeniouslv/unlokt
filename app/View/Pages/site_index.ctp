@@ -144,7 +144,6 @@ $this->Html->add_script(array(
 		params.review_limit = review_limit;
 		var url = search_url + $.param(params);
 		
-		console.log(url);
 		$.getJSON(url, function(results) {
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);
@@ -260,19 +259,18 @@ $this->Html->add_script(array(
 	//////////////////////////////////////////////////
 	updateGeo();
 	//get geolocation from browser when page runs
-	if(!location_id) {
+	if (!location_id) {
 		if(typeof(navigator.geolocation) != "undefined") {
 			navigator.geolocation.getCurrentPosition(GetLocation);
 		}
 	}
 	
-	if(category_id) {
+	if (category_id) {
 		$('.quick-search-tab').removeClass('active');
 		$('.advanced-search-tab').addClass('active');
 		$('#quick-search').hide();
 		$('#advanced-search').show();
 		$('#category').children('[value="'+category_id+'"]').attr('selected', true);
-		$('#type').children('[value="deal"]').attr('selected', true);
 	}
 	
 	// Execute search when the page runs.

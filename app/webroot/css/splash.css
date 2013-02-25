@@ -20,7 +20,7 @@ body {
 }
 
 .bg-top {
-	background: url('bg-top.jpg') no-repeat 50% 50%;
+	background: url('bg-top.png') no-repeat 50% 50%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

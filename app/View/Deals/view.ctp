@@ -105,11 +105,12 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 							<?php endif; ?>
 							<p><?php echo h($deal['Deal']['long_description']); ?></p>
 						</div>
-
-						<div class="content-group">
-							<p class="lead">Fine Print</p>
-							<p><?php echo h($deal['Deal']['fine_print']); ?></p>
-						</div>
+						<?php if (!empty($deal['Deal']['fine_print'])): ?>
+							<div class="content-group">
+								<p class="lead">Fine Print</p>
+								<p><?php echo h($deal['Deal']['fine_print']); ?></p>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 				<div class="row">

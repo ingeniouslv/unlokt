@@ -16,7 +16,7 @@ $this->set('title_for_layout', 'Add a Location');
 						echo $this->Form->input('is_active', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => 'Active'));
 					?>
 					<div class="btn-group">
-						<a class="btn" href="">Cancel</a>
+						<a class="btn btn-red" href="/admin/locations">Cancel</a>
 						<?php echo $this->Form->submit('Create Location', array('div' => false, 'class' => 'btn btn-blue')); ?>
 					</div>
 				<?php echo $this->Form->end(); ?>

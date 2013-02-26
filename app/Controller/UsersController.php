@@ -535,7 +535,7 @@ class UsersController extends AppController {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 		}
 		if (empty($this->request->data['User']['password']) && empty($this->request->data['User']['password2'])) {
-			@unset($this->request->data['User']['password']);
+			unset($this->request->data['User']['password']);
 		} elseif (strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
 			ApiComponent::error(ApiErrors::$MISMATCH_PASSWORDS);
 		} else {

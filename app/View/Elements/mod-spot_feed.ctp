@@ -18,7 +18,7 @@
 			<?php if ($this->Auth->loggedIn() && ($this->Auth->user('is_super_admin') || (isset($managerOfCurrentSpot) && $managerOfCurrentSpot))): ?>
 				<a href="javascript:void(0);" class="delete-feed" data-feed-id="<?php echo $feed['Feed']['id']; ?>">Delete</a>
 			<?php endif; ?>
-			<a class="more" href="" title="">Read More</a>
+			<?php echo date('d M y', strtotime($feed['Feed']['created'])); ?>
 		</div>
 		<!-- End Feed Item -->
 	<?php endforeach; ?>

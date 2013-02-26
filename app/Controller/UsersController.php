@@ -530,6 +530,23 @@ class UsersController extends AppController {
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $mydeals);
 	} // end of account()
 	
+	public function api_save_profile() {
+		if (!$this->request->is('post')) {
+			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+		}
+		if (empty($this->request->data['User']['password']) && empty($this->request->data['User']['password2'])) {
+			@unset($this->request->data['User']['password']);
+		} elseif (strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
+			ApiComponent::error(ApiErrors::$MISMATCH_PASSWORDS);
+		} else {
+			$this->request->data['User']['password'] = $this->bcrypt_hash($this->request->data['User']['password']);
+		}
+		$this->User->create(false);
+		$this->User->set($this->request->data);
+		$this->User->set('id', $this->Auth->user('id'));
+		$this->User->save();
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array());
+	} // end of api_save_profile
 	
 	public function account() {
 		$user_id = $this->Auth->user('id');

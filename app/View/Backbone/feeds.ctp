@@ -12,10 +12,8 @@
 			<h3 class="title"><a href="<%= unlokt.settings.webroot %>spots/view/<%= feed.Spot.id %>"><%= h(feed.Spot.name) %></a></h3>
 			<div class="description">
 				<p><%= h(feed.Feed.feed) %></p>
-				<% if (typeof feed.Attachment !== 'undefined' && _.isArray(feed.Attachment) && feed.Attachment.length > 0) { %>
-				<% /*End if*/ } %>
 			</div>
-			<a class="more" href="<%= unlokt.settings.webroot %>spots/view/<%= feed.Spot.id %>#feeds" title="">Read More</a>
+			<span class="more"><% print(new XDate(feed.Feed.created).toString('d MMM yy')); %></span>
 		</div>
 		<!-- End Feed Item -->
 	<% }); %>

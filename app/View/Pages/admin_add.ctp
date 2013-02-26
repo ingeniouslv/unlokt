@@ -16,7 +16,7 @@ $this->set('title_for_layout', 'Add a Page');
 						echo $this->Form->input('body', array('div' => 'control-fields', 'class' => 'required spot-spotlight_1-editor', 'label' => false, 'placeholder' => 'Body', 'data-type' => 'editor'));
 					?>
 					<div class="btn-group">
-						<a class="btn" href="">Cancel</a>
+						<a class="btn btn-red" href="/admin/pages">Cancel</a>
 						<?php echo $this->Form->submit('Create Page', array('div' => false, 'class' => 'btn btn-blue')); ?>
 					</div>
 				<?php echo $this->Form->end(); ?>

@@ -23,8 +23,8 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 								<i class="icon-key"></i> Reward
 							<?php endif; ?>
 						</h5>
+						<button class="fb-share btn-fb">Share</button>
 					</div>
-					<button class="fb-share btn-fb">Share</button>
 					<div class="row">
 						<h1 class="name"><?php echo h($deal['Deal']['name']); ?></h1>
 						<h3><?php echo h($deal['Deal']['description']); ?></h3>

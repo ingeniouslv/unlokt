@@ -18,7 +18,7 @@ $this->set('title_for_layout', "Editing Location '".h($this->data['Location']['n
 						echo $this->Form->input('is_active', array('div' => 'control-fields', 'class' => 'input-full required', 'label' => 'Active'));
 					?>
 					<div class="btn-group">
-						<a class="btn" href="">Cancel</a>
+						<a class="btn btn-red" href="/admin/pages">Cancel</a>
 						<?php echo $this->Form->submit('Update Location', array('div' => false, 'class' => 'btn btn-blue')); ?>
 					</div>
 				<?php echo $this->Form->end(); ?>

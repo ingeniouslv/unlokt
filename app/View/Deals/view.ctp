@@ -94,14 +94,16 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 				</div>
 				<div class="row">
 					<div class="twelve columns">
-						<div class="content-group">
-							<?php if (!$deal['Deal']['keys']): ?>
-								<p class="lead">Event Detail</p>
-							<?php else: ?>
-								<p class="lead">The Spot Special</p>
-							<?php endif; ?>
-							<p><?php echo h($deal['Deal']['long_description']); ?></p>
-						</div>
+						<?php if (!empty($deal['Deal']['long_description'])): ?>
+							<div class="content-group">
+								<?php if (!$deal['Deal']['keys']): ?>
+									<p class="lead">Event Detail</p>
+								<?php else: ?>
+									<p class="lead">The Spot Special</p>
+								<?php endif; ?>
+								<p><?php echo h($deal['Deal']['long_description']); ?></p>
+							</div>
+						<?php endif; ?>
 						<?php if (!empty($deal['Deal']['fine_print'])): ?>
 							<div class="content-group">
 								<p class="lead">Fine Print</p>

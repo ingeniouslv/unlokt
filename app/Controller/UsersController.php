@@ -484,7 +484,7 @@ class UsersController extends AppController {
 			if ($this->User->validates()) {
 				// Sucess
 				$this->User->save();
-				$this->User->generate_api_key($this->User->id,  $this->Session->id());
+				$this->User->generate_api_key($this->User->id, $this->Session->id());
 				$this->login_user($this->User->id);
 				$userData = $this->User->read();
 				$data['name'] =$userData['User']['name'];

@@ -9,7 +9,7 @@
 	</div>
 		
 <?php endif; ?>
-<div class="main-content page public">
+<div class="main-content page-new public">
 	<div class="container">
 		<h1 class="page-header"><?php echo $page['Page']['title'] ?></h1>
 		<?php echo $page['Page']['body'];?>

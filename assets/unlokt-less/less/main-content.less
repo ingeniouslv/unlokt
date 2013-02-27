@@ -7,11 +7,6 @@
 	z-index: 2;
 	&.page {
 		background: @grayLighter;
-
-		&.public {
-			background: @schemeGrayDark;
-			color: @white;
-		}
 	}
 	&.page-new {
 		#gradient > .vertical(darken(@schemeGray, 4%), darken(@schemeGray, 8%));
@@ -22,6 +17,10 @@
 			i {
 				color: @white;
 			}
+		}
+
+		&.public {
+			color: @white;
 		}
 	}
 }

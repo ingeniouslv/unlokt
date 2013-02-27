@@ -37,10 +37,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 						<?php if ($deal['Deal']['keys']): ?>
 							<div class="redeem">	
 								<div class="block block-white">
-									<?php // if($deal['Deal']['keys'] == 1 && !$activeDeal): ?>
-									<?php // endif; ?>
-
-									<?php if ($deal['Deal']['keys'] >= 1): ?>
+									<?php if ($deal['Deal']['keys'] > 1): ?>
 										<div class="keys">
 											<?php if (!isset($activeDeal) || !$activeDeal): ?>
 												<?php

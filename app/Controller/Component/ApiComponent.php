@@ -12,6 +12,8 @@
 		public static $INVALID_LOGIN							= array(8,"Invalid User Name Or Password");
 		public static $MAX_REDEEM								= array(9,"You have redeemed this Special too many times");
 		public static $MISMATCH_FACEBOOK_CREDENTIALS			= array(10,"Facebook- and User-supplied credentials do not match");
+		public static $MISMATCH_PASSWORDS						= array(11,"Passwords must match");
+		
 		
 	}
 	

@@ -51,6 +51,18 @@
 								<h4><i class="icon-key"></i></h4>
 							<?php endif; ?>
 							<h2><?php echo h($deal['Deal']['name']); ?></h2>
+							<?php
+							$displayDate = '';
+							if ($deal['Deal']['keys'] == 0) {
+								for ($i = 0; $i < 7; $i ++) {
+									$date = strtolower(date('l', strtotime("+$i days")));
+									if ($deal['Deal'][$date] == 1) {
+										$displayDate = date('D j M', strtotime("+$i days"));
+										break;
+									}
+								} ?>
+								<br><span><?php echo $displayDate; ?></span>
+							<?php } ?>
 						</div>	
 						<div class="block-actions">
 							<p><?php echo h($deal['Deal']['description']); ?></p>

@@ -736,7 +736,7 @@ class SpotsController extends AppController {
 	public function api_view($id) {
 		$this->Spot->id = $id;
 		
-		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed' => array('Attachment'), 'SpotOption','HoursOfOperation', 'Deal'))) {
+		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed' => array('Attachment'), 'SpotOption','HoursOfOperation', 'Deal', 'HappyHour'))) {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 			return;
 		}

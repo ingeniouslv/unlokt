@@ -740,6 +740,7 @@ class SpotsController extends AppController {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 			return;
 		}
+		$this->Spot->Review->limit = 60;
 		$spot['Reviews'] = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
 		$this->Spot->Attachment->limit = 60;
 		$spot['Attachements'] = $this->Spot->Attachment->getAttachmentBySpotIds($id);

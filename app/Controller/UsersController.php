@@ -507,17 +507,17 @@ class UsersController extends AppController {
 	
 	public function api_my_spots() {
 		$this->User->id = $this->Auth->user('id');
-		if(!$this->User->exists()) {
+		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		
 		$spot_ids = $this->User->SpotFollower->Spot->getMySpotIds($this->Auth->user('id'));
-		$spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
+		// $spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
 		
+		$spotsfeed = array();
 		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids);
 		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
-		$spotsfeed['user'] = $this->User->getUser(null, array('SpotFollower' => array('Spot' => array('Feed', 'Deal'))));
-		//$this->set(compact('user', 'feeds', 'spots', 'deals'));
+		//$spotsfeed['user'] = $this->User->getUser(null, array('SpotFollower' => array('Spot' => array('Feed', 'Deal'))));
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);
 	} // end of api_my_spots
 

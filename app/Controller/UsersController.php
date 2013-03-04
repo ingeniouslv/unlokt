@@ -515,7 +515,7 @@ class UsersController extends AppController {
 		// $spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
 		
 		$spotsfeed = array();
-		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids);
+		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids, array('Spot'));
 		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
 		//$spotsfeed['user'] = $this->User->getUser(null, array('SpotFollower' => array('Spot' => array('Feed', 'Deal'))));
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);

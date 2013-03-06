@@ -512,7 +512,7 @@ class UsersController extends AppController {
 	
 	public function api_my_spot_ids() {
 		$spot_ids = $this->User->SpotFollower->Spot->getMySpotIds($this->Auth->user('id'));
-		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array_values($spot_ids));
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array_keys($spot_ids));
 	}
 	
 	public function api_my_spots() {

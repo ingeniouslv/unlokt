@@ -133,5 +133,28 @@ class HappyHour extends AppModel {
 			'contain' => $contain
 		));
 	}
+
+	public function getCurrentHappyHourParentsBySpot($ids, $contain = array()) {
+		if (!is_array($ids) && !is_numeric($ids)) {
+			throw new MethodNotAllowedException('Expecting array or integer for $ids');
+		}
+		$current_day_of_week = isset($this->current_day_of_week) ? $this->current_day_of_week : date('w');
+		$current_start_time = isset($this->current_start_time) ? $this->current_start_time : date('H:i');
+		$current_end_time = isset($this->current_end_time) ? $this->current_end_time : date('H:i', strtotime("+3 hour"));
+		$current_time = isset($this->current_time) ? $this->current_time : date('H:i');
+		$conditions = array(
+			'HappyHour.spot_id' => $ids,
+			'HappyHour.day_of_week' => $current_day_of_week,
+			'HappyHour.start <=' => $current_end_time,
+			'HappyHour.end >' => $current_start_time,
+			'HappyHour.parent_happy_hour_id' => null		
+		);
+		
+		$this->Behaviors->attach('Containable');
+		return $this->find('all', array(
+			'conditions' => $conditions,
+			'contain' => $contain
+		));
+	}
 	
 }

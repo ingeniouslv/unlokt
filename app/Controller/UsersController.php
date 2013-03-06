@@ -524,7 +524,11 @@ class UsersController extends AppController {
 		$spotsfeed = array();
 		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids, array('Spot'));
 		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
-		//$spotsfeed['user'] = $this->User->getUser(null, array('SpotFollower' => array('Spot' => array('Feed', 'Deal'))));
+
+		// Grab the current HappyHours
+		$happyHours = $this->User->SpotFollower->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot'));
+		$spotsfeed['deals'] = Hash::merge($spotsfeed['deals'], $happyHours);
+		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);
 	} // end of api_my_spots
 

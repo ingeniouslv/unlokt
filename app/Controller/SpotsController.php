@@ -599,7 +599,7 @@ class SpotsController extends AppController {
 		//that have matches.
 		//use array_values to clear the keys, use array_unique to get rid of duplicates, and use array_merge to combine arrays
 		$spot_ids = array_unique(array_merge(array_values($spot_ids), array_values($deal_spot_ids)));
-		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourParentsBySpot($spot_ids, array('Spot')):array();
+		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourParentsBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
 		
 		
 		

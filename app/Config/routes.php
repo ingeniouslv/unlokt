@@ -31,6 +31,9 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'page'));
 
+	// A special route per Alex's request to have /deals/view/$id mapped to /special/view/$id
+	Router::connect('/special/view/*', array('controller' => 'deals', 'action' => 'view'));
+
 	Router::connect('/spot-invite/*', array('controller' => 'spots', 'action' => 'submit_your_business'));
 	Router::connect('/channel', array('controller' => 'users', 'action' => 'channel'));
 

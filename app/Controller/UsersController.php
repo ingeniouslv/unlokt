@@ -495,6 +495,7 @@ class UsersController extends AppController {
 					$uniqid = uniqid().time();
 					@copy("https://graph.facebook.com/{$this->request->data['User']['facebook_id']}/picture?type=large", TMP.DS.$uniqid);
 					@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
+					@unlink(TMP.DS.$uniqid);
 				}
 				ApiComponent::success(ApiSuccessMessages::$USER_REGISTERED, $data);
 				
@@ -709,8 +710,8 @@ class UsersController extends AppController {
 			
 			$user = json_decode(file_get_contents($graph_url));
 			
-			debug($user);
-			echo("Hello " . $user->name);
+			// debug($user);
+			// echo("Hello " . $user->name);
 			
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);
@@ -727,6 +728,11 @@ class UsersController extends AppController {
 				));
 				$this->User->create();
 				$unlokt_user = $this->User->save($unlokt_user);
+				// Save the user's facebook photo
+				$uniqid = uniqid().time();
+				@copy("https://graph.facebook.com/{$user->id}/picture?type=large", TMP.DS.$uniqid);
+				@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
+				@unlink(TMP.DS.$uniqid);
 			} else if (!$unlokt_user['User']['is_facebook_only']) {
 				$this->User->id = $unlokt_user['User']['id'];
 				$user_update = array('User' => array(

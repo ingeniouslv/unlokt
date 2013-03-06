@@ -350,7 +350,7 @@ class SpotsController extends AppController {
 		$include_happy_hours = true;
 		$include_deals = true;
 		$include_spots_in_deals = false;
-		$randomize = false;
+		$randomize = true;
 		$order_by_views = false;
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {

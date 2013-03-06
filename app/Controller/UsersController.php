@@ -487,9 +487,15 @@ class UsersController extends AppController {
 				$this->User->generate_api_key($this->User->id, $this->Session->id());
 				$this->login_user($this->User->id);
 				$userData = $this->User->read();
-				$data['name'] =$userData['User']['name'];
-				$data['email'] =$userData['User']['email'];
-				$data['api_key'] =$userData['User']['api_key'];
+				$data['name'] = $userData['User']['name'];
+				$data['email'] = $userData['User']['email'];
+				$data['api_key'] = $userData['User']['api_key'];
+				// Copy over the facebook picure if it's a facebook user.
+				if (!empty($this->request->data['User']['is_facebook_only']) && !empty($this->request->data['User']['facebook_id'])) {
+					$uniqid = uniqid().time();
+					@copy("https://graph.facebook.com/{$this->request->data['User']['facebook_id']}/picture?type=large", TMP.DS.$uniqid);
+					@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
+				}
 				ApiComponent::success(ApiSuccessMessages::$USER_REGISTERED, $data);
 				
 			} else {

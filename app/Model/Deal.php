@@ -284,7 +284,16 @@ class Deal extends AppModel {
 			)
 		);
 		
-		$deals = $this->find('all', array('joins' => $joins, 'contain' => $contain, 'group' => array('Deal.id')));
+		$deals = $this->find('all', 
+			array(
+				'joins' => $joins,
+				'contain' => $contain,
+				'group' => array('Deal.id'),
+				'conditions' => array(
+					'Deal.is_active' => 1
+				)
+			)
+		);
 		usort($deals, array('Deal', '_sortBySpotName'));
 		return $deals;
 	}

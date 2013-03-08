@@ -528,7 +528,7 @@ class UsersController extends AppController {
 		$this->User->SpotFollower->Spot->Deal->limit = 100;
 		$this->User->SpotFollower->Spot->Deal->current_start_time = '00:00:00';
 		$this->User->SpotFollower->Spot->Deal->current_end_time = '23:59:59';
-		$this->User->SpotFollower->Spot->Deal->cdow = array(
+		$this->User->SpotFollower->Spot->Deal->current_day_of_week = array(
 			'sunday' => 1,
 			'monday' => 1,
 			'tuesday' => 1,

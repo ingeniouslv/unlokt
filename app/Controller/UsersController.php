@@ -526,6 +526,9 @@ class UsersController extends AppController {
 		
 		$spotsfeed = array();
 		$this->User->SpotFollower->Spot->Deal->limit = 100;
+		$this->User->SpotFollower->Spot->Deal->current_start_time = '00:00:00';
+		$this->User->SpotFollower->Spot->Deal->current_end_time = '23:59:59';
+		$this->User->SpotFollower->Spot->Deal->cdow = array(0, 1, 2, 3, 4, 5, 6);
 		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids, array('Spot'));
 		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
 

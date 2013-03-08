@@ -535,7 +535,7 @@ class UsersController extends AppController {
 		// Grab the current HappyHours
 		$this->User->SpotFollower->Spot->HappyHour->order = 'HappyHour.day_of_week ASC';
 		$happyHours = $this->User->SpotFollower->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour'));
-		$spotsfeed['deals'] = Hash::merge($spotsfeed['deals'], $happyHours);
+		$spotsfeed['deals'] = $spotsfeed['deals'] + $happyHours;
 		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);
 	} // end of api_my_spots

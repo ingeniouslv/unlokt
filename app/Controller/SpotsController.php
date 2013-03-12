@@ -518,6 +518,7 @@ class SpotsController extends AppController {
 			$deal_conditions = array('OR' => array());
 			//generate search conditions for all keywords
 			foreach($search_terms as $search_term) {
+				$search_term = str_replace('\'', '\\\'', $search_term);
 				$search_text_spot_conditions['OR'] = array(
 					"Spot.name LIKE '%".$search_term."%'",
 					"Spot.address LIKE '%".$search_term."%'",
@@ -529,7 +530,6 @@ class SpotsController extends AppController {
 					"Spot.spotlight_1 LIKE '%".$search_term."%'",
 					"Spot.spotlight_2 LIKE '%".$search_term."%'"
 				);
-				
 				
 				$deal_conditions['OR'] = array(
 					"Deal.name LIKE '%".$search_term."%'",
@@ -599,7 +599,12 @@ class SpotsController extends AppController {
 		//that have matches.
 		//use array_values to clear the keys, use array_unique to get rid of duplicates, and use array_merge to combine arrays
 		$spot_ids = array_unique(array_merge(array_values($spot_ids), array_values($deal_spot_ids)));
-		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourParentsBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
+		// Manual change for mobile-only users?
+		if (!empty($this->params['api'])) {
+			$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourParentsBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
+		} else {
+			$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
+		}
 		
 		
 		

@@ -538,7 +538,7 @@ table .spot-name a{display:block;color:#000000;}
 .modal.modal-gallery{width:620px;height:600px;top:50%;margin-top:-297px;margin-left:-310px;}.modal.modal-gallery img{max-height:100%;max-width:600px;display:block;margin:0 auto;}
 .modal.modal-redeem{width:298px;margin-left:-149px;}
 .staggered-item img,.index+.container .staggered-item img{width:270px;height:270px;}
-.spot+.container .staggered-item img,.deal+.container .staggered-item img,.user+.container .staggered-item img{width:270px;height:270px;}
+.spot+.container .staggered-item img,.deal+.container .staggered-item img,.user+.container .staggered-item img{width:270px;height:270px;}.spot+.container .staggered-item img.new,.deal+.container .staggered-item img.new,.user+.container .staggered-item img.new{height:72px;width:72px;}
 #staggered .block a:hover{text-decoration:none;}
 .tile{color:#fff;height:270px;position:relative;width:270px;}.tile .new{height:72px;position:absolute;right:0;top:0;width:72px;}
 .tile a.a-block{height:100%;display:block;width:100%;}

@@ -6,22 +6,27 @@
 				<% if (typeof deal.HappyHour != 'undefined') { %>
 					<a href="<%= unlokt.settings.webroot %>spots/view/<%= deal.Spot.id %>">
 						<img src="<% print(unlokt.helpers.gen_path('spot', deal.Spot.id, 223, 223, deal.Spot.image_name)); %>">
+						<img src="/img/new-tag.png" class="new">
 					</a>	
 				<% } else if (typeof deal.Deal == 'undefined') { %>
 					<a href="<%= unlokt.settings.webroot %>spots/view/<%= deal.Spot.id %>">
-						<img src="<% print(unlokt.helpers.gen_path('spot', deal.Spot.id, 223, 223, deal.Spot.image_name)); %>">	
+						<img src="<% print(unlokt.helpers.gen_path('spot', deal.Spot.id, 223, 223, deal.Spot.image_name)); %>">
+						<img src="/img/new-tag.png" class="new">	
 					</a>
 				<% } else if (deal.Deal.keys == 0) { %>
 					<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
 						<img src="<% print(unlokt.helpers.gen_path('deal', deal.Deal.id, 223, 223, deal.Deal.image_name)); %>">
+						<img src="/img/new-tag.png" class="new">
 					</a>
 				<% } else if (deal.Deal.keys == 1) { %>
 					<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
 						<img src="<% print(unlokt.helpers.gen_path('deal', deal.Deal.id, 223, 223, deal.Deal.image_name)); %>">
+						<img src="/img/new-tag.png" class="new">
 					</a>
 				<% } else { %>
 					<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
 						<img src="<% print(unlokt.helpers.gen_path('deal', deal.Deal.id, 223, 223, deal.Deal.image_name)); %>">
+						<img src="/img/new-tag.png" class="new">
 					</a>
 				<% } %>
 	

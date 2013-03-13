@@ -484,12 +484,19 @@ class UsersController extends AppController {
 			if ($this->User->validates()) {
 				// Sucess
 				$this->User->save();
-				$this->User->generate_api_key($this->User->id,  $this->Session->id());
+				$this->User->generate_api_key($this->User->id, $this->Session->id());
 				$this->login_user($this->User->id);
 				$userData = $this->User->read();
-				$data['name'] =$userData['User']['name'];
-				$data['email'] =$userData['User']['email'];
-				$data['api_key'] =$userData['User']['api_key'];
+				$data['name'] = $userData['User']['name'];
+				$data['email'] = $userData['User']['email'];
+				$data['api_key'] = $userData['User']['api_key'];
+				// Copy over the facebook picure if it's a facebook user.
+				if (!empty($this->request->data['User']['is_facebook_only']) && !empty($this->request->data['User']['facebook_id'])) {
+					$uniqid = uniqid().time();
+					@copy("https://graph.facebook.com/{$this->request->data['User']['facebook_id']}/picture?type=large", TMP.DS.$uniqid);
+					@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
+					@unlink(TMP.DS.$uniqid);
+				}
 				ApiComponent::success(ApiSuccessMessages::$USER_REGISTERED, $data);
 				
 			} else {
@@ -503,21 +510,41 @@ class UsersController extends AppController {
 	} // end of api_register()
 	
 	
-	
+	public function api_my_spot_ids() {
+		$spot_ids = $this->User->SpotFollower->Spot->getMySpotIds($this->Auth->user('id'));
+		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array_keys($spot_ids));
+	}
 	
 	public function api_my_spots() {
 		$this->User->id = $this->Auth->user('id');
-		if(!$this->User->exists()) {
+		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		
 		$spot_ids = $this->User->SpotFollower->Spot->getMySpotIds($this->Auth->user('id'));
-		$spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
+		// $spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
 		
-		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids);
+		$spotsfeed = array();
+		$this->User->SpotFollower->Spot->Deal->limit = 100;
+		$this->User->SpotFollower->Spot->Deal->current_start_time = '00:00:00';
+		$this->User->SpotFollower->Spot->Deal->current_end_time = '23:59:59';
+		$this->User->SpotFollower->Spot->Deal->current_day_of_week = array(
+			'sunday' => 1,
+			'monday' => 1,
+			'tuesday' => 1,
+			'wednesday' => 1,
+			'thursday' => 1,
+			'friday' => 1,
+			'saturday' => 1
+		);
+		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids, array('Spot'));
 		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
-		$spotsfeed['user'] = $this->User->getUser(null, array('SpotFollower' => array('Spot' => array('Feed', 'Deal'))));
-		//$this->set(compact('user', 'feeds', 'spots', 'deals'));
+
+		// Grab the current HappyHours
+		$this->User->SpotFollower->Spot->HappyHour->order = 'HappyHour.day_of_week ASC';
+		$happyHours = $this->User->SpotFollower->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour'));
+		$spotsfeed['deals'] = $spotsfeed['deals'] + $happyHours;
+		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);
 	} // end of api_my_spots
 
@@ -703,8 +730,8 @@ class UsersController extends AppController {
 			
 			$user = json_decode(file_get_contents($graph_url));
 			
-			debug($user);
-			echo("Hello " . $user->name);
+			// debug($user);
+			// echo("Hello " . $user->name);
 			
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);
@@ -721,6 +748,11 @@ class UsersController extends AppController {
 				));
 				$this->User->create();
 				$unlokt_user = $this->User->save($unlokt_user);
+				// Save the user's facebook photo
+				$uniqid = uniqid().time();
+				@copy("https://graph.facebook.com/{$user->id}/picture?type=large", TMP.DS.$uniqid);
+				@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
+				@unlink(TMP.DS.$uniqid);
 			} else if (!$unlokt_user['User']['is_facebook_only']) {
 				$this->User->id = $unlokt_user['User']['id'];
 				$user_update = array('User' => array(

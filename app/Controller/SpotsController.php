@@ -350,7 +350,7 @@ class SpotsController extends AppController {
 		$include_happy_hours = true;
 		$include_deals = true;
 		$include_spots_in_deals = false;
-		$randomize = false;
+		$randomize = true;
 		$order_by_views = false;
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {
@@ -518,6 +518,7 @@ class SpotsController extends AppController {
 			$deal_conditions = array('OR' => array());
 			//generate search conditions for all keywords
 			foreach($search_terms as $search_term) {
+				$search_term = str_replace('\'', '\\\'', $search_term);
 				$search_text_spot_conditions['OR'] = array(
 					"Spot.name LIKE '%".$search_term."%'",
 					"Spot.address LIKE '%".$search_term."%'",
@@ -529,7 +530,6 @@ class SpotsController extends AppController {
 					"Spot.spotlight_1 LIKE '%".$search_term."%'",
 					"Spot.spotlight_2 LIKE '%".$search_term."%'"
 				);
-				
 				
 				$deal_conditions['OR'] = array(
 					"Deal.name LIKE '%".$search_term."%'",
@@ -599,7 +599,12 @@ class SpotsController extends AppController {
 		//that have matches.
 		//use array_values to clear the keys, use array_unique to get rid of duplicates, and use array_merge to combine arrays
 		$spot_ids = array_unique(array_merge(array_values($spot_ids), array_values($deal_spot_ids)));
-		$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
+		// Manual change for mobile-only users?
+		if (!empty($this->params['api'])) {
+			$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourParentsBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
+		} else {
+			$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
+		}
 		
 		
 		
@@ -735,11 +740,23 @@ class SpotsController extends AppController {
 
 	public function api_view($id) {
 		$this->Spot->id = $id;
-		
-		if (!$spot = $this->Spot->getSpot($id, array('Category', 'Feed','SpotOption','HoursOfOperation', 'Deal'))) {
+		$contain = array(
+			'Category',
+			'Feed' => array('Attachment'),
+			'SpotOption',
+			'HoursOfOperation',
+			'Deal' => array(
+				'conditions' => array(
+					'Deal.is_active' => 1
+				)
+			),
+			'HappyHour' => array('order' => 'day_of_week ASC', 'conditions' => array('parent_happy_hour_id' => null))
+		);
+		if (!$spot = $this->Spot->getSpot($id, $contain)) {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 			return;
 		}
+		$this->Spot->Review->limit = 60;
 		$spot['Reviews'] = $this->Spot->Review->getReviewBySpotIds($id, array('User', 'Spot'));
 		$this->Spot->Attachment->limit = 60;
 		$spot['Attachements'] = $this->Spot->Attachment->getAttachmentBySpotIds($id);

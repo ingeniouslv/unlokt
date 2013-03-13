@@ -605,7 +605,17 @@ class SpotsController extends AppController {
 		} else {
 			$happy_hour_spots = ($include_happy_hours)?$this->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour')):array();
 		}
-		
+		// $representedSpotIds = array();
+		// $happyHoursToRemove = array();
+		// $i = 0;
+		// foreach($happy_hour_spots as &$happy_hour_spot) {
+			// if(array_search($happy_hour_spot['HappyHour']['spot_id'],  $representedSpotIds)) {
+				// $happyHoursToRemove[] = $i; 
+			// } else {
+				// $representedSpotIds[] = $happy_hour_spot['HappyHour']['spot_id'];
+			// }
+			// $i++;
+		// }
 		
 		
 		$return = array();

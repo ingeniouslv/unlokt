@@ -9,6 +9,7 @@
 </h2>
 <div class="tile">
 	<img src="/gen/temp/0/270x270/<%= deal.Deal.tmp_image_name %>">
+	<img src="/img/new-tag.png" class="new">
 	<div class="tile-footer">	
 		<div class="tile-type">
 			<% if (deal.Deal.keys == 0) { %>

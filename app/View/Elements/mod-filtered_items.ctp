@@ -4,23 +4,48 @@
 		<?php foreach ($deals as $deal): ?>
 			<div class="block-slide <?php if (isset($item_class)) { echo $item_class; } else { echo ''; } ?> columns <?php if (isset($id)) { echo $id; } else { echo 'staggered'; } ?>-item">
 				<div class="tile">
+					<?php $sevenDaysPrior = strtotime(date('Y-m-d') . '-7 days'); ?>
 					<?php if (isset($deal['HappyHour'])): ?>
 						<a href="<?php echo $this->webroot; ?>spots/view/<?php echo $deal['Spot']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('spot', $deal['Spot']['id'], 270); ?>">
+							<?php
+								$createDate = strtotime($deal['HappyHour']['created']);
+								 if($sevenDaysPrior <= $createDate) {
+							?>
+								<img src="/img/new-tag.png" class="new">
+							<?php } ?>
 						</a>	
 					<?php elseif ($deal['Deal']['keys'] == 0): ?>
 						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
+							<?php
+								$createDate = strtotime($deal['Deal']['created']);
+								 if($sevenDaysPrior <= $createDate) {
+							?>
+								<img src="/img/new-tag.png" class="new">
+							<?php } ?>
 						</a>
 						
 					<?php elseif ($deal['Deal']['keys'] == 1): ?>
 						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
+							<?php
+								$createDate = strtotime($deal['Deal']['created']);
+								 if($sevenDaysPrior <= $createDate) {
+							?>
+								<img src="/img/new-tag.png" class="new">
+							<?php } ?>
 						</a>
 						
 					<?php else: ?>
 						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
+							<?php
+								$createDate = strtotime($deal['Deal']['created']);
+								 if($sevenDaysPrior <= $createDate) {
+							?>
+								<img src="/img/new-tag.png" class="new">
+							<?php } ?>
 						</a>	
 						
 					<?php endif; ?>

@@ -6,7 +6,7 @@ $this->set('title_for_layout', 'Login');
 		<div class="row row-centered">
 			<div class="columns mod-box">
 				<div class="logo">
-					<img src="/img/main-logo.png" alt="">
+					<img src="/img/main-logo2.png" alt="">
 				</div>
 				<h1>Please Log In</h1>
 				<?php

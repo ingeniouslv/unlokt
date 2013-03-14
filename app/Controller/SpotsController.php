@@ -407,8 +407,22 @@ class SpotsController extends AppController {
 				$this->Spot->Deal->events_only = true;
 			} else if ($_GET['search'] == 'popular') {
 				$order_by_views = true;
+				$start_time = date('H:i', strtotime('today 12am'));
+				$end_time = date('H:i', strtotime('today 11:59pm'));
+				
+				$this->Spot->HappyHour->current_start_time = $start_time;
+				$this->Spot->HappyHour->current_end_time = $end_time;
+				$this->Spot->Deal->current_start_time = $start_time;
+				$this->Spot->Deal->current_end_time = $end_time;
 			} else if ($_GET['search'] == 'favorites') {
 				$spot_ids = $this->Spot->getMySpotIds($this->Auth->user('id'));
+				$start_time = date('H:i', strtotime('today 12am'));
+				$end_time = date('H:i', strtotime('today 11:59pm'));
+				
+				$this->Spot->HappyHour->current_start_time = $start_time;
+				$this->Spot->HappyHour->current_end_time = $end_time;
+				$this->Spot->Deal->current_start_time = $start_time;
+				$this->Spot->Deal->current_end_time = $end_time;
 			}
 		} else if($_GET['search_type'] == 'advanced') {
 			if($_GET['type'] == 'spot') {
@@ -590,8 +604,8 @@ class SpotsController extends AppController {
 			);
 		}
 
-		$this->Spot->Deal->limit = intval($_GET['deal_limit']) * 2;
-		$this->Spot->HappyHour->limit = intval($_GET['deal_limit']) * 2;
+		$this->Spot->Deal->limit = intval($_GET['deal_limit']) * 10;
+		$this->Spot->HappyHour->limit = intval($_GET['deal_limit']) * 10;
 		$this->Spot->Feed->limit = $_GET['feed_limit'];
 		$this->Spot->Review->limit = $_GET['review_limit'];
 		
@@ -623,6 +637,13 @@ class SpotsController extends AppController {
 		$return['deals'] = array();
 		$return['reviews'] = $this->Spot->Review->getReviewBySpotIds($spot_ids, array('User', 'Spot'));
 		$return['spots'] = $this->Spot->getFullSpots($spot_ids);
+		
+		// debug('include_deals:' . $include_deals);
+		// debug('include_happy_hours:' . $include_happy_hours);
+		// debug($happy_hour_spots);
+		// debug('include_spots_in_deals:' . $include_spots_in_deals);
+		// debug($spot_ids);
+
 		
 		if($include_deals) {
 			$return['deals'] = $this->Spot->Deal->getDealBySpotIds($spot_ids, array('Spot'), $excluded_deal_ids);

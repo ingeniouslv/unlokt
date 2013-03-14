@@ -637,12 +637,6 @@ class SpotsController extends AppController {
 		$return['deals'] = array();
 		$return['reviews'] = $this->Spot->Review->getReviewBySpotIds($spot_ids, array('User', 'Spot'));
 		$return['spots'] = $this->Spot->getFullSpots($spot_ids);
-		
-		// debug('include_deals:' . $include_deals);
-		// debug('include_happy_hours:' . $include_happy_hours);
-		// debug($happy_hour_spots);
-		// debug('include_spots_in_deals:' . $include_spots_in_deals);
-		// debug($spot_ids);
 
 		
 		if($include_deals) {

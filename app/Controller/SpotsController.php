@@ -364,6 +364,12 @@ class SpotsController extends AppController {
 				}
 			} else if ($_GET['search'] == 'now') {
 				$this->Spot->Deal->specials_only = true;
+				$start_time = date('H:i', time());
+				$end_time = date('H:i', strtotime('+3 hours'));
+				$this->Spot->HappyHour->current_start_time = $start_time;
+				$this->Spot->HappyHour->current_end_time = $end_time;
+				$this->Spot->Deal->current_start_time = $start_time;
+				$this->Spot->Deal->current_end_time = $end_time;
 			} else if ($_GET['search'] == 'tonight') {
 				$this->Spot->Deal->events_and_specials_only = true;
 				$start_time = date('H:i', strtotime('today 6pm'));

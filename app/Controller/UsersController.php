@@ -522,13 +522,7 @@ class UsersController extends AppController {
 		}
 		
 		$spot_ids = $this->User->SpotFollower->Spot->getMySpotIds($this->Auth->user('id'));
-		// $spots = $this->User->SpotFollower->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids)));
-		
-		$spotsfeed = array();
-		$this->User->SpotFollower->Spot->Deal->limit = 100;
-		$this->User->SpotFollower->Spot->Deal->current_start_time = '00:00:00';
-		$this->User->SpotFollower->Spot->Deal->current_end_time = '23:59:59';
-		$this->User->SpotFollower->Spot->Deal->current_day_of_week = array(
+		$dow = array(
 			'sunday' => 1,
 			'monday' => 1,
 			'tuesday' => 1,
@@ -537,13 +531,28 @@ class UsersController extends AppController {
 			'friday' => 1,
 			'saturday' => 1
 		);
+		
+		$spotsfeed = array();
+		$this->User->SpotFollower->Spot->Deal->limit = 100;
+		$this->User->SpotFollower->Spot->Deal->current_start_time = '00:00:00';
+		$this->User->SpotFollower->Spot->Deal->current_end_time = '23:59:59';
+		$this->User->SpotFollower->Spot->Deal->current_day_of_week = $dow;
+		
+		$this->User->SpotFollower->Spot->HappyHour->limit = 100;
+		$this->User->SpotFollower->Spot->HappyHour->current_start_time = '00:00:00';
+		$this->User->SpotFollower->Spot->HappyHour->current_end_time = '23:59:59';
+		$this->User->SpotFollower->Spot->HappyHour->current_day_of_week = $dow;
+		$this->User->SpotFollower->Spot->HappyHour->order = 'HappyHour.day_of_week ASC';
+		
+		$happyHours = $this->User->SpotFollower->Spot->HappyHour->getCurrentHappyHourParentsBySpot($spot_ids, array('Spot', 'ParentHappyHour'));
 		$spotsfeed['deals'] = $this->User->SpotFollower->Spot->Deal->getDealBySpotIds($spot_ids, array('Spot'));
 		$spotsfeed['feeds'] = $this->User->SpotFollower->Spot->Feed->getFeedBySpotIds($spot_ids, array('Spot','Attachment'));
-
 		// Grab the current HappyHours
-		$this->User->SpotFollower->Spot->HappyHour->order = 'HappyHour.day_of_week ASC';
-		$happyHours = $this->User->SpotFollower->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour'));
-		$spotsfeed['deals'] = $spotsfeed['deals'] + $happyHours;
+		// $this->User->SpotFollower->Spot->HappyHour->order = 'HappyHour.day_of_week ASC';
+		// $happyHours = $this->User->SpotFollower->Spot->HappyHour->getCurrentHappyHourBySpot($spot_ids, array('Spot', 'ParentHappyHour'));
+		$spotsfeed['deals'] = array_merge($spotsfeed['deals'], $happyHours);
+		
+		usort($spotsfeed['deals'], array('Deal', 'sortDealsByRandomDelta'));
 		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spotsfeed);
 	} // end of api_my_spots

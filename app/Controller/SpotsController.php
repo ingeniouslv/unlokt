@@ -350,7 +350,6 @@ class SpotsController extends AppController {
 		$include_happy_hours = true;
 		$include_deals = true;
 		$include_spots_in_deals = false;
-		$randomize = true;
 		$order_by_views = false;
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {
@@ -359,8 +358,6 @@ class SpotsController extends AppController {
 				$include_happy_hours = false;
 				if($_GET['subsearch'] == 'my-spots') {
 					$spot_ids = $this->Spot->getMySpotIds($this->Auth->user('id'));
-				} else {
-					$randomize = true;
 				}
 			} else if ($_GET['search'] == 'now') {
 				$this->Spot->Deal->specials_only = true;
@@ -372,7 +369,7 @@ class SpotsController extends AppController {
 				$this->Spot->Deal->current_end_time = $end_time;
 			} else if ($_GET['search'] == 'tonight') {
 				$this->Spot->Deal->events_and_specials_only = true;
-				$start_time = date('H:i', strtotime('today 6pm'));
+				$start_time = (time() > strtotime('today 6pm'))?date('H:i', time()): date('H:i', strtotime('today 6pm'));
 				$end_time = date('H:i', strtotime('today 11:59pm'));
 				$this->Spot->HappyHour->current_start_time = $start_time;
 				$this->Spot->HappyHour->current_end_time = $end_time;
@@ -656,12 +653,10 @@ class SpotsController extends AppController {
 		}
 		
 		//sort the results so happy hours aren't always at the top
-		if($randomize) {
-			usort($return['deals'], array('Deal', 'sortDealsByRandomDelta'));
-		} else if ($order_by_views) {
+		if ($order_by_views) {
 			usort($return['deals'], array('Deal','sortDealsBySpotViews'));
 		} else {
-			usort($return['deals'], array('Deal','sortDeals'));
+			usort($return['deals'], array('Deal', 'sortDealsByRandomDelta'));
 		}
 		
 		//cut the array down to the requested length

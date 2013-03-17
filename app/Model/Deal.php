@@ -341,22 +341,21 @@ class Deal extends AppModel {
 			'Deal.is_public' => 1,
 			'start_date <=' => $current_end_date, 
 			'end_date >=' => $current_start_date,
-			'end_time >= ' => $current_start_time,
-			'start_time < ' => $current_end_time,
-			// 'OR' => array(
-				// array('start_time <=' => $current_end_time, 'end_time >' => $current_start_time,),
-				// array(
-					// 'start_time > end_time', 
-					// 'OR' => array(
-						// 'end_time >' => $current_start_time,
-						// 'start_time >' => $current_end_time,
-					// )
-				// ),
-			// ),
+			// 'end_time >= ' => $current_start_time,
+			// 'start_time < ' => $current_end_time,
+			'OR' => array(
+				array('start_time <=' => $current_end_time, 'end_time >' => $current_start_time,),
+				array(
+					'start_time > end_time',
+					'start_time <=' => $current_end_time,
+					'Hour(end_time) + 24 > ' => intval(date('h', strtotime($current_start_time))), 
+				),
+			),
 			// "UNIX_TIMESTAMP(concat(start_date, ' ', start_time)) <=" => strtotime($current_end_date . ' ' . $current_end_time),
 			// "UNIX_TIMESTAMP(concat(end_date, ' ', end_time)) >" => $current_start_date,
-			'OR' => $current_day_of_week
+			array('OR' => $current_day_of_week)
 		);
+		//debug($conditions);
 		//only want events
 		if(!empty($this->events_only)) $conditions['Deal.keys'] = 0;
 		//only want specials

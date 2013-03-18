@@ -17,7 +17,11 @@ class RandomizeSpotsShell extends AppShell {
 		$length = count($spots);
 		for($i = 0; $i < $length; $i ++) {
 			$spots[$i]['Spot']['random_delta'] = $i;
+			if(empty($spots[$i]['Spot']['phone'])) {
+				unset($spots[$i]);
+			}
 		}
+		print_r($spots);
 		$this->Spot->SaveMany($spots);
 		$this->Spot->clear_cache();
 	} // end of main()

@@ -28,7 +28,8 @@ if (IDENTIFIER == 'production') {
 	define('PAYPAL_SEC_URL', 'https://www.sandbox.paypal.com/cgi‑bin/webscr?cmd=_express-checkout&token=');
 }
 
-define('ABSOLUTE_URL', "http://{$_SERVER['HTTP_HOST']}");
+if(array_key_exists('HTTP_HOST', $_SERVER))
+	define('ABSOLUTE_URL', "http://{$_SERVER['HTTP_HOST']}");
 
 define('DATA_STORE', WWW_ROOT.'store/data/');
 

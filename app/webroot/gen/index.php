@@ -72,7 +72,7 @@ $config = array(
 
 		// Generate thumbnail Imagick convert command path
 		'command' => array(
-				'create_thumbnail' => 'convert %orig% -thumbnail "%width%x%height%^" -strip -gravity center -crop %width%x%height%+0+0 -quality 95 +repage %new%',
+				'create_thumbnail' => '/usr/bin/convert %orig% -thumbnail "%width%x%height%^" -strip -gravity center -crop %width%x%height%+0+0 -quality 95 +repage %new%',
 			),
 	);
 

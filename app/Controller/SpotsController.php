@@ -826,6 +826,10 @@ class SpotsController extends AppController {
 		// debug($days_of_week[$aDay] . ' | ' . $days_of_week[$bDay]);
 		// debug(date('Y-m-d', $aTime) . ' > ' . date('Y-m-d', $bTime));
 		
+		if($aTime == $bTime) {
+			return $a['Spot']['random_delta'] < $b['Spot']['random_delta'];
+		}
+		
 		return $aTime > $bTime;
 	}
 	
@@ -841,22 +845,7 @@ class SpotsController extends AppController {
 			}
 			($dayIndex == 6)?$dayIndex = 0:$dayIndex ++;
 		} while($startDay != $dayIndex);
-		// $dow = 0;
-		// if($deal['sunday']) {
-			// $dow = 0;
-		// } else if ($deal['monday']) {
-			// $dow = 1;
-		// } else if ($deal['tuesday']) {
-			// $dow = 2;
-		// } else if ($deal['wednesday']) {
-			// $dow = 3;
-		// } else if ($deal['thursday']) {
-			// $dow = 4;
-		// } else if ($deal['friday']) {
-			// $dow = 5;
-		// } else if ($deal['saturday']) {
-			// $dow = 6;
-		// }
+		
 		return $dow;
 	}
 }

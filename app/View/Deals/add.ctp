@@ -41,10 +41,10 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 				<h2 class="form-section-label">Details</h2>
 				<?php echo $this->Form->input('start_date', array('type' => 'text', 'div' => 'control-fields', 'class' => 'datepicker')); ?>
 				<?php echo $this->Form->input('end_date', array('type' => 'text', 'div' => 'control-fields', 'class' => 'datepicker')); ?>
-				<?php echo $this->Form->input('all_day', array('type' => 'checkbox', 'div' => 'control-fields')); ?>
+				<?php //echo $this->Form->input('all_day', array('type' => 'checkbox', 'div' => 'control-fields')); ?>
 				<div id="timeframe" class="control-fields">
-					<?php echo $this->Form->input('start_time', array('type' => 'text', 'div' => 'control-fields', 'class' => 'timepicker', 'value' => '')); ?>
-					<?php echo $this->Form->input('end_time', array('type' => 'text', 'div' => 'control-fields', 'class' => 'timepicker', 'value' => '')); ?>
+					<?php echo $this->Form->input('start_time', array('type' => 'text', 'div' => 'control-fields', 'class' => 'timepicker-start', 'value' => '')); ?>
+					<?php echo $this->Form->input('end_time', array('type' => 'text', 'div' => 'control-fields', 'class' => 'timepicker-end', 'value' => '')); ?>
 				</div>
 				<div class="control-fields inline-radios">
 					<?php echo $this->Form->radio('quick_options', array('every_day' => 'Every Day', 'weekdays' => 'Weekdays', 'weekends' => 'Weekends', 'custom' => 'Custom'), array('type' => 'radio', 'div' => 'control-fields inline-radios', 'legend' => false, 'selected' => 'every_day')); ?>
@@ -164,19 +164,19 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	//////////////////////////////////////////////////
 	
 	function toggleTimeFrame() {
-		if ($('#DealAllDay:checked').size()) {
-			$('#timeframe').hide();
-			$('#DealStartTime').attr('value', '');
-			$('#DealEndTime').attr('value', '');
-		} else {
+		// if ($('#DealAllDay:checked').size()) {
+			// $('#timeframe').hide();
+			// $('#DealStartTime').attr('value', '');
+			// $('#DealEndTime').attr('value', '');
+		// } else {
 			$('#timeframe').show();
-		}
+		//}
 	}
 	
-	$('#DealAllDay').click(toggleTimeFrame);
+	//$('#DealAllDay').click(toggleTimeFrame);
 	
-	$('#DealAllDay').attr('checked', true);
-	toggleTimeFrame();
+	// $('#DealAllDay').attr('checked', true);
+	// toggleTimeFrame();
 	
 	$('#DealQuickOptionsEveryDay').click(function() {
 		//everyday
@@ -335,5 +335,6 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	$('#reward-group').hide();
 	
 	//////////////////////////////////////////////////
-	
+	$('.timepicker-start').timepicker({defaultTime:'8:00 AM'});
+	$('.timepicker-end').timepicker({defaultTime:'5:00 PM'});
 </script>

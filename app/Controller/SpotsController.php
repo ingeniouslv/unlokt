@@ -351,6 +351,7 @@ class SpotsController extends AppController {
 		$include_deals = true;
 		$include_spots_in_deals = false;
 		$order_by_views = false;
+		$order_by_date = false;
 		if ($_GET['search_type'] == 'quick') {
 			if($_GET['search'] == 'explore') {
 				$include_spots_in_deals = true;
@@ -408,6 +409,7 @@ class SpotsController extends AppController {
 				
 				$include_happy_hours = false;
 				$this->Spot->Deal->events_only = true;
+				$order_by_date = true;
 			} else if ($_GET['search'] == 'popular') {
 				$order_by_views = true;
 				$start_time = date('H:i', strtotime('today 12am'));
@@ -653,7 +655,9 @@ class SpotsController extends AppController {
 		}
 		
 		//sort the results so happy hours aren't always at the top
-		if ($order_by_views) {
+		if($order_by_date) {
+			usort($return['deals'], array('SpotsController','_sortByDate'));
+		} else if ($order_by_views) {
 			usort($return['deals'], array('Deal','sortDealsBySpotViews'));
 		} else {
 			usort($return['deals'], array('Deal', 'sortDealsByRandomDelta'));
@@ -805,5 +809,43 @@ class SpotsController extends AppController {
 
 		$this->redirect(array('action' => 'pending_spots', 'admin' => true));
 		
+	}
+	
+	private function _sortByDate($a, $b) {
+		//sort by the next day that is available
+		$days_of_week = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+		$today = date('l');
+		$aDay = array_key_exists('HappyHour', $a)?$a['HappyHour']['day_of_week']:$this->_getDayOfWeek($a['Deal']);
+		$bDay = array_key_exists('HappyHour', $b)?$b['HappyHour']['day_of_week']:$this->_getDayOfWeek($b['Deal']);
+		
+		
+		$aTime = ($today == $days_of_week[$aDay])?strtotime(date('Y-m-d')):strtotime('next ' . $days_of_week[$aDay]);
+		$bTime = ($today == $days_of_week[$bDay])?strtotime(date('Y-m-d')):strtotime('next ' . $days_of_week[$bDay]);
+		// debug($a);
+		// debug($b);
+		// debug($days_of_week[$aDay] . ' | ' . $days_of_week[$bDay]);
+		// debug(date('Y-m-d', $aTime) . ' > ' . date('Y-m-d', $bTime));
+		
+		if($aTime == $bTime) {
+			return $a['Spot']['random_delta'] < $b['Spot']['random_delta'];
+		}
+		
+		return $aTime > $bTime;
+	}
+	
+	private function _getDayOfWeek($deal) {
+		$startDay = date('w');
+		$daysOfWeek = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+		$dayIndex = $startDay;
+		$dow = 0;
+		do {
+			if($deal[$daysOfWeek[$dayIndex]]) {
+				$dow = $dayIndex;
+				break 1;
+			}
+			($dayIndex == 6)?$dayIndex = 0:$dayIndex ++;
+		} while($startDay != $dayIndex);
+		
+		return $dow;
 	}
 }

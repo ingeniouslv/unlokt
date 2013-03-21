@@ -1,8 +1,8 @@
 <?php
 
-/* Created by Zach Jones < zach@peacefulcomputing.com >
+/* Created by Anthony Scott < anthony@peacefulcomputing.com >
  * 
- * This script is intended to be ran [manually] when there are any updates to the view files for Backbone.
+ * This script runs automatically to cause a new random order every hour.
  * 
  */
 
@@ -17,6 +17,7 @@ class RandomizeSpotsShell extends AppShell {
 		$length = count($spots);
 		for($i = 0; $i < $length; $i ++) {
 			$spots[$i]['Spot']['random_delta'] = $i;
+			//spots with conditions that would prevent the list from saving should be removed from the list. 
 			if(empty($spots[$i]['Spot']['phone'])) {
 				unset($spots[$i]);
 			}

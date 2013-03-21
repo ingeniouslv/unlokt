@@ -56,7 +56,7 @@
 		var auth = <?php echo ($this->Auth->user() ? json_encode($this->Auth->user()) : 'null'); ?>;
 	</script>
 
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC3FHBv781AL_-rjtjQmhEqbhzF-WBByZY&sensor=false"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAPS_API_KEY; ?>&sensor=false"></script>
 	<!--[if lte IE 9]>
 	<link rel="stylesheet" type="text/css" href="/app/webroot/css/ie.css">
 	<![endif]-->

@@ -27,9 +27,9 @@
 				<span class="keys-total"><%= deal.Deal.keys %></span>
 			<% } %>
 			<% if(deal.Deal.keys > 0) { %>
-				<a class="btn btn-red pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Special</a>
+				<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Special</a>
 			<% } else { %>
-				<a class="btn btn-red pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Event</a>
+				<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Event</a>
 			<% } %>
 		</div>
 	</div>	

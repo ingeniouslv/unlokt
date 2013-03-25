@@ -119,6 +119,11 @@ class HappyHour extends AppModel {
 		$current_start_time = isset($this->current_start_time) ? $this->current_start_time : date('H:i');
 		$current_end_time = isset($this->current_end_time) ? $this->current_end_time : date('H:i', strtotime("+3 hour"));
 		$current_time = isset($this->current_time) ? $this->current_time : date('H:i');
+		
+		if(strtotime($current_end_time) < strtotime($current_time)) {
+			$current_end_time = '23:59:59';
+		}
+		
 		$conditions = array(
 			'HappyHour.spot_id' => $ids,
 			'HappyHour.day_of_week' => $current_day_of_week,

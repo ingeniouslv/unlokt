@@ -361,7 +361,7 @@ class SpotsController extends AppController {
 					$spot_ids = $this->Spot->getMySpotIds($this->Auth->user('id'));
 				}
 			} else if ($_GET['search'] == 'now') {
-				$this->Spot->Deal->specials_only = true;
+				$this->Spot->Deal->events_and_specials_only = true;
 				$start_time = date('H:i', time());
 				$end_time = date('H:i', strtotime('+3 hours'));
 				$this->Spot->HappyHour->current_start_time = $start_time;

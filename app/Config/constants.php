@@ -5,7 +5,7 @@ define('SITE_NAME', 'Unlokt');
 if (IDENTIFIER == 'production') {
 	// Constants for production environment
 	define('CONFIG_DEBUG_LEVEL', 0);
-	define('STATIC_DOMAIN', 'http://static.unlokt.com');
+	define('STATIC_DOMAIN', '');
 	
 	// PayPal configuration
 	define('PAYPAL_API_SERVER','https://api-3t.paypal.com/nvp');

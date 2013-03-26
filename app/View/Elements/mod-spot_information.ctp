@@ -15,7 +15,7 @@
 	<?php endif; ?>
 	
 	<div class="information">
-		<img src="http://maps.google.com/maps/api/staticmap?center=<?php echo h($spot['Spot']['lat']); ?>,<?php echo h($spot['Spot']['lng']); ?>&amp;zoom=12&amp;size=212x212&amp;key=<?php echo GOOGLE_MAPS_API_KEY; ?>&amp;sensor=false" width="212" height="212">
+		<img src="//maps.google.com/maps/api/staticmap?center=<?php echo h($spot['Spot']['lat']); ?>,<?php echo h($spot['Spot']['lng']); ?>&amp;zoom=12&amp;size=212x212&amp;key=<?php echo GOOGLE_MAPS_API_KEY; ?>&amp;sensor=false" width="212" height="212">
 
 		<?php if (isset($spot['Category']) && count($spot['Category'])): ?>
 			<div class="section">
@@ -36,7 +36,7 @@
 			<i class="icon-location"></i>
 			<div class="section-content">
 				<address>
-					<a href="https://maps.google.com/?q=<?php echo h($spot['Spot']['address']); ?> <?php echo h($spot['Spot']['city']); ?> <?php echo h($spot['Spot']['state']); ?> <?php echo h($spot['Spot']['zip']); ?>" target= "_blank">
+					<a href="//maps.google.com/?q=<?php echo h($spot['Spot']['address']); ?> <?php echo h($spot['Spot']['city']); ?> <?php echo h($spot['Spot']['state']); ?> <?php echo h($spot['Spot']['zip']); ?>" target= "_blank">
 						<p><?php echo h($spot['Spot']['address']); ?>
 						   <?php echo h($spot['Spot']['address2']); ?><br>
 						   <?php echo h($spot['Spot']['city']); ?>, 

@@ -10,7 +10,7 @@
 		echo $this->Html->meta('icon');
 		echo $this->fetch('meta');
 	?>
-	<link href="http://fonts.googleapis.com/css?family=Asap:400,700|Open+Sans:400,600,600italic,700" rel="stylesheet" type="text/css">
+	<link href="//fonts.googleapis.com/css?family=Asap:400,700|Open+Sans:400,600,600italic,700" rel="stylesheet" type="text/css">
 	<script src="//bits.wikimedia.org/geoiplookup"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
@@ -56,7 +56,7 @@
 		var auth = <?php echo ($this->Auth->user() ? json_encode($this->Auth->user()) : 'null'); ?>;
 	</script>
 
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAPS_API_KEY; ?>&sensor=false"></script>
+	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAPS_API_KEY; ?>&sensor=false"></script>
 	<!--[if lte IE 9]>
 	<link rel="stylesheet" type="text/css" href="/app/webroot/css/ie.css">
 	<![endif]-->

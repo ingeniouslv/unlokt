@@ -31,6 +31,24 @@
 	margin: 0;
 	padding: 0;
 	list-style: none;
+
+	li {
+		position: relative;
+	}
+}
+
+.popup {
+	color: #fff;
+	display: none;
+	font-size: 10px;
+	min-width: 71px;
+	padding: 8px 0;
+	position: absolute;
+	text-align: center;
+	top: -35px;
+	width: 100%;
+	.border-radius(3px);
+	#gradient > .vertical(@schemeGray, @schemeGrayDark);
 }
 
 // Nav Horizontal
@@ -39,10 +57,12 @@
 	li {
 		color: @blue;
 		float: left;
+
 		a {
 			padding: 2px @gridGutter/2;
 			color: @blue;
 		}
+
 		&:first-child a {
 			padding-left: 0;
 		}

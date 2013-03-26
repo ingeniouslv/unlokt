@@ -22,11 +22,27 @@
 							<a class="disabled subsearch" data-subsearch="my-spots" href="javascript:void(0);">My Spots</a>
 						</div>
 					</li>
-					<li data-search="now"><a href="javascript:void(0);" title=""><i class="icon-pin"></i> Now</a></li>
-					<li data-search="tonight"><a href="javascript:void(0);" title=""><i class="icon-moon"></i> Tonight</a></li>
-					<li data-search="happy-hour"><a href="javascript:void(0);" title=""><i class="icon-clock-1"></i> Happy Hour</a></li>
-					<li data-search="deals"><a href="javascript:void(0);" title=""><i class="icon-key"></i> Specials</a></li>
-					<li data-search="events"><a href="javascript:void(0);" title=""><i class="icon-calendar"></i> Events</a></li>
+					<li data-search="now">
+						<a href="javascript:void(0);" title=""><i class="icon-pin"></i> Now</a>
+						<div class="popup" data-role="now">Next 3 hours</div>
+					</li>
+					<li data-search="tonight">
+						<a href="javascript:void(0);" title=""><i class="icon-moon"></i> Tonight</a>
+						<div class="popup" data-role="tonight">After 6 pm</div>
+					</li>
+					<li data-search="happy-hour">
+						<a href="javascript:void(0);" title=""><i class="icon-clock-1"></i> Happy Hour</a>
+						<div class="popup" data-role="happy-hour">Today</div>
+					</li>
+					
+					<li data-search="deals">
+						<a href="javascript:void(0);" title=""><i class="icon-key"></i> Specials</a>
+						<div class="popup" data-role="deals">All week</div>
+					</li>
+					<li data-search="events">
+						<a href="javascript:void(0);" title=""><i class="icon-calendar"></i> Events</a>
+						<div class="popup" data-role="events">All week</div>
+					</li>
 					<li data-search="popular"><a href="javascript:void(0);" title=""><i class="icon-heart"></i> Popular</a></li>
 					<li data-search="favorites"><a href="javascript:void(0);" title=""><i class="icon-star"></i> Favorites</a></li>
 				</ul>
@@ -86,5 +102,69 @@
 		</div>
 	</div>
 	<!-- End Advanced Search Tab -->
-
 </div>
+<script>
+// Each li with popup.
+var now = $('li[data-search=now]'),
+	tonight = $('li[data-search=tonight]'),
+	happyHour = $('li[data-search=happy-hour]'),
+	deals = $('li[data-search=deals]'),
+	events = $('li[data-search=events]');
+// The corresponding popup.
+var nowPopup = $('.popup[data-role=now]'),
+	tonightPopup = $('.popup[data-role=tonight]'),
+	happyHourPopup = $('.popup[data-role=happy-hour]'),
+	dealsPopup = $('.popup[data-role=deals]'),
+	eventsPopup = $('.popup[data-role=events]');
+
+
+// Now
+now.hover(
+	function() {
+		nowPopup.show();
+	},
+	function() {
+		nowPopup.hide();
+	}
+);
+
+// Tonight
+tonight.hover(
+	function() {
+		tonightPopup.show();
+	},
+	function() {
+		tonightPopup.hide();
+	}
+);
+
+// Happy Hour
+happyHour.hover(
+	function() {
+		happyHourPopup.show();
+	},
+	function() {
+		happyHourPopup.hide();
+	}
+);
+
+// Deals
+deals.hover(
+	function() {
+		dealsPopup.show();
+	},
+	function() {
+		dealsPopup.hide();
+	}
+);
+
+// Events
+events.hover(
+	function() {
+		eventsPopup.show();
+	},
+	function() {
+		eventsPopup.hide();
+	}
+);
+</script>

@@ -213,7 +213,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	
 	//////////////////////////////////////////////////
 	
-	$('#DealRedemption1').on('keyup', function () {
+	$('#DealRedemption1').live('keyup', function () {
 		if(useSameCodes) {
 			$('#redemption-codes input:not(:first)').attr('value', $('#DealRedemption1').val());
 		}
@@ -246,11 +246,31 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	//update currentKeys variable.
 	//number has changed so add or remove keys as necessary
 	$("#DealKeys").change(function() {
+		var special_type = $("#special-type").val();
 		currentKeys = parseInt($("#DealKeys").val());
 		if(isNaN(currentKeys) || currentKeys < 0) {
 			currentKeys = 0;
-			$("#DealKeys").val(0);
 		}
+		//prevent number of keys from changing to a number that isn't allowed by the current special-type selection
+		var min = 0;
+		var max = 0;
+		switch(special_type) {
+			case '0': //event 0 key
+				min = 0;
+				max = 0;
+				break;
+			case '1': //reward 2+ keys
+				min = 2;
+				max = 999;
+				break;
+			case '2': //special 1 key
+				min = 1;
+				max = 1;
+				break;
+		}
+		if(currentKeys < min) currentKeys = min;
+		if(currentKeys > max) currentKeys = max;
+		$("#DealKeys").val(currentKeys);
 		updateKeys();
 	});
 	

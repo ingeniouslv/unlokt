@@ -105,7 +105,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 			</div>
 
 			<div class="four columns">
-				<div class="block block-white">
+				<div class="block block-darkgray">
 					<h4>Tip</h4>
 					<p><strong>Looking to manage Happy Hour settings?<br>Head to <a href="/happy_hours/manage/<?php echo $spot['Spot']['id']; ?>">Happy Hours</a> to manage them.</strong></p>
 				</div>

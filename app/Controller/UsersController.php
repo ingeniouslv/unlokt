@@ -97,12 +97,28 @@ class UsersController extends AppController {
 			$this->User->create();
 			$this->User->set($this->request->data);
 			$this->User->set('password', $this->bcrypt_hash($this->request->data['User']['password']));
-
-			if (strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
-				$this->User->invalidate('password', 'Password required');
-				$this->User->invalidate('password2', 'Password Confirmation required');
+			
+			// Check if there has been an update to password and it matches.
+			if (isset($this->request->data['User']['password']) && !empty($this->request->data['User']['password'])) {
+				
+				if (strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) === 0) {
+					$this->User->set('password', $this->bcrypt_hash($this->request->data['User']['password']));
+					// Clear the passwords regardless.
+					$this->request->data['User']['password'] = '';
+					$this->request->data['User']['password2'] = '';
+				} else {
+					$this->request->data['User']['password'] = '';
+					$this->request->data['User']['password2'] = '';
+					$this->User->invalidate('password', 'Passwords did not match.');
+					$this->User->invalidate('password2', 'Passwords did not match.');
+				}
+			} else {
+				// No password was typed by the user.
+				// Remove both passwords from POST data (so they don't get sent back to the view).
+				// Unset the password field from the User model so it doesn't get saved as a blank password.
 				$this->request->data['User']['password'] = '';
 				$this->request->data['User']['password2'] = '';
+				unset($this->User->data['User']['password']);
 			}
 			if ($this->User->validates()) {
 				// Good

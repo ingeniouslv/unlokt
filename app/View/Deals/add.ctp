@@ -213,7 +213,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	
 	//////////////////////////////////////////////////
 	
-	$('#DealRedemption1').on('keyup', function () {
+	$('#DealRedemption1').live('keyup', function () {
 		if(useSameCodes) {
 			$('#redemption-codes input:not(:first)').attr('value', $('#DealRedemption1').val());
 		}
@@ -241,36 +241,118 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	}
 	
 	//////////////////////////////////////////////////
+	var previousKeys = 0;
+	var currentKeys = 0;
+	//update currentKeys variable.
+	//number has changed so add or remove keys as necessary
+	$("#DealKeys").change(function() {
+		var special_type = $("#special-type").val();
+		currentKeys = parseInt($("#DealKeys").val());
+		if(isNaN(currentKeys) || currentKeys < 0) {
+			currentKeys = 0;
+		}
+		//prevent number of keys from changing to a number that isn't allowed by the current special-type selection
+		var min = 0;
+		var max = 0;
+		switch(special_type) {
+			case '0': //event 0 key
+				min = 0;
+				max = 0;
+				break;
+			case '1': //reward 2+ keys
+				min = 2;
+				max = 999;
+				break;
+			case '2': //special 1 key
+				min = 1;
+				max = 1;
+				break;
+		}
+		if(currentKeys < min) currentKeys = min;
+		if(currentKeys > max) currentKeys = max;
+		$("#DealKeys").val(currentKeys);
+		updateKeys();
+	});
 	
-	$('#increase-keys').click(increaseKeys);
+	//////////////////////////////////////////////////
+	
+	//update previous keys variable so that keys can be added or removed correctly
+	$("#DealKeys").focus(function() {
+		previousKeys = $("#DealKeys").val();
+		if(isNaN(previousKeys) || previousKeys < 0) {
+			previousKeys = 0;
+		}
+	})
+	
+	//////////////////////////////////////////////////
+	
+	function updateKeys() {
+		if(currentKeys != previousKeys) {
+			var direction =  (currentKeys < previousKeys)?'down':'up';
+			
+			var start = previousKeys;
+			var end = currentKeys;
+			while(start != end) {
+				if(direction == 'down') {
+					//decrement
+					decreaseKeys(start);//decreaseKeys(current_number_of_keys)
+					start --;
+				} else {
+					//increment
+					start ++;
+					increaseKeys(start);//increaseKeys(new_number_of_keys)
+				}
+			}
+		}
+		
+	}
+	
+	//////////////////////////////////////////////////
+	
+	$('#increase-keys').click(increaseAndIncrementKeys);
+	
+	//////////////////////////////////////////////////
+	
 	$('#decrease-keys').click(function() {
 		var current_number_of_keys = parseInt($('#DealKeys').val());
 		if (current_number_of_keys == 2) {
 			return;
 		}
-		decreaseKeys();
+		decreaseAndDecrementKeys();
 	});
 	
 	//////////////////////////////////////////////////
 	
-	function increaseKeys() {
-		var new_number_of_keys = parseInt($('#DealKeys').val())+1;
-		$('#DealKeys').val(new_number_of_keys).trigger('change');
+	function increaseKeys(new_number_of_keys) {
 		$('#redemption-codes').append('<div class="control-fields input text required"><label for="DealRedemption' + new_number_of_keys + '">Redemption Code for Key #' + new_number_of_keys + '</label><input name="data[Deal][redemption_' + new_number_of_keys + ']" type="text" id="DealRedemption' + new_number_of_keys + '" class="twelve"/></div>');
 		updateCodes();
 	}
 	
 	//////////////////////////////////////////////////
 	
-	function decreaseKeys() {
-		var current_number_of_keys = parseInt($('#DealKeys').val());
+	function increaseAndIncrementKeys() {
+		var new_number_of_keys = parseInt($('#DealKeys').val())+1;
+		increaseKeys(new_number_of_keys);
+		$('#DealKeys').val(new_number_of_keys);//.trigger('change');
+	}
+	
+	//////////////////////////////////////////////////
+	
+	function decreaseKeys(current_number_of_keys) {
 		if (current_number_of_keys == 0) {
 			return;
 		}
-		var new_number_of_keys = parseInt($('#DealKeys').val())-1;
-		$('#DealKeys').val(new_number_of_keys).trigger('change');
 		$('#DealRedemption' + current_number_of_keys).closest('div').remove();
 		updateCodes();
+	}
+	
+	//////////////////////////////////////////////////
+	
+	function decreaseAndDecrementKeys() {
+		var current_number_of_keys = parseInt($('#DealKeys').val());
+		decreaseKeys(current_number_of_keys);
+		var new_number_of_keys = parseInt($('#DealKeys').val())-1;
+		$('#DealKeys').val(new_number_of_keys);//.trigger('change');
 	}
 	
 	//////////////////////////////////////////////////
@@ -314,13 +396,13 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		switch(direction) {
 			case 'down':
 				while( current_number_of_keys > desired_number_of_keys) {
-					decreaseKeys();
+					decreaseAndDecrementKeys();
 					current_number_of_keys = parseInt($('#DealKeys').val());
 				}
 				break;
 			case 'up':
 				while( current_number_of_keys < desired_number_of_keys) {
-					increaseKeys();
+					increaseAndIncrementKeys();
 					current_number_of_keys = parseInt($('#DealKeys').val());
 				}
 				break;

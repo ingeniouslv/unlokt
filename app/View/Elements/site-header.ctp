@@ -61,7 +61,7 @@
 		<?php else: ?>
 			<div class="container">
 				<ul class="nav nav-horizontal pull-right">
-					<li><a href="<?php echo $this->webroot; ?>users/register" title="Sign Up">Sign Up</a></li>
+					<!-- <li><a href="<?php echo $this->webroot; ?>users/register" title="Sign Up">Sign Up</a></li> -->
 					<li><a href="<?php echo $this->webroot; ?>users/login?redirect=<?php echo urlencode($this->here); ?>" title="Log In">Log In</a></li>
 				</ul>
 			</div>

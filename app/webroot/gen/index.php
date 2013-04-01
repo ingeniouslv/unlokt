@@ -1,5 +1,6 @@
 <?php
-putenv('PATH='.getenv('PATH').':/opt/local/bin');
+putenv('PATH='.getenv('PATH').':/opt/local/bin:/opt/ImageMagick/bin');
+
 // the convert command gets execute without a full path
 // after installing imagick add your binary path like so (using macport dir):
 //  nano /etc/bashrc

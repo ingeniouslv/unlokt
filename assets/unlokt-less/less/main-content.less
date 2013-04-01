@@ -7,6 +7,49 @@
 	z-index: 2;
 	&.page {
 		background: @grayLighter;
+
+		&.spot {
+			background: #262A30;
+			color: #fff;
+
+			h1 {
+				color: #fff;
+			}
+
+			table.zebra {
+				
+				tr {
+					background: none;
+					border: none;
+
+					&:nth-child(2n+1) td {
+						background: none;
+						border: none;
+						// border-bottom: 1px solid @black;
+						// border-top: 1px solid @black;
+					}
+				}
+
+				td.actions {
+					a {
+						color: #1a1b20;
+					}
+				}
+
+				a {
+					color: #90cdcf;
+				}
+			}
+			ul {
+				background: #262A30;
+			}
+
+			li {
+				border: none;
+				padding: 10px;
+				.box-sizing(border-box);
+			}
+		}
 	}
 	&.page-new {
 		#gradient > .vertical(darken(@schemeGray, 4%), darken(@schemeGray, 8%));

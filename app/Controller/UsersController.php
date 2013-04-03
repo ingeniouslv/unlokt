@@ -183,16 +183,22 @@ class UsersController extends AppController {
 			if($is_facebook_only) {
 				$this->Session->setFlash('This account must use facebook to login', 'alert-warning');
 			} else if ($this->Auth->login()) {
-				$managers = $this->User->Manager->findAllByUserId($this->Auth->user('id'));
-				if(count($managers) == 1) {
-					//if the user is the manager of only one spot, bring them to that spot page after logging in.
-					$this->redirect(array('controller' => 'spots', 'action' => 'view', $managers[0]['Manager']['spot_id']));
-				} else if(count($managers) > 1) {
-					//if the user manages more than one spot, bring them to the manage spots page after logging in
-					$this->redirect(array('controller' => 'spots', 'action' => 'index'));
+				$redirect = $this->Auth->redirect();
+				if($redirect == '/') {
+					$managers = $this->User->Manager->findAllByUserId($this->Auth->user('id'));
+					if(count($managers) == 1) {
+						//if the user is the manager of only one spot, bring them to that spot page after logging in.
+						$this->redirect(array('controller' => 'spots', 'action' => 'view', $managers[0]['Manager']['spot_id']));
+					} else if(count($managers) > 1) {
+						//if the user manages more than one spot, bring them to the manage spots page after logging in
+						$this->redirect(array('controller' => 'spots', 'action' => 'index'));
+					} else {
+						// Redirect the user. If there's $_GET['redirect'] then direct them there - else redirect to normal action.
+						$this->redirect($this->Auth->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : null));
+					}
 				} else {
-					// Redirect the user. If there's $_GET['redirect'] then direct them there - else redirect to normal action.
-					$this->redirect($this->Auth->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : null));
+					//take the user where they were trying to go in the first place
+					$this->redirect($redirect);
 				}
 			} else {
 				$this->request->data['User']['password'] = '';

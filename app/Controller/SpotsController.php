@@ -651,7 +651,7 @@ class SpotsController extends AppController {
 			$return['deals'] = array_merge($happy_hour_spots, $return['deals']);
 		}
 		if($include_spots_in_deals) {
-			$return['deals'] = $this->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids, 'Spot.parent_spot_id' => NULL)));
+			$return['deals'] = $this->Spot->find('all', array('order' => array('Spot.random_delta' => 'ASC'), 'conditions' => array('Spot.id' => $spot_ids, 'Spot.parent_spot_id' => NULL)));
 		}
 		
 		//sort the results so happy hours aren't always at the top

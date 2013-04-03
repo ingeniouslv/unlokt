@@ -794,6 +794,26 @@ class SpotsController extends AppController {
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);
 	} // end api_view()
 	
+	public function api_recommend_a_spot() {
+		//copied from recommend_a_spot
+		if ($this->request->is('post')) {
+			$this->Spot->create(false);
+			$this->Spot->set($this->request->data);
+			$this->Spot->set(array(
+				'email' => 'mybusiness-'.substr(md5($_SERVER['REMOTE_ADDR'].rand(0,99999)), 0, 6).'@example.com'
+			));
+			if ($this->Spot->validates()) {
+				// Good Spot information - save and inform user to wait.
+				$spot = $this->Spot->save();
+				ApiComponent::success(ApiSuccessMessages::$SPOT_RECOMMENDED);
+			} else {
+				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			}
+		} else {
+			ApiComponent::error(ApiErrors::$NO_DATA_PASSED);
+		} // end of if(is('post')){}
+	} // end of api_recommend_a_spot()
+	
 	public function admin_approve($id=null) {
 		$this->Spot->id = $id;
 		

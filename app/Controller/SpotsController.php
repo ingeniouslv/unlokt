@@ -651,7 +651,7 @@ class SpotsController extends AppController {
 			$return['deals'] = array_merge($happy_hour_spots, $return['deals']);
 		}
 		if($include_spots_in_deals) {
-			$return['deals'] = $this->Spot->find('all', array('conditions' => array('Spot.id' => $spot_ids, 'Spot.parent_spot_id' => NULL)));
+			$return['deals'] = $this->Spot->find('all', array('order' => array('Spot.random_delta' => 'ASC'), 'conditions' => array('Spot.id' => $spot_ids, 'Spot.parent_spot_id' => NULL)));
 		}
 		
 		//sort the results so happy hours aren't always at the top
@@ -793,6 +793,26 @@ class SpotsController extends AppController {
 		
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, $spot);
 	} // end api_view()
+	
+	public function api_recommend_a_spot() {
+		//copied from recommend_a_spot
+		if ($this->request->is('post')) {
+			$this->Spot->create(false);
+			$this->Spot->set($this->request->data);
+			$this->Spot->set(array(
+				'email' => 'mybusiness-'.substr(md5($_SERVER['REMOTE_ADDR'].rand(0,99999)), 0, 6).'@example.com'
+			));
+			if ($this->Spot->validates()) {
+				// Good Spot information - save and inform user to wait.
+				$spot = $this->Spot->save();
+				ApiComponent::success(ApiSuccessMessages::$SPOT_RECOMMENDED);
+			} else {
+				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			}
+		} else {
+			ApiComponent::error(ApiErrors::$NO_DATA_PASSED);
+		} // end of if(is('post')){}
+	} // end of api_recommend_a_spot()
 	
 	public function admin_approve($id=null) {
 		$this->Spot->id = $id;

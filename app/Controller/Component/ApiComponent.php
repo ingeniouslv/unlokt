@@ -23,6 +23,7 @@
 		public static $USER_LOGGED_IN							= array(2, "User Logged In");
 		public static $USER_LOGGED_OUT							= array(3, "User Logged Out");
 		public static $GENERIC_SUCESS							= array(4, "Generic Success");
+		public static $SPOT_RECOMMENDED							= array(5, "Spot has been submitted.  Thank you.");
 	}
 	
 	class ApiComponent extends Component{

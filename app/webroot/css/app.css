@@ -517,7 +517,7 @@ table .spot-name a{display:block;color:#000000;}
 .ui-datepicker{background-color:#ffffff;border:1px solid #cccccc;-webkit-box-shadow:0px 0px 3px 0px #999999;-moz-box-shadow:0px 0px 3px 0px #999999;box-shadow:0px 0px 3px 0px #999999;padding:5px;}.ui-datepicker .ui-datepicker-next{float:right;}
 .information{padding:0 5px 5px;}
 .information .section{margin-top:10px;padding-top:10px;border-top:1px solid #333333;color:#777;}.information .section .section-name{margin-top:-15px;}.information .section .section-name span{padding-right:5px;background:#262A30;}
-.information .section .section-content{margin-left:25px;}
+.information .section .section-content{margin-left:25px;}.information .section .section-content a{word-break:break-word;}
 .information .section i{float:left;clear:both;}
 .information .section address{font-style:normal;}
 .information .section p{margin:0;color:#cccccc;}

@@ -438,6 +438,7 @@ class UsersController extends AppController {
 					$data['name'] =$userData['User']['name'];
 					$data['email'] =$userData['User']['email'];
 					$data['api_key'] =$userData['User']['api_key'];
+					$data['show_welcome'] =$userData['User']['show_welcome'];
 					ApiComponent::success(ApiSuccessMessages::$USER_LOGGED_IN, $data);
 				
 			} else {
@@ -464,14 +465,48 @@ class UsersController extends AppController {
 			}
 			// We have a valid facebook token. This indicates the user's identity can be trusted as the user.
 			// Check for existing account.
-			$user = $this->User->findByEmail($user_email);
-			if (!$user) {
-				// User not found in system by email address - tell the API that the user needs to register.
-				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array('register' => true));
-			} else {
-				// User was found - great! Respond with the api_key
-				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array('api_key' => $user['User']['api_key']));
+			$unlokt_user = $this->User->findByEmail($user_email);
+			
+			if (!$unlokt_user) {
+				//if user is not in the system, create user
+				$unlokt_user = array('User'=>array(
+					'email' => $facebook_token_response['email'],
+					'first_name' => $facebook_token_response['first_name'],
+					'last_name' => $facebook_token_response['last_name'],
+					'is_active' => true,
+					'gender' => $facebook_token_response['gender'],
+					'is_facebook_only' => true,
+					'facebook_id' => $facebook_token_response['id']
+				));
+				$this->User->create();
+				$unlokt_user = $this->User->save($unlokt_user);
+				// Save the user's facebook photo
+				$uniqid = uniqid().time();
+				@copy("https://graph.facebook.com/{$user->id}/picture?type=large", TMP.DS.$uniqid);
+				@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
+				@unlink(TMP.DS.$uniqid);
+			} else if (!$unlokt_user['User']['is_facebook_only']) {
+				$this->User->id = $unlokt_user['User']['id'];
+				$user_update = array('User' => array(
+					'id' => $unlokt_user['User']['id'],
+					'first_name' => $facebook_token_response['first_name'],
+					'last_name' => $facebook_token_response['last_name'],
+					'gender' => $facebook_token_response['gender'],
+					'is_facebook_only' => true,
+					'facebook_id' => $facebook_token_response['id']
+				));
+				$this->User->save($user_update);
 			}
+			
+			//user has no api key, so generate one
+			if(empty($unlokt_user['User']['api_key'])) {
+				$this->User->generate_api_key($unlokt_user['User']['id'], $this->Session->id());
+				$this->login_user($this->User->id);
+				$unlokt_user = $this->User->read();
+			}
+			
+			// User was either found or created.  Respond with the api_key
+			ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array('api_key' => $unlokt_user['User']['api_key'], 'show_welcome' => $unlokt_user['User']['show_welcome']));
 		} else {
 			ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
 		}
@@ -512,6 +547,7 @@ class UsersController extends AppController {
 				$data['name'] = $userData['User']['name'];
 				$data['email'] = $userData['User']['email'];
 				$data['api_key'] = $userData['User']['api_key'];
+				$data['show_welcome'] = $userData['User']['show_welcome'];
 				// Copy over the facebook picure if it's a facebook user.
 				if (!empty($this->request->data['User']['is_facebook_only']) && !empty($this->request->data['User']['facebook_id'])) {
 					$uniqid = uniqid().time();
@@ -605,6 +641,19 @@ class UsersController extends AppController {
 		$this->User->save();
 		ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array());
 	} // end of api_save_profile
+	
+	public function api_hide_welcome() {
+		if($this->request->is('post')) {
+			$this->User->set(array('User' => array('show_welcome' => false)));
+			if($this->User->save()) {
+				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, array());
+			} else {
+				ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
+			}
+		} else {
+			ApiComponent::error(ApiErrors::$NO_DATA_PASSED);
+		}
+	}
 	
 	public function account() {
 		$user_id = $this->Auth->user('id');

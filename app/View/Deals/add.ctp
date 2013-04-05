@@ -411,6 +411,8 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		//$('#DealKeys').val(current_number_of_keys);
 		console.log('current keys: '+current_number_of_keys);
 		console.log('special-type: '+$(this).val());
+		//update preview tile.
+		dealpreview.set({Deal: $('#DealAddForm').Cake2JSON()});
 	});
 	
 	//start out by hiding the add/remove key buttons

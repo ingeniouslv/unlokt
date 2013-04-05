@@ -388,7 +388,7 @@ class Spot extends AppModel {
 	
 	public function getIdsByRadius($lat = 36, $lng = -115, $radius = 5) {
 		// Find Spots by distance formula.
-		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 AND is_pending = 0 HAVING `distance` < ? ORDER BY `distance` LIMIT 0, 20", 
+		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 AND is_pending = 0 HAVING `distance` < ? ORDER BY `distance`", 
 		array($lat, $lng, $lat, $radius));
 		// Now that we have our array... hopefully.
 		if (count($result)) {
@@ -404,7 +404,7 @@ class Spot extends AppModel {
 
 	public function getSpotByRadius($lat = 36, $lng = -115, $radius = 5) {
 		// Find Spots by distance formula.
-		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 AND is_pending = 0 HAVING `distance` < ? ORDER BY `distance` LIMIT 0, 20", 
+		$result = $this->getDataSource()->fetchAll("SELECT id, (3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?)) * sin( radians( lat ) ) ) ) AS `distance` FROM `spots` as `Spot` WHERE is_active = 1 AND is_pending = 0 HAVING `distance` < ? ORDER BY `distance`", 
 		array($lat, $lng, $lat, $radius));
 		// Now that we have our array... hopefully.
 		if (count($result)) {

@@ -162,55 +162,50 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 			close = $('.help-message .close');
 
 		picture.click(function() {
-			if(hints.hasClass('show') && pictureHint.hasClass('show')) {
+			if(hints.hasClass('show') && !pictureHint.hasClass('show')) {
 				hints.removeClass('show');
-				
+				pictureHint.toggleClass('show');	
 			}
-
 			else {
 				pictureHint.toggleClass('show');
 			}
 		});
 
 		information.click(function() {
-			if(hints.hasClass('show')) {
+			if(hints.hasClass('show') && !informationHint.hasClass('show')) {
 				hints.removeClass('show');
-				informationHint.toggleClass('show');
+				informationHint.toggleClass('show');	
 			}
-
 			else {
 				informationHint.toggleClass('show');
 			}
 		});
 
 		description.click(function() {
-			if(hints.hasClass('show')) {
+			if(hints.hasClass('show') && !descriptionHint.hasClass('show')) {
 				hints.removeClass('show');
-				descriptionHint.toggleClass('show');
+				descriptionHint.toggleClass('show');	
 			}
-
 			else {
 				descriptionHint.toggleClass('show');
 			}
 		});
 
 		details.click(function() {
-			if(hints.hasClass('show')) {
+			if(hints.hasClass('show') && !detailsHint.hasClass('show')) {
 				hints.removeClass('show');
-				detailsHint.toggleClass('show');
+				detailsHint.toggleClass('show');	
 			}
-
 			else {
 				detailsHint.toggleClass('show');
 			}
 		});
 
 		keys.click(function() {
-			if(hints.hasClass('show')) {
+			if(hints.hasClass('show') && !keysHint.hasClass('show')) {
 				hints.removeClass('show');
-				keysHint.toggleClass('show');
+				keysHint.toggleClass('show');	
 			}
-
 			else {
 				keysHint.toggleClass('show');
 			}

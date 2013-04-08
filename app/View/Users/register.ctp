@@ -44,6 +44,19 @@ $this->set('title_for_layout', 'Register for Free Account');
 					)); ?>
 				</div>
 			</div>
+			
+			<div class="row control-fields">
+				<div class="two columns">
+					<?php echo $this->Form->label('accept_terms', 'I accept the '.$this->Html->link('Terms of Service', array('controller' => 'pages', 'action' => 'terms-of-service'), array('target' => '_blank'))); ?>
+				</div>
+				<div class="seven columns">
+					<?php echo $this->Form->input('accept_terms', array(
+						'type' => 'checkbox',
+						'label' => false
+					)); ?>
+				</div>
+			</div>
+			
 			<div class="btn-group">
 				<?php echo $this->Form->submit('Register', array('class' => 'btn btn-blue pull-right')); ?>
 			</div>

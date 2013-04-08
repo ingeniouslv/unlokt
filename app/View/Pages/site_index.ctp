@@ -67,6 +67,13 @@ $this->Html->add_script(array(
 	var spot_ids_i_follow = <?php echo json_encode($spot_ids_i_follow); ?>;
 	var location_id = <?php echo json_encode($user['User']['location_id']); ?>;
 	var category_id = <?php echo json_encode(isset($_GET['category'])?$_GET['category']:false); ?>;
+	var deal_limit = 10;
+	var deal_new_limit = 20;
+	var feed_limit = 5;
+	var feed_new_limit = 10;
+	var review_limit = 5;
+	var review_new_limit = 10;
+	
 	
 	function search(deal_limit, feed_limit, review_limit) {
 
@@ -143,9 +150,27 @@ $this->Html->add_script(array(
 		params.feed_limit = feed_limit;
 		params.review_limit = review_limit;
 		var url = search_url + $.param(params);
+		var deals_height = $("#staggered").height();
 		
+		searching = true;
 		console.log(url);
 		$.getJSON(url, function(results) {
+			if(results.deals.length > 0) {
+				deal_limit = results.deals[0].deal_limit;
+				deal_new_limit = results.deals[0].deal_new_limit;
+				feed_limit = results.deals[0].feed_limit;
+				feed_new_limit = results.deals[0].feed_new_limit;
+				review_limit = results.deals[0].review_limit;
+				review_new_limit = results.deals[0].review_new_limit;	
+			} else {
+				deal_limit = 0;
+				deal_new_limit = 0;
+				feed_limit = 0;
+				feed_new_limit = 0;
+				review_limit = 0;
+				review_new_limit = 0;
+			}
+			
 			feeds.reset(results.feeds);
 			deals.reset(results.deals);
 			reviews.reset(results.reviews);
@@ -165,7 +190,11 @@ $this->Html->add_script(array(
 				slider_speed: 15,
 				slider_distance: 6
 			});
-
+			if($('#staggered').height() == deals_height) {
+				//all results displayed turn off auto loading
+				$(window).unbind('scroll');
+			}
+			searching = false;
 		});
 		return false;
 	} // end of search()
@@ -427,6 +456,23 @@ $this->Html->add_script(array(
 	
 	// Run the method to bind user actions.
 	bind_filter_actions();
+	
+	//////////////////////////////////////////////////
+	var searching = false;
+	$(window).scroll(function () {
+		if(!searching) {
+			//console.log($(window).scrollTop() - $('#staggered').offset().top + $(window).height());
+			var currentBottomOfScreenY = $(window).scrollTop() - $('#staggered').offset().top + $(window).height();
+			var callNewPageCutOff = $("#staggered").height() - 700;
+			if(currentBottomOfScreenY >= callNewPageCutOff) {
+				//alert("search");
+				search(deal_new_limit, feed_limit, review_limit);
+			}
+		}
+		
+	});
+	
+	//////////////////////////////////////////////////
 </script>
 <script>
 	// Add a live binding for attachment images being clicked to open a gallery

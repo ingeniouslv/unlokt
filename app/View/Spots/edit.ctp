@@ -7,7 +7,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 		<div class="row">
 			<div class="six columns">
 				<?php echo $this->Form->create('Spot', array('class' => 'form-vertical control-group', 'type' => 'file')); ?>
-				<h2 class="form-section-label">Spot Picture</h2>
+				<h2 class="form-section-label">Spot Picture</h2>				
 				<img src="<?php echo $this->Html->gen_path('spot', $spot['Spot']['id'], 200, null, $spot['Spot']['image_name']); ?>?<?php echo time(); ?>"><br>
 				<input type="file" name="file" data-type="file-input"><br>
 				
@@ -79,7 +79,8 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 				<h2 class="form-section-label">Spot Options</h2>
 				<?php echo $this->Form->select('SpotOption', $spotOptions, array('div' => 'control-fields', 'class' => 'input-full', 'multiple' => 'checkbox')); ?>
 
-				<h2 class="form-section-label">Profile</h2>
+				<h2 class="form-section-label">Profile</h2>	
+
 				<?php echo $this->Form->input('spotlight_1', array('div' => 'control-fields', 'label' => 'Spotlight', 'class' => 'spot-spotlight_1-editor tinymce')); ?>
 				<?php echo $this->Form->input('description', array('div' => 'control-fields', 'class' => 'spot-description-editor tinymce')); ?>
 				<?php echo $this->Form->input('spotlight_2', array('div' => 'control-fields', 'label' => 'Spotlight Mini', 'class' => 'spot-spotlight_2-editor tinymce')); ?>
@@ -113,7 +114,6 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 		</div>
 	</div>
 </div>
-
 
 <script type="text/javascript">
 	$().ready(function() {

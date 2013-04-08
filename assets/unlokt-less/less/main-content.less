@@ -6,14 +6,14 @@
 	margin-bottom: @gridGutter*2;
 	z-index: 2;
 	&.page {
-		background: @grayLighter;
+		
 
-		&.spot {
+		
 			background: #262A30;
-			color: #fff;
+			color: @white;
 
 			h1,h2,h3,h4,h5,h6 {
-				color: #fff;
+				color: @white;
 			}
 
 			table.zebra {
@@ -23,7 +23,7 @@
 					border: none;
 
 					&:nth-child(2n+1) td {
-						background: none;
+						background: rgb(58, 58, 58);
 						border: none;
 						// border-bottom: 1px solid @black;
 						// border-top: 1px solid @black;
@@ -33,6 +33,10 @@
 				td.actions {
 					a {
 						color: #1a1b20;
+
+						&.btn-red {
+							color: @white;
+						}
 					}
 				}
 
@@ -49,7 +53,7 @@
 				padding: 10px;
 				.box-sizing(border-box);
 			}
-		}
+		
 	}
 	&.page-new {
 		#gradient > .vertical(darken(@schemeGray, 4%), darken(@schemeGray, 8%));

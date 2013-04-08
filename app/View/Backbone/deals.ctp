@@ -77,7 +77,7 @@
 									<p><%= deal.HappyHour.title %><span class="end-time-wrapper"><b><span class="end-time"><% print(happy_hour_start_xdate.toString('h:mm tt')); %></span> - <span class="end-time"><% print(happy_hour_end_xdate.toString('h:mm tt')); %></span></b></span> </p>
 								</div>	
 								<div class="is-active">
-									<span><%= days[deal.HappyHour.day_of_week] %></span>
+									<span class="week-day"><%= days[deal.HappyHour.day_of_week] %></span>
 									<%= deal.HappyHour.description %>
 								</div>
 							</div>

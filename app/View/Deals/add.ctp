@@ -13,8 +13,15 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 				<?php
 					echo $this->Form->input('type', array('label' => false, 'div' => 'control-fields', 'selected' => 2, 'options' => array('Event', 'Reward', 'Special'), 'id' => 'special-type')) 
 				?>
-				
-				<h2 class="form-section-label">Picture</h2>
+				<h2 class="form-section-label">
+					Picture
+					<a href="javascript:void();" class="help" data-role="picture">(?)</a>
+					<span data-group="hints" class="help-message" data-role="pictureHint">
+						<span class="title">Picture</span> 
+						<a href="javascript:void();" class="close"></a>
+						For best quality, use a 400X400 size image
+					</span>
+				</h2>
 				<?php
 				//////////////////////////////////////////////////
 				// Create a form JUST FOR SENDING PICTURE VIA IFRAME
@@ -30,15 +37,46 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 				echo $this->Form->hidden('tmp_image_name');
 				?>
 				
-				<h2 class="form-section-label">Information</h2>
+				<h2 class="form-section-label">
+					Information
+					<a href="javaScript:void();" class="help" data-role="information">(?)</a>
+					<span class="help-message" data-role="informationHint" data-group="hints">
+						<span class="title">Information</span>
+						<a href="javascript:void();" class="close"></a>
+						Enter a short title to grab users attention.<br/> 
+						<span class="hint">Hint: Please refrain from using the word deal or coupon when creating a special.</span>
+					</span>
+				</h2>
 				<?php echo $this->Form->input('name', array('div' => 'control-fields', 'label' => false, 'class' => 'twelve', 'placeholder' => 'Spot Special Title')); ?>
 
-				<h2 class="form-section-label">Description</h2>
+				<h2 class="form-section-label">
+					Description
+					<a href="javaScript:void();" class="help" data-role="description">(?)</a>
+					<span class="help-message" data-role="descriptionHint" data-group="hints">
+						<a href="javascript:void();" class="close"></a>
+						<span class="title">Description</span>
+						Give a short description of your special, event, or reward that will show up on the tile as users are browsing<br/>
+						
+						<span class="title">Long description</span>
+						Enter a more detailed description of your special, event, or reward. This can be as long as you like. You can enlarge the box by dragging down the bottom right corner<br/>
+
+						<span class="title">Fine Print</span>
+						Write your exclusions, time constraints, restrictions, &amp; expiration dates here.Also, make sure you write the days the special is on if you are creating a custom special (ex. Special is only valid on Monday-Wed).
+					</span>
+				</h2>
 				<?php echo $this->Form->input('description', array('div' => 'control-fields', 'label' => false, 'class' => 'twelve', 'placeholder' => 'Description')); ?>
 				<?php echo $this->Form->input('long_description', array('div' => 'control-fields', 'label' => false, 'class' => 'twelve', 'placeholder' => 'Long Description')); ?>
 				<?php echo $this->Form->input('fine_print', array('div' => 'control-fields', 'label' => false, 'class' => 'twelve', 'placeholder' => 'Fine Print')); ?>
 
-				<h2 class="form-section-label">Details</h2>
+				<h2 class="form-section-label">
+					Details
+					<a href="javaScript:void();" class="help" data-role="details">(?)</a>
+					<span class="help-message" data-role="detailsHint" data-group="hints">
+						<a href="javasript:void();" class="close"></a>
+						<span class="title">Details</span>
+						Give a short description of your special, event, or reward that will show up on the tile as users are browsing
+					</span>
+				</h2>
 				<?php echo $this->Form->input('start_date', array('type' => 'text', 'div' => 'control-fields', 'class' => 'datepicker')); ?>
 				<?php echo $this->Form->input('end_date', array('type' => 'text', 'div' => 'control-fields', 'class' => 'datepicker')); ?>
 				<?php //echo $this->Form->input('all_day', array('type' => 'checkbox', 'div' => 'control-fields')); ?>
@@ -64,7 +102,15 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 
 				<div class="row">
 					<div class="five columns">
-						<h2 class="form-section-label">Keys</h2>
+						<h2 class="form-section-label">
+							Keys
+							<a href="javaScript:void();" class="help" data-role="keys">(?)</a>
+							<span class="help-message" data-role="keysHint" data-group="hints">
+								<span class="title">Keys</span>
+								<a href="javascript:void();" class="close"></a>
+								Give a short description of your special, event, or reward that will show up on the tile as users are browsing
+							</span>
+						</h2>
 						<?php echo $this->Form->input('keys', array('div' => 'control-fields', 'class' => 'twelve')); ?>
 						<div class="btn-group" id="reward-group">
 							<a href="javascript:void(0);" class="btn btn-primary" id="increase-keys">More Keys</a>
@@ -97,6 +143,80 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		</div>
 	</div>
 </div>
+
+<script>
+	jQuery(document).ready(function($) {
+		var picture = $('[data-role=picture]'),
+			information = $('[data-role=information]'),
+			description = $('[data-role=description]'),
+			details = $('[data-role=details]'),
+			keys = $('[data-role=keys]');
+
+		var pictureHint = $('[data-role=pictureHint]'),
+			informationHint = $('[data-role=informationHint]'),
+			descriptionHint = $('[data-role=descriptionHint]'),
+			detailsHint = $('[data-role=detailsHint]'),
+			keysHint = $('[data-role=keysHint]');
+
+		var hints = $('[data-group=hints]'),
+			close = $('.help-message .close');
+
+		picture.click(function() {
+			if(hints.hasClass('show') && !pictureHint.hasClass('show')) {
+				hints.removeClass('show');
+				pictureHint.toggleClass('show');	
+			}
+			else {
+				pictureHint.toggleClass('show');
+			}
+		});
+
+		information.click(function() {
+			if(hints.hasClass('show') && !informationHint.hasClass('show')) {
+				hints.removeClass('show');
+				informationHint.toggleClass('show');	
+			}
+			else {
+				informationHint.toggleClass('show');
+			}
+		});
+
+		description.click(function() {
+			if(hints.hasClass('show') && !descriptionHint.hasClass('show')) {
+				hints.removeClass('show');
+				descriptionHint.toggleClass('show');	
+			}
+			else {
+				descriptionHint.toggleClass('show');
+			}
+		});
+
+		details.click(function() {
+			if(hints.hasClass('show') && !detailsHint.hasClass('show')) {
+				hints.removeClass('show');
+				detailsHint.toggleClass('show');	
+			}
+			else {
+				detailsHint.toggleClass('show');
+			}
+		});
+
+		keys.click(function() {
+			if(hints.hasClass('show') && !keysHint.hasClass('show')) {
+				hints.removeClass('show');
+				keysHint.toggleClass('show');	
+			}
+			else {
+				keysHint.toggleClass('show');
+			}
+		});
+
+		close.click(function() {
+			$(this).parent().removeClass('show');
+		});
+
+	});
+</script>
 
 <script>
 

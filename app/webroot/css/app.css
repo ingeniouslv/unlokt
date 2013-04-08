@@ -555,10 +555,11 @@ table .spot-name a{display:block;color:#000000;}
 .tile{color:#fff;height:270px;position:relative;width:270px;}.tile .new{height:72px;position:absolute;right:0;top:0;width:72px;}
 .tile a.a-block{height:100%;display:block;width:100%;}
 .tile .tile-footer{background:url('/img/tile-black.png');background:rgba(0, 0, 0, 0.6);background-repeat:repeat;bottom:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;padding:8px 4px 4px;position:absolute;width:270px;}.tile .tile-footer .happy-hour .is-active{border-bottom:1px solid #CCC;}
-.tile .tile-footer .happy-hour{padding:10px 5px 31px;}
+.tile .tile-footer .happy-hour{padding:10px 5px 22px;}
 .tile .block-actions{width:265px;}.tile .block-actions .keys-total{bottom:1px;}
 .tile .block-actions .btn{margin-right:5px;}
 .tile .block-actions .happy-hour{color:#fff;}.tile .block-actions .happy-hour .title p{font-size:14px;text-align:center;}.tile .block-actions .happy-hour .title p .end-time-wrapper{display:block;margin:10px 0;}
+.tile .block-actions .week-day{display:block;font-size:14px;}
 .tile .tile-type{*zoom:1;position:relative;}.tile .tile-type:before,.tile .tile-type:after{display:table;content:"";}
 .tile .tile-type:after{clear:both;}
 .tile .tile-type h2{color:#ffffff;display:inline;}

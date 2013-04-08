@@ -16,8 +16,9 @@ class UsersController extends AppController {
 			'logout',
 			'login',
 			'login_facebook',
+			'register',
 			'reset',
-			'register'
+			'reset_password'
 		));
 		parent::beforeFilter();
 	}

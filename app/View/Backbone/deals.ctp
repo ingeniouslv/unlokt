@@ -64,6 +64,7 @@
 					/* Create a date so we can parse the time. Le Sigh. */
 					var happy_hour_end_xdate = new XDate('2012-01-01 ' + deal.HappyHour.end);
 					var happy_hour_start_xdate = new XDate('2012-01-01 ' + deal.HappyHour.start);
+					var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 					/* In this case, happy hour is currently happening */ %>
 					<div class="tile-footer">	
 						<div class="tile-type">
@@ -76,6 +77,7 @@
 									<p><%= deal.HappyHour.title %><span class="end-time-wrapper"><b><span class="end-time"><% print(happy_hour_start_xdate.toString('h:mm tt')); %></span> - <span class="end-time"><% print(happy_hour_end_xdate.toString('h:mm tt')); %></span></b></span> </p>
 								</div>	
 								<div class="is-active">
+									<span><%= days[deal.HappyHour.day_of_week] %></span>
 									<%= deal.HappyHour.description %>
 								</div>
 							</div>
@@ -112,7 +114,7 @@
 							<h2><%= deal.Deal.name %></h2>
 						</div>
 						<div class="block-actions">
-							<% if(deal.Deal.keys == 0) { %>
+							<% if(deal.Deal.keys < 2) { %>
 								<p>
 									<%
 										/* Loop through a weeks worth of days.

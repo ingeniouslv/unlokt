@@ -3,7 +3,7 @@ $this->set('title_for_layout', 'Attachment Manager');
 ?>
 <div class="main-content page spot">
 	<div class="container">
-		<h1>Attachment Manager</h1>
+		<h1>Attachment Manager for <?php echo $this->Html->link($spot['Spot']['name'], array('controller' => 'spots', 'action' => 'view', $spot['Spot']['id'])); ?></h1>
 		<table class="zebra">
 			<thead>
 				<tr>

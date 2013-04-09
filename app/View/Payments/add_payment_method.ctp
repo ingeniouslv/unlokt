@@ -2,7 +2,7 @@
 $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."'");
 ?>
 <div class="main-content page spot">
-	<?php echo $this->Form->create('CreditCard'); ?>
+	<?php echo $this->Form->create(false, array('id' => 'CreditCardAddPaymentMethodForm')); ?>
 	<div class="container">
 		<h1>New Payment Method for <?php echo $this->Html->link($spot['Spot']['name'], array('controller' => 'spots', 'action' => 'view', $spot['Spot']['id'])); ?></h1>
 		<div>
@@ -18,7 +18,7 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 				<div>
 					Have a code for another plan?<br>
 					Enter it here.
-					<?php echo $this->Form->input('code', array('class' => 'input-small', 'label' => false, 'placeholder' => 'Code')); ?>
+					<?php echo $this->Form->input('CreditCard.code', array('class' => 'input-small', 'label' => false, 'placeholder' => 'Code')); ?>
 					<a class="btn btn-primary" id="try-code">Try Code</a>
 					<script>
 						$('#try-code').click(function() {
@@ -79,13 +79,13 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 									<div class="row card-info">
 										<div class="twelve columns">
 											<div class="five pull-left">
-												<?php echo $this -> Form -> input('credit_card_number', array('class' => 'input-full')); ?>
+												<?php echo $this -> Form -> input('CreditCard.credit_card_number', array('class' => 'input-full')); ?>
 											</div>
 											<div class="two pull-left">
-												<?php echo $this->Form->input('cvv',array('label'=>'CVV', 'class' => 'input-full')); ?>
+												<?php echo $this->Form->input('CreditCard.cvv',array('label'=>'CVV', 'class' => 'input-full')); ?>
 											</div>
 											<div class="pull-left">												
-												<?php echo $this -> Form -> input('expiration_month', array('type' => 'select', 'options' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10, 11 => 11, 12 => 12), 'class' => 'select-full', 'label' => 'Month'));
+												<?php echo $this -> Form -> input('CreditCard.expiration_month', array('type' => 'select', 'options' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10, 11 => 11, 12 => 12), 'class' => 'select-full', 'label' => 'Month'));
 													$years = array();
 													for ($i = 0; $i < 8; $i++) {
 														$year = date('Y') + $i;
@@ -94,7 +94,7 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 												?>
 											</div>
 											<div class="pull-left">
-												<?php echo $this -> Form -> input('expiration_year', array('type' => 'select', 'options' => $years, 'class' => 'select-full', 'label' => 'Year')); ?>
+												<?php echo $this -> Form -> input('CreditCard.expiration_year', array('type' => 'select', 'options' => $years, 'class' => 'select-full', 'label' => 'Year')); ?>
 											</div>										
 										</div>
 									</div>
@@ -103,22 +103,10 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 									<div class="row">	
 										<div class="twelve columns">	
 											<div class="five pull-left">
-												<?php echo $this -> Form -> input('first_name', array('class' => 'input-full')); ?>
+												<?php echo $this -> Form -> input('CreditCard.first_name', array('class' => 'input-full')); ?>
 											</div>
 											<div class="five pull-left">
-												<?php echo $this -> Form -> input('last_name', array('class' => 'input-full')); ?>
-											</div>
-										</div>	
-									</div>	
-								</div>
-								<div class="layout-row">
-									<div class="row">	
-										<div class="twelve columns">	
-											<div class="five pull-left">
-												<?php echo $this -> Form -> input('address', array('class' => 'input-full')); ?>
-											</div>
-											<div class="five pull-left">
-												<?php echo $this -> Form -> input('address2', array('class' => 'input-full')); ?>
+												<?php echo $this -> Form -> input('CreditCard.last_name', array('class' => 'input-full')); ?>
 											</div>
 										</div>	
 									</div>	
@@ -127,13 +115,25 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 									<div class="row">	
 										<div class="twelve columns">	
 											<div class="five pull-left">
-												<?php echo $this -> Form -> input('city', array('class' => 'input-full')); ?>
+												<?php echo $this -> Form -> input('CreditCard.address', array('class' => 'input-full')); ?>
+											</div>
+											<div class="five pull-left">
+												<?php echo $this -> Form -> input('CreditCard.address2', array('class' => 'input-full')); ?>
+											</div>
+										</div>	
+									</div>	
+								</div>
+								<div class="layout-row">
+									<div class="row">	
+										<div class="twelve columns">	
+											<div class="five pull-left">
+												<?php echo $this -> Form -> input('CreditCard.city', array('class' => 'input-full')); ?>
 											</div>
 											<div class="two pull-left">
-												<?php echo $this -> Form -> input('state', array('class' => 'input-full', 'label' => 'State/Province')); ?>
+												<?php echo $this -> Form -> input('CreditCard.state', array('class' => 'input-full', 'label' => 'State/Province')); ?>
 											</div>
 											<div class="three pull-left">
-												<?php echo $this -> Form -> input('zip', array('class' => 'input-full', 'label' => 'ZIP/Postal')); ?>
+												<?php echo $this -> Form -> input('CreditCard.zip', array('class' => 'input-full', 'label' => 'ZIP/Postal')); ?>
 											</div>
 										</div>	
 									</div>	
@@ -142,7 +142,20 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 									<div class="row">	
 										<div class="twelve columns">	
 											<div class="five pull-left">
-												<?php echo $this -> Form -> input('country', array('type' => 'select', 'options' => $country_codes,	'class' => 'select-full')); ?>
+												<?php echo $this -> Form -> input('CreditCard.country', array('type' => 'select', 'options' => $country_codes,	'class' => 'select-full')); ?>
+											</div>
+										</div>	
+									</div>	
+								</div>
+								<div class="layout-row">
+									<div class="row">	
+										<div class="twelve columns">
+											<div class="five pull-left">
+												<?php echo $this -> Form -> input('CreditCard.accept_business', array(
+													'label' => 'I accept the '. $this->Html->link('business agreement', array('controller' => 'pages', 'action' => 'business'), array('target' => '_blank')),
+													'type' => 'checkbox',
+													'div' => array('class' => 'input checkbox required')
+												)); ?>
 											</div>
 										</div>	
 									</div>	
@@ -156,6 +169,13 @@ $this->set('title_for_layout', "Add Payment Method to '".$spot['Spot']['name']."
 					<div class="columns">
 						<h2>Pay with your Paypal account</h2>
 						<p>Continue below to validate your account with Paypal.<br>If you don't have a Paypal account select "Sign Up" or "Buy as Guest"<br> on the next screen.</p>
+						<div class="twelve">
+							<?php echo $this -> Form -> input('CreditCard.accept_business_paypal', array(
+								'label' => 'I accept the '. $this->Html->link('business agreement', array('controller' => 'pages', 'action' => 'business'), array('target' => '_blank')),
+								'type' => 'checkbox',
+								'div' => array('class' => 'input checkbox required')
+							)); ?>
+						</div>
 						<button class="btn-blue btn-large btn" id="pay-with-paypal">Continue to Paypal</button>
 					</div>
 				</div>

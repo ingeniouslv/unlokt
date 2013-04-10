@@ -4,6 +4,7 @@ footer{margin-top:0;}
 .pull-left{float:left;}
 .pull-right{float:right;}
 .hide{display:none;}
+.hidden{visibility:hidden;}
 .clear{clear:both;}
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
@@ -666,6 +667,7 @@ ul.payment-history li{padding:10px 0 0;}
 .tip.warning{-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;bottom:80px;padding:5px;position:absolute;right:-150px;text-align:left;width:300px;z-index:9999;background:#ffffff;border:1px solid #cccccc;}
 .user .page-header{padding-bottom:10px;border-bottom:1px solid #555;}.user .page-header .name{color:#ffffff;}
 .user .user-details h1,.user .user-details h2,.user .user-details h3,.user .user-details p{color:#ffffff;}
+.terms-conditions .checkbox{float:left;}
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";}
 .clearfix:after{clear:both;}
 .cake-sql-log{color:#fff;}

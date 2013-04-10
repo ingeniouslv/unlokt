@@ -108,7 +108,10 @@ class PaymentsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->loadModel('CreditCard');
 			$this->CreditCard->set($this->request->data);
+			if(!$this->request->data['accept_business']) $this->CreditCard->invalidate('accept_business', 'Business terms must be accepted.');
 			if ($this->CreditCard->validates()) {
+				echo "boom";
+				die();
 				$this->PayPalSubscribe = $this->Components->load('PayPalSubscribe');
 				$result = $this->PayPalSubscribe->subscribe($spot['Spot']['id'], $this->request->data['plan_id'], $this->request->data);
 				if ($result) {
@@ -135,6 +138,11 @@ class PaymentsController extends AppController {
 	} // end of add_payment_method();
 
 	public function add_payment_method_paypal($spot_id = null) {
+		if(!$this->request->data['CreditCard']['accept_business_paypal']) {
+			$this->Session->setFlash('Business agreement must be accepted.', 'alert-error');
+			$this->redirect(array('action' => 'add_payment_method', $spot_id));
+		}
+			
 		$this->loadModel('Plan');
 		if (!isset($this->request->data['plan_id']) || !$plan = $this->Plan->read(null, $this->request->data['plan_id'])) {
 			throw new NotFoundException('Expecting to have plan_id in POST');

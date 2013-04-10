@@ -3,7 +3,7 @@ $this->set('title_for_layout', "Payment Method for '".$spot['Spot']['name']."'")
 ?>
 <div class="main-content page spot">
 	<div class="container">
-		<h1>Payment Method</h1>
+		<h1>Payment Method for <?php echo $this->Html->link($spot['Spot']['name'], array('controller' => 'spots', 'action' => 'view', $spot['Spot']['id'])); ?></h1>
 
 		<div class="row">
 			<div class="eight columns">

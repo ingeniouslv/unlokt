@@ -73,8 +73,9 @@ class AttachmentsController extends AppController {
 		}
 		
 		$attachments = $this->Attachment->findAllBySpotId($spot_id);
+		$spot = $this->Attachment->Spot->findById($spot_id);
 		
-		$this->set(compact('attachments'));
+		$this->set(compact('attachments', 'spot'));
 	}
 	
 	public function delete($id) {

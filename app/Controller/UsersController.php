@@ -295,6 +295,11 @@ class UsersController extends AppController {
 				$this->User->invalidate('email', 'Email must match');
 				$this->User->invalidate('email2', 'Email must match');
 			}
+			
+			if(!$this->request->data['User']['accept_terms']) {
+				$this->User->invalidate('accept_terms', 'Terms of service must be accepted.');
+			}
+			
 			if ($this->User->validates()) {
 				// Good
 				$this->User->save();
@@ -525,7 +530,9 @@ class UsersController extends AppController {
 			$user = $this->User->findByEmail($this->request->data['User']['email']);
 			if (!empty($user)) {
 				ApiComponent::error(ApiErrors::$EMAIL_IN_USE);
-				return;
+			}
+			if(!array_key_exists('accept_terms', $this->request->data['User'])) {
+				ApiComponent::error(ApiErrors::$TERMS_NOT_ACCEPTED);
 			}
 			
 			$this->User->set($this->request->data);
@@ -535,7 +542,6 @@ class UsersController extends AppController {
 				if (!$this->request->data['User']['password'] || strcmp($this->request->data['User']['password'], $this->request->data['User']['password2']) !== 0) {
 					//Password missing
 					ApiComponent::error(ApiErrors::$MISSING_REQUIRED_PARAMATERS);
-					return;
 				}
 			}
 			

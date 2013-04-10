@@ -681,12 +681,12 @@ table .spot-name a {
 	background: #fff;
 	border: 1px solid #aaa;
 	color: #111;
-	display: block;
+	display: none;
 	left: 130px;
 	min-width: 280px;
 	padding: 10px;
 	position: absolute;
-	top: 10px;
+	top: -10px;
 	visibility: hidden;
 	width: auto;
 	z-index: 10;
@@ -694,6 +694,7 @@ table .spot-name a {
 	.border-radius(3px);
 
 	&.show {
+		display: block;
 		outline: none;
 		visibility: visible;
 	}
@@ -702,7 +703,12 @@ table .spot-name a {
 		display: block;
 		font-size: 15px;
 		font-weight: bold;
+		padding-top: 4px;
 		padding-bottom: 2px;
+
+		&:first-child {
+			padding-top: 0;
+		}
 	}
 
 	.hint {
@@ -715,6 +721,10 @@ table .spot-name a {
 		position: absolute;
 		right: 0;
 		top: 0;
+	}
+
+	&[data-role=keysHint] {
+		width: 445px;
 	}
 }
 

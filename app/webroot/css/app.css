@@ -503,10 +503,11 @@ table .spot-name a{display:block;color:#000000;}
 .premium.disabled{display:block;position:absolute;z-index:4;width:100%;margin-left:-10px;height:100%;background:#333;opacity:0.8;}.premium.disabled p{background:#30353d;color:#C5AC46;font-size:40px;margin:108px auto 0;text-align:center;}
 .form-section-label{position:relative;}
 .help,.help-message{font-size:13px;font-weight:normal;}
-.help-message{background:#fff;border:1px solid #aaa;color:#111;display:block;left:130px;min-width:280px;padding:10px;position:absolute;top:10px;visibility:hidden;width:auto;z-index:10;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}.help-message.show{outline:none;visibility:visible;}
-.help-message .title{display:block;font-size:15px;font-weight:bold;padding-bottom:2px;}
+.help-message{background:#fff;border:1px solid #aaa;color:#111;display:none;left:130px;min-width:280px;padding:10px;position:absolute;top:-10px;visibility:hidden;width:auto;z-index:10;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}.help-message.show{display:block;outline:none;visibility:visible;}
+.help-message .title{display:block;font-size:15px;font-weight:bold;padding-top:4px;padding-bottom:2px;}.help-message .title:first-child{padding-top:0;}
 .help-message .hint{font-style:italic;font-size:12px;padding-top:2px;}
 .help-message .close{position:absolute;right:0;top:0;}
+.help-message[data-role=keysHint]{width:445px;}
 .deal .deal-meta{padding:5px 0;border-top:1px solid #555;border-bottom:1px solid #555;min-width:507px;width:70%;}.deal .deal-meta .deal-type{color:#cccccc;float:left;margin:0;}.deal .deal-meta .deal-type i{color:#ffffff;}
 .deal .deal-meta .deal-type+.fb-share{margin:0 1px 0 0;}
 .deal .page-header{padding-bottom:10px;border-bottom:1px solid #555;}.deal .page-header h1,.deal .page-header h3,.deal .page-header p{color:#ffffff;}

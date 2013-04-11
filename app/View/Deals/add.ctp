@@ -71,8 +71,14 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 					<a href="javaScript:void();" class="help" data-role="details">(?)</a>
 					<span class="help-message" data-role="detailsHint" data-group="hints">
 						<a href="javasript:void();" class="close"></a>
-						<span class="title">Details</span>
-						Give a short description of your special, event, or reward that will show up on the tile as users are browsing
+						<span class="title">Start date</span>
+						For special and reward: start date is when you want the special to start showing up. For event, start date is when the event is.
+						<span class="title">End date</span>
+						For special and reward: end date is when you want the special to stop showing up.  Hint: Rewards are for collecting keys, so should be set for a longer period of time.  For event, if it is a one-time event, the end date will be the same as the start date. If it is a recurring event, the end date is as long as you have that event going on. 
+						<span class="title">Start time</span>
+						For events, the start/end time is when the event is happening (this should be written in short of long description) For Rewards and Specials, this start/end time should be your hours of operation. Unless it is a time-based special, in which the start/end time would be when you want the special to show up. (Ex. If the special is only between 3-6 pm, set it to 3-6 pm…this should also be written in the long description) 
+						<span class="title">Days</span>
+						Select the days that your special, event, or reward is happening. Select custom for specific days. 
 					</span>
 				</h2>
 				<?php echo $this->Form->input('start_date', array('type' => 'text', 'div' => 'control-fields', 'class' => 'datepicker')); ?>

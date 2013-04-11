@@ -56,10 +56,8 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 						<a href="javascript:void();" class="close"></a>
 						<span class="title">Description</span>
 						Give a short description of your special, event, or reward that will show up on the tile as users are browsing<br/>
-						
 						<span class="title">Long description</span>
 						Enter a more detailed description of your special, event, or reward. This can be as long as you like. You can enlarge the box by dragging down the bottom right corner<br/>
-
 						<span class="title">Fine Print</span>
 						Write your exclusions, time constraints, restrictions, &amp; expiration dates here.Also, make sure you write the days the special is on if you are creating a custom special (ex. Special is only valid on Monday-Wed).
 					</span>
@@ -106,9 +104,17 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 							Keys
 							<a href="javaScript:void();" class="help" data-role="keys">(?)</a>
 							<span class="help-message" data-role="keysHint" data-group="hints">
-								<span class="title">Keys</span>
+								<span class="title">Events</span>
 								<a href="javascript:void();" class="close"></a>
-								Give a short description of your special, event, or reward that will show up on the tile as users are browsing
+								Auto set to 0 keys.<br/> 
+								<span class="title">Specials</span>
+								This is auto set to 1 key.<br/>
+								You must write in a personal pin for when the user wants to redeem the special. You can keep track of how many people are using this special by entering the pin in.<br/> 
+								<span class="title">Rewards</span> 
+								set the amount of keys you’d like the user to collect for your program, including the reward key. 
+								<br/>
+								<span class="title">Tip</span>
+								Another way to use your rewards program is to set your keys to a 50 key program, or how ever many you want in your program. In the long description, you would describe what users could receive after 5 keys, 10 keys, 15 keys, etc. If you want help on creating one of these programs, contact us at info@unlokt.com 
 							</span>
 						</h2>
 						<?php echo $this->Form->input('keys', array('div' => 'control-fields', 'class' => 'twelve')); ?>
@@ -126,10 +132,18 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 					</div>
 				</div>
 
-				<h2 class="form-section-label">Settings</h2>
+				<h2 class="form-section-label">
+					Settings
+					<a href="javaScript:void();" class="help" data-role="settings">(?)</a>
+					<span class="help-message" data-role="settingsHint" data-group="hints">
+						<a href="javascript:void();" class="close"></a>
+						<span class="title">Uses</span>
+						Enter in 0 if you want the user to be able to reuse the special (hint: make sure you enter 0 for rewards and recurring specials). Enter in 1 if it’s a 1 time special, etc.
+					</span>	
+				</h2>
 				<?php echo $this->Form->input('sku', array('div' => 'control-fields', 'label' => 'SKU (for entering into your POS system)')); ?>
 				<?php echo $this->Form->input('limit_per_customer', array('div' => 'control-fields', 'label' => 'Limit per Customer (0 = unlimited)', 'type' => 'text')); ?>
-
+				
 				<div class="btn-group">
 					<?php echo $this->Form->button('Create Spot Special', array('class' => 'btn btn-blue', 'type' => 'submit')); ?>
 				</div>
@@ -150,13 +164,15 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 			information = $('[data-role=information]'),
 			description = $('[data-role=description]'),
 			details = $('[data-role=details]'),
-			keys = $('[data-role=keys]');
+			keys = $('[data-role=keys]'),
+			settings = $('[data-role=settings]');
 
 		var pictureHint = $('[data-role=pictureHint]'),
 			informationHint = $('[data-role=informationHint]'),
 			descriptionHint = $('[data-role=descriptionHint]'),
 			detailsHint = $('[data-role=detailsHint]'),
-			keysHint = $('[data-role=keysHint]');
+			keysHint = $('[data-role=keysHint]'),
+			settingsHint = $('[data-role=settingsHint]');
 
 		var hints = $('[data-group=hints]'),
 			close = $('.help-message .close');
@@ -208,6 +224,16 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 			}
 			else {
 				keysHint.toggleClass('show');
+			}
+		});
+
+		settings.click(function() {
+			if(hints.hasClass('show') && !settingsHint.hasClass('show')) {
+				hints.removeClass('show');
+				settingsHint.toggleClass('show');	
+			}
+			else {
+				settingsHint.toggleClass('show');
 			}
 		});
 

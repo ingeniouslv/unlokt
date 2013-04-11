@@ -321,6 +321,10 @@ class Deal extends AppModel {
 		$current_day_of_week = array();
 		$i = 0;
 		
+		// $current_end_date = date('Y-m-d', strtotime($current_start_date . "+1day"));
+		// $current_start_time = '06:00:00';
+		// $current_end_time = '05:59:59';
+		
 		//check if given days are within a deal's start and end date.
 		foreach($cdow as $key=>$val) {
 			$current_day_of_week[] = array(

@@ -347,7 +347,7 @@ $this->Html->add_script(array(
 			var marker = {
 				lat: spot.lat,
 				lng: spot.lng,
-				name: spot.name,
+				name: '<a href="/spots/view/' + spot.id + '">' + spot.name + '</a>',
 				address: spot.address,
 				address2: spot.address2,
 				id: spot.id

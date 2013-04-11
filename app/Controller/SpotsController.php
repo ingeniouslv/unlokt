@@ -380,7 +380,7 @@ class SpotsController extends AppController {
 			} else if ($_GET['search'] == 'happy-hour') {
 				$include_deals = false;
 				
-				$start_time = date('H:i', time());
+				$start_time = date('H:i', strtotime('today 12am'));
 				$end_time = date('H:i', strtotime('today 11:59pm'));
 				
 				$this->Spot->HappyHour->current_start_time = $start_time;

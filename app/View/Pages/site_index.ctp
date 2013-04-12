@@ -190,10 +190,16 @@ $this->Html->add_script(array(
 				slider_speed: 15,
 				slider_distance: 6
 			});
-			if($('#staggered').height() == deals_height) {
-				//all results displayed turn off auto loading
-				$(window).unbind('scroll');
+			if(!first_call) {
+				if($('#staggered').height() == deals_height) {
+					//all results displayed turn off auto loading
+					no_more_items = true;
+					//$(window).unbind('scroll');
+				}
+			} else {
+				first_call = false;
 			}
+			
 			searching = false;
 		});
 		return false;
@@ -364,6 +370,8 @@ $this->Html->add_script(array(
 		$('#quick-search li').click(function() {
 			$('#quick-search li').removeClass('active');
 			$(this).addClass('active');
+			no_more_items = false;
+			first_call = true;
 			search();
 		});
 		// The filter options on explore item
@@ -376,6 +384,8 @@ $this->Html->add_script(array(
 			$(this).removeClass('disabled');
 			$(this).addClass('active');
 			$(this).parent().parent().addClass('active');
+			no_more_items = false;
+			first_call = true;
 			search();
 		});
 		// The three search types - advanced, quick, map
@@ -386,9 +396,13 @@ $this->Html->add_script(array(
 				$(this).toggleClass('toggled');
 			}
 			// When the button is clicked, make a search happen after a millisecond.
+			no_more_items = false;
+			first_call = true;
 			setTimeout(function() {search();}, 1);
 		});
 		$('#advanced-search button').click(function() {
+			no_more_items = false;
+			first_call = true;
 			search();
 			return false;
 		});
@@ -399,6 +413,8 @@ $this->Html->add_script(array(
 			if (event.which == 13) {
 				event.preventDefault();
 				$(this).blur();
+				no_more_items = false;
+				first_call = true;
 				search();
 			}
 		});
@@ -459,8 +475,10 @@ $this->Html->add_script(array(
 	
 	//////////////////////////////////////////////////
 	var searching = false;
+	var no_more_items = false;
+	var first_call = true;
 	$(window).scroll(function () {
-		if(!searching) {
+		if(!searching && !no_more_items) {
 			//console.log($(window).scrollTop() - $('#staggered').offset().top + $(window).height());
 			var currentBottomOfScreenY = $(window).scrollTop() - $('#staggered').offset().top + $(window).height();
 			var callNewPageCutOff = $("#staggered").height() - 700;

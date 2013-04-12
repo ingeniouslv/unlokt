@@ -127,7 +127,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 			plugins : "paste",
 
 			// Theme options
-			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword,|,formatselect,",
+			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,cut,copy,paste,pastetext,pasteword,|,formatselect,",
 			theme_advanced_buttons2 : ",undo,redo,|,link,unlink,image,cleanup,code,|,forecolor,",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
@@ -159,7 +159,7 @@ $this->set('title_for_layout', "Editing Spot '".h($spot['Spot']['name']))."'";
 			plugins : "paste",
 
 			// Theme options
-			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword,|,formatselect,",
+			theme_advanced_buttons1 : ",newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,cut,copy,paste,pastetext,pasteword,|,formatselect,",
 			theme_advanced_buttons2 : ",undo,redo,|,link,unlink,image,cleanup,code,|,",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",

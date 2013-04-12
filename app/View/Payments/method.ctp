@@ -26,7 +26,7 @@ $this->set('title_for_layout', "Payment Method for '".$spot['Spot']['name']."'")
 					<?php else: ?>
 						<li>
 							<label>
-								You currently have no subscription plan set up.  Please add a payment method.
+								Thank you for being part of UNLOKT beta.<br/> Our exclusive membership fee does not apply during the beta.<br/> We will notify you once the beta is complete. Thank you!
 							</label>
 						</li>
 					<?php endif; ?>

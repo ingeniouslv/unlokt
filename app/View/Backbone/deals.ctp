@@ -136,7 +136,42 @@
 							<% } %>
 							<p><%= deal.Deal.description %></p>
 							<% if (deal.Deal.keys > 1) { %>
-							<span class="keys-total pull-left"><%= deal.Deal.keys %></span>
+								<span class="keys-total pull-left"><%= deal.Deal.keys %></span>
+							<% } else { %>
+								<%
+								var days_of_week = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+								var days_of_week_full = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+								 
+								for (var i = 0; i < days_of_week.length; i ++){
+								%>
+									<span class="<% 
+									switch(i) {
+										case 0:
+											print(deal.Deal.sunday?'special-active-day':'special-inactive-day');
+											break;
+										case 1:
+											print(deal.Deal.monday?'special-active-day':'special-inactive-day');
+											break;
+										case 2:
+											print(deal.Deal.tuesday?'special-active-day':'special-inactive-day');
+											break;
+										case 3:
+											print(deal.Deal.wednesday?'special-active-day':'special-inactive-day');
+											break;
+										case 4:
+											print(deal.Deal.thursday?'special-active-day':'special-inactive-day');
+											break;
+										case 5:
+											print(deal.Deal.friday?'special-active-day':'special-inactive-day');
+											break;
+										case 6:
+											print(deal.Deal.saturday?'special-active-day':'special-inactive-day');
+											break;
+									} 
+									%>"><%= days_of_week[i] %></span>
+								<%
+								}
+								%>
 							<% } %>
 							<% if (deal.Deal.keys > 0) { %>
 								<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Special</a>

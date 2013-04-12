@@ -226,7 +226,7 @@ if (class_exists('Memcache')) {
 }
 
 // In development mode, caches should expire quickly.
-$duration = '+4 hours';
+$duration = '+60 seconds';
 if (Configure::read('debug') >= 1) {
 	$duration = '+60 seconds';
 }

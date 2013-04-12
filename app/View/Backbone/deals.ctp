@@ -64,7 +64,6 @@
 					/* Create a date so we can parse the time. Le Sigh. */
 					var happy_hour_end_xdate = new XDate('2012-01-01 ' + deal.HappyHour.end);
 					var happy_hour_start_xdate = new XDate('2012-01-01 ' + deal.HappyHour.start);
-					var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 					/* In this case, happy hour is currently happening */ %>
 					<div class="tile-footer">	
 						<div class="tile-type">
@@ -77,7 +76,6 @@
 									<p><%= deal.HappyHour.title %><span class="end-time-wrapper"><b><span class="end-time"><% print(happy_hour_start_xdate.toString('h:mm tt')); %></span> - <span class="end-time"><% print(happy_hour_end_xdate.toString('h:mm tt')); %></span></b></span> </p>
 								</div>	
 								<div class="is-active">
-									<span class="week-day"><%= days[deal.HappyHour.day_of_week] %></span>
 									<%= deal.HappyHour.description %>
 								</div>
 							</div>
@@ -87,7 +85,7 @@
 								var day_class = '';
 								 
 								for (var i = 0; i < days_of_week.length; i ++){
-									dayi_class = (deal.HappyHour.day_of_week == i)?'special-active-day':'special-inactive-day';
+									day_class = (deal.HappyHour.day_of_week == i)?'special-active-day':'special-inactive-day';
 								%>
 								<span class="<%= day_class %>"><%= days_of_week[i] %></span>
 							<%
@@ -126,26 +124,6 @@
 							<h2><%= deal.Deal.name %></h2>
 						</div>
 						<div class="block-actions">
-							<% if(deal.Deal.keys < 2) { %>
-								<p>
-									<%
-										/* Loop through a weeks worth of days.
-											The soonest matching day should be selected as the next occurrence date.
-											This logic might have to be adjusted later to skip date ranges or something. */
-										var xdate = new XDate();
-										var displayDate = '';
-										for (var i = 0; i < 7; i ++) {
-											xdate.addDays(i ? 1 : 0);
-											var day_of_week = xdate.toString('dddd').toLowerCase();
-											if (deal.Deal[day_of_week] == 1) {
-												displayDate = xdate.toString('ddd d MMM');
-												break;
-											}
-										}
-									%>
-									<%= displayDate %>
-								</p>
-							<% } %>
 							<p><%= deal.Deal.description %></p>
 							<% if (deal.Deal.keys > 1) { %>
 								<span class="keys-total pull-left"><%= deal.Deal.keys %></span>

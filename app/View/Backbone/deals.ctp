@@ -81,6 +81,18 @@
 									<%= deal.HappyHour.description %>
 								</div>
 							</div>
+							<%
+								var days_of_week = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+								var days_of_week_full = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+								var day_class = '';
+								 
+								for (var i = 0; i < days_of_week.length; i ++){
+									dayi_class = (deal.HappyHour.day_of_week == i)?'special-active-day':'special-inactive-day';
+								%>
+								<span class="<%= day_class %>"><%= days_of_week[i] %></span>
+							<%
+							}
+							%>
 							<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>spots/view/<%= deal.Spot.id %>">View Spot</a>
 						</div>
 					</div>	
@@ -141,34 +153,34 @@
 								<%
 								var days_of_week = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 								var days_of_week_full = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+								var day_class = '';
 								 
 								for (var i = 0; i < days_of_week.length; i ++){
-								%>
-									<span class="<% 
 									switch(i) {
 										case 0:
-											print(deal.Deal.sunday?'special-active-day':'special-inactive-day');
+											day_class = deal.Deal.sunday?'special-active-day':'special-inactive-day';
 											break;
 										case 1:
-											print(deal.Deal.monday?'special-active-day':'special-inactive-day');
+											day_class = deal.Deal.monday?'special-active-day':'special-inactive-day';
 											break;
 										case 2:
-											print(deal.Deal.tuesday?'special-active-day':'special-inactive-day');
+											day_class = deal.Deal.tuesday?'special-active-day':'special-inactive-day';
 											break;
 										case 3:
-											print(deal.Deal.wednesday?'special-active-day':'special-inactive-day');
+											day_class = deal.Deal.wednesday?'special-active-day':'special-inactive-day';
 											break;
 										case 4:
-											print(deal.Deal.thursday?'special-active-day':'special-inactive-day');
+											day_class = deal.Deal.thursday?'special-active-day':'special-inactive-day';
 											break;
 										case 5:
-											print(deal.Deal.friday?'special-active-day':'special-inactive-day');
+											day_class = deal.Deal.friday?'special-active-day':'special-inactive-day';
 											break;
 										case 6:
-											print(deal.Deal.saturday?'special-active-day':'special-inactive-day');
+											day_class = deal.Deal.saturday?'special-active-day':'special-inactive-day';
 											break;
-									} 
-									%>"><%= days_of_week[i] %></span>
+									}
+								%>
+									<span class="<%= day_class %>"><%= days_of_week[i] %></span>
 								<%
 								}
 								%>

@@ -76,18 +76,6 @@
 								<h4><i class="icon-key"></i></h4>
 							<?php endif; ?>
 							<h2><?php echo h($deal['Deal']['name']); ?></h2>
-							<?php
-							$displayDate = '';
-							if ($deal['Deal']['keys'] < 2) {
-								for ($i = 0; $i < 7; $i ++) {
-									$date = strtolower(date('l', strtotime("+$i days")));
-									if ($deal['Deal'][$date] == 1) {
-										$displayDate = date('D j M', strtotime("+$i days"));
-										break;
-									}
-								} ?>
-								<br><span><?php echo $displayDate; ?></span>
-							<?php } ?>
 						</div>	
 						<div class="block-actions">
 							<p><?php echo h($deal['Deal']['description']); ?></p>
@@ -95,6 +83,40 @@
 							<?php if($deal['Deal']['keys'] > 1): ?>
 								<span class="keys-total pull-left"><?php echo $deal['Deal']['keys']; ?></span>
 							<?php 
+								else:
+								$days_of_week = array('S', 'M', 'T', 'W', 'T', 'F', 'S');
+								$days_of_week_full = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+								$day_class = '';
+								$days_of_week_len = count($days_of_week);
+								 
+								for ($i = 0; $i < $days_of_week_len; $i ++):
+									switch($i) {
+										case 0:
+											$day_class = $deal['Deal']['sunday']?'special-active-day':'special-inactive-day';
+											break;
+										case 1:
+											$day_class = $deal['Deal']['monday']?'special-active-day':'special-inactive-day';
+											break;
+										case 2:
+											$day_class = $deal['Deal']['tuesday']?'special-active-day':'special-inactive-day';
+											break;
+										case 3:
+											$day_class = $deal['Deal']['wednesday']?'special-active-day':'special-inactive-day';
+											break;
+										case 4:
+											$day_class = $deal['Deal']['thursday']?'special-active-day':'special-inactive-day';
+											break;
+										case 5:
+											$day_class = $deal['Deal']['friday']?'special-active-day':'special-inactive-day';
+											break;
+										case 6:
+											$day_class = $deal['Deal']['saturday']?'special-active-day':'special-inactive-day';
+											break;
+									}
+								?>
+									<span class="<?php echo $day_class; ?>"><?php echo $days_of_week[$i]; ?></span>
+							<?php
+								endfor;
 								endif;
 								if($deal['Deal']['keys'] > 0):
 							?>	

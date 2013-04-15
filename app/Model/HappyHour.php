@@ -135,7 +135,8 @@ class HappyHour extends AppModel {
 		$this->Behaviors->attach('Containable');
 		return $this->find('all', array(
 			'conditions' => $conditions,
-			'contain' => $contain
+			'contain' => $contain,
+			'order' => 'Spot.random_delta ASC'
 		));
 	}
 

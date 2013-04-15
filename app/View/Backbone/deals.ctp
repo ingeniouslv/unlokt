@@ -193,5 +193,5 @@
 	<!-- End Filtered Item -->
 
 <div class="row">
-	<a class="btn-tap btn-blue" href="javascript:search(<%= deal_new_limit %>, <%= feed_new_limit %>, <%= review_new_limit %>);">Show More</a>
+	<!-- <a class="btn-tap btn-blue" href="javascript:search(<%= deal_new_limit %>, <%= feed_new_limit %>, <%= review_new_limit %>);">Show More</a> -->
 </div>

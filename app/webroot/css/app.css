@@ -391,21 +391,17 @@ a i:hover{text-decoration:none;}
 .i-twitter{background-image:url('/img/twitter-icon.png');-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;}
 .i-facebook{background-image:url('/img/facebook-icon.png');}
 .i-instagram{background-image:url('/img/instagram-icon.png');}
-.icon-gift,.icon-leaf,.icon-fire,.icon-truck,.icon-desktop,.icon-music,.icon-laptop,.icon-fire,.icon-globe,.icon-food,.icon-key,.icon-time,.icon-rss,.icon-star,.icon-gift:before,.icon-leaf:before,.icon-fire:before,.icon-truck:before,.icon-desktop:before,.icon-music:before,.icon-laptop:before,.icon-fire:before,.icon-globe:before,.icon-food:before,.icon-key:before,.icon-time:before,.icon-rss:before,.icon-star:before{font-family:FontAwesome;font-weight:normal;font-style:normal;text-decoration:inherit;-webkit-font-smoothing:antialiased;}
-.icon-gift:before{content:"\f06b";}
-.icon-leaf:before{content:"\f06c";}
-.icon-fire:before{content:"\f06d";}
-.icon-truck:before{content:"\f0d1";}
-.icon-desktop:before{content:"\f108";}
-.icon-music:before{content:"\f001";}
-.icon-laptop:before{content:"\f109";}
-.icon-fire:before{content:"\f06d";}
-.icon-globe:before{content:"\f0ac";}
-.icon-food:before{content:"\f0f5";}
-.icon-key:before{content:"\f084";}
-.icon-time:before{content:"\f017";}
-.icon-rss:before{content:"\f09e";}
-.icon-star:before{content:"\f005";}
+.option-catering,.option-glutenfree,.option-vegetarianfriendly,.option-veganfriendly,.option-delivery,.option-livemusic,.option-happyhour,.option-latenight,.option-wifi,.option-outdoorseating,.option-catering:before,.option-glutenfree:before,.option-vegetarianfriendly:before,.option-veganfriendly:before,.option-delivery:before,.option-livemusic:before,.option-happyhour:before,.option-latenight:before,.option-wifi:before,.option-outdoorseating:before{font-family:FontAwesome;font-weight:normal;font-style:normal;text-decoration:inherit;-webkit-font-smoothing:antialiased;}
+.option-catering:before{content:"\f06b";}
+.option-glutenfree:before{content:"\f06c";}
+.option-vegetarianfriendly:before{content:"\f06c";}
+.option-veganfriendly:before{content:"\f06c";}
+.option-delivery:before{content:"\f0d1";}
+.option-livemusic:before{content:"\f001";}
+.option-happyhour:before{content:"\f084";}
+.option-latenight:before{content:"\f017";}
+.option-wifi:before{content:"\f09e";}
+.option-outdoorseating:before{content:"\f005";}
 h1.logo{display:inline-block;width:205px;height:72px;margin:0;padding:0;text-indent:-9999px;background:transparent url('../img/main-logo2.png') 0 0 no-repeat;background-position:0px 6px;background-size:205px 63px;*display:inline;*zoom:1;}
 .profile-image{margin-right:10px;}
 ul.tabs{margin:0;padding:0;list-style:none;*zoom:1;}ul.tabs li{display:inline-block;vertical-align:middle;*display:inline;*zoom:1;}ul.tabs li a{display:block;padding:7px 10px;margin-left:2px;font-weight:600;color:#252525;background:#1a1b20;background-color:#f6cf48;background-image:-moz-linear-gradient(top, #f7d665, #f4c31c);background-image:-ms-linear-gradient(top, #f7d665, #f4c31c);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#f7d665), to(#f4c31c));background-image:-webkit-linear-gradient(top, #f7d665, #f4c31c);background-image:-o-linear-gradient(top, #f7d665, #f4c31c);background-image:linear-gradient(top, #f7d665, #f4c31c);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7d665', endColorstr='#f4c31c', GradientType=0);-webkit-border-radius:3px 3px 0 0;-moz-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;}ul.tabs li a:hover{color:#252525;text-decoration:none;}

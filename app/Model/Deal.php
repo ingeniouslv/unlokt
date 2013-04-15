@@ -377,7 +377,7 @@ class Deal extends AppModel {
 		return $this->find('all', array(
 			'conditions' => $conditions,
 			'limit' => $this->limit,
-			'order' => 'Deal.created DESC',
+			'order' => 'Spot.random_delta ASC',
 			'contain' => $contain
 		));
 	}

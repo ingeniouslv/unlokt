@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=8, IE=10">
+	<meta name="google-site-verification" content="VSfnVUf-ocuHDWZczFq1OHVRnIW7jzsmHIQ2b_J0KQU" />
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $title_for_layout; ?> &ndash; <?php echo SITE_NAME ?> &ndash; Your Key to the City
@@ -57,6 +58,18 @@
 	</script>
 
 	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_MAPS_API_KEY; ?>&sensor=false"></script>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-39973415-1', 'unlokt.com');
+	  ga('send', 'pageview');
+
+	</script>
+
 	<!--[if lte IE 9]>
 	<link rel="stylesheet" type="text/css" href="/app/webroot/css/ie.css">
 	<![endif]-->

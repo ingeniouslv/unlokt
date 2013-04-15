@@ -171,34 +171,6 @@ com.unlokt.map.prototype.infoWindow = function(event, marker) {
 	this.infowindow.open(this.map);
 };
 
-var testMarkers = [
-	{
-		name: 'Zach',
-		lat: 36.138833,
-		lng: -115.193195
-	},
-	{
-		name: 'Joey',
-		lat: 36.128833,
-		lng: -115.171134
-	},
-	{
-		name: 'Matt',
-		lat: 36.108533,
-		lng: -115.131134
-	},
-	{
-		name: 'Far',
-		lat: 36.10,
-		lng: -115.1
-	},
-	{
-		name: 'Jane',
-		lat: 36.113533,
-		lng: -115.141231
-	}
-];
-
 // Map Styling
 var styleOriginal = [
 	{

@@ -1,4 +1,4 @@
-/* Author: Zach Jones <zach@peacefulcomputing.com,zach@voxelinc.com,jonezach@gmail.com> */
+/* Author: Zach Jones <zach@peacefulcomputing.com,zach@voxelinc.com> */
 
 var NetflixViewer = Backbone.View.extend({
 	

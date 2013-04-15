@@ -38,13 +38,6 @@ var FeedView = StdView.extend({
 
 // Here we have our data. This will come from CakePHP
 var feeds = new FeedCollection(
-	// [
-	// 	{id: 1, name: 'Zach'},
-	// 	{id: 2, name: 'John'},
-	// 	{id: 3, name: 'The Wolf'},
-	// 	{id: 4, name: 'Jones'},
-	// 	{id: 99, name: 'Jay-Z'}
-	// ]
 ).on('add', function(feed) {
 	var thefeed = feed.get('Feed');
 	console.log('Calling Backbone.sync to sync: ' + feed.get('Feed').feed);

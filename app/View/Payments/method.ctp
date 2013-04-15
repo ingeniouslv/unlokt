@@ -26,7 +26,7 @@ $this->set('title_for_layout', "Payment Method for '".$spot['Spot']['name']."'")
 					<?php else: ?>
 						<li>
 							<label>
-								Thank you for being part of UNLOKT beta.<br/> Our exclusive membership fee does not apply during the beta.<br/> We will notify you once the beta is complete. Thank you!
+								Thank you for being part of UNLOKT beta.<br/> During the beta, payments do not apply.<br/> We will notify everyone one week before the end of the beta, so you can start your exclusive membership.<br/> Thank you!
 							</label>
 						</li>
 					<?php endif; ?>

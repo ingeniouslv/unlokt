@@ -39,7 +39,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 				
 				<h2 class="form-section-label">
 					Information
-					<a href="javaScript:void();" class="help" data-role="information">(?)</a>
+					<a href="javascript:void();" class="help" data-role="information">(?)</a>
 					<span class="help-message" data-role="informationHint" data-group="hints">
 						<span class="title">Information</span>
 						<a href="javascript:void();" class="close"></a>
@@ -51,7 +51,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 
 				<h2 class="form-section-label">
 					Description
-					<a href="javaScript:void();" class="help" data-role="description">(?)</a>
+					<a href="javascript:void();" class="help" data-role="description">(?)</a>
 					<span class="help-message" data-role="descriptionHint" data-group="hints">
 						<a href="javascript:void();" class="close"></a>
 						<span class="title">Description</span>
@@ -68,9 +68,9 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 
 				<h2 class="form-section-label">
 					Details
-					<a href="javaScript:void();" class="help" data-role="details">(?)</a>
+					<a href="javascript:void();" class="help" data-role="details">(?)</a>
 					<span class="help-message" data-role="detailsHint" data-group="hints">
-						<a href="javasript:void();" class="close"></a>
+						<a href="javascript:void();" class="close"></a>
 						<span class="title">Start date</span>
 						For special and reward: start date is when you want the special to start showing up. For event, start date is when the event is.
 						<span class="title">End date</span>

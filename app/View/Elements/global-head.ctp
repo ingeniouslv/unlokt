@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=8, IE=10">
+	<meta name="google-site-verification" content="VSfnVUf-ocuHDWZczFq1OHVRnIW7jzsmHIQ2b_J0KQU" />
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $title_for_layout; ?> &ndash; <?php echo SITE_NAME ?> &ndash; Your Key to the City

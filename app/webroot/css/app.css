@@ -530,6 +530,7 @@ table .spot-name a{display:block;color:#000000;}
 .deal .page-header{padding-bottom:10px;border-bottom:1px solid #555;}.deal .page-header h1,.deal .page-header h3,.deal .page-header p{color:#ffffff;}
 .deal .photo{height:200px;margin-right:10px;width:200px;float:left;}
 .deal .redeem{overflow:hidden;margin-top:5px;}.deal .redeem .onekey .btn-red{margin:5px 10px;}
+.deal .redeem .keys{float:left;left:0;max-width:300px;position:relative;}
 .deal .redeem-activity{*zoom:1;}.deal .redeem-activity:before,.deal .redeem-activity:after{display:table;content:"";}
 .deal .redeem-activity:after{clear:both;}
 .deal .redemption{background:#fafafa;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;border:1px solid #eee;clear:both;padding:5px;position:relative;margin-top:10px;*zoom:1;}.deal .redemption:before,.deal .redemption:after{display:table;content:"";}

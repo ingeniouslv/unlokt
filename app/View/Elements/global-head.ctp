@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=8, IE=10">
 	<meta name="google-site-verification" content="VSfnVUf-ocuHDWZczFq1OHVRnIW7jzsmHIQ2b_J0KQU" />
+	<meta name="msvalidate.01" content="4420DC6B861B3AB240A7BC16C6E07907" />
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $title_for_layout; ?> &ndash; <?php echo SITE_NAME ?> &ndash; Your Key to the City

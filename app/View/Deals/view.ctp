@@ -158,7 +158,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 		<h4><i class="icon-key"></i>Redeem</h4>
 	</div>
 	<div class="modal-body">
-		<label for="redemption-code">Enter redemption code for step #<?php echo (isset($activeDeal['ActiveDeal']['completed_step']) && !$activeDeal['ActiveDeal']['is_completed'] ? $activeDeal['ActiveDeal']['completed_step'] + 1 : 1); ?>:</label>
+		<label for="redemption-code">Go into the spot and show your phone to get Unlokt. The spot will know what to do.</label>
 		<p class="message"><i></i></p>
 		<div class="control-fields">
 			<input type="text" class="twelve" id="redemption-code" placeholder="Redemption Code">

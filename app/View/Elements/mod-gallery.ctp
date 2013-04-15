@@ -33,7 +33,7 @@ $this->Html->add_script('libs/jquery.lazyload.min.js');
 
 <script>
 	
-	/* Author: Zach Jones <zach@peacefulcomputing.com,zach@voxelinc.com,jonezach@gmail.com> */
+	/* Author: Zach Jones <zach@peacefulcomputing.com,zach@voxelinc.com> */
 
 	var GalleryView = Backbone.View.extend({
 		

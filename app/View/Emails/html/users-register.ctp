@@ -50,7 +50,7 @@
 	<p>
 		Thanks for joining! We’ll see you around!
 	</p>
-	<div style="background:#000;">
+	<div style="background:#000;width: 205px;padding: 10px 10px 0px 10px;">
 		<a href="http://unlokt.com" style="border:0px;"><img src="http://unlokt.com/img/main-logo2.png" alt="http://unlokt.com" /></a>
 	</div>
 	<p>

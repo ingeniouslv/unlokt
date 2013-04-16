@@ -5,6 +5,5 @@
 </head>
 <body>
 	<?php echo $content_for_layout;?>
-	<p>Thank you, <?php echo SITE_NAME; ?></p>
 </body>
 </html>

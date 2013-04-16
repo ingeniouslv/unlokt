@@ -17,5 +17,3 @@
  */
 ?>
 <?php echo $content_for_layout;?>
-
-Thank you, <?php echo SITE_NAME; ?>

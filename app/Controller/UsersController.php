@@ -818,8 +818,8 @@ class UsersController extends AppController {
 			
 			$user = json_decode(file_get_contents($graph_url));
 			
-			// debug($user);
-			// echo("Hello " . $user->name);
+			debug($user);
+			echo("Hello " . $user->name);
 			
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);

@@ -824,6 +824,7 @@ class UsersController extends AppController {
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);
 			if (!$unlokt_user) {
+				debug('create unlokt user');
 				//if user is not in the system, create user
 				$unlokt_user = array('User'=>array(
 					'email' => $user->email,
@@ -842,6 +843,7 @@ class UsersController extends AppController {
 				@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
 				@unlink(TMP.DS.$uniqid);
 			} else if (!$unlokt_user['User']['is_facebook_only']) {
+				debug('update unlokt user');
 				$this->User->id = $unlokt_user['User']['id'];
 				$user_update = array('User' => array(
 					'id' => $unlokt_user['User']['id'],
@@ -853,9 +855,10 @@ class UsersController extends AppController {
 				));
 				$this->User->save($user_update);
 			}
-			
+			die();
 			//if user is in the system log them in
 			$this->login_user($unlokt_user['User']['id']);
+			
 			//bring them to the home page
 			$this->redirect('/');
 	   }

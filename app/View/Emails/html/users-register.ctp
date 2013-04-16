@@ -1,6 +1,6 @@
 
 <div style="max-width:8.5in;font-size:12pt;color:#000;">
-	<img src="http://unlokt.com/img/email_logo.png" />
+	<img src="https://unlokt.com/img/email_logo.png" />
 	<h3 style="font-size:16pt;">Hi, There! Welcome to UNLOKT!</h3>
 	<p>
 		UNLOKT, Your Key to the City is an exclusive platform featuring only "THE" spots to
@@ -45,7 +45,7 @@
 		Thanks for joining! We’ll see you around!
 	</p>
 	<div style="background:#000;width: 205px;padding: 10px 10px 0px 10px;">
-		<a href="http://unlokt.com" style="border:0px;"><img src="http://unlokt.com/img/main-logo2.png" alt="http://unlokt.com" /></a>
+		<a href="https://unlokt.com" style="border:0px;"><img src="https://unlokt.com/img/main-logo2.png" alt="https://unlokt.com" /></a>
 	</div>
 	<p>
 		unlokt.com

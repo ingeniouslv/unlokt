@@ -1,12 +1,6 @@
-<style>
-	span.list-title {
-		
-	}
-	
-	
-</style>
+
 <div style="max-width:8.5in;font-size:12pt;">
-	<img src="http://unlokt.com/img/email_logo.jpg" />
+	<img src="http://unlokt.com/img/email_logo.png" />
 	<h3>Hi, There! Welcome to UNLOKT!</h3>
 	<p>
 		UNLOKT, Your Key to the City is an exclusive platform featuring only "THE" spots to
@@ -57,16 +51,3 @@
 		unlokt.com
 	</p>
 </div>
-
-
-
-
-   
-
-
-
-<p>Welcome to <?php echo SITE_NAME; ?></p>
-<p>
-	Name: <?php echo $name; ?><br>
-	Email: <?php echo $email; ?>
-</p>

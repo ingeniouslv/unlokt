@@ -1,7 +1,7 @@
 
-<div style="max-width:8.5in;font-size:12pt;">
+<div style="max-width:8.5in;font-size:12pt;color:#000;">
 	<img src="http://unlokt.com/img/email_logo.png" />
-	<h3>Hi, There! Welcome to UNLOKT!</h3>
+	<h3 style="font-size:16pt;">Hi, There! Welcome to UNLOKT!</h3>
 	<p>
 		UNLOKT, Your Key to the City is an exclusive platform featuring only "THE" spots to
 		go to in your city and everything happening at those spots! This invite-only website and 
@@ -9,7 +9,7 @@
 		able to effortlessly get to know the spots the locals love, find out what is happening at
 		those spots, and always stay connected to them. FINALLY, all in one place.	
 	</p>
-	<h3>Here’s a quick crash course on the features you will want to know about.</h3>
+	<h3 style="font-size:16pt;">Here’s a quick crash course on the features you will want to know about.</h3>
 	<ul>
 		<li>
 			<span style="font-weight:bold;text-decoration:underline;">Real-Time Explore Tabs.</span> You can search in real time for what’s happening at “THE" 

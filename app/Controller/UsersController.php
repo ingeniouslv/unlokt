@@ -778,7 +778,7 @@ class UsersController extends AppController {
 	public function login_facebook() {
 		$app_id = "309486975818919";
 		$app_secret = "258dc70e86af80006ddb40407767f9fc";
-		$my_url = "http://development.unlokt.com/users/login_facebook";
+		$my_url = "http://unlokt.com/users/login_facebook";
 		
 		/*
 		 * YOUR_REDIRECT_URI?
@@ -788,8 +788,8 @@ class UsersController extends AppController {
 		   &state=YOUR_STATE_VALUE
 		 */
 		
-		debug($_SESSION);
-		debug($_REQUEST);
+		// debug($_SESSION);
+		// debug($_REQUEST);
 		$code = $_REQUEST["code"];
 	
 		if(empty($code)) {

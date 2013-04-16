@@ -25,9 +25,9 @@ class AppController extends Controller {
 			@mkdir(APP.'tmp/tests', 0777, true);
 		}
 		
-		if($this->request->params['action'] == 'register' && $this->request->params['controller'] == 'users') {
-			$this->redirect('/');
-		}
+		// if($this->request->params['action'] == 'register' && $this->request->params['controller'] == 'users') {
+			// $this->redirect('/');
+		// }
 		
 		//Configure AuthComponent. I have no idea what this is doing ... :)
 		$this->Auth->authorize = array(

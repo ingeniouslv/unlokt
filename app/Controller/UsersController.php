@@ -312,6 +312,7 @@ class UsersController extends AppController {
 						'name' => "{$this->request->data['User']['first_name']} {$this->request->data['User']['last_name']}",
 						'email' => $this->request->data['User']['email']
 					))
+					->emailFormat('both')
 					->send();
 				if ($referer) {
 					$this->Session->delete('referer');

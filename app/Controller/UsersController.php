@@ -824,6 +824,7 @@ class UsersController extends AppController {
 			echo($user->email);
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);
+			debug($unlokt_user);
 			if (!$unlokt_user) {
 				debug('create unlokt user');
 				//if user is not in the system, create user

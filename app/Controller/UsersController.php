@@ -820,6 +820,7 @@ class UsersController extends AppController {
 			
 			debug($user);
 			echo("Hello " . $user->name);
+			echo($user->email);
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);
 			if (!$unlokt_user) {

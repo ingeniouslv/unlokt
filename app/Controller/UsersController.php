@@ -857,6 +857,7 @@ class UsersController extends AppController {
 				));
 				$this->User->save($user_update);
 			}
+			die();
 			//if user is in the system log them in
 			$this->login_user($unlokt_user['User']['id']);
 			

@@ -819,14 +819,14 @@ class UsersController extends AppController {
 			
 			$user = json_decode(file_get_contents($graph_url));
 			
-			debug($user);
-			echo("Hello " . $user->name);
-			echo($user->email);
+			// debug($user);
+			// echo("Hello " . $user->name);
+			// echo($user->email);
 			//look up user
 			$unlokt_user = $this->User->findByEmail($user->email);
-			debug($unlokt_user);
+			//debug($unlokt_user);
 			if (!$unlokt_user) {
-				debug('create unlokt user');
+				//debug('create unlokt user');
 				//if user is not in the system, create user
 				$unlokt_user = array('User'=>array(
 					'email' => $user->email,
@@ -845,7 +845,7 @@ class UsersController extends AppController {
 				@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
 				@unlink(TMP.DS.$uniqid);
 			} else if (!$unlokt_user['User']['is_facebook_only']) {
-				debug('update unlokt user');
+				//debug('update unlokt user');
 				$this->User->id = $unlokt_user['User']['id'];
 				$user_update = array('User' => array(
 					'id' => $unlokt_user['User']['id'],

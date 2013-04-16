@@ -776,7 +776,6 @@ class UsersController extends AppController {
 	}
 	
 	public function login_facebook() {
-		Configure::write('debug', '2');
 		$app_id = "309486975818919";
 		$app_secret = "258dc70e86af80006ddb40407767f9fc";
 		$my_url = "https://unlokt.com/users/login_facebook";
@@ -802,6 +801,7 @@ class UsersController extends AppController {
 				. $_SESSION['state']. "&scope=email";
 			
 			header("Location: $dialog_url");
+			return;
 	   }
 	   
 	   if($_SESSION['state']) {

@@ -74,8 +74,8 @@
 			<a href="<?php echo $this->webroot; ?>">
 				<h1 class="logo">UNLOKT &mdash; Your Key to the City</h1>
 			</a>
+			<a class="pull-left" href="https://itunes.apple.com/us/app/unlokt/id622824623?mt=8&uo=4" target="itunes_store"style="display:inline-block;overflow:hidden;position: absolute;right: 340px;top: 48px;background:url(http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.svg);}}"></a>
 			<div class="location dropdown dropdown-toggle" href="#" data-toggle="dropdown">
-				<a class="pull-left" href="https://itunes.apple.com/us/app/unlokt/id622824623?mt=8&uo=4" target="itunes_store"style="display:inline-block;overflow:hidden;position: absolute;left: -160px;top: 15px;background:url(http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.svg);}}"></a>
 				<?php if(!empty($user) && isset($user['Location']['name'])): ?>
 					<h2><i class="icon-direction"></i><?php echo $user['Location']['name']; ?></h2>
 				<?php else: ?>

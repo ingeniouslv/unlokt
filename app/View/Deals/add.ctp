@@ -8,7 +8,7 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 		<div class="row">
 			<div class="six columns tracked-content">
 				<!-- Create iframe for POSTing a photo upload in the background -->
-				<iframe id="upload-preview-image-iframe" class="hide"></iframe>
+				<iframe id="upload-preview-image-iframe" name="upload-preview-image-iframe" class="hide"></iframe>
 				<h2 class="form-section-label">Select a Type</h2>
 				<?php
 					echo $this->Form->input('type', array('label' => false, 'div' => 'control-fields', 'selected' => 2, 'options' => array('Event', 'Reward', 'Special'), 'id' => 'special-type')) 

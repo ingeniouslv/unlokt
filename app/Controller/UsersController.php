@@ -176,6 +176,12 @@ class UsersController extends AppController {
 	}
 	
 	public function login() {
+		//set up session redirect to work on create user
+		$redirect = $this->Session->read('referer');
+		if(empty($redirect)) {
+			$this->Session->write('referer', $this->Auth->redirect());
+		}
+		
 		$this->layout = 'splash';
 		$this->require_ssl = true;
 		if ($this->request->is('post')) {
@@ -185,8 +191,11 @@ class UsersController extends AppController {
 				$this->Session->setFlash('This account must use facebook to login', 'alert-warning');
 			} else if ($this->Auth->login()) {
 				$redirect = $this->Auth->redirect();
+				//clear the referer url in the session because it isn't going to get used.
+				$this->Session->delete('referer');
 				if($redirect == '/') {
 					$managers = $this->User->Manager->findAllByUserId($this->Auth->user('id'));
+					
 					if(count($managers) == 1) {
 						//if the user is the manager of only one spot, bring them to that spot page after logging in.
 						$this->redirect(array('controller' => 'spots', 'action' => 'view', $managers[0]['Manager']['spot_id']));

@@ -343,6 +343,7 @@ class Deal extends AppModel {
 			'Deal.spot_id' => $ids,
 			'Deal.is_active' => 1,
 			'Deal.is_public' => 1,
+			'Spot.is_premium' => 1,
 			'start_date <=' => $current_end_date, 
 			'end_date >=' => $current_start_date,
 			// 'end_time >= ' => $current_start_time,

@@ -129,7 +129,8 @@ class HappyHour extends AppModel {
 			'HappyHour.day_of_week' => $current_day_of_week,
 			'HappyHour.start <=' => $current_end_time,
 			'HappyHour.end >' => $current_start_time,
-			'HappyHour.parent_happy_hour_id NOT' => null		
+			'HappyHour.parent_happy_hour_id NOT' => null,
+			'Spot.is_premium' => 1		
 		);
 		
 		$this->Behaviors->attach('Containable');

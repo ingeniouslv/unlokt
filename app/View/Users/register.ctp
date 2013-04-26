@@ -47,14 +47,10 @@ $this->set('title_for_layout', 'Register for Free Account');
 			
 			<div class="row control-fields">
 				<div class="two columns hidden">
-					<?php echo $this->Form->label('accept_terms', 'I accept the '.$this->Html->link('Terms of Service', array('controller' => 'pages', 'action' => 'terms-of-service'), array('target' => '_blank'))); ?>
+					<?php echo $this->Form->label('accept_terms', 'By clicking register, I accept the '.$this->Html->link('Terms of Service', array('controller' => 'pages', 'action' => 'terms-of-service'), array('target' => '_blank'))); ?>
 				</div>
 				<div class="seven columns terms-conditions">
-					<?php echo $this->Form->input('accept_terms', array(
-						'type' => 'checkbox',
-						'label' => false
-					)); ?>
-					<?php echo $this->Form->label('accept_terms', 'I accept the '.$this->Html->link('Terms of Service', array('controller' => 'pages', 'action' => 'terms-of-service'), array('target' => '_blank'))); ?>
+					<?php echo $this->Form->label('accept_terms', 'By clicking register, I accept the '.$this->Html->link('Terms of Service', array('controller' => 'pages', 'action' => 'terms-of-service'), array('target' => '_blank'))); ?>
 				</div>
 			</div>
 			

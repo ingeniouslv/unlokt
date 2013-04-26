@@ -305,10 +305,6 @@ class UsersController extends AppController {
 				$this->User->invalidate('email2', 'Email must match');
 			}
 			
-			if(!$this->request->data['User']['accept_terms']) {
-				$this->User->invalidate('accept_terms', 'Terms of service must be accepted.');
-			}
-			
 			if ($this->User->validates()) {
 				// Good
 				$this->User->save();
@@ -540,9 +536,6 @@ class UsersController extends AppController {
 			$user = $this->User->findByEmail($this->request->data['User']['email']);
 			if (!empty($user)) {
 				ApiComponent::error(ApiErrors::$EMAIL_IN_USE);
-			}
-			if(!array_key_exists('accept_terms', $this->request->data['User'])) {
-				ApiComponent::error(ApiErrors::$TERMS_NOT_ACCEPTED);
 			}
 			
 			$this->User->set($this->request->data);

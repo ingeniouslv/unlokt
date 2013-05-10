@@ -1,4 +1,8 @@
 <?php
+
+date_default_timezone_set('America/Los_Angeles');
+
+
 putenv('PATH='.getenv('PATH').':/opt/local/bin');
 
 Cache::config('default', array('engine' => 'File'));

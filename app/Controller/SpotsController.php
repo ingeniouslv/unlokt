@@ -315,12 +315,12 @@ class SpotsController extends AppController {
 		
 		
 		$return = $this->_get_results($spot_ids);
+ 
 		
 		$spots_i_follow = $this->Spot->SpotFollower->getSpotListByUser();
 		$return['spot_ids_i_follow'] = array_keys($spots_i_follow);
 
-		//print_r($return);
-		//die();
+
 		die(json_encode($return));
 	}
 	
@@ -367,6 +367,8 @@ class SpotsController extends AppController {
 				$this->Spot->Deal->events_and_specials_only = true;
 				$start_time = date('H:i', time());
 				$end_time = (time() >= strtotime('today 9:00pm'))?'23:59':date('H:i', strtotime('+3 hours'));
+ 
+				
 				$this->Spot->HappyHour->current_start_time = $start_time;
 				$this->Spot->HappyHour->current_end_time = $end_time;
 				$this->Spot->Deal->current_start_time = $start_time;

@@ -73,9 +73,13 @@ $config = array(
 
 		// Generate thumbnail Imagick convert command path
 		'command' => array(
-				'create_thumbnail' => 'convert %orig% -thumbnail "%width%x%height%^" -strip -gravity center -crop %width%x%height%+0+0 -quality 95 +repage %new%',
+				'create_thumbnail' => 'convert %orig% -thumbnail "%width%x%height%^" -gravity center -crop %width%x%height%+0+0 -quality 95 %new%',
 			),
 	);
+
+
+
+ 
 
 
 // ***************************************************************
@@ -92,10 +96,16 @@ $hash = sprintf("%u", crc32('type='.$config['param']['type']
 				.'&image='.$config['param']['image']
 				.'&width='.$config['param']['width']
 				.'&height='.$config['param']['height']));
+ 
 
 // Original image path
 $index = str_pad(substr($config['param']['id'], -3), 3, '0', STR_PAD_LEFT); // This turns '1729' into '729'
+//echo $index;
+
+
 $image_original = $index.DS.$config['param']['id'].DS.$config['param']['image'];
+
+
 
 switch ($config['param']['type'])
 {
@@ -109,10 +119,14 @@ switch ($config['param']['type'])
 		break;
 }
 
+ 
+ 
 // Check for existing original image.
 // If it's not found - provide a source image as the "this image is missing"
 if (!is_file($image_original))
 {
+ 
+	
 	// Make a new hash for a missing image
 	$hash = sprintf("%u", crc32('type='.$config['param']['type']
 				.'&width='.$config['param']['width']
@@ -123,13 +137,17 @@ if (!is_file($image_original))
 		$type = 'default';
 	}
 	$image_original = $config['missing'][$type];
-}
-
+}  
+ 
 // Create cache folder
 $cache_folder = $config['path']['cache'].DS.$config['param']['type'].DS.$index.DS.$config['param']['id'];
 
+ 
+ 
+
 if ( ! file_exists($cache_folder))
 {
+ 
 	@mkdir($cache_folder, 0777, true);
 }
 
@@ -139,7 +157,12 @@ $cache_file = $cache_folder.DS.$hash;
 // Generate thumbnail if cache file does not exist
 if ( ! file_exists($cache_file))
 {
+	
+
+	
 	$cmd = $config['command']['create_thumbnail'];
+	
+	
 	$replace = array(
 			'%orig%'			=> escapeshellarg($image_original),
 			'%new%'				=> escapeshellarg($cache_file),
@@ -147,6 +170,7 @@ if ( ! file_exists($cache_file))
 			'%height%'			=> $config['param']['height'],
 		);
 	$cmd = strtr($cmd, $replace);
+ 
 	shell_exec($cmd);
 
 	// Check for new cache file

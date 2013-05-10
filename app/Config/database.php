@@ -64,8 +64,8 @@ if (IDENTIFIER == 'production') {
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
 			'host' => 'localhost',
-			'login' => 'unlokt',
-			'password' => 'unnnloktp@ssw0rd',
+			'login' => 'root',
+			'password' => 'Newface2013.',
 			'database' => 'unlokt',
 			'prefix' => '',
 			'encoding' => 'utf8'
@@ -78,10 +78,10 @@ if (IDENTIFIER == 'production') {
 		public $default = array(
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
-			'host' => 'development.unlokt.com',
-			'login' => 'unlokt',
-			'password' => 'unnnloktp@ssw0rd',
-			'database' => 'unlokt',
+			'host' => 'localhost',
+			'login' => 'root',
+			'password' => 'Newface2013.',
+			'database' => 'unlokt-dev',
 			'prefix' => '',
 			'encoding' => 'utf8'
 		);

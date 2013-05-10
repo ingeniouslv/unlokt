@@ -1,8 +1,14 @@
 <?php
 @include_once('identifier.php');
+
+
+
+
 if (!defined('IDENTIFIER')) {
 	define('IDENTIFIER', 'development');
 }
+
+ 
 // Include our file of constants.
 require_once('constants.php');
 

@@ -145,8 +145,11 @@ class SpotsController extends AppController {
 
 
 			if ($this->Spot->save()) {
+				
 				$file = $_FILES['file'];
+
 				if (!$file['error'] && $file['size'] && substr($file['type'], 0, 6) == 'image/') {
+					
 					$filename = $spot['Spot']['id'] . '_' . time() . '_' . rand(0,1000000);
 					$filename = md5($filename).".jpg";
 					$this->Spot->saveField('image_name', $filename);

@@ -80,12 +80,19 @@ function delete_cache($type, $id) {
 // This function should be used any time a user uploads a photo;
 // This function helps keep everything consistent by having stripped JPGs as the source images for everything.
 function convert($source, $destination) {
+ 	
 	$destination_dir = pathinfo($destination, PATHINFO_DIRNAME);
+ 
 	if (!is_dir($destination_dir)) {
 		@mkdir($destination_dir, 0777, true);
 	}
-	return shell_exec('convert '.escapeshellarg($source).' -profile '.escapeshellarg(WWW_ROOT.'files/sRGB_v4_ICC_preference.icc').' -strip -quality 95 '.escapeshellarg($destination));
-}
+	
+	$convert = 'convert '.escapeshellarg($source).' -profile '.escapeshellarg(WWW_ROOT.'files/sRGB_v4_ICC_preference.icc').' -quality 95 '.escapeshellarg($destination);
+ 
+ 
+	return shell_exec($convert);
+ 
+ }
 
 function formatBytes($size, $precision = 2)
 {

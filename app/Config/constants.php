@@ -16,7 +16,7 @@ if (IDENTIFIER == 'production') {
 	define('PAYPAL_SEC_URL', 'https://www.paypal.com/cgi‑bin/webscr?cmd=_express-checkout&token=');
 } else {
 	// Constants for development environment
-	define('CONFIG_DEBUG_LEVEL', 1);
+	define('CONFIG_DEBUG_LEVEL', 2 );
 	define('STATIC_DOMAIN', '');
 	
 	// PayPal configuration

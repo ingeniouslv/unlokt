@@ -286,6 +286,10 @@ class UsersController extends AppController {
 	
 	// Public user can register for Unlokt here.
 	public function register() {
+		
+		
+	
+		
 		App::uses('CakeEmail', 'Network/Email');
 		$referer = $this->Session->read('referer');
 		
@@ -801,8 +805,10 @@ class UsersController extends AppController {
 				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
 				. "&client_secret=" . $app_secret . "&code=" . $code
 				. $_SESSION['state']. "&scope=email";
-			
+	  
 			header("Location: $dialog_url");
+			exit();
+			#echo "REDIRECT PROBLEM";
 			return;
 	   }
 	   

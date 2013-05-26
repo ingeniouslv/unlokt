@@ -360,6 +360,62 @@ class UsersController extends AppController {
 		$this->set(compact('user', 'feeds', 'spots', 'deals'));
 	}
 	
+	
+	
+	
+	/**
+	 * Call this method to create a relationship between the current logged in user and the given spot.
+	 * If a duplicate relationship already exists, nothing will be done.
+	 */
+	public function endorse_spot($spot_id = null, $mobile = null) {
+		
+		$this->autorender = false;
+		$this->User->SpotFollower->Spot->id = $spot_id;
+		
+		if(!$this->User->SpotFollower->Spot->exists()) {
+			throw new NotFoundException(__('Invalid spot'));
+		}
+		
+		$user_id = $this->Auth->user('id');
+	 
+		
+		$this->loadModel('Like');
+		$type_id = $this->Like->getTypeId("Spot") ;
+		$has_endorsed = $this->Like->findByUserIdAndTargetIdAndTypeId(
+			$user_id, $spot_id, $type_id);
+		
+		if(!$has_endorsed) {
+			
+			$spot_endorsed_data = array( 
+				'Like' => array(
+					'target_id' => $spot_id,
+					'user_id' => $user_id,
+					'type_id' => $type_id
+				)
+			);
+			
+			$saved = $this->Like->add($spot_endorsed_data);
+			
+			if ($mobile){
+				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
+				die();
+			} elseif($this->request->is('ajax')) {
+				die($saved?'GOOD':'The spot could not be endorsed. Please, try again.');
+			} else {
+				if($saved) {
+					$this->Session->setFlash(__('You have endorsed the spot.'), 'alert-success');
+				} else {
+					$this->Session->setFlash(__('The spot could not be endorsed. Please, try again.'), 'alert-warning');
+				}
+			}
+			
+		}
+		
+		$this->redirect($this->request->referer());
+		
+	}
+	
+	
 	/**
 	 * Call this method to create a relationship between the current logged in user and the given spot.
 	 * If a duplicate relationship already exists, nothing will be done.
@@ -372,6 +428,8 @@ class UsersController extends AppController {
 		}
 		
 		$user_id = $this->Auth->user('id');
+		
+		//Grab list 
 		$spot_followers = $this->User->SpotFollower->findByUserIdAndSpotId($user_id, $spot_id);
 		
 		if(!$spot_followers) {

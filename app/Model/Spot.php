@@ -633,4 +633,35 @@ class Spot extends AppModel {
 		}
 		return $parent_spot_list;
 	}
+	
+	
+	public function getEndorseCount( $spot_id ) {
+		
+		$ogRecursive = $this->recursive;
+		$this->recursive = -1;
+		$spot = $this->read( null ,$spot_id);
+		$this->recursive = $ogRecursive;
+		
+		return $spot;
+		
+	}
+	
+	//should be designed to take negative numbers
+	public function updateEndorseCount( $spot_id, $subtract = false ) {
+		
+		$currentCount = Spot::getEndorseCount( $spot_id );
+		
+		if (!$currentCount) $currentCount = 0;
+		
+		if (!$subtract)
+			$newCount = $currentCount + 1;
+		else 
+			$newCount = $currentCount - 1;
+			
+		if (!$newCount) $newCount = 0;	
+		
+		$this->id = $spot_id;
+		return $this->saveField('endorse_count', $newCount );
+		
+	}
 }

@@ -341,6 +341,38 @@ $this->Html->add_script(array(
 			}
 		});
 	});
+
+
+	//////////////////////////////////////////////////
+	
+	$('body').on('click', '.endorse', function() {
+		var spot_id = $(this).data('spot-id');
+		var $that = $(this);
+		$.get('/users/endorse_spot/' + spot_id, function(response) {
+			if (response == 'GOOD') {
+				$that.removeClass('follow btn-yellow').addClass('following btn-blue').html('Unfollow Spot');
+				spot_ids_i_follow.push(spot_id);
+			} else {
+			}
+		});
+	});
+	
+	//////////////////////////////////////////////////
+	
+	$('body').on('click', '.endorsed', function() {
+		var spot_id = $(this).data('spot-id');
+		var $that = $(this);
+		$.get('/users/unendorse_spot/' + spot_id, function(response) {
+			if (response == 'GOOD') {
+				$that.removeClass('following btn-blue').addClass('follow btn-yellow').html('Follow Spot');
+				var spot_id_index = _.indexOf(spot_ids_i_follow, spot_id);
+				spot_ids_i_follow.splice(spot_id_index,1);
+				search();
+			} else {
+			}
+		});
+	});
+
 	
 	//////////////////////////////////////////////////
 	

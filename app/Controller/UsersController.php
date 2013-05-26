@@ -183,7 +183,7 @@ class UsersController extends AppController {
 		}
 		
 		$this->layout = 'splash';
-		$this->require_ssl = true;
+		//$this->require_ssl = false;
 		if ($this->request->is('post')) {
 			$user = $this->User->findByEmail($this->data['User']['email']);
 			$is_facebook_only = ($user && !empty($user['User']['is_facebook_only']))?true:false;

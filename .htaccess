@@ -10,8 +10,7 @@ RewriteRule ^(.*)$ http://unlokt.com/$1 [QSA,R=301,L]
 
 #secure redirect for https://www
 RewriteCond %{HTTPS} on [NC]
-RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
-RewriteRule ^(.*)$ https://unlokt.com/$1 [QSA,R=301,L]
+RewriteRule ^(.*)$ http://unlokt.com/$1 [QSA,R=301,L]
 
 RewriteRule ^$ app/webroot/ [L]
 RewriteRule (.*) app/webroot/$1 [L]

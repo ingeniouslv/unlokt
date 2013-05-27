@@ -16,7 +16,7 @@
 							<?php } ?>
 						</a>	
 					<?php elseif ($deal['Deal']['keys'] == 0): ?>
-						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
+						<a href="<?php echo $this->webroot; ?>special/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
 							<?php
 								$createDate = strtotime($deal['Deal']['created']);
@@ -27,7 +27,7 @@
 						</a>
 						
 					<?php elseif ($deal['Deal']['keys'] == 1): ?>
-						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
+						<a href="<?php echo $this->webroot; ?>special/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
 							<?php
 								$createDate = strtotime($deal['Deal']['created']);
@@ -38,7 +38,7 @@
 						</a>
 						
 					<?php else: ?>
-						<a href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">
+						<a href="<?php echo $this->webroot; ?>special/view/<?php echo $deal['Deal']['id']; ?>">
 							<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 270); ?>">
 							<?php
 								$createDate = strtotime($deal['Deal']['created']);
@@ -120,9 +120,9 @@
 								endif;
 								if($deal['Deal']['keys'] > 0):
 							?>	
-								<a class="btn btn-yellow pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Special</a>
+								<a class="btn btn-yellow pull-right" href="<?php echo $this->webroot; ?>special/view/<?php echo $deal['Deal']['id']; ?>">View Special</a>
 							<?php else: ?>
-								<a class="btn btn-yellow pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
+								<a class="btn btn-yellow pull-right" href="<?php echo $this->webroot; ?>special/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
 							<?php endif; ?>
 						</div>
 					</div>

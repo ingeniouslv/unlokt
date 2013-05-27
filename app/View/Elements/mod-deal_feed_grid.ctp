@@ -5,7 +5,7 @@
 		
 		<div class="block block-darker grid grid-2 media-grid media-grid-selectable">
 
-			<a class="selector" href="<?php echo $this->webroot; ?>deals/view/1"></a>
+			<a class="selector" href="<?php echo $this->webroot; ?>special/view/1"></a>
 
 			<div class="media-thumbnail">
 				<div class="media-header featured-item">
@@ -27,7 +27,7 @@
 
 		<div class="block block-darker grid grid-2 media-grid media-grid-selectable">
 
-			<a class="selector" href="<?php echo $this->webroot; ?>deals/view/1"></a>
+			<a class="selector" href="<?php echo $this->webroot; ?>special/view/1"></a>
 
 			<div class="media-thumbnail">
 				<div class="media-header">
@@ -49,7 +49,7 @@
 
 		<div class="block block-darker grid grid-2 media-grid media-grid-selectable">
 
-			<a class="selector" href="<?php echo $this->webroot; ?>deals/view/1"></a>
+			<a class="selector" href="<?php echo $this->webroot; ?>special/view/1"></a>
 
 			<div class="media-thumbnail">
 				<div class="media-header">

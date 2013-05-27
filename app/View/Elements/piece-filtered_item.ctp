@@ -40,9 +40,9 @@
 			<span class="keys-total"><?php echo $deal['Deal']['keys']; ?></span>
 		<?php endif; ?>
 		<?php if($deal['Deal']['keys'] > 0) : ?>
-			<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Spot Special</a>
+			<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>special/view/<?php echo $deal['Deal']['id']; ?>">View Spot Special</a>
 		<?php else: ?>
-			<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>deals/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
+			<a class="btn btn-red pull-right" href="<?php echo $this->webroot; ?>special/view/<?php echo $deal['Deal']['id']; ?>">View Event</a>
 		<?php endif; ?>
 	</div>
 <?php endif; ?>

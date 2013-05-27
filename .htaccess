@@ -12,5 +12,8 @@ RewriteRule ^(.*)$ http://unlokt.com/$1 [QSA,R=301,L]
 RewriteCond %{HTTPS} on [NC]
 RewriteRule ^(.*)$ http://unlokt.com/$1 [QSA,R=301,L]
 
+#get rid of deals
+RewriteRule ^deals/view/(.*)$ http://unlokt.com/special/view/$1 [QSA,R=301,L,NC]
+
 RewriteRule ^$ app/webroot/ [L]
 RewriteRule (.*) app/webroot/$1 [L]

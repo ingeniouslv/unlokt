@@ -183,7 +183,7 @@ class UsersController extends AppController {
 		}
 		
 		$this->layout = 'splash';
-		$this->require_ssl = true;
+		//$this->require_ssl = false;
 		if ($this->request->is('post')) {
 			$user = $this->User->findByEmail($this->data['User']['email']);
 			$is_facebook_only = ($user && !empty($user['User']['is_facebook_only']))?true:false;
@@ -842,7 +842,7 @@ class UsersController extends AppController {
 	public function login_facebook() {
 		$app_id = "309486975818919";
 		$app_secret = "258dc70e86af80006ddb40407767f9fc";
-		$my_url = "https://unlokt.com/users/login_facebook";
+		$my_url = "http://unlokt.com/users/login_facebook";
 		
 		/*
 		 * YOUR_REDIRECT_URI?

@@ -3,14 +3,17 @@ RewriteEngine on
 # If we have a request for our image script
 RewriteRule ^gen/(.+)/(\d+)/(\d+)x(\d+)/?(.*)$ gen/index.php?type=$1&id=$2&width=$3&height=$4&image=$5 [L]
 
-# Redirect www.unlokt.com to unlokt.com
-RewriteCond %{HTTPS} off
+#Redirect www.unlokt.com to unlokt.com
+RewriteCond %{HTTPS} off [NC]
 RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
-RewriteRule ^(.*)$ http://unlokt.com/$1 [R=301,L]
+RewriteRule ^(.*)$ http://unlokt.com/$1 [QSA,R=301,L]
 
-RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} ^www\.unlokt\.com$ [NC]
-RewriteRule ^(.*)$ https://unlokt.com/$1 [R=301,L]
+#secure redirect for https://www
+RewriteCond %{HTTPS} on [NC]
+RewriteRule ^(.*)$ http://unlokt.com/$1 [QSA,R=301,L]
+
+#get rid of deals
+RewriteRule ^deals/view/(.*)$ http://unlokt.com/special/view/$1 [QSA,R=301,L,NC]
 
 RewriteRule ^$ app/webroot/ [L]
 RewriteRule (.*) app/webroot/$1 [L]

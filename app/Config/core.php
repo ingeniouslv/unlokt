@@ -154,9 +154,10 @@ require_once('constants.php');
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php'
+		'defaults' => 'php',
+		'checkAgent' => false
 	));
-
+	 
 /**
  * The level of CakePHP security.
  */

@@ -25,7 +25,7 @@
 						<% } %>
 					</a>
 				<% } else if (deal.Deal.keys == 0) { %>
-					<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
+					<a href="<%= unlokt.settings.webroot %>special/view/<%= deal.Deal.id %>">
 						<img src="<% print(unlokt.helpers.gen_path('deal', deal.Deal.id, 223, 223, deal.Deal.image_name)); %>">
 						<% 
 							var createDate = new XDate(deal.Deal.created);
@@ -35,7 +35,7 @@
 						<% } %>
 					</a>
 				<% } else if (deal.Deal.keys == 1) { %>
-					<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
+					<a href="<%= unlokt.settings.webroot %>special/view/<%= deal.Deal.id %>">
 						<img src="<% print(unlokt.helpers.gen_path('deal', deal.Deal.id, 223, 223, deal.Deal.image_name)); %>">
 						<% 
 							var createDate = new XDate(deal.Deal.created);
@@ -45,7 +45,7 @@
 						<% } %>
 					</a>
 				<% } else { %>
-					<a href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">
+					<a href="<%= unlokt.settings.webroot %>special/view/<%= deal.Deal.id %>">
 						<img src="<% print(unlokt.helpers.gen_path('deal', deal.Deal.id, 223, 223, deal.Deal.image_name)); %>">
 						<% 
 							var createDate = new XDate(deal.Deal.created);
@@ -164,9 +164,9 @@
 								%>
 							<% } %>
 							<% if (deal.Deal.keys > 0) { %>
-								<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Special</a>
+								<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>special/view/<%= deal.Deal.id %>">View Special</a>
 							<% } else { %>
-								<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Event</a>
+								<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>special/view/<%= deal.Deal.id %>">View Event</a>
 							<% } %>
 						</div>
 					</div>
@@ -175,9 +175,9 @@
 							<span class="keys-total"><%= deal.Deal.keys %></span>
 						<% } %>
 						<% if(deal.Deal.keys > 0) { %>
-							<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Special</a>
+							<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>special/view/<%= deal.Deal.id %>">View Special</a>
 						<% } else { %>
-							<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>deals/view/<%= deal.Deal.id %>">View Event</a>
+							<a class="btn btn-yellow pull-right" href="<%= unlokt.settings.webroot %>special/view/<%= deal.Deal.id %>">View Event</a>
 						<% } %>
 					</div> -->
 				<% } %>

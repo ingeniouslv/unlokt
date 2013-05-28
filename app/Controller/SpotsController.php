@@ -55,6 +55,9 @@ class SpotsController extends AppController {
  */
  
 	public function view($id = null) {
+		
+		
+		
 		$this->Spot->cache = true;
 		$this->Spot->id = $id;
 		$extra_contain = array(
@@ -89,6 +92,17 @@ class SpotsController extends AppController {
 		$attachments = $this->Spot->Attachment->getAttachmentBySpotIds($id);
 		$happy_hour_data = $this->Spot->HappyHour->getHappyHourParents(null, array('ChildHappyHour'));
 		
+		//endorse check
+		$endorsed = false ;
+			 
+		$this->loadModel('Like');
+		$has_endorsed = $this->Like->findByUserIdAndTargetIdAndTypeId(
+			$this->Auth->user('id') , $id, 1 ); //type 1 is spot
+			
+		if ($has_endorsed)
+			$endorsed = true;
+	
+		
 		// Cause the `Reviews` to have `rating_size` of 'inline'
 		foreach ($reviews as $key => $review) {
 			$reviews[$key]['Review']['rating_size'] = 'inline';
@@ -102,7 +116,8 @@ class SpotsController extends AppController {
 		// Parse the Spotlight text
 		// $spot['Spot']['spotlight_2_parsed'] = $this->Spot->parseSpotlightText($spot['Spot']['spotlight_2']);
 		
-		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments', 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot', 'other_spots'));
+		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments','endorsed',
+			 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot', 'other_spots'));
 	}
 
 /**

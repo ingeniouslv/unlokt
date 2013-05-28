@@ -395,6 +395,7 @@ class UsersController extends AppController {
 			);
 			
 			$saved = $this->Like->add($spot_endorsed_data);
+		 
 			
 			if ($mobile){
 				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
@@ -479,6 +480,50 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('You are no longer following the spot.'), 'alert-success');
 			} else {
 				$this->Session->setFlash(__('The spot could not be unfollowed. Please, try again.'), 'alert-warning');
+			}
+		}
+		
+		$this->redirect($this->request->referer());
+	}
+	
+	
+	/**
+	 * Call this action to remove the relationship between a user and a model.
+	 */
+	public function unendorse_spot($spot_id = null, $mobile = null) {
+		
+		$this->autorender = false;
+		
+		$this->User->SpotFollower->Spot->id = $spot_id;
+		if(!$this->User->SpotFollower->Spot->exists()) {
+			throw new NotFoundException(__('Invalid spot'));
+		}
+
+	  
+	
+		$this->loadModel('Like');
+		
+		$data = array( 
+				'Like' => array(
+					'target_id' => $spot_id,
+					'user_id' => $this->Auth->user('id'),
+					'type_id' => 1 // SPOT
+				)
+			);
+			
+			
+		$deleted = $this->Like->remove( $data );	
+ 
+		if ($mobile){
+			ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
+			die();
+		} elseif($this->request->is('ajax')) {
+			die($deleted?'GOOD':'The spot could not be unendorsed. Please, try again.');
+		} else {
+			if($deleted) {
+				$this->Session->setFlash(__('You are no longer endorsing the spot.'), 'alert-success');
+			} else {
+				$this->Session->setFlash(__('The spot could not be unendorsed. Please, try again.'), 'alert-warning');
 			}
 		}
 		

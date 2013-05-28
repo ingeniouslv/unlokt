@@ -642,14 +642,21 @@ class Spot extends AppModel {
 		$spot = $this->read( null ,$spot_id);
 		$this->recursive = $ogRecursive;
 		
-		return $spot;
+		return $spot['Spot']['endorse_count'];
 		
 	}
 	
 	//should be designed to take negative numbers
 	public function updateEndorseCount( $spot_id, $subtract = false ) {
 		
-		$currentCount = Spot::getEndorseCount( $spot_id );
+		debug($spot_id);
+		
+		$currentCount = (int)Spot::getEndorseCount( $spot_id );
+		
+		
+		debug($currentCount);
+		
+		debug($subtract);
 		
 		if (!$currentCount) $currentCount = 0;
 		
@@ -659,6 +666,9 @@ class Spot extends AppModel {
 			$newCount = $currentCount - 1;
 			
 		if (!$newCount) $newCount = 0;	
+		
+		debug($newCount);
+		
 		
 		$this->id = $spot_id;
 		return $this->saveField('endorse_count', $newCount );

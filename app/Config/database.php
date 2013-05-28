@@ -81,7 +81,7 @@ if (IDENTIFIER == 'production') {
 			'host' => 'localhost',
 			'login' => 'root',
 			'password' => 'Newface2013.',
-			'database' => 'unlokt',
+			'database' => 'unlokt-dev',
 			'prefix' => '',
 			'encoding' => 'utf8'
 		);

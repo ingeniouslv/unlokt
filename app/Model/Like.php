@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+//update the spot endorse count
+			
 /**
  * Like Model
  * 
@@ -18,6 +20,8 @@ App::uses('AppModel', 'Model');
  */
 
 class Like extends AppModel {
+	
+	
 
 /**
  * Validation rules
@@ -88,7 +92,50 @@ class Like extends AppModel {
 		}
 		
 		
-	}	
+	}
+	
+ 
+	public function remove( $data ) {
+		
+ 		 debug($data);
+ 	 
+		$conditions = array(
+		'Like.type_id' => $data['Like']['type_id'], //SPOT
+		'Like.target_id' => $data['Like']['target_id'], 
+		'Like.user_id' => $data['Like']['user_id']   );
+			
+		$deleted = $this->deleteAll($conditions);
+		
+		debug($deleted);
+		
+	 
+		if ($deleted) 
+			$this->_updateCount( $data , true );
+			
+		
+		return $deleted ;
+		
+		
+	}   //end ::remove()
+	
+	
+	private function _updateCount( $data, $subtract = false ) {
+		
+		debug($data); #exit();
+		
+		//increment the model count
+		if ($data['Like']['type_id'] == 1) { //we have a spot
+				
+			App::uses('Spot', 'Model');
+
+			$spot = new Spot();
+			$spot->updateEndorseCount( $data['Like']['target_id'], $subtract );
+				
+		}
+		
+		
+	}
+	 
 	
 	public function add( $data ) {
 		
@@ -96,56 +143,15 @@ class Like extends AppModel {
 		
 		$saved = $this->save($data);
 		
-		if ($saved) {
-			
-			//increment the model count
-			if ($data['Like']['type_id'] == 1) { //we have a spot
-				
-				//update the spot endorse count
-				App::uses('Spot', 'Model');
-
-				$spot = new Spot();
-				$spot->updateEndorseCount( $data['Like']['target_id'] );
-				
-			}
-				
-		}
-		
+		if ($saved) 
+			$this->_updateCount( $data  );
+			 		
 		return $saved;
 		
 		
 	} //end ::add()
 	
-	
-	public function remove( $data ) {
-	 
-		return $this->deleteAll(array(
-						'Like.target_id' => $data['Like']['target_id'] , 
-						'Like.type_id' => $data['Like']['type_id'] , 
-						'Like.user_id' => $data['Like']['user_id'] 
-							), false);
-		
-		$saved = $this->save($data);
-		
-		if ($saved) {
-			
-			//increment the model count
-			if ($data['Like']['type_id'] == 1) { //we have a spot
-				
-				//update the spot endorse count
-				App::uses('Spot', 'Model');
 
-				$spot = new Spot();
-				$spot->updateEndorseCount( $data['Like']['target_id'] );
-				
-			}
-				
-		}
-		
-		return $saved;
-		
-		
-	} //end ::remove()
  
  
 }

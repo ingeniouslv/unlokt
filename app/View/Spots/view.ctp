@@ -47,6 +47,15 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<!-- Spot Header -->
 				<div class="page-header">
 					<div class="social pull-right">
+					
+						<?php
+							if($endorsed) {
+								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Unendorse Spot', array('controller' => 'users', 'action' => 'unendorse_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-blue btn-large endorsed', 'escape' => false));
+							} else {
+								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Endorse Spot', array('controller' => 'users', 'action' => 'endorse_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-large btn-yellow endorse', 'escape' => false));
+							}
+							
+						?> ss
 						<?php
 							if(count($spot['SpotFollower'])) {
 								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Unfollow Spot', array('controller' => 'users', 'action' => 'unfollow_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-blue btn-large follow', 'escape' => false));

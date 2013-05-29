@@ -688,3 +688,12 @@ ul.payment-history li{padding:10px 0 0;}
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";}
 .clearfix:after{clear:both;}
 .cake-sql-log{color:#fff;}
+
+
+.endorsed_it {  	  
+						 float:left;
+						 width:80px;
+						 height:28px;
+						 margin-right:11px;
+						 position:relative;
+						 background: url("/img/endorsed_icon.png") no-repeat; }

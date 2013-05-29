@@ -1,6 +1,10 @@
 <?php
 $this->set('title_for_layout', h($spot['Spot']['name']));
 ?>
+
+
+ 
+	
 <?php if ($this->Auth->loggedIn() && !empty($managerOfCurrentSpot)): ?>
 	<div class="navbar-admin">
 		<div class="container">
@@ -47,15 +51,55 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<!-- Spot Header -->
 				<div class="page-header">
 					<div class="social pull-right">
-					
+				 
+								 <div class='endorse' style='
+						 float:left;
+						 width:94px;
+						 height:30px;
+						 margin-top:2px;
+						 margin-right:8px;
+						 margin-left:8px;
+						 position:relative;
+						 background: url("/img/endorsed_icon.png") no-repeat; 
+						 ' class='endorsed_it'><h4 
+						 style='position:absolute;top:3px; left:37px;'><?php echo $spot['Spot']['endorse_count'];
+						 if ($spot['Spot']['endorse_count'] == 1)
+						 echo " Person";
+						 else echo " People";
+						  
+						 ?></h4>
+						 
+						 
+						 
+						 <div id="endorse_status" style='position:absolute; 
+						 top:25px;display:none;
+						 '>
+						 <?php if ($endorsed) : ?>
+						 <a style=' font-size:.8em;' href='/users/unendorse_spot/<?php echo $spot['Spot']['id']; ?>'>REMOVE ENDORSE</a>
+						 <?php else: ?>
+						 
+						 
+						  <a style=' font-size:.8em;' href='/users/endorse_spot/<?php echo $spot['Spot']['id']; ?>'><?php
+						   if ($spot['Spot']['endorse_count']) echo "CLICK TO ENDORSE";
+						  else echo "FIRST TO ENDORSE"; ?></a>
+		
+						 <?php endif; ?>
+						 </div>
+			 
+			 			
+			 			
+			 			</div>
+				
+				
 						<?php
-							if($endorsed) {
+						/*
+							if($endorsed&&1==2) {
 								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Unendorse Spot', array('controller' => 'users', 'action' => 'unendorse_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-blue btn-large endorsed', 'escape' => false));
 							} else {
 								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Endorse Spot', array('controller' => 'users', 'action' => 'endorse_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-large btn-yellow endorse', 'escape' => false));
 							}
-							
-						?> ss
+							*/
+						?> 
 						<?php
 							if(count($spot['SpotFollower'])) {
 								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Unfollow Spot', array('controller' => 'users', 'action' => 'unfollow_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-blue btn-large follow', 'escape' => false));
@@ -97,9 +141,46 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<!-- Spot Content -->
 				<div class="row">
 					<div class="eight columns">
-						<h4>About the Spot</h4>
+					 
+				 <h4 style=' '>About the Spot</h4> 	
+				
 						<div class="spot-description block-darkgray block">
-							<?php echo $spot['Spot']['description_parsed']; ?>
+						
+						<div style='padding:9px;'>
+						<?php /*
+						
+						
+						
+						
+						
+							
+						<?php if ($endorsed): ?>
+						
+								 <div 
+								  
+								 style='width:90px;' class='endorsed_it endorsed'><h4 
+						 style='position:absolute;top:3px; left:37px;font-size:.8em;'>You Have</h4> </div>
+						 <?php else: ?>
+						 
+						  
+						
+								<div  class='endorsed_it endorse'><h4 
+						 style='position:absolute;top:3px; left:34px;font-size:.8em;'>Click To</h4> </div>
+						 
+					 
+						 
+						 ?>
+						
+						
+						 
+						 <?php endif; ?>
+						 
+						 */
+						 
+						?>
+				
+				
+						<?php echo $spot['Spot']['description_parsed']; ?></div>
 						</div>
 					</div>
 
@@ -119,7 +200,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 
 						<!-- Show SpotOption if not empty -->
 						<?php if (count($spot['SpotOption'])): ?>
-							<h4>Spot Features</h4>
+							<h4 style='float:left;clear:none;'>Spot Features</h4>
 							<div class="block block-darkgray">	
 								<ul class="spot-options">
 									<?php foreach ($spot['SpotOption'] as $spotOption): ?>
@@ -231,6 +312,56 @@ $this->Html->add_script(array(
 <script>
 
 	$(document).ready(function() {
+
+
+		$('body').on('click', '.endorsed', function() {
+			 
+			location.href = '/users/unendorse_spot/<?php echo $spot['Spot']['id'] ;?>';
+		
+		});
+
+		$('body').on('click', '.endorse', function() {
+			 
+			location.href = '/users/endorse_spot/<?php echo $spot['Spot']['id'] ;?>';
+		
+		});
+
+
+		$('.endorse').hover(  function() {
+
+			 console.log('hover');
+			 $('#endorse_status').show();
+			 
+			
+		}, 
+
+		function() {
+			$('#endorse_status').hide();
+		   }
+
+
+		);
+
+
+		
+		
+
+
+		 <?php if (!$endorsed) : ?>
+
+
+			$('body').on('click', '.endorse', function() {
+				 
+				location.href = '/users/endorse_spot/<?php echo $spot['Spot']['id'] ;?>';
+			
+			});
+
+
+
+				 
+
+		 <?php endif; ?>
+		
 		var notenetflixviewer = new NetflixViewer({
 			click_left: '.left',
 			click_right: '.right',

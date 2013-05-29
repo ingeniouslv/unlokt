@@ -171,6 +171,8 @@ class DealsController extends AppController {
 				copy($tmp_image_file, store_path('deal', $this->Deal->id, 'default.jpg'));
 				$this->Session->setFlash('Special created successfully.', 'alert-success');
 				$this->redirect(array('action' => 'manage', $spot_id));
+				
+				
 			} else {
 				$this->Session->setFlash('Form could not be saved. Check the form and try again.', 'alert-warning');
 			}

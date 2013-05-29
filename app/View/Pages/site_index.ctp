@@ -346,6 +346,7 @@ $this->Html->add_script(array(
 	//////////////////////////////////////////////////
 	
 	$('body').on('click', '.endorse', function() {
+		console.log('endorse');
 		var spot_id = $(this).data('spot-id');
 		var $that = $(this);
 		$.get('/users/endorse_spot/' + spot_id, function(response) {

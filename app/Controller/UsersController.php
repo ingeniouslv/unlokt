@@ -309,6 +309,12 @@ class UsersController extends AppController {
 				$this->User->invalidate('email2', 'Email must match');
 			}
 			
+			//check if email exists
+			$exists = $this->User->findByEmail($this->request->data['User']['email']);
+		 
+			if ($exists)
+				$this->User->invalidate('email', 'Oops... Email exists please try to login');
+				
 			if ($this->User->validates()) {
 				// Good
 				$this->User->save();

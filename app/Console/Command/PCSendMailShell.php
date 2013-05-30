@@ -16,10 +16,17 @@ class PCSendMailShell extends AppShell {
     	$this->out();
         $this->out("Loading {$this->name}");
 		
+        $current = 0;
+        $max = 4;
 		while (1)
 		{
+			
 			$this->check_mail();
 			sleep(4);
+			$current++;
+			
+			if ($current > $max)
+			return;
 		}
 		
 	}

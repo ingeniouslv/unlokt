@@ -72,8 +72,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						 
 						 
 						 <div id="endorse_status" style='position:absolute; 
-						 top:25px;display:none;
-						 '>
+						 top:25px;display:none;'>
 						 <?php if ($endorsed) : ?>
 						 <a style=' font-size:.8em;' href='/users/unendorse_spot/<?php echo $spot['Spot']['id']; ?>'>REMOVE ENDORSE</a>
 						 <?php else: ?>
@@ -91,15 +90,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 			 			</div>
 				
 				
-						<?php
-						/*
-							if($endorsed&&1==2) {
-								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Unendorse Spot', array('controller' => 'users', 'action' => 'unendorse_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-blue btn-large endorsed', 'escape' => false));
-							} else {
-								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Endorse Spot', array('controller' => 'users', 'action' => 'endorse_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-large btn-yellow endorse', 'escape' => false));
-							}
-							*/
-						?> 
+				 
 						<?php
 							if(count($spot['SpotFollower'])) {
 								echo $this->Html->link($this->Html->tag('i', '', array('class' => 'icon-heartkey')).'Unfollow Spot', array('controller' => 'users', 'action' => 'unfollow_spot', $spot['Spot']['id'], 'admin' => false), array( 'class' => 'btn btn-blue btn-large follow', 'escape' => false));
@@ -142,46 +133,13 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<div class="row">
 					<div class="eight columns">
 					 
-				 <h4 style=' '>About the Spot</h4> 	
+				 		<h4 style=' '>About the Spot</h4> 	
 				
 						<div class="spot-description block-darkgray block">
 						
-						<div style='padding:9px;'>
-						<?php /*
-						
-						
-						
-						
-						
-							
-						<?php if ($endorsed): ?>
-						
-								 <div 
-								  
-								 style='width:90px;' class='endorsed_it endorsed'><h4 
-						 style='position:absolute;top:3px; left:37px;font-size:.8em;'>You Have</h4> </div>
-						 <?php else: ?>
-						 
-						  
-						
-								<div  class='endorsed_it endorse'><h4 
-						 style='position:absolute;top:3px; left:34px;font-size:.8em;'>Click To</h4> </div>
-						 
-					 
-						 
-						 ?>
-						
-						
-						 
-						 <?php endif; ?>
-						 
-						 */
-						 
-						?>
-				
-				
-						<?php echo $spot['Spot']['description_parsed']; ?></div>
-						</div>
+							<div style='padding:9px;'>
+							<?php echo $spot['Spot']['description_parsed']; ?></div>
+						</div> 
 					</div>
 
 					<div class="four columns">
@@ -202,7 +160,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						<?php if (count($spot['SpotOption'])): ?>
 							<h4 style='float:left;clear:none;'>Spot Features</h4>
 							<div class="block block-darkgray">	
-								<ul class="spot-options">
+								<ul class="spot-options" style='clear:both;'>
 									<?php foreach ($spot['SpotOption'] as $spotOption): ?>
 										<li><i class="<?php echo h($spotOption['css_class']); ?>"></i><?php echo h($spotOption['name']); ?></li>
 									<?php endforeach; ?>

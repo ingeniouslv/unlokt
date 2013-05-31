@@ -11,7 +11,8 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 				<iframe id="upload-preview-image-iframe" name="upload-preview-image-iframe" class="hide"></iframe>
 				<h2 class="form-section-label">Select a Type</h2>
 				<?php
-					echo $this->Form->input('type', array('label' => false, 'div' => 'control-fields', 'selected' => 2, 'options' => array('Event', 'Reward', 'Special'), 'id' => 'special-type')) 
+					echo $this->Form->input('type', array('label' => false, 'div' => 'control-fields', 
+					'selected' => 2, 'options' => array('Event', 'Reward', 'Special'), 'id' => 'special-type')) 
 				?>
 				<h2 class="form-section-label">
 					Picture
@@ -23,10 +24,14 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 					</span>
 				</h2>
 				<?php
-				//////////////////////////////////////////////////
+				////////////////////////////////////////////////// 
 				// Create a form JUST FOR SENDING PICTURE VIA IFRAME
-				echo $this->Form->create(false, array('class' => 'form-vertical control-group', 'url' => array('action' => 'upload_preview_image'), 'target' => 'upload-preview-image-iframe', 'type' => 'file'));
-				echo $this->Form->input('file', array('div' => 'control-fields', 'label' => false, 'class' => 'twelve', 'type' => 'file', 'data-type' => 'file-input'));
+				echo $this->Form->create(false, array('class' => 'form-vertical control-group', 
+				'url' => array('action' => 'upload_preview_image'), 
+				'target' => 'upload-preview-image-iframe', 
+				'type' => 'file'));
+				echo $this->Form->input('file', array('div' => 'control-fields',
+				 'label' => false, 'class' => 'twelve', 'type' => 'file', 'data-type' => 'file-input'));
 				echo $this->Form->end();
 				
 				//////////////////////////////////////////////////
@@ -271,8 +276,12 @@ $this->set('title_for_layout', "Add a Spot Special to '". h($spot['Spot']['name'
 	
 	// upload_preview_image_postback(filename) will be called when someone selects a photo to upload.
 	// When a photo is selected, the <form> is submitted to a hidden iframe.
-	// When the iframe receives the photo it will call this postback function to update the filename and preview image [src]
+	// When the iframe receives the photo it will call this postback function
+	// to update the filename and preview image [src]
 	function upload_preview_image_postback(filename) {
+
+		console.log(filename);
+		
 		$('#DealTmpImageName').val(filename);
 		// Change the tmp_image_name on the model and then trigger a change in order to re-render the preview tile.
 		dealpreview.attributes.Deal.tmp_image_name = filename;

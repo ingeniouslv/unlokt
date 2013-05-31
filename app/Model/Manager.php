@@ -28,6 +28,8 @@ class Manager extends AppModel {
 		if (!$spot_id) {
 			throw new NotFoundException('Expecting ID on current object.');
 		}
+		
+ 
 		return (bool) $this->find('first', array(
 			'conditions' => array(
 				'user_id' => $user_id,

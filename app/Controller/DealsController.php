@@ -120,7 +120,9 @@ class DealsController extends AppController {
 		}
 		if ($this->request->is('post')) {
 			$this->Deal->create(false);
+			
 			//if all day is checked, change the start and end time to match.
+			if (isset($this->request->data['Deal']['all_day']))
 			if ($this->request->data['Deal']['all_day']) {
 				$this->request->data['Deal']['start_time'] = '12:00 AM';
 				$this->request->data['Deal']['end_time'] = '11:59 PM';
@@ -146,6 +148,8 @@ class DealsController extends AppController {
 					$this->Deal->invalidate("redemption_$i", 'Redemption Code Required');
 				}
 			}
+		 
+			
 			// Check that there is a Deal.tmp_image_name, which holds a value such as
 			// "a4d14252f2e1c60b3e6d990b0c672293.jpg" which indicates to copy() the image from the store_path('temp', 0).
 			// If there is no tmp_image_name then fail validation because that means no image was uploaded...
@@ -153,6 +157,8 @@ class DealsController extends AppController {
 			if (!isset($this->request->data['Deal']['tmp_image_name']) || !$this->request->data['Deal']['tmp_image_name'] || !is_file($tmp_image_file)) {
 				$this->Deal->invalidate('name', 'Image required.');
 			}
+	 
+			
 			if ($this->Deal->validates()) {
 				// Deal data is valid.
 				$this->Deal->save();
@@ -170,10 +176,45 @@ class DealsController extends AppController {
 				mkdir(store_path('deal', $this->Deal->id), 0777, true);
 				copy($tmp_image_file, store_path('deal', $this->Deal->id, 'default.jpg'));
 				$this->Session->setFlash('Special created successfully.', 'alert-success');
+				
+				
+				//lets hand emails here
+				App::uses('CakeEmail', 'Network/Email');
+				
+			
+				$this->Deal->Spot->SpotFollower->recursive = 1;
+				$followers = $this->Deal->Spot->SpotFollower->findAllBySpotId($spot_id);
+
+				foreach ($followers as $follower) {
+					
+					debug($this->request->data['Deal']);
+					debug($spot);
+					 
+				 //$follower['User']['email']
+					$email = new CakeEmail('postmark');
+					$email->to('evencode@gmail.com')
+					->subject(SITE_NAME . ' Special: ' . $spot['Spot']['name'])
+					->template('spots-special')
+					->viewVars(array(
+						'deal' =>  $this->request->data['Deal'],
+						'spot' => $spot['Spot']
+					))
+					->emailFormat('html')
+				 	->send();
+				 
+					
+					//debug($follower['User']);
+					exit();
+					
+					
+				}
+				exit();
 				$this->redirect(array('action' => 'manage', $spot_id));
 				
 				
 			} else {
+				
+				debug($this->Deal->validationErros);
 				$this->Session->setFlash('Form could not be saved. Check the form and try again.', 'alert-warning');
 			}
 			
@@ -201,18 +242,24 @@ class DealsController extends AppController {
 	// Accept a file upload and place in temporary folder.
 	// Then die a javascript statement to update the preview image on the parent window since this should be an iframe.
 	public function upload_preview_image() {
+		 
 		$this->autoRender = false;
 		if (!isset($this->request->data['file']) || !$file = $this->request->data['file']) {
 			die('<script> alert("No file uploaded"); </script>');
 		}
+	
+		
 		// Do some simple error checking
 		if ($file['error'] || !$file['size'] || substr($file['type'], 0, 6) != 'image/') {
 			die('<script> alert("No file uploaded"); </script>');
 		}
+
 		// Create random-ish hash for temporary filename.
 		$hashjpg = md5($_SERVER['REMOTE_ADDR'].time().rand(0, 99999)).'.jpg';
 		// Convert over the image and place into correct directory.
 		convert($file['tmp_name'], store_path('temp', 0, $hashjpg));
+		 
+ 
 		die("<script> window.parent.upload_preview_image_postback('$hashjpg'); </script>");
 	}
 	

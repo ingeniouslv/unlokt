@@ -162,6 +162,8 @@ class DealsController extends AppController {
 			if ($this->Deal->validates()) {
 				// Deal data is valid.
 				$this->Deal->save();
+				
+				
 				// Save all the redemption codes into database.
 				for ($i = 1; $i <= $this->request->data['Deal']['keys']; $i ++) {
 					$this->Deal->RedemptionCode->create(false);
@@ -173,7 +175,12 @@ class DealsController extends AppController {
 					$this->Deal->RedemptionCode->save();
 				}
 				// Copy over the tmp_image_file
+				
+			
 				mkdir(store_path('deal', $this->Deal->id), 0777, true);
+			 
+				debug(store_path('deal', $this->Deal->id, 'default.jpg'));
+				
 				copy($tmp_image_file, store_path('deal', $this->Deal->id, 'default.jpg'));
 				$this->Session->setFlash('Special created successfully.', 'alert-success');
 				
@@ -186,29 +193,38 @@ class DealsController extends AppController {
 				$followers = $this->Deal->Spot->SpotFollower->findAllBySpotId($spot_id);
 
 				foreach ($followers as $follower) {
-					
-					debug($this->request->data['Deal']);
-					debug($spot);
-					 
-				 //$follower['User']['email']
-					$email = new CakeEmail('postmark');
-					$email->to('evencode@gmail.com')
-					->subject(SITE_NAME . ' Special: ' . $spot['Spot']['name'])
-					->template('spots-special')
-					->viewVars(array(
-						'deal' =>  $this->request->data['Deal'],
-						'spot' => $spot['Spot']
-					))
-					->emailFormat('html')
-				 	->send();
+
+					if ($follower['User']['notifications']) {
+				  
+						 $this->request->data['Deal']['id'] = $this->Deal->id;
 				 
+					 
+					    if ($this->request->data['Deal']['keys'] == 0) 
+					    	$this->request->data['Deal']['type'] = "Event";
+					    
+						if ($this->request->data['Deal']['keys'] == 1) 
+					    	$this->request->data['Deal']['type'] = "Special";
+					    	
+						if ($this->request->data['Deal']['keys'] > 1) 
+					    	$this->request->data['Deal']['type'] = "Reward";
+				  
+						$email = new CakeEmail('postmark');
+						$email->to($follower['User']['email'])
+						->subject('['. SITE_NAME . '] New ' . $spot['Spot']['name'] . ' ' . $this->request->data['Deal']['type'])
+						->template('spots-special')
+						 
+						->viewVars(array(
+							'deal' =>  $this->request->data['Deal'],
+							'spot' => $spot['Spot']
+						))
+						->emailFormat('html')
+					 	->send();
+					 
+					}
+				 	
 					
-					//debug($follower['User']);
-					exit();
-					
-					
-				}
-				exit();
+				} // end for each
+				 
 				$this->redirect(array('action' => 'manage', $spot_id));
 				
 				

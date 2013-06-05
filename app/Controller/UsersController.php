@@ -175,6 +175,37 @@ class UsersController extends AppController {
 		$this->redirect('/');
 	}
 	
+	
+	public function notifications( $on_off = 0 ) {
+		
+
+		//set notifcation var
+		
+		if ($on_off) {
+			
+			$flash = "Notifcations have been turned on.";
+			$on_off = 1;
+			
+		} else {
+			
+			
+			$flash = "Notifcations have been turned off.";
+			$on_off = 0;
+			
+		}
+	 
+		//save the notifcition field on user
+	 
+		$this->User->id = $this->Auth->user('id');
+		$this->User->saveField('notifications',  $on_off);
+		 
+		$this->Session->setFlash($flash,'alert-success');
+		$this->redirect('/users/account');
+		
+		 
+		
+	}
+	
 	public function login() {
 		//set up session redirect to work on create user
 		$redirect = $this->Session->read('referer');

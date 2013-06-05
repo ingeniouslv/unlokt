@@ -30,6 +30,8 @@ if (IDENTIFIER == 'production') {
 
 if(array_key_exists('HTTP_HOST', $_SERVER))
 	define('ABSOLUTE_URL', "http://{$_SERVER['HTTP_HOST']}");
+else 
+ 	define('ABSOLUTE_URL', "http://unlokt.com");
 
 define('DATA_STORE', WWW_ROOT.'store/data/');
 

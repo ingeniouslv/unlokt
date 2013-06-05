@@ -7,7 +7,7 @@ $this->set('title_for_layout', 'Account Settings');
 			<h1 class="name">My Profile</h1>
 		</div>
 		<div class="row">
-			<div class="one columns">
+			<div class="one columns"  >
 				<img src="<?php echo $this->Html->gen_path('user', $user['User']['id'], 80, null, $user['User']['image_name']); ?>" class="profile-image" title="<?php echo h($user['User']['name']); ?>">
 			</div>
 
@@ -21,6 +21,19 @@ $this->set('title_for_layout', 'Account Settings');
 					<p>Super Administrator</p>
 				<?php endif; ?>
 				<?php echo $this->Html->link('Edit Account', array('action' => 'account_edit'), array('class' => 'btn')); ?>
+				<?php 
+				
+				if ($user['User']['notifications'])
+				echo $this->Html->link('Turn-off Notifications', 
+				array('action' => 'notifications', 0), array('class' => 'btn btn-blue '));
+				else 
+				echo $this->Html->link('Turn-on Notifications', 
+				array('action' => 'notifications', 1), array('class' => 'btn btn-yellow '));
+				
+				
+				?>
+			
+			
 			</div>
 		</div>
 		<span id="reviews"></span>

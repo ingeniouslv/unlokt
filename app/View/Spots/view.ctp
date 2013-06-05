@@ -3,8 +3,6 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 ?>
 
 
- 
-	
 <?php if ($this->Auth->loggedIn() && !empty($managerOfCurrentSpot)): ?>
 	<div class="navbar-admin">
 		<div class="container">

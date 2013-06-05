@@ -172,6 +172,7 @@ $this->Html->add_script(array(
 			}
 			
 			feeds.reset(results.feeds);
+  
 			deals.reset(results.deals);
 			reviews.reset(results.reviews);
 			if (search_by_bounds && typeof results.spots != 'undefined' && results.spots.length > 0) {

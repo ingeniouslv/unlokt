@@ -65,7 +65,7 @@ class EmailConfig {
 	);
 
 	public $postmark = array(
-		'transport' => 'Postmark',
+		'transport' => 'Postmark', 
 		'from' => array(SITE_EMAIL_FROM_ADDR => SITE_EMAIL_FROM_NAME),
 		'emailFormat' => 'both'
 	);

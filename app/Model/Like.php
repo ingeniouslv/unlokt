@@ -133,6 +133,16 @@ class Like extends AppModel {
 				
 		}
 		
+		if ($data['Like']['type_id'] == 2) { //we have a deal
+				
+			App::uses('Deal', 'Model');
+
+			$deal = new Deal();
+			$deal->updateEndorseCount( $data['Like']['target_id'], $subtract );
+				
+		}
+
+		
 		
 	}
 	 

@@ -120,7 +120,7 @@ class FacebookComponent extends Component {
 		try {
 	 
     	  
-				. //for testing
+				 //for testing
             	  //$privacy = array(  'value' => 'SELF' );
             	  //, 'privacy' => json_encode($privacy)
    

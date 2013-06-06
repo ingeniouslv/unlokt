@@ -472,6 +472,61 @@ class UsersController extends AppController {
 	}
 	
 	
+	
+	public function love_special($special_id = null, $mobile = null) {
+		
+		$this->autorender = false;
+		$this->User->ActiveDeal->Deal->id = $special_id ;
+ 
+		
+		if(!$this->User->ActiveDeal->Deal->exists()) {
+			throw new NotFoundException(__('Invalid special'));
+		}
+		
+		$user_id = $this->Auth->user('id');
+	 
+		$this->loadModel('Like');
+		$type_id = $this->Like->getTypeId("Deal") ;
+		$has_loved = $this->Like->findByUserIdAndTargetIdAndTypeId(
+			$user_id, $special_id, $type_id);
+		
+		if(!$has_loved) {
+			 
+			
+			$love_data = array( 
+				'Like' => array(
+					'target_id' => $special_id,
+					'user_id' => $user_id,
+					'type_id' => $type_id
+				)
+			);
+			
+			$saved = $this->Like->add($love_data);
+		 
+			
+			if ($mobile){
+				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
+				die();
+			} elseif($this->request->is('ajax')) {
+				die($saved?'GOOD':'The special could not be loved. Please, try again.');
+			} else {
+				if($saved) {
+					$this->Session->setFlash(__('You have loved this special.'), 'alert-success');
+				} else {
+					$this->Session->setFlash(__('The special could not be loved. Please, try again.'), 'alert-warning');
+				}
+			}
+			
+		}
+		
+		$this->redirect($this->request->referer());
+		
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Call this method to create a relationship between the current logged in user and the given spot.
 	 * If a duplicate relationship already exists, nothing will be done.

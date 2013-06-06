@@ -23,8 +23,67 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 								<i class="icon-key"></i> Reward
 							<?php endif; ?>
 						</h5>
-						<button class="fb-share btn-fb">Share</button>
+						
+						 
+						
+						
+						<button style='margin-right:103px;' class="fb-share btn-fb">Share</button>
+						
+						
+											
+						<div class='love' style='
+						 
+						 position:absolute;
+						top:6px;
+						right:238px;
+						z-index:1000;
+						 width:94px;
+						 height:30px;
+						 margin-top:2px;
+						 margin-right:2px;
+						 margin-left:12px;
+						 
+						 background: url("/img/loved_it_icon.png") no-repeat; 
+						 ' ><h4 
+						 style='position:absolute;top:-6px; left:24px;'><?php echo $deal['Deal']['love_count'];
+						 if ($deal['Deal']['love_count'] == 1)
+						 echo " Person";
+						 else echo " People";
+						  
+						 ?></h4>
+						 
+						 
+						 
+						 <div id="love_status" style='position:absolute; 
+						 top:25px;display:none;'>
+						 <?php 
+						 
+						 /* if ($loved) :  ?>
+						 <a style=' font-size:.8em;' href='/users/love_special/<?php echo $deal['Deal']['id']; ?>'>REMOVE LOVE</a>
+						 <?php else: 
+						 
+						 
+						 
+						 ?>
+						 
+						 
+						  <a style=' font-size:.8em;' href='/users/unlove_special/<?php echo $deal['Deal']['id']; ?>'><?php
+						   if ($deal['Deal']['love_count']) 
+						   echo "CLICK TO LOVE";
+						  else 
+						  echo "FIRST TO LOVE"; ?></a>
+		
+						 <?php   endif; */ ?>
+						 </div>
+			 
+			 			
+			 			
+			 			</div> <!-- end endorse div -->
+			 			
+			 			
 					</div>
+					
+					
 					<div class="row">
 						<h1 class="name"><?php echo h($deal['Deal']['name']); ?></h1>
 						<h3><?php echo h($deal['Deal']['description']); ?></h3>
@@ -204,6 +263,45 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 <script>
 
 	$(document).ready(function() {
+
+	 
+		
+
+		$('body').on('click', '.loved', function() {
+
+			console.log('test');
+			location.href = '/users/unlove_special/<?php echo $deal['Deal']['id'] ;?>';
+		
+		});
+
+		$('body').on('click', '.love', function() {
+
+			console.log('test');
+			location.href = '/users/love_special/<?php echo $deal['Deal']['id'] ;?>';
+		
+		});
+
+
+		$('.love').hover(  function() {
+
+			 console.log('hover');
+			 $('#love_status').show();
+			 
+			
+		}, 
+
+		function() {
+			$('#love_status').hide();
+		   }
+
+
+		);
+
+
+
+ 
+
+		 
 
 		var netflixviewer = new NetflixViewer({
 			click_left: '.left',

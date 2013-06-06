@@ -402,5 +402,40 @@ class Deal extends AppModel {
 		return $a['Spot']['random_delta'] > $b['Spot']['random_delta'];
 	}
 	
+	
+	
+	public function getEndorseCount( $deal_id ) {
+		
+		$ogRecursive = $this->recursive;
+		$this->recursive = -1;
+		$spot = $this->read( null ,$deal_id);
+		$this->recursive = $ogRecursive;
+		
+		return $deal['Deal']['love_count'];
+		
+	}
+	
+	
+	public function updateEndorseCount( $deal_id, $subtract = false ) {
+		
+		
+		$currentCount = (int)Deal::getEndorseCount( $deal_id );
+	 
+		
+		if (!$currentCount) $currentCount = 0;
+		
+		if (!$subtract)
+			$newCount = $currentCount + 1;
+		else 
+			$newCount = $currentCount - 1;
+			
+		if (!$newCount) $newCount = 0;	
+	 
+		$this->id = $deal_id;
+		return $this->saveField('love_count', $newCount );
+		
+	}
+	
+	
 
 }

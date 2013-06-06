@@ -118,16 +118,16 @@ class FacebookComponent extends Component {
 		// We have a user ID, so probably a logged in user.
 		// If not, we'll get an exception, which we handle below.
 		try {
-			
-			//DO WE NEED NEXT LINE??
-    		//$me = $facebook->api('/me');
+	 
     	  
-            	  $privacy = array(  'value' => 'SELF' );
+				. //for testing
+            	  //$privacy = array(  'value' => 'SELF' );
+            	  //, 'privacy' => json_encode($privacy)
    
     
     		 
     			$statusUpdate = $this->facebook->api('/me/feed', 'post', array('message'=> $message, 
-    				'link' => $link, 'cb' => '', 'picture' => $image, 'privacy' => json_encode($privacy) ));
+    				'link' => $link, 'cb' => '', 'picture' => $image ));
     	 
     			return true;
 	 

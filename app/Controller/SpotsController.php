@@ -98,10 +98,24 @@ class SpotsController extends AppController {
 		$this->loadModel('Like');
 		$has_endorsed = $this->Like->findByUserIdAndTargetIdAndTypeId(
 			$this->Auth->user('id') , $id, 1 ); //type 1 is spot
-			
+		
+		
 		if ($has_endorsed)
 			$endorsed = true;
-	
+	 
+		 
+		$endorsed_ids =
+			$this->Like->find('list', 
+				array(
+					'conditions' => array('target_id' => $id , 'type_id' => 1 ),
+		 			'fields' => array('Like.user_id' )
+		 		 )
+		 	 )  ; //type 1 is spot
+	 
+		$endorsies = $this->Spot->SpotFollower->User->findAllById( $endorsed_ids );
+		
+		 
+		
 		
 		// Cause the `Reviews` to have `rating_size` of 'inline'
 		foreach ($reviews as $key => $review) {
@@ -116,7 +130,7 @@ class SpotsController extends AppController {
 		// Parse the Spotlight text
 		// $spot['Spot']['spotlight_2_parsed'] = $this->Spot->parseSpotlightText($spot['Spot']['spotlight_2']);
 		
-		$this->set(compact('spot', 'feeds', 'deals', 'reviews', 'attachments','endorsed',
+		$this->set(compact('endorsies', 'spot', 'feeds', 'deals', 'reviews', 'attachments','endorsed',
 			 'happy_hour_data', 'managerOfCurrentSpot', 'adminOfCurrentSpot', 'other_spots'));
 	}
 

@@ -641,6 +641,51 @@ class UsersController extends AppController {
 	}
 	
 	
+	//unlove deal
+	public function unlove_special($deal_id = null, $mobile = null) {
+		
+		$this->autorender = false;
+		
+		 $this->User->ActiveDeal->Deal->id = $deal_id ;
+ 
+	
+		if(!$this->User->ActiveDeal->Deal->exists()) {
+			throw new NotFoundException(__('Invalid spot'));
+		}
+
+	
+		$this->loadModel('Like');
+		
+		$data = array( 
+				'Like' => array(
+					'target_id' => $deal_id,
+					'user_id' => $this->Auth->user('id'),
+					'type_id' => 2 // DEAL
+				)
+			);
+			
+	 
+			
+		
+		$deleted = $this->Like->remove( $data );	
+ 
+		
+		if ($mobile){
+			ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
+			die();
+		} elseif($this->request->is('ajax')) {
+			die($deleted?'GOOD':'The special could not be unloved. Please, try again.');
+		} else {
+			if($deleted) {
+				$this->Session->setFlash(__('You are no longer loving this special.'), 'alert-success');
+			} else {
+				$this->Session->setFlash(__('This special could not be unloved. Please, try again.'), 'alert-warning');
+			}
+		}
+		
+		$this->redirect($this->request->referer());
+	}
+	
 	
 	// API Functions
 	public function api_login() {

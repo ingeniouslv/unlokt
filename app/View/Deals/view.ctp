@@ -54,28 +54,35 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 						 
 						 
 						 
-						 <div id="love_status" style='position:absolute; 
+						 
+						 <div id="love_status" style='
+						 background:#474747;
+						 position:absolute; 
+						 color:white;
+						 font-weight:bold;
+						 padding:6px;
+						 width:125px;
 						 top:25px;display:none;'>
-						 <?php 
-						 
-						 /* if ($loved) :  ?>
-						 <a style=' font-size:.8em;' href='/users/love_special/<?php echo $deal['Deal']['id']; ?>'>REMOVE LOVE</a>
-						 <?php else: 
-						 
+						 <?php  if ($loved) : ?>
+						 <a style=' font-size:.8em;' href='/users/unlove_special/<?php 
+						 echo $deal['Deal']['id']; ?>'>REMOVE LOVE</a>
+						 <?php else: ?>
 						 
 						 
-						 ?>
-						 
-						 
-						  <a style=' font-size:.8em;' href='/users/unlove_special/<?php echo $deal['Deal']['id']; ?>'><?php
-						   if ($deal['Deal']['love_count']) 
-						   echo "CLICK TO LOVE";
-						  else 
-						  echo "FIRST TO LOVE"; ?></a>
+						  <a style=' font-size:.8em;' href='/users/love_special/<?php echo $deal['Deal']['id']; ?>'><?php
+						   if ($deal['Deal']['love_count']) echo "CLICK TO LOVE";
+						  else echo "FIRST TO LOVE"; ?></a>
 		
-						 <?php   endif; */ ?>
+						 <?php endif; ?> <br>
+						  
+						   <?php foreach ($lovers as $love) {
+						   	
+						   		echo $love['User']['name'] . "<br>";
+						   	
+						   	
+						   } ?>
+						  
 						 </div>
-			 
 			 			
 			 			
 			 			</div> <!-- end endorse div -->

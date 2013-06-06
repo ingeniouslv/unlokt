@@ -50,6 +50,11 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				<div class="page-header">
 					<div class="social pull-right">
 				 
+				 
+				 
+				
+				 
+				 
 								 <div class='endorse' style='
 						 float:left;
 						 width:94px;
@@ -69,9 +74,15 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						 
 						 
 						 
-						 <div id="endorse_status" style='position:absolute; 
+						 <div id="endorse_status" style='
+						 background:#474747;
+						 position:absolute; 
+						 color:white;
+						 font-weight:bold;
+						 padding:6px;
+						 width:125px;
 						 top:25px;display:none;'>
-						 <?php if ($endorsed) : ?>
+						 <?php  if ($endorsed) : ?>
 						 <a style=' font-size:.8em;' href='/users/unendorse_spot/<?php echo $spot['Spot']['id']; ?>'>REMOVE ENDORSE</a>
 						 <?php else: ?>
 						 
@@ -80,12 +91,21 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						   if ($spot['Spot']['endorse_count']) echo "CLICK TO ENDORSE";
 						  else echo "FIRST TO ENDORSE"; ?></a>
 		
-						 <?php endif; ?>
+						 <?php endif; ?> <br>
+						  
+						   <?php foreach ($endorsies as $endorser) {
+						   	
+						   		echo $endorser['User']['name'] . "<br>";
+						   	
+						   	
+						   } ?>
+						  
 						 </div>
 			 
 			 			
+			 			 
 			 			
-			 			</div>
+			 			</div> <!--- end endorse div -->
 				
 				
 				 

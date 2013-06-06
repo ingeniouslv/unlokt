@@ -404,11 +404,11 @@ class Deal extends AppModel {
 	
 	
 	
-	public function getEndorseCount( $deal_id ) {
+	public function getLoveCount( $deal_id ) {
 		
 		$ogRecursive = $this->recursive;
 		$this->recursive = -1;
-		$spot = $this->read( null ,$deal_id);
+		$deal = $this->read( null ,$deal_id);
 		$this->recursive = $ogRecursive;
 		
 		return $deal['Deal']['love_count'];
@@ -416,12 +416,11 @@ class Deal extends AppModel {
 	}
 	
 	
-	public function updateEndorseCount( $deal_id, $subtract = false ) {
+	public function updateLoveCount( $deal_id, $subtract = false ) {
 		
 		
-		$currentCount = (int)Deal::getEndorseCount( $deal_id );
-	 
-		
+		$currentCount = (int)Deal::getLoveCount( $deal_id );
+	  
 		if (!$currentCount) $currentCount = 0;
 		
 		if (!$subtract)

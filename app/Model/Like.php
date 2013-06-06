@@ -105,9 +105,6 @@ class Like extends AppModel {
 		'Like.user_id' => $data['Like']['user_id']   );
 			
 		$deleted = $this->deleteAll($conditions);
-		
-		debug($deleted);
-		
 	 
 		if ($deleted) 
 			$this->_updateCount( $data , true );
@@ -138,7 +135,7 @@ class Like extends AppModel {
 			App::uses('Deal', 'Model');
 
 			$deal = new Deal();
-			$deal->updateEndorseCount( $data['Like']['target_id'], $subtract );
+			$deal->updateLoveCount( $data['Like']['target_id'], $subtract );
 				
 		}
 

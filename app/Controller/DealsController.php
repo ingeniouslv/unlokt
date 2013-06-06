@@ -61,11 +61,19 @@ class DealsController extends AppController {
 		if ($has_loved)
 			$loved = true;
 			
-			
-		
+		$loved_ids =
+			$this->Like->find('list', 
+				array(
+					'conditions' => array('target_id' => $id , 'type_id' => 2 ),
+		 			'fields' => array('Like.user_id' )
+		 		 )
+		 	 )  ; //type 2 is deal
+	 
+		$lovers = $this->Deal->Spot->SpotFollower->User->findAllById( $loved_ids );
+		 
 		
 		$this->Deal->increment('views');
-		$this->set(compact('deal', 'loved', 'spot', 'activeDeal', 'deals', 'deal_completed_count', 'is_manager', 'app_id', 'channel_url'));
+		$this->set(compact('deal', 'lovers','loved', 'spot', 'activeDeal', 'deals', 'deal_completed_count', 'is_manager', 'app_id', 'channel_url'));
 	}
 	
 	//////////////////////////////////////////////////

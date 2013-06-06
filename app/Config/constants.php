@@ -35,6 +35,11 @@ else
 
 define('DATA_STORE', WWW_ROOT.'store/data/');
 
+//facebook
+define('FACEBOOK_APPID', '309486975818919') ;
+define('FACEBOOK_SECRET', '258dc70e86af80006ddb40407767f9fc') ;
+ 
+
 // Email
 define('SITE_EMAIL_FROM_NAME', 'Unlokt');
 define('SITE_EMAIL_FROM_ADDR', 'noreply@unlokt.com');

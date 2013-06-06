@@ -14,6 +14,7 @@ class UsersController extends AppController {
 			'api_facebook_login_check',
 			'channel',
 			'logout',
+			'test2',
 			'login',
 			'login_facebook',
 			'register',
@@ -414,6 +415,9 @@ class UsersController extends AppController {
 		}
 		
 		$user_id = $this->Auth->user('id');
+		
+		
+
 	 
 		
 		$this->loadModel('Like');
@@ -422,6 +426,20 @@ class UsersController extends AppController {
 			$user_id, $spot_id, $type_id);
 		
 		if(!$has_endorsed) {
+			
+			//post to facebook
+			$this->User->SpotFollower->Spot->recursive = -1;
+			$spot = $this->User->SpotFollower->Spot->read( null, $spot_id );
+			$this->Facebook = $this->Components->load('Facebook') ;
+			
+			$facebook['user_id'] = $this->Auth->user('id')  ;
+			$facebook['message'] = "Has endorsed " . $spot['Spot']['name']  ;
+			$facebook['url'] =  ABSOLUTE_URL . "/spots/view/" . $spot_id  ;
+			$facebook['image'] = ABSOLUTE_URL . "/gen/spot/" . $spot_id . "/200x200/" . $spot['Spot']['image_name'];
+		 
+			
+			$this->Facebook->post( $facebook ) ;
+	 
 			
 			$spot_endorsed_data = array( 
 				'Like' => array(
@@ -921,9 +939,29 @@ class UsersController extends AppController {
 		$this->redirect($this->request->referer());
 	}
 	
+	
+	public function test2() { 
+		
+ 
+		echo 'load the component<br>';
+		
+		$this->Facebook = $this->Components->load('Facebook');
+		
+		echo 'after<br>';
+		//$this->Facebook->login();
+		$this->Facebook->post("bbfbbb", $this->Auth->user('id'));
+		
+		echo 'after test post<br>';
+		exit();
+		
+		
+		
+	}
 	public function login_facebook() {
-		$app_id = "309486975818919";
-		$app_secret = "258dc70e86af80006ddb40407767f9fc";
+		
+		$app_id = FACEBOOK_APPID ;
+		$app_secret = FACEBOOK_SECRET ;
+		
 		$my_url = "http://unlokt.com/users/login_facebook";
 		
 		/*
@@ -944,7 +982,7 @@ class UsersController extends AppController {
 			$dialog_url = "https://www.facebook.com/dialog/oauth?client_id=" 
 				. $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
 				. "&client_secret=" . $app_secret . "&code=" . $code
-				. $_SESSION['state']. "&scope=email";
+				. $_SESSION['state']. "&scope=publish_stream,email";
 	  
 			header("Location: $dialog_url");
 			exit();
@@ -992,7 +1030,7 @@ class UsersController extends AppController {
 				@copy("https://graph.facebook.com/{$user->id}/picture?type=large", TMP.DS.$uniqid);
 				@convert(TMP.DS.$uniqid, store_path('user', $this->User->id, 'default.jpg'));
 				@unlink(TMP.DS.$uniqid);
-			} else if (!$unlokt_user['User']['is_facebook_only']) {
+			} else {
 				//debug('update unlokt user');
 				$this->User->id = $unlokt_user['User']['id'];
 				$user_update = array('User' => array(
@@ -1001,8 +1039,11 @@ class UsersController extends AppController {
 					'last_name' => $user->last_name,
 					'gender' => $user->gender,
 					'is_facebook_only' => true,
-					'facebook_id' => $user->id
+					'facebook_id' => $user->id,
+					'facebook_token' =>  $params['access_token']
 				));
+				
+				$this->log($params['access_token']);
 				$this->User->save($user_update);
 			}
 			//if user is in the system log them in

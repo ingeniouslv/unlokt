@@ -8,10 +8,11 @@ $this->set('title_for_layout', 'Account Settings');
 		</div>
 		<div class="row">
 			<div class="one columns"  >
-				<img src="<?php echo $this->Html->gen_path('user', $user['User']['id'], 80, null, $user['User']['image_name']); ?>" class="profile-image" title="<?php echo h($user['User']['name']); ?>">
+				<img src="<?php echo $this->Html->gen_path('user', 
+					$user['User']['id'], 80, null, $user['User']['image_name']); ?>" class="profile-image" title="<?php echo h($user['User']['name']); ?>">
 			</div>
 
-			<div class="eleven columns user-details">
+			<div class="four columns user-details">
 				<h2><?php echo h($user['User']['name']); ?></h2>
 				<p><?php echo h($user['User']['email']); ?></p>
 				<?php if ($user['User']['is_active']): ?>
@@ -21,20 +22,37 @@ $this->set('title_for_layout', 'Account Settings');
 					<p>Super Administrator</p>
 				<?php endif; ?>
 				<?php echo $this->Html->link('Edit Account', array('action' => 'account_edit'), array('class' => 'btn')); ?>
-				<?php 
 				
-				if ($user['User']['notifications'])
-				echo $this->Html->link('Turn-off Notifications', 
-				array('action' => 'notifications', 0), array('class' => 'btn btn-blue '));
-				else 
-				echo $this->Html->link('Turn-on Notifications', 
-				array('action' => 'notifications', 1), array('class' => 'btn btn-yellow '));
-				
-				
-				?>
 			
 			
 			</div>
+			
+			<div style='color:white;' class="four columns user-details"  >
+			
+			<h4>Notification Settings</h4>
+			
+			<div class='user-detail-option'  >
+			<input  
+			<?php  if ($user['User']['facebook_notifications']) echo ' CHECKED '; ?>
+			class='enable-facebook-notifications user-detail-checkbox' type="checkbox"> <b class='user-detail-b'>Enable Facebook Posting</b> 
+			<div class="checkbox-description">When you Endorse or Love a spot we will share it with your friends </div>
+			</div>
+			
+			
+			<br>
+			
+				<div class='user-detail-option'  >
+			<input  
+			<?php  if ($user['User']['email_notifications']) echo ' CHECKED '; ?>
+			class='enable-email-notifications user-detail-checkbox' type="checkbox"> <b class='user-detail-b'>Enable Email Notifcations</b> 
+			<div class="checkbox-description" >When you follow a spot you get notifcations letting you know about new specials and events </div>
+			</div>
+			 
+			 <br><br>
+			
+		 
+			
+			
 		</div>
 		<span id="reviews"></span>
 		
@@ -69,6 +87,70 @@ $this->set('title_for_layout', 'Account Settings');
 		slider_distance: 6
 	});
 
+
+
+	$('.enable-facebook-notifications').click(function() {
+
+		if ( $('.enable-facebook-notifications:checked').length ) {
+ 
+
+			//shoot of an ajax request enabling email notifications
+
+			$.get('/users/facebook_notifications/1', function(data) {
+				  //$('.result').html(data);
+				  console.log('facebook on performed.');
+				});
+
+			
+			
+
+		} else {
+
+
+			//shoot of an ajax request disabling email notifications
+			$.get('/users/facebook_notifications/0', function(data) {
+				  //$('.result').html(data);
+				  console.log('facebook off performed.');
+				});
+
+		}
+
+	}
+	);
+
+	
+	 
+
+	$('.enable-email-notifications').click(function() {
+
+		if ( $('.enable-email-notifications:checked').length ) {
+ 
+
+			//shoot of an ajax request enabling email notifications
+
+			$.get('/users/email_notifications/1', function(data) {
+				  //$('.result').html(data);
+				  console.log('Notice on performed.');
+				});
+
+			
+			
+
+		} else {
+
+
+			//shoot of an ajax request disabling email notifications
+			$.get('/users/email_notifications/0', function(data) {
+				  //$('.result').html(data);
+				  console.log('Notice off performed.');
+				});
+
+		}
+
+	}
+	);
+
+	
 	//add a hover effect to the tile image
 		$('.tile').hover(
 			function() {

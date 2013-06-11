@@ -688,8 +688,10 @@ ul.payment-history li{padding:10px 0 0;}
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";}
 .clearfix:after{clear:both;}
 .cake-sql-log{color:#fff;}
-
-
+.user-detail-option {margin-top:15px; position:relative;margin-bottom:15px;}
+.user-detail-b {position:absolute;top:0px;left:22px;color:#d3d3d3;}
+.checkbox-description { position:absolute; top:21px;left:20px; font-style:italic; }	 
+.user-detail-checkbox {  position:absolute; top:-2px;left:2px;  }
 .endorsed_it {  	  
 						 float:left;
 						 width:80px;

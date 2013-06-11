@@ -177,7 +177,7 @@ class UsersController extends AppController {
 	}
 	
 	
-	public function notifications( $on_off = 0 ) {
+	public function email_notifications( $on_off = 0 ) {
 		
 
 		//set notifcation var
@@ -198,14 +198,74 @@ class UsersController extends AppController {
 		//save the notifcition field on user
 	 
 		$this->User->id = $this->Auth->user('id');
-		$this->User->saveField('notifications',  $on_off);
+		$saved = $this->User->saveField('email_notifications',  $on_off);
 		 
-		$this->Session->setFlash($flash,'alert-success');
-		$this->redirect('/users/account');
+		
+		
+		if ($this->request->is('ajax')) {
+			
+			die($saved?'GOOD':'The email notifcations could not be disabled. Please, try again.');
+			
+			
+		} else {
+			
+			$this->Session->setFlash($flash,'alert-success');
+			$this->redirect('/users/account');
+			
+		}
+		//return success ok
+		
 		
 		 
 		
 	}
+	
+	
+
+	public function facebook_notifications( $on_off = 0 ) {
+		
+
+		//set notifcation var
+		
+		if ($on_off) {
+			
+			$flash = "Facebook notifcations have been turned on.";
+			$on_off = 1;
+			
+		} else {
+			
+			
+			$flash = "Facebook notifcations have been turned off.";
+			$on_off = 0;
+			
+		}
+	 
+		//save the notifcition field on user
+	 
+		$this->User->id = $this->Auth->user('id');
+		$saved = $this->User->saveField('facebook_notifications',  $on_off);
+		 
+		
+		
+		if ($this->request->is('ajax')) {
+			
+			die($saved?'GOOD':'Facebook notifcations could not be disabled. Please, try again.');
+			
+			
+		} else {
+			
+			$this->Session->setFlash($flash,'alert-success');
+			$this->redirect('/users/account');
+			
+		}
+		//return success ok
+		
+		
+		 
+		
+	}
+	
+	
 	
 	public function login() {
 		//set up session redirect to work on create user
@@ -523,8 +583,7 @@ class UsersController extends AppController {
 		
 	}
 	
-	
-	
+ 
 	
 	
 	/**
@@ -534,9 +593,14 @@ class UsersController extends AppController {
 	public function follow_spot($spot_id = null, $mobile = null) {
 		$this->autorender = false;
 		$this->User->SpotFollower->Spot->id = $spot_id;
+		
+	 
+		
 		if(!$this->User->SpotFollower->Spot->exists()) {
 			throw new NotFoundException(__('Invalid spot'));
 		}
+		
+		$spot = $this->User->SpotFollower->Spot->read(null, $spot_id);
 		
 		$user_id = $this->Auth->user('id');
 		
@@ -567,7 +631,9 @@ class UsersController extends AppController {
 			
 		}
 		
-		$this->redirect($this->request->referer());
+		$this->set('spot', $spot);
+		
+		#$this->redirect($this->request->referer());
 	}
 	/**
 	 * Call this action to remove the relationship between a user and a model.
@@ -593,7 +659,7 @@ class UsersController extends AppController {
 			}
 		}
 		
-		$this->redirect($this->request->referer());
+		$this->redirect('/spots/view/' . $spot_id );
 	}
 	
 	

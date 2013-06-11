@@ -56,6 +56,7 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 				 
 				 
 								 <div class='endorse' style='
+								 cursor: pointer;
 						 float:left;
 						 width:94px;
 						 height:30px;
@@ -304,8 +305,7 @@ $this->Html->add_script(array(
 
 
 		$('.endorse').hover(  function() {
-
-			 console.log('hover');
+ 
 			 $('#endorse_status').show();
 			 
 			

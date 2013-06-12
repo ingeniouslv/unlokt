@@ -215,7 +215,7 @@ class DealsController extends AppController {
 
 				foreach ($followers as $follower) {
 
-					if ($follower['User']['notifications']) {
+					if ($follower['User']['email_notifications']) {
 				  
 						 $this->request->data['Deal']['id'] = $this->Deal->id;
 				 
@@ -235,6 +235,7 @@ class DealsController extends AppController {
 						->template('spots-special')
 						 
 						->viewVars(array(
+							'username' => $follower['User']['name'],
 							'deal' =>  $this->request->data['Deal'],
 							'spot' => $spot['Spot']
 						))

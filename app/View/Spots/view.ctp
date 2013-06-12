@@ -79,9 +79,10 @@ $this->set('title_for_layout', h($spot['Spot']['name']));
 						 background:#474747;
 						 position:absolute; 
 						 color:white;
-						 font-weight:bold;
+						 font-weight:bold; 
 						 padding:6px;
 						 width:125px;
+						 z-index:1000;
 						 top:25px;display:none;'>
 						 <?php  if ($endorsed) : ?>
 						 <a style=' font-size:.8em;' href='/users/unendorse_spot/<?php echo $spot['Spot']['id']; ?>'>REMOVE ENDORSE</a>

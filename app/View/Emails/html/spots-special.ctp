@@ -7,10 +7,14 @@
 position:relative;
 max-width:8.5in;font-size:12pt;color:white; background:black;padding:35px;">
 
+
+<b>Hi <?php echo h($username); ?>,</b>
+<h1><?php echo h($spot['name']); ?> Has A New <?php echo h($deal['type']); ?>:</h1>
  
  <a href='<?php echo ABSOLUTE_URL ; ?>/special/view/<?php echo h($deal['id']); ?>' style='padding:0px;margin:0px;'><img 
-  style='display:block;margin-bottom:0px;' vspace=0
-  src='<?php echo ABSOLUTE_URL ; ?>/store/data/deal/<?php 
+  alt="Click to view <?php echo h($deal['name']) ; ?>"
+  style='width:400px;height:400px;display:block;margin-bottom:0px;' vspace=0
+   src='<?php echo ABSOLUTE_URL ; ?>/store/data/deal/<?php 
   echo h($deal['id']) ; ?>/<?php echo h($deal['id']) ; ?>/default.jpg' ></a><div style=" margin-top:0px;
   color:white;background:#585858 ;width:400px;">
  
@@ -68,7 +72,7 @@ border:1px solid #f6cc36;background-color:#fae69b;
 
 	<div style="background:#000;width: 205px;padding: 10px 10px 0px 10px;">
 		<a href="http://unlokt.com" style="border:0px;"><img src="http://unlokt.com/img/main-logo2.png"
-			 alt="http://unlokt.com" /></a>
+			 alt="Unlokt.com" /></a>
 	</div>
 	<p style='font-size:.8em;width:80%;'>
 		Your are receiving this email because you follow <?php echo h($spot['name']); ?> on Unlokt.com and have notifications enabled.

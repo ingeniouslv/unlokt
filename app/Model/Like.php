@@ -117,8 +117,7 @@ class Like extends AppModel {
 	
 	
 	private function _updateCount( $data, $subtract = false ) {
-		
-		debug($data); #exit();
+	 
 		
 		//increment the model count
 		if ($data['Like']['type_id'] == 1) { //we have a spot

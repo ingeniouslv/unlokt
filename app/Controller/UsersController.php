@@ -458,7 +458,32 @@ class UsersController extends AppController {
 		$this->set(compact('user', 'feeds', 'spots', 'deals'));
 	}
 	
-	
+	public function endorse_spot_share($spot_id = null ) {
+		
+		
+		$spot = $this->User->SpotFollower->Spot->read(null, $spot_id);
+		$this->set('spot', $spot);
+		
+		
+		//post to facebook
+		$this->User->SpotFollower->Spot->recursive = -1;
+		$spot = $this->User->SpotFollower->Spot->read( null, $spot_id );
+		$this->Facebook = $this->Components->load('Facebook') ;
+		
+		if (!$user['User']['facebook_id'])
+			$this->redirect("/spots/view/" . $spot_id );
+			
+		$facebook['user_id'] = $this->Auth->user('id')  ;
+		$facebook['message'] = "Has endorsed " . $spot['Spot']['name']  ;
+		$facebook['url'] =  ABSOLUTE_URL . "/spots/view/" . $spot_id  ;
+		$facebook['image'] = ABSOLUTE_URL . "/gen/spot/" . $spot_id . "/200x200/" . $spot['Spot']['image_name'];
+		 
+			
+		$this->Facebook->post( $facebook ) ;
+			
+		$this->redirect("/spots/view/" . $spot_id );
+		
+	}
 	
 	
 	/**
@@ -477,7 +502,7 @@ class UsersController extends AppController {
 		$user_id = $this->Auth->user('id');
 		
 		
-
+		$spot = $this->User->SpotFollower->Spot->read(null, $spot_id);
 	 
 		
 		$this->loadModel('Like');
@@ -486,20 +511,7 @@ class UsersController extends AppController {
 			$user_id, $spot_id, $type_id);
 		
 		if(!$has_endorsed) {
-			
-			//post to facebook
-			$this->User->SpotFollower->Spot->recursive = -1;
-			$spot = $this->User->SpotFollower->Spot->read( null, $spot_id );
-			$this->Facebook = $this->Components->load('Facebook') ;
-			
-			$facebook['user_id'] = $this->Auth->user('id')  ;
-			$facebook['message'] = "Has endorsed " . $spot['Spot']['name']  ;
-			$facebook['url'] =  ABSOLUTE_URL . "/spots/view/" . $spot_id  ;
-			$facebook['image'] = ABSOLUTE_URL . "/gen/spot/" . $spot_id . "/200x200/" . $spot['Spot']['image_name'];
 		 
-			
-			$this->Facebook->post( $facebook ) ;
-	 
 			
 			$spot_endorsed_data = array( 
 				'Like' => array(
@@ -525,10 +537,17 @@ class UsersController extends AppController {
 				}
 			}
 			
+		} else {
+			
+			$this->redirect("/spots/view/" . $spot_id );
+			
 		}
 		
-		$this->redirect($this->request->referer());
 		
+		//does this user use facebook??
+		
+		//
+		$this->set('spot', $spot);
 	}
 	
 	
@@ -615,7 +634,37 @@ class UsersController extends AppController {
 				)
 			);
 			
+			
+
+			
 			$saved = $this->User->SpotFollower->save($spot_follower_data);
+			
+			
+			
+			
+			$this->loadModel('Like');
+			$type_id = $this->Like->getTypeId("Spot") ;
+		
+			$has_endorsed = $this->Like->findByUserIdAndTargetIdAndTypeId(
+			$user_id, $spot_id, $type_id);
+		
+			if(!$has_endorsed) {
+		 
+		 
+				$type_id = $this->Like->getTypeId("Spot") ;
+				
+				$spot_endorsed_data = array( 
+					'Like' => array(
+						'target_id' => $spot_id,
+						'user_id' => $user_id,
+						'type_id' => $type_id
+					)
+				);
+			
+			$endorsed = $this->Like->add($spot_endorsed_data);
+			
+			}
+			
 			if ($mobile){
 				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');
 				die();

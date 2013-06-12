@@ -648,15 +648,11 @@ class Spot extends AppModel {
 	
 	//should be designed to take negative numbers
 	public function updateEndorseCount( $spot_id, $subtract = false ) {
-		
-		debug($spot_id);
+	 
 		
 		$currentCount = (int)Spot::getEndorseCount( $spot_id );
 		
-		
-		debug($currentCount);
-		
-		debug($subtract);
+		 
 		
 		if (!$currentCount) $currentCount = 0;
 		
@@ -667,7 +663,7 @@ class Spot extends AppModel {
 			
 		if (!$newCount) $newCount = 0;	
 		
-		debug($newCount);
+	 
 		
 		
 		$this->id = $spot_id;

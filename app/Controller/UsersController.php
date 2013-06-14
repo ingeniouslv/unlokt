@@ -310,10 +310,12 @@ class UsersController extends AppController {
 	}
 	
 	public function logout() {
+		
 		$this->autoRender = false;
 		$logout_url = $this->Auth->logout();
 		$this->_logout_facebook();
 		$this->redirect(isset($_GET['redirect']) ? $_GET['redirect'] : $logout_url);
+	
 	}
 	
 	public function reset() {
@@ -458,12 +460,64 @@ class UsersController extends AppController {
 		$this->set(compact('user', 'feeds', 'spots', 'deals'));
 	}
 	
+	
+	
+	public function love_special_share($special_id = null ) {
+		
+		$this->autorender = false;
+		$this->User->ActiveDeal->Deal->id = $special_id ;
+ 
+		
+		if(!$this->User->ActiveDeal->Deal->exists()) {				
+			
+			throw new NotFoundException(__('Invalid special'));
+		
+		
+		}
+ 
+		$user = $this->User->read(null, $this->Auth->user('id') );
+ 
+		
+		//post to facebook
+		$this->User->SpotFollower->Spot->recursive = -1;
+		$special = $this->User->ActiveDeal->Deal->read(null, $special_id);
+		$this->Facebook = $this->Components->load('Facebook') ;
+		
+		if (!$user['User']['facebook_id'] )
+			$this->redirect("/special/view/" . $special_id );
+			
+		$facebook['user_id'] = $this->Auth->user('id')  ;
+		$facebook['message'] = "Has endorsed " . $special['Deal']['name']  ;
+		$facebook['url'] =  ABSOLUTE_URL . "/special/view/" . $special_id  ;
+		$facebook['image'] = ABSOLUTE_URL . "/gen/deal/" . $special_id . "/200x200/default.jpg";
+ 
+
+		//$this->Facebook->post( $facebook ) ;
+			
+		$this->redirect("/special/view/" . $special_id );
+		 
+		
+	}
+	
+	
 	public function endorse_spot_share($spot_id = null ) {
 		
 		
-		$spot = $this->User->SpotFollower->Spot->read(null, $spot_id);
-		$this->set('spot', $spot);
+		$this->autorender = false;
+		$this->User->SpotFollower->Spot->id = $spot_id ;
 		
+		
+			
+		if(!$this->User->SpotFollower->Spot->exists()) {				
+			
+			throw new NotFoundException(__('Invalid Spot'));
+		
+		
+		}
+		
+		
+		$user = $this->User->read(null, $this->Auth->user('id') );
+		 
 		
 		//post to facebook
 		$this->User->SpotFollower->Spot->recursive = -1;
@@ -480,6 +534,7 @@ class UsersController extends AppController {
 		 
 			
 		$this->Facebook->post( $facebook ) ;
+		$this->set('spot', $spot);
 			
 		$this->redirect("/spots/view/" . $spot_id );
 		
@@ -512,7 +567,7 @@ class UsersController extends AppController {
 		
 		if(!$has_endorsed) {
 		 
-			
+ 
 			$spot_endorsed_data = array( 
 				'Like' => array(
 					'target_id' => $spot_id,
@@ -568,6 +623,9 @@ class UsersController extends AppController {
 		$type_id = $this->Like->getTypeId("Deal") ;
 		$has_loved = $this->Like->findByUserIdAndTargetIdAndTypeId(
 			$user_id, $special_id, $type_id);
+			
+			
+		$special = $this->User->ActiveDeal->Deal->read(null, $special_id);
 		
 		if(!$has_loved) {
 			 
@@ -596,10 +654,16 @@ class UsersController extends AppController {
 				}
 			}
 			
+		} else {
+			
+			$this->redirect("/special/view/" . $special_id );
+			
 		}
 		
-		$this->redirect($this->request->referer());
 		
+		
+	//	$this->redirect($this->request->referer());
+		$this->set('special', $special );
 	}
 	
  

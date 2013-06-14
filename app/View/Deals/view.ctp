@@ -10,8 +10,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 					<div class="photo">
 						<img src="<?php echo $this->Html->gen_path('deal', $deal['Deal']['id'], 200); ?>" width="200" height="200">
 					</div>
-					
-						
+ 
 					<div class="deal-meta columns">
 						<h5 class="deal-type">
 							<!-- If deal == deal -->
@@ -23,16 +22,12 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 								<i class="icon-key"></i> Reward
 							<?php endif; ?>
 						</h5>
-						
-						 
-						
-						
+  	
 						<button style='margin-right:103px;' class="fb-share btn-fb">Share</button>
 						
-						
-											
+ 					
 						<div class='love' style='
-						 
+						 cursor: pointer;
 						 position:absolute;
 						top:6px;
 						right:238px;
@@ -45,7 +40,7 @@ $this->set('title_for_layout', h("{$deal['Deal']['name']} @ {$spot['Spot']['name
 						 
 						 background: url("/img/loved_it_icon.png") no-repeat; 
 						 ' ><h4 
-						 style='position:absolute;top:-6px; left:24px;'><?php echo $deal['Deal']['love_count'];
+						 style='position:absolute;top:-6px; left:22px;'><?php echo $deal['Deal']['love_count'];
 						 if ($deal['Deal']['love_count'] == 1)
 						 echo " Person";
 						 else echo " People";

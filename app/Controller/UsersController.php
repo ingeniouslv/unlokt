@@ -702,32 +702,8 @@ class UsersController extends AppController {
 
 			
 			$saved = $this->User->SpotFollower->save($spot_follower_data);
-			
-			
-			
-			
-			$this->loadModel('Like');
-			$type_id = $this->Like->getTypeId("Spot") ;
-		
-			$has_endorsed = $this->Like->findByUserIdAndTargetIdAndTypeId(
-			$user_id, $spot_id, $type_id);
-		
-			if(!$has_endorsed) {
-		 
-		 
-				$type_id = $this->Like->getTypeId("Spot") ;
-				
-				$spot_endorsed_data = array( 
-					'Like' => array(
-						'target_id' => $spot_id,
-						'user_id' => $user_id,
-						'type_id' => $type_id
-					)
-				);
-			
-			$endorsed = $this->Like->add($spot_endorsed_data);
-			
-			}
+
+	 
 			
 			if ($mobile){
 				ApiComponent::success(ApiSuccessMessages::$GENERIC_SUCESS, 'GOOD');

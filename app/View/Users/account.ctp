@@ -12,7 +12,7 @@ $this->set('title_for_layout', 'Account Settings');
 					$user['User']['id'], 80, null, $user['User']['image_name']); ?>" class="profile-image" title="<?php echo h($user['User']['name']); ?>">
 			</div>
 
-			<div class="four columns user-details">
+			<div class="two columns user-details">
 				<h2><?php echo h($user['User']['name']); ?></h2>
 				<p><?php echo h($user['User']['email']); ?></p>
 				<?php if ($user['User']['is_active']): ?>
@@ -27,33 +27,47 @@ $this->set('title_for_layout', 'Account Settings');
 			
 			</div>
 			
-			<div style='color:white;' class="four columns user-details"  >
+			<div style='color:white;margin-left:30px;' class="four columns user-details"  >
 			
 			<h4>Notification Settings</h4>
 			
-			<div class='user-detail-option'  >
-			<input  
-			<?php  if ($user['User']['facebook_notifications']) echo ' CHECKED '; ?>
-			class='enable-facebook-notifications user-detail-checkbox' type="checkbox"> <b class='user-detail-b'>Enable Facebook Posting</b> 
-			<div class="checkbox-description">When you Endorse or Love a spot we will share it with your friends </div>
-			</div>
+				<div class='user-detail-option'  >
+				<input  
+				<?php  if ($user['User']['facebook_notifications']) echo ' CHECKED '; ?>
+				class='enable-facebook-notifications user-detail-checkbox' type="checkbox"> <b class='user-detail-b'>Enable Facebook Posting</b> 
+				<div class="checkbox-description">When you Endorse or Love a spot we will share it with your friends </div>
+				</div>
 			
 			
 			<br>
 			
-				<div class='user-detail-option'  >
-			<input  
-			<?php  if ($user['User']['email_notifications']) echo ' CHECKED '; ?>
-			class='enable-email-notifications user-detail-checkbox' type="checkbox"> <b class='user-detail-b'>Enable Email Notifcations</b> 
-			<div class="checkbox-description" >When you follow a spot you get notifcations letting you know about new specials and events </div>
-			</div>
+					<div class='user-detail-option'  >
+				<input  
+				<?php  if ($user['User']['email_notifications']) echo ' CHECKED '; ?>
+				class='enable-email-notifications user-detail-checkbox' type="checkbox"> <b class='user-detail-b'>Enable Email Notifcations</b> 
+				<div class="checkbox-description" >When you follow a spot you get notifcations letting you know about new specials and events </div>
+				</div>
 			 
 			 <br><br>
 			
 		 
 			
 			
-		</div>
+			</div>
+			 
+			<div style='color:white;margin-left:30px;' class="four columns user-details"  >
+			<h4>Spots You Endorse</h4>
+			
+			<ul style='list-style:none;margin:0px;padding:0px;'>
+			<?php 
+				foreach ($endorsed_spots as $spot): ?>
+				
+				<li style=' padding:0px;margin:0px;'><a href='/spots/view/<?php echo $spot['Spot']['id']; ?>'><?php echo $spot['Spot']['name']; ?></a></li>
+				
+				<?php endforeach; ?>
+				
+			 </ul>
+			</div>
 		<span id="reviews"></span>
 		
 	</div>	

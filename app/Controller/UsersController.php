@@ -1092,11 +1092,28 @@ class UsersController extends AppController {
 	}
 	
 	public function account() {
+		
 		$user_id = $this->Auth->user('id');
 		$user = $this->User->getUser($user_id, array('Review', 'ActiveDeal'));
 		$reviews = $this->User->Review->getReviewByUserId($user_id, array('Spot', 'User'));
 		$deals = $this->User->ActiveDeal->Deal->getActiveDealsByUserId($user_id, array('Spot'));
-		$this->set(compact('user', 'reviews', 'deals'));
+		
+		$this->loadModel('Like');
+		//spots i endorse
+		$endorsed_ids =
+			$this->Like->find('list', 
+				array(
+					'conditions' => array('user_id' => $user_id  , 'type_id' => 1 ),
+		 			'fields' => array('Like.target_id' )
+		 		 )
+		 	 )  ; //type 1 is spot
+	 
+		$endorsed_spots= $this->User->SpotFollower->Spot->findAllById( $endorsed_ids );
+		
+	 
+		
+		$this->set(compact('user', 'reviews', 'deals', 'endorsed_spots'));
+		
 	} // end of account()
 	
 	public function account_edit() {

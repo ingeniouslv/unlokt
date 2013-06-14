@@ -486,13 +486,22 @@ class UsersController extends AppController {
 		if (!$user['User']['facebook_id'] )
 			$this->redirect("/special/view/" . $special_id );
 			
+		$spot = $this->User->SpotFollower->Spot->read(null, $special['Deal']['spot_id']);
+		
+			
 		$facebook['user_id'] = $this->Auth->user('id')  ;
-		$facebook['message'] = "Has endorsed " . $special['Deal']['name']  ;
+		$facebook['message'] = "Loves this " . $special['Deal']['name'] . " at "  . $spot['Spot']['name'] ;
 		$facebook['url'] =  ABSOLUTE_URL . "/special/view/" . $special_id  ;
 		$facebook['image'] = ABSOLUTE_URL . "/gen/deal/" . $special_id . "/200x200/default.jpg";
  
-
-		//$this->Facebook->post( $facebook ) ;
+			
+		$this->Facebook->post( $facebook ) ;
+		
+		
+		$this->Session->setFlash('You have Loved this on Facebook.', 'alert-success');
+			
+			
+			
 			
 		$this->redirect("/special/view/" . $special_id );
 		 

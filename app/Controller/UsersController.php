@@ -603,11 +603,11 @@ class UsersController extends AppController {
 				);
 	 
 					
-			$saved = $this->User->SpotFollower->save($spot_follower_data);
+				$saved = $this->User->SpotFollower->save($spot_follower_data);
 			
 			
 				
-				
+			}
 		 
 			
 			if ($mobile){

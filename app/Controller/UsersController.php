@@ -583,9 +583,31 @@ class UsersController extends AppController {
 					'user_id' => $user_id,
 					'type_id' => $type_id
 				)
+					
+					
+					
+				
 			);
 			
 			$saved = $this->Like->add($spot_endorsed_data);
+			
+			//follow the spot
+			$spot_followers = $this->User->SpotFollower->findByUserIdAndSpotId($user_id, $spot_id);
+			
+			if(!$spot_followers) {
+				$spot_follower_data = array(
+						'SpotFollower' => array(
+								'spot_id' => $spot_id,
+								'user_id' => $user_id
+						)
+				);
+	 
+					
+			$saved = $this->User->SpotFollower->save($spot_follower_data);
+			
+			
+				
+				
 		 
 			
 			if ($mobile){

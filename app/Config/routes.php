@@ -36,6 +36,8 @@
 
 	Router::connect('/spot-invite/*', array('controller' => 'spots', 'action' => 'submit_your_business'));
 	Router::connect('/channel', array('controller' => 'users', 'action' => 'channel'));
+	
+	Router::redirect('/rsvp/*', 'http://tinyurl.com/unloktrsvp', array('status' => 302));
 
 /**
  * Load all plugin routes.  See the CakePlugin documentation on 

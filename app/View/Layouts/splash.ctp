@@ -46,13 +46,14 @@
 				<div class="container fade">
 					<div class="row">
 					<div  class="col-lg-4 col-md-4">
-						<img src="/img/slide02.jpg" style="max-width:100%;" />
+						<img src="/img/phone02.png" style="max-width:100%;" />
 					</div>
 					<div class="col-lg-8 col-md-8">
 						<h1>Bringing credibility back.</h1>
 						<div class="col-lg-6 col-md-6 text">
 							<h3>Local Love</h3>
 							<p>The only app to find awesome local spots in your city (without the hassle).<br><p>
+							<p class="pagebreak"></p>
 							
 							<h3>Get Social</h3>
 							<p>Endorse your favorite spots, share with friends, "love" spotlights and events, and leave notes to let everyone know what they shouldn't miss.</p>
@@ -82,44 +83,42 @@
 					</div>
 				</div>
 				<div class="row images">
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen01.jpg" />
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen02.jpg" />
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen03.jpg" />
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen04.jpg" />
 					</div>
-				</div>
-				<div class="row images">
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
-						<img src="/img/screen05.jpg" />
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
-						<img src="/img/screen06.jpg" />
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
-						<img src="/img/screen07.jpg" />
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
-						<img src="/img/screen08.jpg" />
-					</div>
-				</div>
-				<div class="row images">
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen09.jpg" />
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen10.jpg" />
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+				</div>
+				<div class="row images">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<img src="/img/screen05.jpg" />
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<img src="/img/screen06.jpg" />
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<img src="/img/screen07.jpg" />
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<img src="/img/screen08.jpg" />
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen11.jpg" />
 					</div>
-					<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<img src="/img/screen12.jpg" />
 					</div>
 				</div>
@@ -153,8 +152,8 @@
 				<div class="container fade">
 					<h1><span>Keep in Touch</span></h1>
 					<div class="social">
-						<a href="http://facebook.com/unloktapp/" target="_blank"><div class="icon-circle"><i class="fa fa-twitter"></i></div></a>
-						<a href="http://twitter.com/unlokt" target="_blank"><div class="icon-circle"><i class="fa fa-facebook"></i></div></a>
+						<a href="http://twitter.com/unlokt" target="_blank"><div class="icon-circle"><i class="fa fa-twitter"></i></div></a>
+						<a href="http://facebook.com/unloktapp/" target="_blank"><div class="icon-circle"><i class="fa fa-facebook"></i></div></a>
 						<a href="http://instagram.com/unlokt" target="_blank"><div class="icon-circle"><i class="fa fa-instagram"></i></div></a>
 					</div>
 				</div>

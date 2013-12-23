@@ -40,7 +40,12 @@ class AppController extends Controller {
 		$this->Auth->authenticate = array('BcryptForm' => array('fields' => array('username' => 'email', 'password' => 'password'), 'scope' => array('User.is_active' => 1)));
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login', 'plugin' => false, 'admin' => false);
 		$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login', 'plugin' => false, 'admin' => false);
-		$this->Auth->loginRedirect = '/';
+		$this->Auth->loginRedirect = '/pages/splash';
+		if (!$this->Auth->user()) {
+			$this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'splash');
+		} else {
+			$this->Auth->loginRedirect = '/';
+		}
 		
 		// Check if logged in via API
 		// If API Key is passed and valid, Set session.

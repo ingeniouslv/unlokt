@@ -80,8 +80,7 @@ if (IDENTIFIER == 'production') {
 			'persistent' => false,
 			'host' => 'localhost',
 			'login' => 'root',
-			'password' => 'root',
-			/* 'password' => 'Newface2013.', */
+			'password' => 'Newface2013.',
 			'database' => 'unlokt-dev',
 			'prefix' => '',
 			'encoding' => 'utf8'

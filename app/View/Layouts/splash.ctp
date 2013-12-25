@@ -180,7 +180,7 @@
 	</div>
 
 
-	<div class="splash-wrap hiddenop">	
+	<div class="splash-wrap hiddenop" id="splash-wrap">	
 		<div class="splash">
 			<?php if($this->Session->check('Message')): ?>
 				<?php

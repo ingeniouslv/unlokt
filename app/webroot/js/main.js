@@ -21,11 +21,19 @@ $(function() {
 	}	
 	
 	$('.signIn').click(function(e) {
-		$('.splash-wrap').css('display', 'block').animate({'opacity': 1});
+		$('.splash-wrap').css('display', 'block').addClass('active').animate({'opacity': 1});
 		e.preventDefault();
 	});	
 	
 	$.localScroll();
+});
+
+$(document).keyup(function(e) {		
+    if(e.keyCode == 27) {
+       $('.splash-wrap').removeClass('active').animate({'opacity': 0}, 800, function() {
+	       $('.splash-wrap').css('display', 'none');
+       });
+    }
 });
 
 $(window).resize(function() {

@@ -3,6 +3,7 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+<div class="content-container">        
 	<div class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container" style="height:60px;">
 	    <div class="navbar-header">
@@ -11,7 +12,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" id="logo" href="#">Unlokt</a>
+	      <a class="navbar-brand" id="logo" href="/">Unlokt</a>
 	    </div>
 	  </div>
 	  
@@ -76,7 +77,7 @@
 			<div class="content">
 				<div class="container fade">
 					<div class="row">
-						<div class="col-lg-8 col-md-8">
+						<div class="col-lg-11 col-md-11">
 							<h1>Always know what's happening.</h1>
 							<p class="lead">Find awesome local spots, events, spotlights &amp; happy hours.</p>
 						</div>
@@ -178,7 +179,7 @@
 	  		
 	  	</video>
 	</div>
-
+</div>
 
 	<div class="splash-wrap hiddenop" id="splash-wrap">	
 		<div class="splash">

@@ -22,6 +22,7 @@ $(function() {
 	
 	$('.signIn').click(function(e) {
 		$('.splash-wrap').css('display', 'block').addClass('active').animate({'opacity': 1});
+		$('.content-container').addClass('blur');
 		e.preventDefault();
 	});	
 	
@@ -32,6 +33,7 @@ $(document).keyup(function(e) {
     if(e.keyCode == 27) {
        $('.splash-wrap').removeClass('active').animate({'opacity': 0}, 800, function() {
 	       $('.splash-wrap').css('display', 'none');
+	       $('.content-container').removeClass('blur');
        });
     }
 });

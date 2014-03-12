@@ -29,7 +29,8 @@
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'page'));
+	Router::connect('/about/', array('controller' => 'pages', 'action' => 'display', 'about'));
+	/* Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'page')); */
 
 	// A special route per Alex's request to have /deals/view/$id mapped to /special/view/$id
 	Router::connect('/special/view/*', array('controller' => 'deals', 'action' => 'view'));

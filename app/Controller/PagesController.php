@@ -45,7 +45,7 @@ class PagesController extends AppController {
 	
 	public function beforeFilter() {
  		//$this->Auth->allow(array('display', 'site_index', 'page'));
-		$this->Auth->allow(array('page'));
+ 		$this->Auth->allow(array('display', 'page', 'about'));
 		parent::beforeFilter();
 	}
 
@@ -75,6 +75,10 @@ class PagesController extends AppController {
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
+	}
+	
+	public function about() {
+		$this->layout = 'about';
 	}
 	
 	public function site_index() {

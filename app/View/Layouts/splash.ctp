@@ -77,7 +77,7 @@
 			<div class="content">
 				<div class="container fade">
 					<div class="row">
-						<div class="col-lg-11 col-md-11">
+						<div class="col-lg-12 col-md-12 text-center">
 							<h1>Always know what's happening.</h1>
 							<p class="lead">Find awesome local spots, events, spotlights &amp; happy hours.</p>
 						</div>

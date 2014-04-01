@@ -140,7 +140,7 @@
 		<div id="recommend" class="row-fluid story" data-stellar-background-ratio="0.7" data-stellar-vertical-offset="-100">
 			<div class="content">
 				<div class="container fade">
-					<h1><span class="underl" style="color: #fff;">Status is everything</span></h1>
+					<h1><span class="underl">Status is everything</span></h1>
 					<p class="lead">Available now in Las Vegas</p>
 					<p class="tagline">Coming soon to Los Angeles, San Diego, Miami, Chicago, New York and more.</p>
 				</div>
@@ -150,7 +150,7 @@
 		<div id="connect" class="row-fluid story">
 			<div class="content">
 				<div class="container fade">
-					<h1><span>Keep in Touch</span></h1>
+					<h1><span style="color: #fff;">Keep in Touch</span></h1>
 					<div class="social">
 						<a href="http://twitter.com/unlokt" target="_blank"><div class="icon-circle"><i class="fa fa-twitter"></i></div></a>
 						<a href="http://facebook.com/unloktapp/" target="_blank"><div class="icon-circle"><i class="fa fa-facebook"></i></div></a>

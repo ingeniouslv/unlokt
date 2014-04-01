@@ -50,11 +50,10 @@
 						<img src="/img/phone02.png" style="max-width:100%;" />
 					</div>
 					<div class="col-lg-8 col-md-8">
-						<h1>Bringing credibility back.</h1>
+						<h1>Bringing credibility back</h1>
 						<div class="col-lg-6 col-md-6 text">
 							<h3>Local Love</h3>
-							<p>The only app to find awesome local spots in your city (without the hassle).<br><p>
-							<p class="pagebreak"></p>
+							<p>The only app to find awesome local spots in your city (without the hassle).<br><br></p>
 							
 							<h3>Get Social</h3>
 							<p>Endorse your favorite spots, share with friends, "love" spotlights and events, and leave notes to let everyone know what they shouldn't miss.</p>
@@ -78,7 +77,7 @@
 				<div class="container fade">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 text-center">
-							<h1>Always know what's happening.</h1>
+							<h1>Always know what's happening</h1>
 							<p class="lead">Find awesome local spots, events, spotlights &amp; happy hours.</p>
 						</div>
 					</div>
@@ -141,7 +140,7 @@
 		<div id="recommend" class="row-fluid story" data-stellar-background-ratio="0.7" data-stellar-vertical-offset="-100">
 			<div class="content">
 				<div class="container fade">
-					<h1><span class="underl">Status is everything.</span></h1>
+					<h1><span class="underl">Status is everything</span></h1>
 					<p class="lead">Available now in Las Vegas</p>
 					<p class="tagline">Coming soon to Los Angeles, San Diego, Miami, Chicago, New York and more.</p>
 				</div>

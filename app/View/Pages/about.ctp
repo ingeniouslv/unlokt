@@ -3,9 +3,9 @@
 		<div id="home" class="row-fluid story content" data-stellar-background-ratio="0.5">
 			<div class="intro">
 				<h1>
-					<span>Not just any spot can be UNLOKT</span>
+					<span>We take our spots<br>very seriously.</span>
 				</h1>
-				<p class="lead" style="font-size:21px; margin-top:13px;">The locals decide.</p>
+				<p class="lead" style="margin-top:13px;">Not just any spot can be UNLOKT &mdash; The locals decide.</p>
 				<div class="container" style="width: 80%;">
 					<div class="row">
 						<div class="col-xs-3">

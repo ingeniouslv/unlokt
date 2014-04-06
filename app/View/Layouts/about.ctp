@@ -20,9 +20,10 @@
 	    <div class="navbar-collapse collapse">
 	        <nav class="navigation pull-right">
 	          <ul class="nav navbar-nav">
-	            <li class=""><a href="/pages/about">About Us <span class="glyphicon glyphicon-chevron-down"></span></a></li>
-	            <li><a href="/spots/recommend_a_spot">Recommend <span class="glyphicon glyphicon-chevron-down"></span></a></li>
-	            <li><a href="/users/login">Sign In</a></li>
+	            <li class=""><a href="http://unlokt.com/pages/about">About Us</a></li>
+	            <li class=""><a href="http://blog.unlokt.com/">Blog</span></a></li>
+	            <li><a href="http://unlokt.com/spots/recommend_a_spot">Recommend </a></li>
+	            <li><a href="http://unlokt.com/users/login" class="signIn">Sign In</a></li>
 	          </ul>
 	        </nav>  
 	    </div><!--/.navbar-collapse -->	    
